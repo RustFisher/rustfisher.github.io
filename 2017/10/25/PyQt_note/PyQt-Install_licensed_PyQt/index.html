@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="对于Windows7上的Python2，需要如下工具：  visual studio sip Qt(SDK)  如果电脑上已经装有了PyQt4，建议再装一份Python。与原来的分开。 win7安装社区版Visual Studio使用Visual Studio是为了它的编译工具和相关库。安装时选上Windows SDK。 对于VS2017来说，使用的是这个工具 “D:\Microsoft Visu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt5 安装商业版">
+<meta property="og:url" content="https://rustfisher.com/2017/10/25/PyQt_note/PyQt-Install_licensed_PyQt/index.html">
+<meta property="og:site_name" content="技术学习与实践">
+<meta property="og:description" content="对于Windows7上的Python2，需要如下工具：  visual studio sip Qt(SDK)  如果电脑上已经装有了PyQt4，建议再装一份Python。与原来的分开。 win7安装社区版Visual Studio使用Visual Studio是为了它的编译工具和相关库。安装时选上Windows SDK。 对于VS2017来说，使用的是这个工具 “D:\Microsoft Visu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-25T03:36:05.000Z">
+<meta property="article:modified_time" content="2018-09-21T01:03:47.000Z">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PyQt5 安装商业版 - 技术学习与实践</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"404a5efc1e08de2ea2b4f6f7669a356b","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?404a5efc1e08de2ea2b4f6f7669a356b";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PyQt5 安装商业版"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-10-25 11:36" pubdate>
+          2017年10月25日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PyQt5 安装商业版</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>对于Windows7上的Python2，需要如下工具：</p>
+<ul>
+<li>visual studio</li>
+<li>sip</li>
+<li>Qt(SDK)</li>
+</ul>
+<p>如果电脑上已经装有了PyQt4，建议再装一份Python。与原来的分开。</p>
+<h2 id="win7安装社区版Visual-Studio"><a href="#win7安装社区版Visual-Studio" class="headerlink" title="win7安装社区版Visual Studio"></a>win7安装社区版Visual Studio</h2><p>使用Visual Studio是为了它的编译工具和相关库。安装时选上Windows SDK。</p>
+<p>对于VS2017来说，使用的是这个工具 “D:\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat”<br>开始-所有程序-Visual Studio 2017-Visual Studio Tools</p>
+<p>vs安装路径 <code>D:\Microsoft Visual Studio</code><br>环境变量<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">D:<span class="hljs-symbol">\M</span>icrosoft Visual Studio<span class="hljs-symbol">\2</span>017<span class="hljs-symbol">\C</span>ommunity<span class="hljs-symbol">\V</span>C<span class="hljs-symbol">\T</span>ools<span class="hljs-symbol">\M</span>SVC<span class="hljs-symbol">\1</span>4.11.25503<span class="hljs-symbol">\b</span>in<span class="hljs-symbol">\H</span>ostx64<span class="hljs-symbol">\x</span>64;<br>D:<span class="hljs-symbol">\M</span>icrosoft Visual Studio<span class="hljs-symbol">\2</span>017<span class="hljs-symbol">\C</span>ommunity<span class="hljs-symbol">\V</span>C<span class="hljs-symbol">\T</span>ools<span class="hljs-symbol">\M</span>SVC<span class="hljs-symbol">\1</span>4.11.25503<span class="hljs-symbol">\l</span>ib;<br></code></pre></td></tr></table></figure></p>
+<h2 id="Python2-7安装sip"><a href="#Python2-7安装sip" class="headerlink" title="Python2.7安装sip"></a>Python2.7安装sip</h2><p>win7 64位系统，但Python2.7是32位</p>
+<p>下载sip源码包（例如sip-4.19.3），解压到任意位置。进入sip源码包，执行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">python</span> configure.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure><br>这里Python2.7安装在<code>D:\python27</code>；于是sip位置在<code>D:\python27\Lib\site-packages\sip-4.19.3</code><br>打开vs的命令行，进入sip在Python中的目录，执行<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">nmake<br>nmake <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="win7安装Qt5"><a href="#win7安装Qt5" class="headerlink" title="win7安装Qt5"></a>win7安装Qt5</h2><p>到Qt官网下载安装包。为了照顾32位的Python2.7，这里选择Qt 5.6.3 for Windows 32-bit (VS 2015, 869 MB)</p>
+<p>添加到环境变量中<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">D:<span class="hljs-symbol">\Q</span>t<span class="hljs-symbol">\Q</span>t5<span class="hljs-symbol">\5</span>.6.3<span class="hljs-symbol">\m</span>svc2015<span class="hljs-symbol">\b</span>in;D:<span class="hljs-symbol">\Q</span>t<span class="hljs-symbol">\Q</span>t5<span class="hljs-symbol">\T</span>ools<span class="hljs-symbol">\Q</span>tCreator<span class="hljs-symbol">\b</span>in<br></code></pre></td></tr></table></figure></p>
+<h2 id="win7编译安装商业版PyQt5"><a href="#win7编译安装商业版PyQt5" class="headerlink" title="win7编译安装商业版PyQt5"></a>win7编译安装商业版PyQt5</h2><p>Python2.7</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mel"><span class="hljs-keyword">python</span> configure.py --<span class="hljs-keyword">disable</span> QtNfc<br>nmake<br>nmake install<br></code></pre></td></tr></table></figure>
+<p>参考PyQt5的README<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">COMMERCIAL VERSION<br><br>If you have <span class="hljs-keyword">the</span> Commercial <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> PyQt5 <span class="hljs-keyword">then</span> you should also have <span class="hljs-keyword">a</span><br>license <span class="hljs-built_in">file</span> that you downloaded separately.  The license <span class="hljs-built_in">file</span> must be copied<br><span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> <span class="hljs-string">&quot;sip&quot;</span> <span class="hljs-built_in">directory</span> <span class="hljs-keyword">before</span> starting <span class="hljs-built_in">to</span> build PyQt5.<br></code></pre></td></tr></table></figure><br>我们把买来的license文件复制到sip目录下。</p>
+<p>在<code>E:\ws\doc\PyQtCommercial\PyQt5_commercial-5.9</code>中，把付费后得到的<code>pyqt-commercial.sip</code>复制到sip目录下</p>
+<p>使用vs2017的命令行工具！</p>
+<p><code>python configure.py</code>出现错误<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Error: </span>Use the --qmake argument to explicitly specify a working Qt qmake.<br></code></pre></td></tr></table></figure><br>网上说是因为没有配置好Qt SDK的原因<br>可参考 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7854599/pyqt-setup-for-qt-4-7-4">PyQt setup for Qt 4.7.4</a><br>解决错误后，会提示是否接受license。根据提示输入yes。</p>
+<p>执行<code>python configure.py --disable QtNfc</code><br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Querying</span> qmake about your Qt installation...<br><span class="hljs-attribute">Determining</span> the details of your Qt installation...<br><span class="hljs-attribute">This</span> is the commercial version of PyQt <span class="hljs-number">5</span>.<span class="hljs-number">9</span> (licensed under the PyQt Commercial<br><span class="hljs-attribute">License</span>) for Python <span class="hljs-number">2</span>.<span class="hljs-number">7</span>.<span class="hljs-number">13</span> <span class="hljs-literal">on</span> win<span class="hljs-number">32</span>.<br></code></pre></td></tr></table></figure></p>
+<h3 id="nmake报错-cannot-open-file-“msvcprt-lib”"><a href="#nmake报错-cannot-open-file-“msvcprt-lib”" class="headerlink" title="nmake报错 cannot open file “msvcprt.lib”"></a>nmake报错 cannot open file “msvcprt.lib”</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">fatal <span class="hljs-keyword">error</span> LNK1104: cannot <span class="hljs-keyword">open</span> <span class="hljs-keyword">file</span> “msvcprt.lib”<br></code></pre></td></tr></table></figure>
+<p>把lib路径添加到环境变量 <code>D:\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\lib;</code></p>
+<h3 id="nmake报错-QtNfc-dll-fatal-error-LNK1169-one-or-more-multiply-defined-symbols-found"><a href="#nmake报错-QtNfc-dll-fatal-error-LNK1169-one-or-more-multiply-defined-symbols-found" class="headerlink" title="nmake报错 QtNfc.dll : fatal error LNK1169: one or more multiply defined symbols found"></a>nmake报错 QtNfc.dll : fatal error LNK1169: one or more multiply defined symbols found</h3><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">release<span class="hljs-symbol">\Q</span>tNfc.dll : fatal error LNK1169: 找到一个或多个多重定义的符号<br>NMAKE : fatal error U1077: “&quot;D:<span class="hljs-symbol">\M</span>icrosoft Visual Studio<span class="hljs-symbol">\2</span>017<span class="hljs-symbol">\C</span>ommunity<span class="hljs-symbol">\V</span>C<span class="hljs-symbol">\T</span>ools<br><span class="hljs-symbol">\M</span>SVC<span class="hljs-symbol">\1</span>4.11.25503<span class="hljs-symbol">\b</span>in<span class="hljs-symbol">\H</span>ostX86<span class="hljs-symbol">\x</span>86<span class="hljs-symbol">\l</span>ink.EXE&quot;”: 返回代码“0x491”<br>Stop.<br>NMAKE : fatal error U1077: “&quot;D:<span class="hljs-symbol">\M</span>icrosoft Visual Studio<span class="hljs-symbol">\2</span>017<span class="hljs-symbol">\C</span>ommunity<span class="hljs-symbol">\V</span>C<span class="hljs-symbol">\T</span>ools<br><span class="hljs-symbol">\M</span>SVC<span class="hljs-symbol">\1</span>4.11.25503<span class="hljs-symbol">\b</span>in<span class="hljs-symbol">\H</span>ostX86<span class="hljs-symbol">\x</span>86<span class="hljs-symbol">\n</span>make.exe&quot;”: 返回代码“0x2”<br>Stop.<br>NMAKE : fatal error U1077: “cd”: 返回代码“0x2”<br>Stop.<br></code></pre></td></tr></table></figure>
+<p>网上有相关的建议，把QtNfc“取消”掉，其实就是不编译QtNfc。</p>
+<p><code>E:\ws\doc\PyQtCommercial\PyQt5_commercial-5.9&gt;python configure.py --disable QtNfc</code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://python.6.x6.nabble.com/error-building-QtNfc-td5185657.html">http://python.6.x6.nabble.com/error-building-QtNfc-td5185657.html</a></p>
+</blockquote>
+<p><code>nmake</code> 需要一段时间。电脑比较差的话，大概要1个小时。<br><code>nmake install</code> 耗时约5分钟</p>
+<h3 id="试运行PyQt5"><a href="#试运行PyQt5" class="headerlink" title="试运行PyQt5"></a>试运行PyQt5</h3><p>导入PyQt5模块试一试<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PyQt5.QtCore <span class="hljs-keyword">import</span> QTranslator<br><span class="hljs-keyword">from</span> PyQt5.QtGui <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> PyQt5.QtWidgets <span class="hljs-keyword">import</span> *<br></code></pre></td></tr></table></figure></p>
+<p>对于Python2.7 PyQt5，使用pyinstaller来打包成exe文件<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">pyinstaller</span> ui_main.py<br></code></pre></td></tr></table></figure><br>得到相应的文件目录</p>
+<h4 id="运行exe弹窗报错Qt-platform-plugin"><a href="#运行exe弹窗报错Qt-platform-plugin" class="headerlink" title="运行exe弹窗报错Qt platform plugin"></a>运行exe弹窗报错<code>Qt platform plugin</code></h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">this application failed <span class="hljs-built_in">to</span> <span class="hljs-built_in">start</span> because <span class="hljs-keyword">it</span> could <span class="hljs-keyword">not</span> find <span class="hljs-keyword">or</span> <span class="hljs-built_in">load</span> <span class="hljs-keyword">the</span> Qt <span class="hljs-built_in">platform</span> plugin <span class="hljs-string">&quot;windows&quot;</span> <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;&quot;</span><br>Reinstalling <span class="hljs-keyword">the</span> application may fix this problem.<br></code></pre></td></tr></table></figure>
+<p>报错原因是找不到 <code>Qt platform plugin</code><br>在Qt5，在安装目录下可找到 <code>D:\Qt\Qt5\Tools\QtCreator\bin\plugins\platforms</code><br>对于Python3，安装了GPL的PyQt5，可以找到 <code>D:\python35\Lib\site-packages\PyQt5\Qt\plugins\platforms</code></p>
+<p>处理方法：<br>不打包成一个单一的exe文件，使用<code>pyinstaller ui_main.py</code>生成文件目录<br>在dist中，与exe文件同级的目录<code>PyQt5/qt/plugins</code>中，有platforms目录<br>把platforms文件夹复制到与exe文件同级的位置即可  </p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/25589103/how-to-install-pyqt5-on-windows-for-python-2">How to install PyQt5 on Windows for Python 2?</a></p>
+<p><a target="_blank" rel="noopener" href="http://python.6.x6.nabble.com/PyQT-Sip-installation-td1923578.html">编译安装PyQt5的过程</a></p>
+<p><a target="_blank" rel="noopener" href="https://riverbankcomputing.com/pipermail/pyqt/2012-July/031691.html">安装sip的建议</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PyQt/" class="category-chain-item">PyQt</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PyQt5 安装商业版</div>
+      <div>https://rustfisher.com/2017/10/25/PyQt_note/PyQt-Install_licensed_PyQt/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年10月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/11/21/Python/Python-logging-use/" title="Python logging 基本用法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python logging 基本用法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/10/10/Linux/find-use/" title="find的使用">
+                        <span class="hidden-mobile">find的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appKey":"vx6LVMyCsch2GR8CczKPMc5A","path":"window.location.pathname","placeholder":"输入评论...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"appid":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appkey":"vx6LVMyCsch2GR8CczKPMc5A"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备18129570号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502003385"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备44030502003385号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
