@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>网站迁移说明</title>
+    <link href="/2023/01/18/unclassified/web-res-move-2023/"/>
+    <url>/2023/01/18/unclassified/web-res-move-2023/</url>
+    
+    <content type="html"><![CDATA[<h1 id="网站迁移说明"><a href="#网站迁移说明" class="headerlink" title="网站迁移说明"></a>网站迁移说明</h1><p>博客站 blog.rustfisher.com 和教程站 an.rustfisher.com 的网站资源已经上传到github。</p><ul><li><a href="https://github.com/RustFisher/rustfisher.github.io">rustfisher.github.io - github</a></li><li><a href="https://github.com/AnRFDev/AnRFDev.github.io">AnRFDev.github.io - github</a></li></ul><p>并托管在cloudflare</p><ul><li>anrfdev-github-io.pages.dev    -&gt; an.rustfisher.com</li><li>rustfisher-github-io.pages.dev -&gt; blog.rustfisher.com</li></ul><p>若访问速度过慢，可考虑使用🪜</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>unclassified</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2021年11月总结</title>
     <link href="/2021/11/30/Summary/2021-11/"/>
     <url>/2021/11/30/Summary/2021-11/</url>
