@@ -389,10 +389,6 @@
     <lastmod>2019-02-20</lastmod>
   </url>
   <url>
-    <loc>https://rustfisher.com/2018/06/26/Flutter/Flutter-Layout_common_widgets/</loc>
-    <lastmod>2018-09-21</lastmod>
-  </url>
-  <url>
     <loc>https://rustfisher.com/2016/12/28/PyQt_note/PyCharm-Install_and_config/</loc>
     <lastmod>2018-09-21</lastmod>
   </url>
@@ -426,6 +422,10 @@
   </url>
   <url>
     <loc>https://rustfisher.com/2016/12/28/PyQt_note/PyQt5-Custom_QWidget/</loc>
+    <lastmod>2018-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://rustfisher.com/2018/06/26/Flutter/Flutter-Layout_common_widgets/</loc>
     <lastmod>2018-09-21</lastmod>
   </url>
 </urlset> 
