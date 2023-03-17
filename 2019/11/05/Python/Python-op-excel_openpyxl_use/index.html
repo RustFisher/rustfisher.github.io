@@ -19,11 +19,11 @@
     <meta name="description" content="写给运营人员的Python指南。使用Python操作Excel。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【运营的Python指南】Python 操作Excel">
-<meta property="og:url" content="https://rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="写给运营人员的Python指南。使用Python操作Excel。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rustfisher.com/img/meeting-1.jpg">
+<meta property="og:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
 <meta property="article:published_time" content="2019-11-05T14:37:12.000Z">
 <meta property="article:modified_time" content="2021-07-09T03:53:18.432Z">
 <meta property="article:author" content="Rust Fisher">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="openpyxl">
 <meta property="article:tag" content="Excel">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rustfisher.com/img/meeting-1.jpg">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
   
   
   
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -361,7 +361,7 @@
 </ul>
 <p>这里默认你的电脑上已经装有python3.x，环境变量已经配置好。</p>
 <h2 id="引入openpyxl"><a href="#引入openpyxl" class="headerlink" title="引入openpyxl"></a>引入openpyxl</h2><p>这里使用<a target="_blank" rel="noopener" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>库来操作Excel。类似的库还有xlrd。</p>
-<p>penpyxl的基础使用方法请参见<a href="http://rustfisher.com/2019/11/03/Python/Python-openpyxl_tutorial/">Python openpyxl 处理Excel使用指南</a>。</p>
+<p>penpyxl的基础使用方法请参见<a target="_blank" rel="noopener" href="http://rustfisher.com/2019/11/03/Python/Python-openpyxl_tutorial/">Python openpyxl 处理Excel使用指南</a>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install openpyxl<br></code></pre></td></tr></table></figure>
 <h2 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h2><p>假定数据来自百度指数，以常见的一些搜索指数为例。给后面的操作准备一些数据，把数据写入Excel中。</p>
 <p>创建Workbook对象，获取到当前可用的表格（sheet）。<br>直接使用<code>append</code>方法把一行数据追加写入。最后调用Workbook的保存方法，存储数据。</p>
@@ -484,7 +484,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>【运营的Python指南】Python 操作Excel</div>
-      <div>https://rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/</div>
+      <div>https://blog.rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/</div>
     </div>
     <div class="license-meta">
       

@@ -19,7 +19,7 @@
     <meta name="description" content="定义将一个类的接口变换成客户端锁期待的另一种接口，从而使原本因接口不匹配而无法工作在一起的两个类能够在一起工作。也叫作变压器模式，亦称包装模式，但包装模式不止一个。简单而言，适配器模式就是把一个接口或类转换成其他的接口或类。 应用优点：  可以让没有任何关系的类在一起运行 增加了类的透明性 提高了类的复用度 灵活度好  注意事项：在详细阶段不要考虑适配器模式，它主要是用来解决正在服役的项目问题 代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式 Adapter Pattern - Java实现">
-<meta property="og:url" content="https://rustfisher.com/2017/03/26/DesignPattern/Adapter-Pattern/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2017/03/26/DesignPattern/Adapter-Pattern/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="定义将一个类的接口变换成客户端锁期待的另一种接口，从而使原本因接口不匹配而无法工作在一起的两个类能够在一起工作。也叫作变压器模式，亦称包装模式，但包装模式不止一个。简单而言，适配器模式就是把一个接口或类转换成其他的接口或类。 应用优点：  可以让没有任何关系的类在一起运行 增加了类的透明性 提高了类的复用度 灵活度好  注意事项：在详细阶段不要考虑适配器模式，它主要是用来解决正在服役的项目问题 代">
 <meta property="og:locale" content="zh_CN">
@@ -69,7 +69,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -410,7 +410,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>适配器模式 Adapter Pattern - Java实现</div>
-      <div>https://rustfisher.com/2017/03/26/DesignPattern/Adapter-Pattern/</div>
+      <div>https://blog.rustfisher.com/2017/03/26/DesignPattern/Adapter-Pattern/</div>
     </div>
     <div class="license-meta">
       

@@ -19,7 +19,7 @@
     <meta name="description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「Learn」开发记录">
-<meta property="og:url" content="https://rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
 <meta property="og:locale" content="zh_CN">
@@ -69,7 +69,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -349,7 +349,7 @@
               <div class="markdown-body">
                 
                 <p>开发App过程中遇到的一些问题和解决办法。临时记录一些解决方案。</p>
-<h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><p><a href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer基础。</a><br><a href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">在线音频播放，使用MediaPlayer。</a><br><a href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">下载在线音频到本地，使用URLConnection。</a></p>
+<h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer基础。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">在线音频播放，使用MediaPlayer。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">下载在线音频到本地，使用URLConnection。</a></p>
 <h2 id="自定义ViewGroup"><a href="#自定义ViewGroup" class="headerlink" title="自定义ViewGroup"></a>自定义ViewGroup</h2><p>继承自LinearLayout，自定义子View的排布方式。</p>
 <h3 id="crash-ViewGroup-resetResolvedLayoutDirection"><a href="#crash-ViewGroup-resetResolvedLayoutDirection" class="headerlink" title="crash ViewGroup.resetResolvedLayoutDirection"></a>crash ViewGroup.resetResolvedLayoutDirection</h3><p>给LinearLayout addView的时候报错<br><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">E/AndroidRuntime:     at android.view.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ViewGroup</span>.</span></span>reset<span class="hljs-constructor">ResolvedLayoutDirection(ViewGroup.<span class="hljs-params">java</span>:7291)</span><br>    at android.view.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ViewGroup</span>.</span></span>reset<span class="hljs-constructor">ResolvedLayoutDirection(ViewGroup.<span class="hljs-params">java</span>:7291)</span><br></code></pre></td></tr></table></figure></p>
 <p>检查代码，发现addView的时候把LinearLayout自己添加进去了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> LinearLayout wordCube = <span class="hljs-keyword">new</span> LinearLayout(<span class="hljs-keyword">this</span>);<br>wordCube.addView(wordCube, chTvParams);<br></code></pre></td></tr></table></figure></p>
@@ -462,7 +462,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>「Learn」开发记录</div>
-      <div>https://rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/</div>
+      <div>https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/</div>
     </div>
     <div class="license-meta">
       

@@ -19,18 +19,18 @@
     <meta name="description" content="指南 - 使用openpyxl操作Excel绘制柱形图。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python openpyxl Excel绘制柱形图">
-<meta property="og:url" content="https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="指南 - 使用openpyxl操作Excel绘制柱形图。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rustfisher.com/img/meeting-1.jpg">
+<meta property="og:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
 <meta property="article:published_time" content="2019-11-14T02:13:00.000Z">
 <meta property="article:modified_time" content="2021-06-18T09:43:05.290Z">
 <meta property="article:author" content="Rust Fisher">
 <meta property="article:tag" content="openpyxl">
 <meta property="article:tag" content="Excel">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rustfisher.com/img/meeting-1.jpg">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
   
   
   
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -354,7 +354,7 @@
                 <p>这是一份<a target="_blank" rel="noopener" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>的使用指南。</p>
 <p>大体内容翻译自官网 <a target="_blank" rel="noopener" href="https://openpyxl.readthedocs.io/en/stable/charts/bar.html#vertical-horizontal-and-stacked-bar-charts">https://openpyxl.readthedocs.io/en/stable/charts/bar.html#vertical-horizontal-and-stacked-bar-charts</a></p>
 <p>本文在官网基础上会有一些改动。代码请参考 <a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">https://github.com/RustFisher/python-playground</a></p>
-<p>本文链接 <a href="https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/">https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/</a></p>
+<p>本文链接 <a target="_blank" rel="noopener" href="https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/">https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/</a></p>
 <h2 id="柱形图"><a href="#柱形图" class="headerlink" title="柱形图"></a>柱形图</h2><p>数据会被绘制成垂直，水平或者是层叠效果的柱形图。</p>
 <p>注意：</p>
 <ul>
@@ -421,7 +421,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Python openpyxl Excel绘制柱形图</div>
-      <div>https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/</div>
+      <div>https://blog.rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/</div>
     </div>
     <div class="license-meta">
       

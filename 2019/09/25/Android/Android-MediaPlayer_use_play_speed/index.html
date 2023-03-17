@@ -19,11 +19,11 @@
     <meta name="description" content="使用MediaPlayer播放音频，实现倍速播放，调整播放速度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android MediaPlayer 音频倍速播放，调整播放速度">
-<meta property="og:url" content="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="使用MediaPlayer播放音频，实现倍速播放，调整播放速度">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rustfisher.com/img/android-cover-2.png">
+<meta property="og:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
 <meta property="article:published_time" content="2019-09-25T02:48:00.000Z">
 <meta property="article:modified_time" content="2021-06-18T09:38:33.765Z">
 <meta property="article:author" content="Rust Fisher">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="Media">
 <meta property="article:tag" content="MediaPlayer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rustfisher.com/img/android-cover-2.png">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
   
   
   
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -352,7 +352,7 @@
             
               <div class="markdown-body">
                 
-                <p>本文链接： <a href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
+                <p>本文链接： <a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
 <p>现在市面上的很多音视频App都有倍速播放的功能，例如把播放速度调整为0.5、1.5、2倍等等。</p>
 <p>从Android API 23 (Android M)开始，MediaPlayer支持调整播放速度。<br>使用的方法是setPlaybackParams，传入一个代表播放属性的类PlaybackParams。</p>
 <p>本文介绍如何使用MediaPlayer调整播放速度。</p>
@@ -373,11 +373,11 @@
 <h3 id="PlaybackParams-getSpeed"><a href="#PlaybackParams-getSpeed" class="headerlink" title="PlaybackParams.getSpeed()"></a>PlaybackParams.getSpeed()</h3><p>获取已设置的速度值。如果之前没设置过速度，则抛出IllegalStateException异常。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getSpeed</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> ((mSet &amp; SET_SPEED) == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">&quot;speed not set&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> mSpeed;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>更多参考：</p>
-<p><a href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
-<p><a href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
-<p><a href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
-<p><a href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
-<p>Android音视频相关文章请参考 <a href="https://rustfisher.com/tags/Android-Media/">https://rustfisher.com/tags/Android-Media/</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
+<p>Android音视频相关文章请参考 <a target="_blank" rel="noopener" href="https://rustfisher.com/tags/Android-Media/">https://rustfisher.com/tags/Android-Media/</a></p>
 
                 
               </div>
@@ -428,7 +428,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Android MediaPlayer 音频倍速播放，调整播放速度</div>
-      <div>https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/</div>
+      <div>https://blog.rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/</div>
     </div>
     <div class="license-meta">
       

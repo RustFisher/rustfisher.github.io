@@ -19,7 +19,7 @@
     <meta name="description" content="环境： win7_x64， Navicat for MySQL 本文链接 操作数据库前面已经将MySQL服务跑起来了。  Mac安装MySQL Windows安装MySQL  现在我们以root身份进行MySQL操作进入MySQL1C:\Users\Administrator&gt;mysql -uroot -p 新建数据库12mysql&gt; create database samp_db1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 增删查改">
-<meta property="og:url" content="https://rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="环境： win7_x64， Navicat for MySQL 本文链接 操作数据库前面已经将MySQL服务跑起来了。  Mac安装MySQL Windows安装MySQL  现在我们以root身份进行MySQL操作进入MySQL1C:\Users\Administrator&gt;mysql -uroot -p 新建数据库12mysql&gt; create database samp_db1">
 <meta property="og:locale" content="zh_CN">
@@ -69,7 +69,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -349,11 +349,11 @@
               <div class="markdown-body">
                 
                 <p>环境： win7_x64， Navicat for MySQL</p>
-<p><a href="https://rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/">本文链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/">本文链接</a></p>
 <h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><p>前面已经将MySQL服务跑起来了。</p>
 <ul>
-<li><a href="https://rustfisher.com/2019/02/26/Database/MySQL-install_and_config_Mac/">Mac安装MySQL</a></li>
-<li><a href="https://rustfisher.com/2017/02/25/Database/MySQL-install_and_config_Windows/">Windows安装MySQL</a></li>
+<li><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/02/26/Database/MySQL-install_and_config_Mac/">Mac安装MySQL</a></li>
+<li><a target="_blank" rel="noopener" href="https://rustfisher.com/2017/02/25/Database/MySQL-install_and_config_Windows/">Windows安装MySQL</a></li>
 </ul>
 <p>现在我们以root身份进行MySQL操作<br>进入MySQL<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">C:<span class="hljs-symbol">\U</span>sers<span class="hljs-symbol">\A</span>dministrator&gt;mysql -uroot -p<br></code></pre></td></tr></table></figure></p>
 <h3 id="新建数据库"><a href="#新建数据库" class="headerlink" title="新建数据库"></a>新建数据库</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> samp_db1 <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> gbk;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
@@ -455,7 +455,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySQL 增删查改</div>
-      <div>https://rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/</div>
+      <div>https://blog.rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/</div>
     </div>
     <div class="license-meta">
       

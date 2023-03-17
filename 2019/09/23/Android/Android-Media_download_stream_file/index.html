@@ -19,11 +19,11 @@
     <meta name="description" content="使用URLConnection下载音频文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 使用URLConnection下载音频文件">
-<meta property="og:url" content="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/index.html">
+<meta property="og:url" content="https://blog.rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/index.html">
 <meta property="og:site_name" content="软件工程师技术实录">
 <meta property="og:description" content="使用URLConnection下载音频文件">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rustfisher.com/img/android-cover-2.png">
+<meta property="og:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
 <meta property="article:published_time" content="2019-09-23T02:00:00.000Z">
 <meta property="article:modified_time" content="2021-06-18T09:38:18.935Z">
 <meta property="article:author" content="Rust Fisher">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="Media">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rustfisher.com/img/android-cover-2.png">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
   
   
   
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -352,8 +352,8 @@
             
               <div class="markdown-body">
                 
-                <p>本文链接： <a href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
-<p>使用MediaPlayer播放在线音频，请参考<a href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
+                <p>本文链接： <a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
+<p>使用MediaPlayer播放在线音频，请参考<a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
 <p>有时候我们会需要下载音频文件。这里提供一种思路，将在线音频文件通过流写到本地文件中。<br>使用URLConnection来建立连接，获取到的数据写到文件中。</p>
 <p>URLConnection建立连接后，可以获取到数据长度。由此我们可以计算出下载进度。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DownloadStreamThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>    String urlStr;<br>    <span class="hljs-keyword">final</span> String targetFileAbsPath;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DownloadStreamThread</span><span class="hljs-params">(String urlStr, String targetFileAbsPath)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.urlStr = urlStr;<br>        <span class="hljs-keyword">this</span>.targetFileAbsPath = targetFileAbsPath;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.run();<br>        <span class="hljs-keyword">int</span> count;<br>        File targetFile = <span class="hljs-keyword">new</span> File(targetFileAbsPath);<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">boolean</span> n = targetFile.createNewFile();<br>            Log.d(TAG, <span class="hljs-string">&quot;Create new file: &quot;</span> + n + <span class="hljs-string">&quot;, &quot;</span> + targetFile);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            Log.e(TAG, <span class="hljs-string">&quot;run: &quot;</span>, e);<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            URL url = <span class="hljs-keyword">new</span> URL(urlStr);<br>            URLConnection connection = url.openConnection();<br>            connection.connect();<br>            <span class="hljs-keyword">int</span> contentLength = connection.getContentLength();<br>            InputStream input = <span class="hljs-keyword">new</span> BufferedInputStream(url.openStream());<br>            OutputStream output = <span class="hljs-keyword">new</span> FileOutputStream(targetFileAbsPath);<br><br>            <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>            <span class="hljs-keyword">long</span> total = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span> ((count = input.read(buffer)) != -<span class="hljs-number">1</span>) &#123;<br>                total += count;<br>                Log.d(TAG, String.format(Locale.CHINA, <span class="hljs-string">&quot;Download progress: %.2f%%&quot;</span>, <span class="hljs-number">100</span> * (total / (<span class="hljs-keyword">double</span>) contentLength)));<br>                output.write(buffer, <span class="hljs-number">0</span>, count);<br>            &#125;<br>            output.flush();<br>            output.close();<br>            input.close();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            Log.e(TAG, <span class="hljs-string">&quot;run: &quot;</span>, e);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure></p>
 <p>启动下载，即启动线程。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> DownloadStreamThread(urlStr, targetFileAbsPath).start();<br></code></pre></td></tr></table></figure></p>
@@ -361,11 +361,11 @@
 <p>实际上，URLConnection能处理很多流媒体。在这里是用来下载音频文件。可以实现下载功能和类似“边下边播”的功能。</p>
 <p>代码可以参考示例工程： <a target="_blank" rel="noopener" href="https://github.com/RustFisher/android-MediaPlayer">https://github.com/RustFisher/android-MediaPlayer</a></p>
 <p>更多参考：</p>
-<p><a href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
-<p><a href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
-<p><a href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
-<p><a href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
-<p>Android音视频相关文章请参考 <a href="https://rustfisher.com/tags/Android-Media/">https://rustfisher.com/tags/Android-Media/</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
+<p>Android音视频相关文章请参考 <a target="_blank" rel="noopener" href="https://rustfisher.com/tags/Android-Media/">https://rustfisher.com/tags/Android-Media/</a></p>
 
                 
               </div>
@@ -416,7 +416,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Android 使用URLConnection下载音频文件</div>
-      <div>https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/</div>
+      <div>https://blog.rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/</div>
     </div>
     <div class="license-meta">
       
