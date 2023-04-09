@@ -1,384 +1,69 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>「SD编辑」开发记录 - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="开发的过程记录。App设计思路，遇到的和解决的问题。"><meta property="og:type" content="blog"><meta property="og:title" content="「SD编辑」开发记录"><meta property="og:url" content="https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="开发的过程记录。App设计思路，遇到的和解决的问题。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:published_time" content="2019-07-29T01:11:15.000Z"><meta property="article:modified_time" content="2019-08-02T09:13:34.000Z"><meta property="article:author" content="Rust Fisher"><meta property="article:tag" content="开发记录"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/"},"headline":"「SD编辑」开发记录","image":["https://blog.rustfisher.com/img/og_image.png"],"datePublished":"2019-07-29T01:11:15.000Z","dateModified":"2019-08-02T09:13:34.000Z","author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"开发的过程记录。App设计思路，遇到的和解决的问题。"}</script><link rel="canonical" href="https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/"><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fish.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Rust Fisher">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="「SD编辑」开发记录">
-<meta property="og:url" content="https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/index.html">
-<meta property="og:site_name" content="RustFisher的自留地">
-<meta property="og:description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-07-29T01:11:15.000Z">
-<meta property="article:modified_time" content="2019-08-02T09:13:34.000Z">
-<meta property="article:author" content="Rust Fisher">
-<meta property="article:tag" content="开发记录">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>「SD编辑」开发记录 - RustFisher的自留地</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-    <!-- Baidu Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-145397854-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>RustFisher</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
-                <i class="iconfont icon-plan"></i>
-                <span>Android教程</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="「SD编辑」开发记录"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2019-07-29 09:11" pubdate>
-          2019年7月29日 上午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          10k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          85 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">「SD编辑」开发记录</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>SD - Slam Dump（并不是）</p>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-07-29T01:11:15.000Z" title="2019/7/29 09:11:15">2019-07-29</time>发表</span><span class="level-item"><time dateTime="2019-08-02T09:13:34.000Z" title="2019/8/2 17:13:34">2019-08-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android-note/">Android_note</a></span><span class="level-item">14 分钟读完 (大约2123个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">「SD编辑」开发记录</h1><div class="content"><p>SD - Slam Dump（并不是）</p>
 <p>这个App的主要目的是满足广大人民群众对图片编辑的需求。</p>
 <h2 id="字体问题"><a href="#字体问题" class="headerlink" title="字体问题"></a>字体问题</h2><p>Android默认的字体不太好看，也不一定能很好地匹配背景图。如果内置字体，遇到最大的问题是版权问题。<br>因此决定增加用户自行导入字体的功能，由用户来决定使用什么字体。</p>
-<p>原来的字体文件是放在asset中。<code>Typeface.createFromAsset</code>直接引入并使用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Typeface tf = Typeface.createFromAsset(mgr, <span class="hljs-string">&quot;fonts/fz_grid.ttf&quot;</span>);<br>mContentTv.setTypeface(tf);<br></code></pre></td></tr></table></figure></p>
+<p>原来的字体文件是放在asset中。<code>Typeface.createFromAsset</code>直接引入并使用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Typeface</span> <span class="variable">tf</span> <span class="operator">=</span> Typeface.createFromAsset(mgr, <span class="string">&quot;fonts/fz_grid.ttf&quot;</span>);</span><br><span class="line">mContentTv.setTypeface(tf);</span><br></pre></td></tr></table></figure></p>
 <p>设计一个字体管理界面。用户自行选择将字体文件复制到App内部存储路径。<br>使用字体时，再用<code>Typeface.createFromFile()</code>获取Typeface。</p>
-<h2 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h2><p>调用系统文件选择器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQ_CODE_CHOOSE_FILE = <span class="hljs-number">10</span>;<br><br>    <span class="hljs-comment">// 启动选择文件...</span><br>    Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_GET_CONTENT);<br>    intent.setType(<span class="hljs-string">&quot;*/*&quot;</span>);<br>    startActivityForResult(intent, REQ_CODE_CHOOSE_FILE);<br>    <span class="hljs-comment">// ......</span><br><br>    <span class="hljs-comment">// 处理选择的文件</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, <span class="hljs-meta">@Nullable</span> Intent data)</span> </span>&#123;<br>        <span class="hljs-keyword">switch</span> (requestCode) &#123;<br>            <span class="hljs-keyword">case</span> REQ_CODE_CHOOSE_FILE:<br>                <span class="hljs-keyword">if</span> (data != <span class="hljs-keyword">null</span>) &#123;<br>                    Uri uri = data.getData();<br>                    Log.d(TAG, <span class="hljs-string">&quot;onActivityResult: uri: &quot;</span> + uri);<br>                    <span class="hljs-keyword">if</span> (uri != <span class="hljs-keyword">null</span> &amp;&amp; !TextUtils.isEmpty(uri.getPath())) &#123;<br>                        copyFile(uri);<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        Log.e(TAG, <span class="hljs-string">&quot;onActivityResult: 选择的文件无效&quot;</span>);<br>                    &#125;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    showShort(getApplicationContext(), <span class="hljs-string">&quot;没选中文件&quot;</span>);<br>                    Log.e(TAG, <span class="hljs-string">&quot;onActivityResult: data is NULL 没选中文件&quot;</span>);<br>                &#125;<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">default</span>:<br>                <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br><br></code></pre></td></tr></table></figure></p>
+<h2 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h2><p>调用系统文件选择器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">REQ_CODE_CHOOSE_FILE</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 启动选择文件...</span></span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Intent.ACTION_GET_CONTENT);</span><br><span class="line">    intent.setType(<span class="string">&quot;*/*&quot;</span>);</span><br><span class="line">    startActivityForResult(intent, REQ_CODE_CHOOSE_FILE);</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理选择的文件</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onActivityResult</span><span class="params">(<span class="type">int</span> requestCode, <span class="type">int</span> resultCode, <span class="meta">@Nullable</span> Intent data)</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode) &#123;</span><br><span class="line">            <span class="keyword">case</span> REQ_CODE_CHOOSE_FILE:</span><br><span class="line">                <span class="keyword">if</span> (data != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> data.getData();</span><br><span class="line">                    Log.d(TAG, <span class="string">&quot;onActivityResult: uri: &quot;</span> + uri);</span><br><span class="line">                    <span class="keyword">if</span> (uri != <span class="literal">null</span> &amp;&amp; !TextUtils.isEmpty(uri.getPath())) &#123;</span><br><span class="line">                        copyFile(uri);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        Log.e(TAG, <span class="string">&quot;onActivityResult: 选择的文件无效&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    showShort(getApplicationContext(), <span class="string">&quot;没选中文件&quot;</span>);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;onActivityResult: data is NULL 没选中文件&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="built_in">super</span>.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <h2 id="处理uri"><a href="#处理uri" class="headerlink" title="处理uri"></a>处理uri</h2><p>uri形如 </p>
 <p>content://com.android.externalstorage.documents/document/primary%3ADownload%2Ffz_grid.ttf</p>
 <p>uri.getPath获取到的并不是文件的绝对路径。但我们可以利用ContentResolver来获取到InputStream。<br>也可以获取到uri的文件名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copyFile</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Uri uri)</span> </span>&#123;<br>    mAddIv.setClickable(<span class="hljs-keyword">false</span>);<br>    Animation rotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_scan);<br>    rotate.setDuration(<span class="hljs-number">400</span>);<br>    mAddIv.startAnimation(rotate);<br>    <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                Cursor cursor = getContentResolver().query(uri, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);<br>                <span class="hljs-keyword">int</span> nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);<br>                cursor.moveToFirst();<br>                String name = cursor.getString(nameIndex);<br>                cursor.close();<br>                InputStream fis = getContentResolver().openInputStream(uri);<br>                File outputFile = <span class="hljs-keyword">new</span> File(TypefaceStore.getStorePath(getApplicationContext()), name);<br>                <span class="hljs-keyword">if</span> (outputFile.exists()) &#123;<br>                    <span class="hljs-keyword">boolean</span> d = outputFile.delete();<br>                    Log.d(TAG, <span class="hljs-string">&quot;删除旧文件: &quot;</span> + d);<br>                &#125;<br>                <span class="hljs-keyword">boolean</span> n = outputFile.createNewFile();<br>                Log.d(TAG, <span class="hljs-string">&quot;copyFile: 新建文件 &quot;</span> + n);<br>                FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(outputFile);<br>                <span class="hljs-keyword">byte</span>[] tmp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">2048</span>];<br>                <span class="hljs-keyword">int</span> i;<br>                <span class="hljs-keyword">while</span> ((i = fis.read(tmp)) != -<span class="hljs-number">1</span>) &#123;<br>                    fos.write(tmp, <span class="hljs-number">0</span>, i);<br>                &#125;<br>                fos.flush();<br>                fos.close();<br>                fis.close();<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                Log.e(TAG, <span class="hljs-string">&quot;copyFile ERROR:&quot;</span>, e);<br>                <br>            &#125;<br>            <br>        &#125;<br>    &#125;).start();<br><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>也可以简单地使用uri.getLastPathSegment来获取文件名<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">uri.getLastPathSegment();<br>String[] t = uriPath.split(File.separator);<br>String name = t[t.length - <span class="hljs-number">1</span>];<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">copyFile</span><span class="params">(<span class="keyword">final</span> Uri uri)</span> &#123;</span><br><span class="line">    mAddIv.setClickable(<span class="literal">false</span>);</span><br><span class="line">    <span class="type">Animation</span> <span class="variable">rotate</span> <span class="operator">=</span> AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_scan);</span><br><span class="line">    rotate.setDuration(<span class="number">400</span>);</span><br><span class="line">    mAddIv.startAnimation(rotate);</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="type">Cursor</span> <span class="variable">cursor</span> <span class="operator">=</span> getContentResolver().query(uri, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">                <span class="type">int</span> <span class="variable">nameIndex</span> <span class="operator">=</span> cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);</span><br><span class="line">                cursor.moveToFirst();</span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> cursor.getString(nameIndex);</span><br><span class="line">                cursor.close();</span><br><span class="line">                <span class="type">InputStream</span> <span class="variable">fis</span> <span class="operator">=</span> getContentResolver().openInputStream(uri);</span><br><span class="line">                <span class="type">File</span> <span class="variable">outputFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(TypefaceStore.getStorePath(getApplicationContext()), name);</span><br><span class="line">                <span class="keyword">if</span> (outputFile.exists()) &#123;</span><br><span class="line">                    <span class="type">boolean</span> <span class="variable">d</span> <span class="operator">=</span> outputFile.delete();</span><br><span class="line">                    Log.d(TAG, <span class="string">&quot;删除旧文件: &quot;</span> + d);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">boolean</span> <span class="variable">n</span> <span class="operator">=</span> outputFile.createNewFile();</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;copyFile: 新建文件 &quot;</span> + n);</span><br><span class="line">                <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(outputFile);</span><br><span class="line">                <span class="type">byte</span>[] tmp = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">2048</span>];</span><br><span class="line">                <span class="type">int</span> i;</span><br><span class="line">                <span class="keyword">while</span> ((i = fis.read(tmp)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                    fos.write(tmp, <span class="number">0</span>, i);</span><br><span class="line">                &#125;</span><br><span class="line">                fos.flush();</span><br><span class="line">                fos.close();</span><br><span class="line">                fis.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                Log.e(TAG, <span class="string">&quot;copyFile ERROR:&quot;</span>, e);</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以简单地使用uri.getLastPathSegment来获取文件名<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uri.getLastPathSegment();</span><br><span class="line">String[] t = uriPath.split(File.separator);</span><br><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> t[t.length - <span class="number">1</span>];</span><br></pre></td></tr></table></figure></p>
 <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4263002/how-to-get-file-name-from-uri">https://stackoverflow.com/questions/4263002/how-to-get-file-name-from-uri</a></p>
 <h2 id="Toolbar问题"><a href="#Toolbar问题" class="headerlink" title="Toolbar问题"></a>Toolbar问题</h2><p>使用toolbar时经常会遇到问题。例如<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/26486730/in-android-app-toolbar-settitle-method-has-no-effect-application-name-is-shown">设置title的问题</a>。</p>
 <p>这里自己创建一个统一的标题栏TitleBar。想要什么控件自己添加。</p>
 <h2 id="Google-MobileAds"><a href="#Google-MobileAds" class="headerlink" title="Google MobileAds"></a>Google MobileAds</h2><p><code>MobileAds.initialize(getApplicationContext(), AdsMgr.GOOGLE_ADS_APP_ID);</code>的执行会占用很多时间。测试过程中发现小米手机甚至使用了3秒钟来执行这个方法。</p>
 <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37418663/what-is-the-proper-way-to-call-mobileads-initialize">https://stackoverflow.com/questions/37418663/what-is-the-proper-way-to-call-mobileads-initialize</a></p>
-<p>给启动页Activity一个纯色的启动背景。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="xml"></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;android:windowBackground&quot;</span>&gt;</span>@color/colorPrimary<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>给启动页Activity一个纯色的启动背景。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowBackground&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>启动页中初始化Ads时实在是耗时太长，干脆放到子线程中去操作。<br>虽然<a target="_blank" rel="noopener" href="https://developers.google.com/admob/android/quick-start">官方文档</a>建议的是越早初始化越好。但也不希望太影响用户体验。</p>
-<h2 id="递归查看某个路径下的文件"><a href="#递归查看某个路径下的文件" class="headerlink" title="递归查看某个路径下的文件"></a>递归查看某个路径下的文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">treeDir</span><span class="hljs-params">(File dir, <span class="hljs-keyword">int</span> level)</span> </span>&#123;<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; level; i++) &#123;<br>            sb.append(<span class="hljs-string">&quot;-&quot;</span>);<br>        &#125;<br>        sb.append(<span class="hljs-string">&quot; &quot;</span>);<br>        <span class="hljs-keyword">if</span> (dir.isDirectory()) &#123;<br><span class="hljs-comment">//            LL.d(TAG, sb.toString() + dir.getName());</span><br>            level++;<br>            <span class="hljs-keyword">for</span> (File f : dir.listFiles()) &#123;<br>                treeDir(f, level);<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-comment">//            LL.d(TAG, sb.toString() + dir.getName());</span><br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="递归查看某个路径下的文件"><a href="#递归查看某个路径下的文件" class="headerlink" title="递归查看某个路径下的文件"></a>递归查看某个路径下的文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">treeDir</span><span class="params">(File dir, <span class="type">int</span> level)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; level; i++) &#123;</span><br><span class="line">            sb.append(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (dir.isDirectory()) &#123;</span><br><span class="line"><span class="comment">//            LL.d(TAG, sb.toString() + dir.getName());</span></span><br><span class="line">            level++;</span><br><span class="line">            <span class="keyword">for</span> (File f : dir.listFiles()) &#123;</span><br><span class="line">                treeDir(f, level);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//            LL.d(TAG, sb.toString() + dir.getName());</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="提供草稿功能"><a href="#提供草稿功能" class="headerlink" title="提供草稿功能"></a>提供草稿功能</h2><p>为方便用户使用，提供草稿功能。这就涉及到增删查改的操作。</p>
 <p>[2019-7-31] 本来想直接用sqlite，但为了开发方便，选用了<a target="_blank" rel="noopener" href="http://greenrobot.org/greendao/">greenDAO</a>。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/greenrobot/greenDAO">https://github.com/greenrobot/greenDAO</a></p>
 <p>使用2个表，分别为Draft（存档）和DraftContent（图层）。DraftContent中存放着关联的存档ID。</p>
 <p>能保存的东西都保存下来。</p>
-<h3 id="greendao插入元素"><a href="#greendao插入元素" class="headerlink" title="greendao插入元素"></a>greendao插入元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">Draft draft1 = genDraft(<span class="hljs-string">&quot;示例1&quot;</span>, p1Path);<br>Draft draft2 = genDraft(<span class="hljs-string">&quot;示例2&quot;</span>, p2Path);<br>Draft draft3 = genDraft(<span class="hljs-string">&quot;示例3&quot;</span>, p3Path);<br>Log.d(TAG, <span class="hljs-string">&quot;addDemoDraft: id: &quot;</span> + draft1.getDraftId() + <span class="hljs-string">&quot;,&quot;</span> + draft3.getDraftId());<br>daoSession.insert(draft1);<br>daoSession.insert(draft2);<br>daoSession.insert(draft3);<br></code></pre></td></tr></table></figure>
+<h3 id="greendao插入元素"><a href="#greendao插入元素" class="headerlink" title="greendao插入元素"></a>greendao插入元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Draft</span> <span class="variable">draft1</span> <span class="operator">=</span> genDraft(<span class="string">&quot;示例1&quot;</span>, p1Path);</span><br><span class="line"><span class="type">Draft</span> <span class="variable">draft2</span> <span class="operator">=</span> genDraft(<span class="string">&quot;示例2&quot;</span>, p2Path);</span><br><span class="line"><span class="type">Draft</span> <span class="variable">draft3</span> <span class="operator">=</span> genDraft(<span class="string">&quot;示例3&quot;</span>, p3Path);</span><br><span class="line">Log.d(TAG, <span class="string">&quot;addDemoDraft: id: &quot;</span> + draft1.getDraftId() + <span class="string">&quot;,&quot;</span> + draft3.getDraftId());</span><br><span class="line">daoSession.insert(draft1);</span><br><span class="line">daoSession.insert(draft2);</span><br><span class="line">daoSession.insert(draft3);</span><br></pre></td></tr></table></figure>
 <p>插入元素后就有id了。</p>
-<h3 id="greendao删除元素"><a href="#greendao删除元素" class="headerlink" title="greendao删除元素"></a>greendao删除元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">DraftDao draftDao = daoSession.getDraftDao();<br>DraftContentDao draftContentDao = daoSession.getDraftContentDao();<br><span class="hljs-keyword">for</span> (Draft d : drafts) &#123;<br>    Log.d(TAG, <span class="hljs-string">&quot;删除 &quot;</span> + d.getName());<br>    draftDao.queryBuilder()<br>            .where(DraftDao.Properties.DraftId.eq(d.getDraftId())).buildDelete()<br>            .executeDeleteWithoutDetachingEntities();<br>    draftContentDao.queryBuilder()<br>            .where(DraftContentDao.Properties.RelativeDraftId.eq(d.getDraftId())).buildDelete()<br>            .executeDeleteWithoutDetachingEntities();<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="greendao删除元素"><a href="#greendao删除元素" class="headerlink" title="greendao删除元素"></a>greendao删除元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DraftDao</span> <span class="variable">draftDao</span> <span class="operator">=</span> daoSession.getDraftDao();</span><br><span class="line"><span class="type">DraftContentDao</span> <span class="variable">draftContentDao</span> <span class="operator">=</span> daoSession.getDraftContentDao();</span><br><span class="line"><span class="keyword">for</span> (Draft d : drafts) &#123;</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;删除 &quot;</span> + d.getName());</span><br><span class="line">    draftDao.queryBuilder()</span><br><span class="line">            .where(DraftDao.Properties.DraftId.eq(d.getDraftId())).buildDelete()</span><br><span class="line">            .executeDeleteWithoutDetachingEntities();</span><br><span class="line">    draftContentDao.queryBuilder()</span><br><span class="line">            .where(DraftContentDao.Properties.RelativeDraftId.eq(d.getDraftId())).buildDelete()</span><br><span class="line">            .executeDeleteWithoutDetachingEntities();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="使用DrawerLayout"><a href="#使用DrawerLayout" class="headerlink" title="使用DrawerLayout"></a>使用DrawerLayout</h2><p>报错： <code>IllegalArgumentException: No drawer view found with gravity LEFT</code></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.IllegalArgumentException</span>: No drawer view found with gravity LEFT<br>    at androidx<span class="hljs-selector-class">.drawerlayout</span><span class="hljs-selector-class">.widget</span><span class="hljs-selector-class">.DrawerLayout</span><span class="hljs-selector-class">.openDrawer</span>(DrawerLayout<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1736</span>)<br>    at androidx<span class="hljs-selector-class">.drawerlayout</span><span class="hljs-selector-class">.widget</span><span class="hljs-selector-class">.DrawerLayout</span><span class="hljs-selector-class">.openDrawer</span>(DrawerLayout<span class="hljs-selector-class">.java</span>:<span class="hljs-number">1722</span>)<br></code></pre></td></tr></table></figure>
-<p>忘记中xml中加上开抽屉方向了 tools:openDrawer=”start”<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">androidx.drawerlayout.widget.DrawerLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/main_page_root&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">tools:context</span>=<span class="hljs-string">&quot;.act.MainActivity&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">tools:openDrawer</span>=<span class="hljs-string">&quot;start&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
-<p>抽屉加上方向 android:layout_gravity=”start”<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 抽屉 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;start&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_marginEnd</span>=<span class="hljs-string">&quot;100dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: No drawer view found with gravity LEFT</span><br><span class="line">    at androidx.drawerlayout.widget.DrawerLayout.openDrawer(DrawerLayout.java:1736)</span><br><span class="line">    at androidx.drawerlayout.widget.DrawerLayout.openDrawer(DrawerLayout.java:1722)</span><br></pre></td></tr></table></figure>
+<p>忘记中xml中加上开抽屉方向了 tools:openDrawer=”start”<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">androidx.drawerlayout.widget.DrawerLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/main_page_root&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">&quot;.act.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:openDrawer</span>=<span class="string">&quot;start&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>抽屉加上方向 android:layout_gravity=”start”<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 抽屉 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">&quot;start&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_marginEnd</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="美术设计，App交互设计"><a href="#美术设计，App交互设计" class="headerlink" title="美术设计，App交互设计"></a>美术设计，App交互设计</h2><p>设计是一个比较令我头疼的问题。在这个看脸的时代，App一定要好看！对我而言，直接采用material design的风格会比较省事。<br>经过调整和对比，我选择使用暗色的风格。因为现在主流的图形编辑软件，颜色风格以暗色居多。</p>
 <p>参考：</p>
 <ul>
@@ -388,23 +73,23 @@
 <h2 id="文字编辑"><a href="#文字编辑" class="headerlink" title="文字编辑"></a>文字编辑</h2><p>文字内容，大小，旋转方向，颜色都可以调整。</p>
 <p>需要一个调色盘来调整颜色。找个第三方的，好看能用即可。</p>
 <h2 id="删除存档报错"><a href="#删除存档报错" class="headerlink" title="删除存档报错"></a>删除存档报错</h2><p>list类的经典异常 ConcurrentModificationException。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java<span class="hljs-selector-class">.util</span><span class="hljs-selector-class">.ConcurrentModificationException</span><br>    at java<span class="hljs-selector-class">.util</span>.ArrayList<span class="hljs-variable">$Itr</span><span class="hljs-selector-class">.next</span>(ArrayList<span class="hljs-selector-class">.java</span>:<span class="hljs-number">860</span>)<br></code></pre></td></tr></table></figure>
-<p>list删除元素时报错。这样写是不行的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (Data d : dataList) &#123;<br>    <span class="hljs-keyword">if</span> (d.selected) &#123;<br>        dataList.remove(d);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>用迭代器来删除元素。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">Iterator&lt;Data&gt; iterator = dataList.iterator();<br><span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>    Data data = iterator.next();<br>    <span class="hljs-keyword">if</span> (data.selected) &#123;<br>        iterator.remove();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.util.ConcurrentModificationException</span><br><span class="line">    at java.util.ArrayList$Itr.next(ArrayList.java:860)</span><br></pre></td></tr></table></figure>
+<p>list删除元素时报错。这样写是不行的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Data d : dataList) &#123;</span><br><span class="line">    <span class="keyword">if</span> (d.selected) &#123;</span><br><span class="line">        dataList.remove(d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用迭代器来删除元素。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Data&gt; iterator = dataList.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">    <span class="type">Data</span> <span class="variable">data</span> <span class="operator">=</span> iterator.next();</span><br><span class="line">    <span class="keyword">if</span> (data.selected) &#123;</span><br><span class="line">        iterator.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="输出图片"><a href="#输出图片" class="headerlink" title="输出图片"></a>输出图片</h2><h3 id="保存View的显示内容"><a href="#保存View的显示内容" class="headerlink" title="保存View的显示内容"></a>保存View的显示内容</h3><p>获取一个view的bitmap，然后保存到文件去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 获取一个 View 的缓存视图</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> Bitmap <span class="hljs-title">getCacheBitmapFromView</span><span class="hljs-params">(View view)</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> drawingCacheEnabled = <span class="hljs-keyword">true</span>;<br>    view.setDrawingCacheEnabled(drawingCacheEnabled);<br>    view.buildDrawingCache(drawingCacheEnabled);<br>    <span class="hljs-keyword">final</span> Bitmap drawingCache = view.getDrawingCache();<br>    Bitmap bitmap;<br>    <span class="hljs-keyword">if</span> (drawingCache != <span class="hljs-keyword">null</span>) &#123;<br>        bitmap = Bitmap.createBitmap(drawingCache);<br>        view.setDrawingCacheEnabled(<span class="hljs-keyword">false</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        bitmap = <span class="hljs-keyword">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> bitmap;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">saveBitmapFile</span><span class="hljs-params">(Bitmap bitmap, String fileAbsPath)</span> </span>&#123;<br>    File file = <span class="hljs-keyword">new</span> File(fileAbsPath); <span class="hljs-comment">// 将要保存图片的路径</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">if</span> (file.exists()) &#123;<br>            file.delete();<br>        &#125;<br>        BufferedOutputStream bos = <span class="hljs-keyword">new</span> BufferedOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(file));<br>        bitmap.compress(Bitmap.CompressFormat.JPEG, <span class="hljs-number">100</span>, bos);<br>        bos.flush();<br>        bos.close();<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取一个 View 的缓存视图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> Bitmap <span class="title function_">getCacheBitmapFromView</span><span class="params">(View view)</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">drawingCacheEnabled</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    view.setDrawingCacheEnabled(drawingCacheEnabled);</span><br><span class="line">    view.buildDrawingCache(drawingCacheEnabled);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Bitmap</span> <span class="variable">drawingCache</span> <span class="operator">=</span> view.getDrawingCache();</span><br><span class="line">    Bitmap bitmap;</span><br><span class="line">    <span class="keyword">if</span> (drawingCache != <span class="literal">null</span>) &#123;</span><br><span class="line">        bitmap = Bitmap.createBitmap(drawingCache);</span><br><span class="line">        view.setDrawingCacheEnabled(<span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        bitmap = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bitmap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">saveBitmapFile</span><span class="params">(Bitmap bitmap, String fileAbsPath)</span> &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(fileAbsPath); <span class="comment">// 将要保存图片的路径</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (file.exists()) &#123;</span><br><span class="line">            file.delete();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">BufferedOutputStream</span> <span class="variable">bos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(file));</span><br><span class="line">        bitmap.compress(Bitmap.CompressFormat.JPEG, <span class="number">100</span>, bos);</span><br><span class="line">        bos.flush();</span><br><span class="line">        bos.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="保存图片文件后的处理"><a href="#保存图片文件后的处理" class="headerlink" title="保存图片文件后的处理"></a>保存图片文件后的处理</h3><p>用户输出图片文件后，打开微信想发送这张图片。但是用户发现微信的快捷发送功能找不到这张图片。<br>怎么才能让微信知道这里新增了一张图片呢？</p>
 <p>如果要发送广播<code>ACTION_MEDIA_MOUNTED</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">sendBroadcast(<span class="hljs-keyword">new</span> Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.fromFile(outputFile)));<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendBroadcast(<span class="keyword">new</span> <span class="title class_">Intent</span>(Intent.ACTION_MEDIA_MOUNTED, Uri.fromFile(outputFile)));</span><br></pre></td></tr></table></figure>
 <p>报错，没有足够的权限</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.SecurityException</span>: Permission Denial: not allowed to send broadcast android<span class="hljs-selector-class">.intent</span><span class="hljs-selector-class">.action</span>.MEDIA_MOUNTED<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.SecurityException: Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</span><br></pre></td></tr></table></figure>
 <p>Android KK开始，这个广播开始只能由系统发出。KK及之后的版本需使用<code>Intent.ACTION_MEDIA_SCANNER_SCAN_FILE</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">File outputFile = <span class="hljs-keyword">new</span> File(filePath);<br>sendBroadcast(<span class="hljs-keyword">new</span> Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(outputFile)));<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">outputFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(filePath);</span><br><span class="line">sendBroadcast(<span class="keyword">new</span> <span class="title class_">Intent</span>(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(outputFile)));</span><br></pre></td></tr></table></figure>
 <p>参考</p>
 <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/24072489/java-lang-securityexception-permission-denial-not-allowed-to-send-broadcast-an">https://stackoverflow.com/questions/24072489/java-lang-securityexception-permission-denial-not-allowed-to-send-broadcast-an</a></p>
 <h2 id="移动TextView"><a href="#移动TextView" class="headerlink" title="移动TextView"></a>移动TextView</h2><p>编辑页中有一个需求是手指拖动文字。</p>
 <h3 id="1-1-x版本"><a href="#1-1-x版本" class="headerlink" title="1.1.x版本"></a>1.1.x版本</h3><p>1.1.0版本的做法是，在Activity的onTouch方法里来改变TextView的坐标。从而实现TextView的拖动效果。<br>父View和子View设同一个OnTouchListener。但是只有父view来处理触摸事件。<br>如果是子view接收到了触摸事件，则做一个bool标记firstOnTv = true，返回false，把触摸事件交给父view来处理。<br>父view处理触摸事件时，判断如果刚才点中的是子view（即mContentTv），则在MotionEvent.ACTION_MOVE时更改子view的坐标。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">private</span> View.OnTouchListener mWsOnTouchListener = <span class="hljs-keyword">new</span> View.OnTouchListener() &#123;<br><br>        <span class="hljs-keyword">boolean</span> firstOnTv = <span class="hljs-keyword">false</span>; <span class="hljs-comment">// 最开始点中的是tv</span><br>        <span class="hljs-keyword">float</span> originTvX;           <span class="hljs-comment">// tv最开始的坐标</span><br>        <span class="hljs-keyword">float</span> originTvY;<br><br>        <span class="hljs-keyword">float</span> downX;<br>        <span class="hljs-keyword">float</span> downY;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View v, MotionEvent event)</span> </span>&#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> id = v.getId();<br><span class="hljs-comment">//            Log.d(TAG, &quot;onTouch: touch tv: &quot; + (id == mContentTv.getId()) + &quot;, touch ws: &quot; + (id == mWorkspaceField.getId()));</span><br>            <span class="hljs-keyword">float</span> x = event.getX();<br>            <span class="hljs-keyword">float</span> y = event.getY();<br><span class="hljs-comment">//            Log.d(TAG, &quot;onTouch: [&quot; + x + &quot;, &quot; + y + &quot;] , &quot; + event);</span><br>            <span class="hljs-keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;<br>                mSaveIv.setEnabled(<span class="hljs-keyword">true</span>);<br>                <span class="hljs-keyword">if</span> (id == mContentTv.getId()) &#123;<br>                    firstOnTv = <span class="hljs-keyword">true</span>;<br>                    originTvX = mContentTv.getX();<br>                    originTvY = mContentTv.getY();<br><span class="hljs-comment">//                    Log.d(TAG, &quot;onTouch: 保存tv坐标 (&quot; + originTvX + &quot;, &quot; + originTvY + &quot;)&quot;);</span><br>                &#125;<br>                downX = event.getX();<br>                downY = event.getY();<br><span class="hljs-comment">//                Log.d(TAG, &quot;onTouch: down: x,y [&quot; + x + &quot;, &quot; + y + &quot;]&quot;);</span><br>                <span class="hljs-keyword">return</span> id != mContentTv.getId();<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.getAction() == MotionEvent.ACTION_MOVE) &#123;<br><span class="hljs-comment">//                Log.d(TAG, &quot;onTouch: move: x,y [&quot; + x + &quot;, &quot; + y + &quot;]&quot;);</span><br>                <span class="hljs-keyword">if</span> (!firstOnTv) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>; <span class="hljs-comment">// 不移动tv，直接消耗掉这个操作</span><br>                &#125;<br>                <span class="hljs-keyword">float</span> dx = x - downX;<br>                <span class="hljs-keyword">float</span> dy = y - downY;<br>                <span class="hljs-keyword">if</span> (Math.abs(dx) &gt; <span class="hljs-number">2</span> &amp;&amp; Math.abs(dy) &gt; <span class="hljs-number">2</span>) &#123;<br>                    mContentTv.setX(originTvX + dx);<br>                    mContentTv.setY(originTvY + dy);<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.getAction() == MotionEvent.ACTION_UP) &#123;<br>                firstOnTv = <span class="hljs-keyword">false</span>;<br>                <span class="hljs-keyword">if</span> (mCanvasWid &gt; <span class="hljs-number">0</span> &amp;&amp; mCanvasHeight &gt; <span class="hljs-number">0</span>) &#123;<br>                    mDraftContent.setTvLocationXRatio(mContentTv.getX() / mCanvasWid);<br>                    mDraftContent.setTvLocationYRatio(mContentTv.getY() / mCanvasHeight);<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">private</span> View.<span class="type">OnTouchListener</span> <span class="variable">mWsOnTouchListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">View</span>.OnTouchListener() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">firstOnTv</span> <span class="operator">=</span> <span class="literal">false</span>; <span class="comment">// 最开始点中的是tv</span></span><br><span class="line">        <span class="type">float</span> originTvX;           <span class="comment">// tv最开始的坐标</span></span><br><span class="line">        <span class="type">float</span> originTvY;</span><br><span class="line"></span><br><span class="line">        <span class="type">float</span> downX;</span><br><span class="line">        <span class="type">float</span> downY;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onTouch</span><span class="params">(View v, MotionEvent event)</span> &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> v.getId();</span><br><span class="line"><span class="comment">//            Log.d(TAG, &quot;onTouch: touch tv: &quot; + (id == mContentTv.getId()) + &quot;, touch ws: &quot; + (id == mWorkspaceField.getId()));</span></span><br><span class="line">            <span class="type">float</span> <span class="variable">x</span> <span class="operator">=</span> event.getX();</span><br><span class="line">            <span class="type">float</span> <span class="variable">y</span> <span class="operator">=</span> event.getY();</span><br><span class="line"><span class="comment">//            Log.d(TAG, &quot;onTouch: [&quot; + x + &quot;, &quot; + y + &quot;] , &quot; + event);</span></span><br><span class="line">            <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">                mSaveIv.setEnabled(<span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">if</span> (id == mContentTv.getId()) &#123;</span><br><span class="line">                    firstOnTv = <span class="literal">true</span>;</span><br><span class="line">                    originTvX = mContentTv.getX();</span><br><span class="line">                    originTvY = mContentTv.getY();</span><br><span class="line"><span class="comment">//                    Log.d(TAG, &quot;onTouch: 保存tv坐标 (&quot; + originTvX + &quot;, &quot; + originTvY + &quot;)&quot;);</span></span><br><span class="line">                &#125;</span><br><span class="line">                downX = event.getX();</span><br><span class="line">                downY = event.getY();</span><br><span class="line"><span class="comment">//                Log.d(TAG, &quot;onTouch: down: x,y [&quot; + x + &quot;, &quot; + y + &quot;]&quot;);</span></span><br><span class="line">                <span class="keyword">return</span> id != mContentTv.getId();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_MOVE) &#123;</span><br><span class="line"><span class="comment">//                Log.d(TAG, &quot;onTouch: move: x,y [&quot; + x + &quot;, &quot; + y + &quot;]&quot;);</span></span><br><span class="line">                <span class="keyword">if</span> (!firstOnTv) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 不移动tv，直接消耗掉这个操作</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">float</span> <span class="variable">dx</span> <span class="operator">=</span> x - downX;</span><br><span class="line">                <span class="type">float</span> <span class="variable">dy</span> <span class="operator">=</span> y - downY;</span><br><span class="line">                <span class="keyword">if</span> (Math.abs(dx) &gt; <span class="number">2</span> &amp;&amp; Math.abs(dy) &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                    mContentTv.setX(originTvX + dx);</span><br><span class="line">                    mContentTv.setY(originTvY + dy);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_UP) &#123;</span><br><span class="line">                firstOnTv = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">if</span> (mCanvasWid &gt; <span class="number">0</span> &amp;&amp; mCanvasHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    mDraftContent.setTvLocationXRatio(mContentTv.getX() / mCanvasWid);</span><br><span class="line">                    mDraftContent.setTvLocationYRatio(mContentTv.getY() / mCanvasHeight);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="版本更新"><a href="#版本更新" class="headerlink" title="版本更新"></a>版本更新</h2><ul>
 <li>2019-8-8 v1.1.1 版本更新<ul>
 <li>解决了一些bug</li>
@@ -413,431 +98,64 @@
 </li>
 <li>2019-8-4 v1.1.0 版本更新</li>
 </ul>
-
-                
-              </div>
+</div><div class="article-licensing box"><div class="licensing-title"><p>「SD编辑」开发记录</p><p><a href="https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/">https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Rust Fisher</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-07-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-08-02</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay-qr-code-fish.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat-pay-qr-code-fish.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/08/06/Dev-note/dev-note-app-PhoneInfo/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">「PhoneInfo」开发记录</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/07/21/Dev-note/dev-note-web-tools/"><span class="level-item">Web tools 开发记录</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "1651119a60fca1bc452af30880f2b691",
+            repo: "rustblogtalk",
+            owner: "RustFisher",
+            clientID: "d1dba86294f751746fa5",
+            clientSecret: "25345baefac12d7d462730664ccc7b42b6e35f70",
+            admin: ["RustFisher"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
             
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">#开发记录</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>「SD编辑」开发记录</div>
-      <div>https://blog.rustfisher.com/2019/07/29/Dev-note/dev-note-app-SDEdit/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Rust Fisher</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2019年7月29日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
             
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
+            enableHotKey: true,
             
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2019/08/06/Dev-note/dev-note-app-PhoneInfo/" title="「PhoneInfo」开发记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">「PhoneInfo」开发记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2019/07/21/Dev-note/dev-note-web-tools/" title="Web tools 开发记录">
-                        <span class="hidden-mobile">Web tools 开发记录</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-  
-  
-    <article id="comments" lazyload>
-      
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appKey":"vx6LVMyCsch2GR8CczKPMc5A","path":"window.location.pathname","placeholder":"输入评论...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"appid":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appkey":"vx6LVMyCsch2GR8CczKPMc5A"},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
         })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">107</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">55</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#字体问题"><span class="level-left"><span class="level-item">1</span><span class="level-item">字体问题</span></span></a></li><li><a class="level is-mobile" href="#选择文件"><span class="level-left"><span class="level-item">2</span><span class="level-item">选择文件</span></span></a></li><li><a class="level is-mobile" href="#处理uri"><span class="level-left"><span class="level-item">3</span><span class="level-item">处理uri</span></span></a></li><li><a class="level is-mobile" href="#Toolbar问题"><span class="level-left"><span class="level-item">4</span><span class="level-item">Toolbar问题</span></span></a></li><li><a class="level is-mobile" href="#Google-MobileAds"><span class="level-left"><span class="level-item">5</span><span class="level-item">Google MobileAds</span></span></a></li><li><a class="level is-mobile" href="#递归查看某个路径下的文件"><span class="level-left"><span class="level-item">6</span><span class="level-item">递归查看某个路径下的文件</span></span></a></li><li><a class="level is-mobile" href="#提供草稿功能"><span class="level-left"><span class="level-item">7</span><span class="level-item">提供草稿功能</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#greendao插入元素"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">greendao插入元素</span></span></a></li><li><a class="level is-mobile" href="#greendao删除元素"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">greendao删除元素</span></span></a></li></ul></li><li><a class="level is-mobile" href="#使用DrawerLayout"><span class="level-left"><span class="level-item">8</span><span class="level-item">使用DrawerLayout</span></span></a></li><li><a class="level is-mobile" href="#美术设计，App交互设计"><span class="level-left"><span class="level-item">9</span><span class="level-item">美术设计，App交互设计</span></span></a></li><li><a class="level is-mobile" href="#文字编辑"><span class="level-left"><span class="level-item">10</span><span class="level-item">文字编辑</span></span></a></li><li><a class="level is-mobile" href="#删除存档报错"><span class="level-left"><span class="level-item">11</span><span class="level-item">删除存档报错</span></span></a></li><li><a class="level is-mobile" href="#输出图片"><span class="level-left"><span class="level-item">12</span><span class="level-item">输出图片</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#保存View的显示内容"><span class="level-left"><span class="level-item">12.1</span><span class="level-item">保存View的显示内容</span></span></a></li><li><a class="level is-mobile" href="#保存图片文件后的处理"><span class="level-left"><span class="level-item">12.2</span><span class="level-item">保存图片文件后的处理</span></span></a></li></ul></li><li><a class="level is-mobile" href="#移动TextView"><span class="level-left"><span class="level-item">13</span><span class="level-item">移动TextView</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-1-x版本"><span class="level-left"><span class="level-item">13.1</span><span class="level-item">1.1.x版本</span></span></a></li></ul></li><li><a class="level is-mobile" href="#版本更新"><span class="level-left"><span class="level-item">14</span><span class="level-item">版本更新</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-30T15:59:59.000Z">2021-09-30</time></p><p class="title"><a href="/2021/09/30/Summary/2021-9/">2021年9月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-    </article>
-  
-
-
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-</div>
-
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

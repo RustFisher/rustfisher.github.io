@@ -1,365 +1,50 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>「Learn」开发记录 - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="开发的过程记录。App设计思路，遇到的和解决的问题。"><meta property="og:type" content="blog"><meta property="og:title" content="「Learn」开发记录"><meta property="og:url" content="https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="开发的过程记录。App设计思路，遇到的和解决的问题。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:published_time" content="2018-09-01T14:58:43.000Z"><meta property="article:modified_time" content="2020-02-20T01:40:44.063Z"><meta property="article:author" content="Rust Fisher"><meta property="article:tag" content="开发记录"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/"},"headline":"「Learn」开发记录","image":["https://blog.rustfisher.com/img/og_image.png"],"datePublished":"2018-09-01T14:58:43.000Z","dateModified":"2020-02-20T01:40:44.063Z","author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"开发的过程记录。App设计思路，遇到的和解决的问题。"}</script><link rel="canonical" href="https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/"><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fish.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Rust Fisher">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="「Learn」开发记录">
-<meta property="og:url" content="https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/index.html">
-<meta property="og:site_name" content="RustFisher的自留地">
-<meta property="og:description" content="开发的过程记录。App设计思路，遇到的和解决的问题。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-09-01T14:58:43.000Z">
-<meta property="article:modified_time" content="2020-02-20T01:40:44.063Z">
-<meta property="article:author" content="Rust Fisher">
-<meta property="article:tag" content="开发记录">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>「Learn」开发记录 - RustFisher的自留地</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-    <!-- Baidu Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-145397854-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>RustFisher</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
-                <i class="iconfont icon-plan"></i>
-                <span>Android教程</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="「Learn」开发记录"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2018-09-01 22:58" pubdate>
-          2018年9月1日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          13k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          105 分钟
-        
-      </span>
-    
-
-    
-    
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">「Learn」开发记录</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>开发App过程中遇到的一些问题和解决办法。临时记录一些解决方案。</p>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-09-01T14:58:43.000Z" title="2018/9/1 22:58:43">2018-09-01</time>发表</span><span class="level-item"><time dateTime="2020-02-20T01:40:44.063Z" title="2020/2/20 09:40:44">2020-02-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android-note/">Android_note</a></span><span class="level-item">23 分钟读完 (大约3376个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">「Learn」开发记录</h1><div class="content"><p>开发App过程中遇到的一些问题和解决办法。临时记录一些解决方案。</p>
 <h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer基础。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">在线音频播放，使用MediaPlayer。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">下载在线音频到本地，使用URLConnection。</a></p>
 <h2 id="自定义ViewGroup"><a href="#自定义ViewGroup" class="headerlink" title="自定义ViewGroup"></a>自定义ViewGroup</h2><p>继承自LinearLayout，自定义子View的排布方式。</p>
-<h3 id="crash-ViewGroup-resetResolvedLayoutDirection"><a href="#crash-ViewGroup-resetResolvedLayoutDirection" class="headerlink" title="crash ViewGroup.resetResolvedLayoutDirection"></a>crash ViewGroup.resetResolvedLayoutDirection</h3><p>给LinearLayout addView的时候报错<br><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">E/AndroidRuntime:     at android.view.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ViewGroup</span>.</span></span>reset<span class="hljs-constructor">ResolvedLayoutDirection(ViewGroup.<span class="hljs-params">java</span>:7291)</span><br>    at android.view.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ViewGroup</span>.</span></span>reset<span class="hljs-constructor">ResolvedLayoutDirection(ViewGroup.<span class="hljs-params">java</span>:7291)</span><br></code></pre></td></tr></table></figure></p>
-<p>检查代码，发现addView的时候把LinearLayout自己添加进去了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> LinearLayout wordCube = <span class="hljs-keyword">new</span> LinearLayout(<span class="hljs-keyword">this</span>);<br>wordCube.addView(wordCube, chTvParams);<br></code></pre></td></tr></table></figure></p>
-<p>改成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> LinearLayout wordCube = <span class="hljs-keyword">new</span> LinearLayout(<span class="hljs-keyword">this</span>);<br>wordCube.addView(tv, chTvParams); <span class="hljs-comment">// 要加的是tv</span><br></code></pre></td></tr></table></figure></p>
+<h3 id="crash-ViewGroup-resetResolvedLayoutDirection"><a href="#crash-ViewGroup-resetResolvedLayoutDirection" class="headerlink" title="crash ViewGroup.resetResolvedLayoutDirection"></a>crash ViewGroup.resetResolvedLayoutDirection</h3><p>给LinearLayout addView的时候报错<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E/AndroidRuntime:     at android.view.ViewGroup.resetResolvedLayoutDirection(ViewGroup.java:7291)</span><br><span class="line">    at android.view.ViewGroup.resetResolvedLayoutDirection(ViewGroup.java:7291)</span><br></pre></td></tr></table></figure></p>
+<p>检查代码，发现addView的时候把LinearLayout自己添加进去了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">LinearLayout</span> <span class="variable">wordCube</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinearLayout</span>(<span class="built_in">this</span>);</span><br><span class="line">wordCube.addView(wordCube, chTvParams);</span><br></pre></td></tr></table></figure></p>
+<p>改成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">LinearLayout</span> <span class="variable">wordCube</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinearLayout</span>(<span class="built_in">this</span>);</span><br><span class="line">wordCube.addView(tv, chTvParams); <span class="comment">// 要加的是tv</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="Bugly热更新"><a href="#Bugly热更新" class="headerlink" title="Bugly热更新"></a>Bugly热更新</h2><p>Bugly热更新方案集成了腾讯的tinker，自带了补丁包发布平台。</p>
 <p>文档</p>
 <p><a target="_blank" rel="noopener" href="https://bugly.qq.com/docs/user-guide/instruction-manual-android-hotfix/?v=20181014122344#_3">https://bugly.qq.com/docs/user-guide/instruction-manual-android-hotfix/?v=20181014122344#_3</a></p>
 <p>tinker不支持热更新新增四大组件，不能修改Manifest文件。但是可以修改四大组件里面的逻辑。<br>可以修改layout文件和资源文件。</p>
 <h2 id="Assets遍历文件"><a href="#Assets遍历文件" class="headerlink" title="Assets遍历文件"></a>Assets遍历文件</h2><p>assets里存放着四千多个文件，红米6A遍历一次要2秒多。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] list = context.getAssets().list(<span class="hljs-string">&quot;folder&quot;</span>); <span class="hljs-comment">// 执行这一句要两千多毫秒</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] list = context.getAssets().list(<span class="string">&quot;folder&quot;</span>); <span class="comment">// 执行这一句要两千多毫秒</span></span><br></pre></td></tr></table></figure>
 <h2 id="语音识别方案"><a href="#语音识别方案" class="headerlink" title="语音识别方案"></a>语音识别方案</h2><p>主力方案为百度语音识别。</p>
 <p>综合价格考虑，将科大讯飞的<a target="_blank" rel="noopener" href="https://www.xfyun.cn/services/voicedictation">语音听写</a>作为备用方案。</p>
 <p>将百度语音识别与讯飞听写的SDK一起引入到App中。由后台控制用户使用哪一个语音引擎。</p>
@@ -367,480 +52,113 @@
 <p>原框架的下载文件功能有一个bug。如果下载时抛出了异常，也会调用success回调。<br>这里是在下载时记录目标文件的长度，在success回调中检查本地文件大小与这个长度是否一致。</p>
 <h2 id="限速下载"><a href="#限速下载" class="headerlink" title="限速下载"></a>限速下载</h2><p>在io流那里进行延时操作。用Thread.sleep方法。<br>阻塞的是socket的操作。</p>
 <h2 id="下载安装apk"><a href="#下载安装apk" class="headerlink" title="下载安装apk"></a>下载安装apk</h2><p>下载了新版本apk后，调用代码进行安装。根据手机系统版本的不同选择不同的安装方式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">installApk</span><span class="hljs-params">(Context context,String downloadApk)</span> </span>&#123;<br>    Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_VIEW);<br>    File file = <span class="hljs-keyword">new</span> File(downloadApk);<br>    <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;<br>        Uri apkUri = FileProvider.getUriForFile(context, <span class="hljs-string">&quot;com.iNTGO.nndc.fileprovider&quot;</span>, file);<br>        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|<br>                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);<br>        intent.setDataAndType(apkUri, <span class="hljs-string">&quot;application/vnd.android.package-archive&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        Uri uri = Uri.fromFile(file);<br>        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>        intent.setDataAndType(uri, <span class="hljs-string">&quot;application/vnd.android.package-archive&quot;</span>);<br>    &#125;<br>    context.startActivity(intent);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title function_">installApk</span><span class="params">(Context context,String downloadApk)</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Intent.ACTION_VIEW);</span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(downloadApk);</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</span><br><span class="line">        <span class="type">Uri</span> <span class="variable">apkUri</span> <span class="operator">=</span> FileProvider.getUriForFile(context, <span class="string">&quot;com.iNTGO.nndc.fileprovider&quot;</span>, file);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|</span><br><span class="line">                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line">        intent.setDataAndType(apkUri, <span class="string">&quot;application/vnd.android.package-archive&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.fromFile(file);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">        intent.setDataAndType(uri, <span class="string">&quot;application/vnd.android.package-archive&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    context.startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于小米4c android 5.1.1（API 22），如果把apk放在app内部存储，packageInstaller是无法安装的。要把apk放在公共存储中才能安装。</p>
 <h2 id="修改Android系统镜像（img）"><a href="#修改Android系统镜像（img）" class="headerlink" title="修改Android系统镜像（img）"></a>修改Android系统镜像（img）</h2><p>装一个VMware Workstation Pro，下载一个Ubuntu 16的镜像（iso）。用的是阿里云的资源，比较快。<br>一系列的mount，打包后，刷机一直不成功。找到个ROM助手，尝试一下。修改了system.img后，线刷进去，卡米（卡在开机的MI logo界面）。<br>查一下发现，是selinux处于enforcing状态，没法装。小米4c用的是MIUI8，商家说没法root。MiUI7可以root。<br>还没找到非root情况下关闭selinux的方法。</p>
 <h2 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h2><p>加一些动效会让界面更加生动有活力。</p>
 <h3 id="属性动画-星星飞行"><a href="#属性动画-星星飞行" class="headerlink" title="属性动画 - 星星飞行"></a>属性动画 - 星星飞行</h3><p>控制星星飞入，定位，飞出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java">        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> flyInTime = <span class="hljs-number">100</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> stayTime = <span class="hljs-number">520</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> flyOutTime = <span class="hljs-number">250</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> totalTime = flyInTime + stayTime + flyOutTime;<br>        binding.starIv.setX(inX);<br>        binding.starIv.setY(yStay);<br>        binding.starIv.setVisibility(View.VISIBLE);<br>        setStarIvSize(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">final</span> ValueAnimator animator = ValueAnimator.ofInt(<span class="hljs-number">1</span>, totalTime);<br>        animator.setDuration(totalTime);<br>        animator.setInterpolator(<span class="hljs-keyword">new</span> AccelerateInterpolator());<br>        animator.addUpdateListener(<span class="hljs-keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onAnimationUpdate</span><span class="hljs-params">(ValueAnimator valueAnimator)</span> </span>&#123;<br>                <span class="hljs-keyword">int</span> value = (<span class="hljs-keyword">int</span>) valueAnimator.getAnimatedValue();<br>                ImageView starIv = binding.starIv;<br>                <span class="hljs-keyword">if</span> (value &lt; flyInTime) &#123;<br>                    <span class="hljs-keyword">float</span> inProgress = value / (<span class="hljs-number">1.0f</span> * flyInTime);<br>                    <span class="hljs-keyword">float</span> x = inProgress * (xStay - inX) + inX;<br>                    <span class="hljs-keyword">float</span> y;<br>                    <span class="hljs-keyword">if</span> (value &lt; flyInTime / <span class="hljs-number">2</span>) &#123;<br>                        y = yStay + <span class="hljs-number">20</span> - inProgress * <span class="hljs-number">60</span>;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        y = yStay - <span class="hljs-number">20</span> + inProgress * <span class="hljs-number">60</span>;<br>                    &#125;<br>                    starIv.setX(x);<br>                    starIv.setY(y);<br>                    setStarIvSize((<span class="hljs-keyword">int</span>) (mStarIvOriginWid * (inProgress)), (<span class="hljs-keyword">int</span>) (mStarIvOriginHeight * (inProgress)));<br><span class="hljs-comment">//                    Log.d(TAG, &quot;onAnimationUpdate: value: &quot; + value + &quot;, progress: &quot; + inProgress + &quot;, x: &quot; + x);</span><br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value &lt; flyInTime + stayTime) &#123;<br>                    starIv.setX(xStay);<br>                    starIv.setY(yStay);<br>                    setStarIvSize(mStarIvOriginWid, mStarIvOriginHeight);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (valueAnimator.isRunning()) &#123;<br>                        <span class="hljs-keyword">float</span> progress = (value - flyInTime - stayTime) / (<span class="hljs-number">1.0f</span> * flyOutTime);<br>                        starIv.setX(xStay + (progress * Math.abs(endX - xStay)));<br>                        starIv.setY(yStay - (progress * Math.abs(endY - yStay)));<br>                        setStarIvSize((<span class="hljs-keyword">int</span>) (mStarIvOriginWid * (<span class="hljs-number">1</span> - progress)), (<span class="hljs-keyword">int</span>) (mStarIvOriginHeight * (<span class="hljs-number">1</span> - progress)));<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (value &gt;= totalTime - <span class="hljs-number">10</span>) &#123;<br>                    binding.starIv.setVisibility(View.GONE);<br>                &#125;<br>            &#125;<br>        &#125;);<br>        animator.start();<br><br>    <span class="hljs-comment">// 改变星星ImageView的大小，LayoutParams不能弄错了</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStarIvSize</span><span class="hljs-params">(<span class="hljs-keyword">int</span> wid, <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) binding.starIv.getLayoutParams();<br>        lp.width = wid;<br>        lp.height = height;<br>        binding.starIv.setLayoutParams(lp);<br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">flyInTime</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">stayTime</span> <span class="operator">=</span> <span class="number">520</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">flyOutTime</span> <span class="operator">=</span> <span class="number">250</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">totalTime</span> <span class="operator">=</span> flyInTime + stayTime + flyOutTime;</span><br><span class="line">        binding.starIv.setX(inX);</span><br><span class="line">        binding.starIv.setY(yStay);</span><br><span class="line">        binding.starIv.setVisibility(View.VISIBLE);</span><br><span class="line">        setStarIvSize(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">final</span> <span class="type">ValueAnimator</span> <span class="variable">animator</span> <span class="operator">=</span> ValueAnimator.ofInt(<span class="number">1</span>, totalTime);</span><br><span class="line">        animator.setDuration(totalTime);</span><br><span class="line">        animator.setInterpolator(<span class="keyword">new</span> <span class="title class_">AccelerateInterpolator</span>());</span><br><span class="line">        animator.addUpdateListener(<span class="keyword">new</span> <span class="title class_">ValueAnimator</span>.AnimatorUpdateListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onAnimationUpdate</span><span class="params">(ValueAnimator valueAnimator)</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> (<span class="type">int</span>) valueAnimator.getAnimatedValue();</span><br><span class="line">                <span class="type">ImageView</span> <span class="variable">starIv</span> <span class="operator">=</span> binding.starIv;</span><br><span class="line">                <span class="keyword">if</span> (value &lt; flyInTime) &#123;</span><br><span class="line">                    <span class="type">float</span> <span class="variable">inProgress</span> <span class="operator">=</span> value / (<span class="number">1.0f</span> * flyInTime);</span><br><span class="line">                    <span class="type">float</span> <span class="variable">x</span> <span class="operator">=</span> inProgress * (xStay - inX) + inX;</span><br><span class="line">                    <span class="type">float</span> y;</span><br><span class="line">                    <span class="keyword">if</span> (value &lt; flyInTime / <span class="number">2</span>) &#123;</span><br><span class="line">                        y = yStay + <span class="number">20</span> - inProgress * <span class="number">60</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        y = yStay - <span class="number">20</span> + inProgress * <span class="number">60</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    starIv.setX(x);</span><br><span class="line">                    starIv.setY(y);</span><br><span class="line">                    setStarIvSize((<span class="type">int</span>) (mStarIvOriginWid * (inProgress)), (<span class="type">int</span>) (mStarIvOriginHeight * (inProgress)));</span><br><span class="line"><span class="comment">//                    Log.d(TAG, &quot;onAnimationUpdate: value: &quot; + value + &quot;, progress: &quot; + inProgress + &quot;, x: &quot; + x);</span></span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value &lt; flyInTime + stayTime) &#123;</span><br><span class="line">                    starIv.setX(xStay);</span><br><span class="line">                    starIv.setY(yStay);</span><br><span class="line">                    setStarIvSize(mStarIvOriginWid, mStarIvOriginHeight);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (valueAnimator.isRunning()) &#123;</span><br><span class="line">                        <span class="type">float</span> <span class="variable">progress</span> <span class="operator">=</span> (value - flyInTime - stayTime) / (<span class="number">1.0f</span> * flyOutTime);</span><br><span class="line">                        starIv.setX(xStay + (progress * Math.abs(endX - xStay)));</span><br><span class="line">                        starIv.setY(yStay - (progress * Math.abs(endY - yStay)));</span><br><span class="line">                        setStarIvSize((<span class="type">int</span>) (mStarIvOriginWid * (<span class="number">1</span> - progress)), (<span class="type">int</span>) (mStarIvOriginHeight * (<span class="number">1</span> - progress)));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (value &gt;= totalTime - <span class="number">10</span>) &#123;</span><br><span class="line">                    binding.starIv.setVisibility(View.GONE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        animator.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 改变星星ImageView的大小，LayoutParams不能弄错了</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">setStarIvSize</span><span class="params">(<span class="type">int</span> wid, <span class="type">int</span> height)</span> &#123;</span><br><span class="line">        RelativeLayout.<span class="type">LayoutParams</span> <span class="variable">lp</span> <span class="operator">=</span> (RelativeLayout.LayoutParams) binding.starIv.getLayoutParams();</span><br><span class="line">        lp.width = wid;</span><br><span class="line">        lp.height = height;</span><br><span class="line">        binding.starIv.setLayoutParams(lp);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>如果一个View在LinearLayout里，它的坐标没有那么容易获取。</p>
-<p>下面的代码获取到的坐标是[0,0]。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">imageView.post(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[] location = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>];<br>        imageView.getLocationOnScreen(location);<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></p>
+<p>下面的代码获取到的坐标是[0,0]。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">imageView.post(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] location = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line">        imageView.getLocationOnScreen(location);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/transitions/custom-transitions">创建自定义过渡动画 - Google</a><br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/animation/layout.html">自动为布局更新添加动画 - Google</a></p>
 <h2 id="退出App"><a href="#退出App" class="headerlink" title="退出App"></a>退出App</h2><p>在登录界面，点击返回键即退出整个App。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> mExitApp = <span class="hljs-keyword">false</span>;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBackPressed</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.onBackPressed();<br>        mExitApp = <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDestroy</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.onDestroy();<br>        <span class="hljs-keyword">if</span> (mExitApp) &#123;<br>            System.exit(<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">mExitApp</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onBackPressed</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">        mExitApp = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onDestroy();</span><br><span class="line">        <span class="keyword">if</span> (mExitApp) &#123;</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="crash"><a href="#crash" class="headerlink" title="crash"></a>crash</h2><p>为了提高程序的健壮性，很多时候并不能过于相信服务器返回的结果。该加判空就判空。<br>如果服务器返回空的数据或者字段，要有对应的措施。</p>
 <h3 id="gc超时"><a href="#gc超时" class="headerlink" title="gc超时"></a>gc超时</h3><p>该异常表示调用超时。</p>
 <p>解决方案：一般是系统在gc时，调用对象的finalize超时导致</p>
 <p>解决办法：<br>1.检查分析finalize的实现为什么耗时较高，修复它；<br>2.检查日志查看GC是否过于频繁，导致超时，减少内容开销，防止内存泄露。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs stylus">android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span>.XmlBlock<span class="hljs-variable">$Parser</span><span class="hljs-selector-class">.finalize</span>() timed out after <span class="hljs-number">10</span> seconds<br><br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span><span class="hljs-selector-class">.AssetManager</span><span class="hljs-selector-class">.xmlBlockGone</span>(AssetManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">500</span>)<br><br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span><span class="hljs-selector-class">.AssetManager</span><span class="hljs-selector-class">.xmlBlockGone</span>(AssetManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">500</span>)<br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span><span class="hljs-selector-class">.XmlBlock</span><span class="hljs-selector-class">.decOpenCountLocked</span>(XmlBlock<span class="hljs-selector-class">.java</span>:<span class="hljs-number">63</span>)<br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span><span class="hljs-selector-class">.XmlBlock</span>.access$<span class="hljs-number">1600</span>(XmlBlock<span class="hljs-selector-class">.java</span>:<span class="hljs-number">34</span>)<br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span>.XmlBlock<span class="hljs-variable">$Parser</span><span class="hljs-selector-class">.close</span>(XmlBlock<span class="hljs-selector-class">.java</span>:<span class="hljs-number">448</span>)<br>android<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.res</span>.XmlBlock<span class="hljs-variable">$Parser</span><span class="hljs-selector-class">.finalize</span>(XmlBlock<span class="hljs-selector-class">.java</span>:<span class="hljs-number">454</span>)<br>java<span class="hljs-selector-class">.lang</span>.Daemons<span class="hljs-variable">$FinalizerDaemon</span><span class="hljs-selector-class">.doFinalize</span>(Daemons<span class="hljs-selector-class">.java</span>:<span class="hljs-number">191</span>)<br>java<span class="hljs-selector-class">.lang</span>.Daemons<span class="hljs-variable">$FinalizerDaemon</span><span class="hljs-selector-class">.run</span>(Daemons<span class="hljs-selector-class">.java</span>:<span class="hljs-number">174</span>)<br>java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Thread</span><span class="hljs-selector-class">.run</span>(Thread<span class="hljs-selector-class">.java</span>:<span class="hljs-number">818</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="RuntimeException-Cannot-create-an-instance-of-class"><a href="#RuntimeException-Cannot-create-an-instance-of-class" class="headerlink" title="RuntimeException: Cannot create an instance of class"></a>RuntimeException: Cannot create an instance of class</h3><p>使用了MVVM的框架，创建viewModel时报错。检查发现忘记复写方法<code>initViewModel</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> MyViewModel <span class="hljs-title">initViewModel</span><span class="hljs-params">()</span> </span>&#123;<br>    MyAppViewModelFactory factory = MyAppViewModelFactory.getInstance(getApplication());<br>    <span class="hljs-keyword">return</span> ViewModelProviders.of(<span class="hljs-keyword">this</span>, factory).get(MyViewModel.class);<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<h2 id="ANR"><a href="#ANR" class="headerlink" title="ANR"></a>ANR</h2><h3 id="死循环导致的ANR"><a href="#死循环导致的ANR" class="headerlink" title="死循环导致的ANR"></a>死循环导致的ANR</h3><p>之前业务逻辑中，有一个随机添加不重复字符串的功能。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">while</span> (needCheckList.size() &lt; <span class="hljs-number">3</span>) &#123;<br>    Random rd = <span class="hljs-keyword">new</span> Random();<br>    String word = wordList.get(rd.nextInt(wordList.size()));<br>    <span class="hljs-keyword">if</span>(!needCheckList.contains(word)) &#123;<br>        needCheckList.add(word);<br>    &#125;<br>    <span class="hljs-comment">// .....</span><br>&#125;<br></code></pre></td></tr></table></figure><br>这段代码的效率不高。伪随机数不能保证高效地不重复地取到新的下标。<br>在某些性能较差的手机上，陷入多次循环后有可能导致anr。 anr message 表明此时CPU占用率超过100%。<br>我们使用<code>Collections.shuffle(wordList);</code>来代替伪随机数，也能实现随机取出字符串的效果。提高健壮性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android.content.res.XmlBlock$Parser.finalize() timed out after 10 seconds</span><br><span class="line"></span><br><span class="line">android.content.res.AssetManager.xmlBlockGone(AssetManager.java:500)</span><br><span class="line"></span><br><span class="line">android.content.res.AssetManager.xmlBlockGone(AssetManager.java:500)</span><br><span class="line">android.content.res.XmlBlock.decOpenCountLocked(XmlBlock.java:63)</span><br><span class="line">android.content.res.XmlBlock.access$1600(XmlBlock.java:34)</span><br><span class="line">android.content.res.XmlBlock$Parser.close(XmlBlock.java:448)</span><br><span class="line">android.content.res.XmlBlock$Parser.finalize(XmlBlock.java:454)</span><br><span class="line">java.lang.Daemons$FinalizerDaemon.doFinalize(Daemons.java:191)</span><br><span class="line">java.lang.Daemons$FinalizerDaemon.run(Daemons.java:174)</span><br><span class="line">java.lang.Thread.run(Thread.java:818)</span><br></pre></td></tr></table></figure>
+<h3 id="RuntimeException-Cannot-create-an-instance-of-class"><a href="#RuntimeException-Cannot-create-an-instance-of-class" class="headerlink" title="RuntimeException: Cannot create an instance of class"></a>RuntimeException: Cannot create an instance of class</h3><p>使用了MVVM的框架，创建viewModel时报错。检查发现忘记复写方法<code>initViewModel</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> MyViewModel <span class="title function_">initViewModel</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">MyAppViewModelFactory</span> <span class="variable">factory</span> <span class="operator">=</span> MyAppViewModelFactory.getInstance(getApplication());</span><br><span class="line">    <span class="keyword">return</span> ViewModelProviders.of(<span class="built_in">this</span>, factory).get(MyViewModel.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ANR"><a href="#ANR" class="headerlink" title="ANR"></a>ANR</h2><h3 id="死循环导致的ANR"><a href="#死循环导致的ANR" class="headerlink" title="死循环导致的ANR"></a>死循环导致的ANR</h3><p>之前业务逻辑中，有一个随机添加不重复字符串的功能。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (needCheckList.size() &lt; <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">rd</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">String</span> <span class="variable">word</span> <span class="operator">=</span> wordList.get(rd.nextInt(wordList.size()));</span><br><span class="line">    <span class="keyword">if</span>(!needCheckList.contains(word)) &#123;</span><br><span class="line">        needCheckList.add(word);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// .....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这段代码的效率不高。伪随机数不能保证高效地不重复地取到新的下标。<br>在某些性能较差的手机上，陷入多次循环后有可能导致anr。 anr message 表明此时CPU占用率超过100%。<br>我们使用<code>Collections.shuffle(wordList);</code>来代替伪随机数，也能实现随机取出字符串的效果。提高健壮性。</p>
 <h2 id="gradle"><a href="#gradle" class="headerlink" title="gradle"></a>gradle</h2><p>想在Terminal里使用gradlew命令，还得先在电脑上安装jdk。<br>现在（2019-11-18）想在官网下载个jdk，还得登录oracle账号。网速很慢，去别的地方下载jdk-8u181-windows-x64。</p>
-<h3 id="多渠道自动打包"><a href="#多渠道自动打包" class="headerlink" title="多渠道自动打包"></a>多渠道自动打包</h3><p>假设我们有很多种渠道，每个渠道的<code>manifestPlaceholders</code>的内容都不同。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">productFlavors &#123;<br>    xxx &#123;<br>        manifestPlaceholders = [XX_ID  : <span class="hljs-string">&quot;123&quot;</span>,<br>                                XX_KEY : <span class="hljs-string">&quot;key_key&quot;</span>]<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="多渠道自动打包"><a href="#多渠道自动打包" class="headerlink" title="多渠道自动打包"></a>多渠道自动打包</h3><p>假设我们有很多种渠道，每个渠道的<code>manifestPlaceholders</code>的内容都不同。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">productFlavors &#123;</span><br><span class="line">    xxx &#123;</span><br><span class="line">        manifestPlaceholders = [XX_ID  : <span class="string">&quot;123&quot;</span>,</span><br><span class="line">                                XX_KEY : <span class="string">&quot;key_key&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>之前渠道少的时候，可以点击gradle task一个个来打包。<br>现在渠道种类多了（比如二十多个），再一个个点击就很累。想要一键打包或者一行命令打包，有什么成熟好用的多渠道打包方式呢？<br>我们尝试了<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/walle">美团点评的walle</a>，号称是<code>Android Signature V2 Scheme签名下的新一代渠道包打包神器</code>。<br>试着接入walle的姿势可能不对，打包不成功。此时看到有人说<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/walle/issues/312">不支持多渠道不同的包名和配置manifestPlaceholders</a>，暂时先不使用walle。</p>
-<p>已经使用了Bugly，有很多形如<code>assembleXxxRelease</code>的任务。<br>我们可以在终端命令行里执行gradlew命令来打包。<br>Windows环境下就是<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">gradlew assembleXxxRelease<br></code></pre></td></tr></table></figure></p>
-<p>那么写一个bat脚本，把这几十个渠道包按顺序一个个打包出来。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">gradlew assembleXxxRelease &amp;&amp; gradlew assembleYyyRelease &amp;&amp; gradlew assembleZzzRelease<br></code></pre></td></tr></table></figure><br>这个方法非常“暴力”，仅仅是替代了手动执行的过程。</p>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="BindingCommand-问题"><a href="#BindingCommand-问题" class="headerlink" title="BindingCommand 问题"></a>BindingCommand 问题</h3><p>由于历史原因，App使用了一个MVVM框架。layout中可以绑定BindingCommand。<br>不知道是不是开发姿势不对，快速点击某个按钮时，对应的<code>BindingCommand</code>并不能立即响应。连续点击会错过点击事件。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> BindingCommand myCommand = <span class="hljs-keyword">new</span> BindingCommand(<span class="hljs-keyword">new</span> BindingAction() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// my logic</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></p>
+<p>已经使用了Bugly，有很多形如<code>assembleXxxRelease</code>的任务。<br>我们可以在终端命令行里执行gradlew命令来打包。<br>Windows环境下就是<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew assembleXxxRelease</span><br></pre></td></tr></table></figure></p>
+<p>那么写一个bat脚本，把这几十个渠道包按顺序一个个打包出来。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew assembleXxxRelease &amp;&amp; gradlew assembleYyyRelease &amp;&amp; gradlew assembleZzzRelease</span><br></pre></td></tr></table></figure><br>这个方法非常“暴力”，仅仅是替代了手动执行的过程。</p>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="BindingCommand-问题"><a href="#BindingCommand-问题" class="headerlink" title="BindingCommand 问题"></a>BindingCommand 问题</h3><p>由于历史原因，App使用了一个MVVM框架。layout中可以绑定BindingCommand。<br>不知道是不是开发姿势不对，快速点击某个按钮时，对应的<code>BindingCommand</code>并不能立即响应。连续点击会错过点击事件。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">BindingCommand</span> <span class="variable">myCommand</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BindingCommand</span>(<span class="keyword">new</span> <span class="title class_">BindingAction</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// my logic</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>而换用<code>setOnClickListener</code>可以立刻监听到每一个点击事件。<br>为了追求响应速度，在某些地方采用设置监听器的方式了。</p>
 <h2 id="界面UI"><a href="#界面UI" class="headerlink" title="界面UI"></a>界面UI</h2><h3 id="android-跑马灯重复抖动的解决方法"><a href="#android-跑马灯重复抖动的解决方法" class="headerlink" title="android 跑马灯重复抖动的解决方法"></a>android 跑马灯重复抖动的解决方法</h3><p>解决的方法，在跑马灯控件外层，再嵌套一个布局控件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;0dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;55&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;horizontal&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">com.rustfisher.view.MarqueeTextView</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/tv_name&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:ellipsize</span>=<span class="hljs-string">&quot;marquee&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:focusable</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:focusableInTouchMode</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:maxWidth</span>=<span class="hljs-string">&quot;150dp&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:singleLine</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;10sp&quot;</span> /&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_weight</span>=<span class="string">&quot;55&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">com.rustfisher.view.MarqueeTextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:ellipsize</span>=<span class="string">&quot;marquee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:focusable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:focusableInTouchMode</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxWidth</span>=<span class="string">&quot;150dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:singleLine</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;10sp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="EditText划词选词弹出菜单"><a href="#EditText划词选词弹出菜单" class="headerlink" title="EditText划词选词弹出菜单"></a>EditText划词选词弹出菜单</h3><p>et可选，弹出了系统的菜单。</p>
-<p>et不可选，弹出了自定义的菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">registerForContextMenu(mEt);<br>mEt.setOnCreateContextMenuListener(<span class="hljs-keyword">new</span> View.OnCreateContextMenuListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreateContextMenu</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)</span> </span>&#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;onCreateContextMenu: selected: &quot;</span> + mEt.getSelectionStart() + <span class="hljs-string">&quot;, &quot;</span> + mEt.getSelectionEnd()); <span class="hljs-comment">// 都是0</span><br>        getMenuInflater().inflate(R.menu.et_menu, menu);<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></p>
-<p>et可选，弹出了自定义菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java">mEt.setCustomSelectionActionModeCallback(genActionModeCallback1());<br><br><span class="hljs-keyword">private</span> ActionMode.<span class="hljs-function">Callback <span class="hljs-title">genActionModeCallback1</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ActionMode.Callback() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateActionMode</span><span class="hljs-params">(ActionMode mode, Menu menu)</span> </span>&#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;onCreateActionMode:&quot;</span><br>                    + <span class="hljs-string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="hljs-string">&quot;, &quot;</span> + mEt.getSelectionEnd());<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onPrepareActionMode</span><span class="hljs-params">(ActionMode mode, Menu menu)</span> </span>&#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;onPrepareActionMode: &quot;</span> + <span class="hljs-string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="hljs-string">&quot;, &quot;</span> + mEt.getSelectionEnd());<br>            menu.clear();<br>            mode.getMenuInflater().inflate(R.menu.et_menu, menu);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onActionItemClicked</span><span class="hljs-params">(ActionMode mode, MenuItem item)</span> </span>&#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;onActionItemClicked: &quot;</span> + <span class="hljs-string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="hljs-string">&quot;, &quot;</span> + mEt.getSelectionEnd());<br>            mode.finish();<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDestroyActionMode</span><span class="hljs-params">(ActionMode mode)</span> </span>&#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;onDestroyActionMode: &quot;</span> + <span class="hljs-string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="hljs-string">&quot;, &quot;</span> + mEt.getSelectionEnd());<br>        &#125;<br>    &#125;;<br>&#125;<br><br></code></pre></td></tr></table></figure><br>1+手机可以用，但小米手机无法弹出自定义菜单。此法不能通用。</p>
+<p>et不可选，弹出了自定义的菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">registerForContextMenu(mEt);</span><br><span class="line">mEt.setOnCreateContextMenuListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnCreateContextMenuListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreateContextMenu</span><span class="params">(<span class="keyword">final</span> ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;onCreateContextMenu: selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd()); <span class="comment">// 都是0</span></span><br><span class="line">        getMenuInflater().inflate(R.menu.et_menu, menu);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>et可选，弹出了自定义菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">mEt.setCustomSelectionActionModeCallback(genActionModeCallback1());</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> ActionMode.Callback <span class="title function_">genActionModeCallback1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ActionMode</span>.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onCreateActionMode</span><span class="params">(ActionMode mode, Menu menu)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onCreateActionMode:&quot;</span></span><br><span class="line">                    + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onPrepareActionMode</span><span class="params">(ActionMode mode, Menu menu)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onPrepareActionMode: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            menu.clear();</span><br><span class="line">            mode.getMenuInflater().inflate(R.menu.et_menu, menu);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onActionItemClicked</span><span class="params">(ActionMode mode, MenuItem item)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onActionItemClicked: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            mode.finish();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDestroyActionMode</span><span class="params">(ActionMode mode)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onDestroyActionMode: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>1+手机可以用，但小米手机无法弹出自定义菜单。此法不能通用。</p>
 <h3 id="竖直的进度条"><a href="#竖直的进度条" class="headerlink" title="竖直的进度条"></a>竖直的进度条</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3926395/android-set-a-progressbar-to-be-a-vertical-bar-instead-of-horizontal">https://stackoverflow.com/questions/3926395/android-set-a-progressbar-to-be-a-vertical-bar-instead-of-horizontal</a></p>
 <h3 id="获取statusbar高度"><a href="#获取statusbar高度" class="headerlink" title="获取statusbar高度"></a>获取statusbar高度</h3><p>在Activity中获取DecorView。通过DecorView的位置来判断statusBar的高度。Activity别设置成全屏的就好。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getStatusBarHeight</span><span class="hljs-params">()</span> </span>&#123;<br>    Rect rectangle = <span class="hljs-keyword">new</span> Rect();<br>    Window window = getWindow();<br>    window.getDecorView().getWindowVisibleDisplayFrame(rectangle);<br>    Log.d(TAG, <span class="hljs-string">&quot;getStatusBarHeight: &quot;</span> + rectangle.top);<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>让statusbar不占位置，并设置成透明背景。<br>底下的虚拟系统按键（Home，back，menu）不能受影响。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;AppTheme&quot;</span> <span class="hljs-attr">parent</span>=<span class="hljs-string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="xml"></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;android:windowTranslucentStatus&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;android:windowTranslucentNavigation&quot;</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;android:statusBarColor&quot;</span>&gt;</span>@android:color/transparent<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">getStatusBarHeight</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Rect</span> <span class="variable">rectangle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Rect</span>();</span><br><span class="line">    <span class="type">Window</span> <span class="variable">window</span> <span class="operator">=</span> getWindow();</span><br><span class="line">    window.getDecorView().getWindowVisibleDisplayFrame(rectangle);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;getStatusBarHeight: &quot;</span> + rectangle.top);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让statusbar不占位置，并设置成透明背景。<br>底下的虚拟系统按键（Home，back，menu）不能受影响。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentStatus&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentNavigation&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:statusBarColor&quot;</span>&gt;</span>@android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="drawable-vector-assets"><a href="#drawable-vector-assets" class="headerlink" title="drawable - vector assets"></a>drawable - vector assets</h3><p>通过引入svg文件得到的drawable，layout中直接设置src使用drawable。小米4c和红米6A手机屏幕上图像错乱。<br>改变ImageView的大小不起作用。清楚as缓存也不起作用。</p>
 <p>如果不在layout中设置，而是在代码中<code>setImageResource</code>则显示正常。</p>
 <h3 id="设计界面"><a href="#设计界面" class="headerlink" title="设计界面"></a>设计界面</h3><p>去花瓣网上找灵感。<br>比如设计列表界面，可以给每个项目增加一个小背景。可以是颜色，可以是背景图。</p>
 <h2 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h2><h3 id="设计接口获取数据"><a href="#设计接口获取数据" class="headerlink" title="设计接口获取数据"></a>设计接口获取数据</h3><p>项目里用OKHttp框架来进行网络请求。返回结果被转化成对象<code>Entity</code>。<br>同一个服务器返回里装有相同结构的A,B,C对象。它们的名字不一样，GsonFormat的时候是分开成3个类的。<br>为了让代码更简洁，把这3个对象进行抽象。<br>一开始是做了一个抽象类，让这3个类继承。但是OKHttp那边会报错。</p>
 <p>然后改用了接口的方式。设计的接口里有一些通用方法。在<code>Entity</code>里让那3个类都实现这个接口，然后在方法中返回我们要的数据。</p>
 <h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><h3 id="资源分配"><a href="#资源分配" class="headerlink" title="资源分配"></a>资源分配</h3><p>AsyncTask背后有一个线程池。调用了<code>execute()</code>并不能保证任务立刻被执行。<br>换用Thread。</p>
-<h2 id="App设置"><a href="#App设置" class="headerlink" title="App设置"></a>App设置</h2><h3 id="分屏设置"><a href="#分屏设置" class="headerlink" title="分屏设置"></a>分屏设置</h3><p>如果不进行设置，默认是允许分屏的。这里我们把分屏给禁止。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">android:networkSecurityConfig=&quot;@xml/network_security_config&quot;<br>android:resizeableActivity=&quot;false&quot;<br></code></pre></td></tr></table></figure></p>
-<p>添加在application标签里。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">application</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.app.MyApplication&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:icon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;@string/app_name&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:networkSecurityConfig</span>=<span class="hljs-string">&quot;@xml/network_security_config&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/AppTheme&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="App设置"><a href="#App设置" class="headerlink" title="App设置"></a>App设置</h2><h3 id="分屏设置"><a href="#分屏设置" class="headerlink" title="分屏设置"></a>分屏设置</h3><p>如果不进行设置，默认是允许分屏的。这里我们把分屏给禁止。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android:networkSecurityConfig=&quot;@xml/network_security_config&quot;</span><br><span class="line">android:resizeableActivity=&quot;false&quot;</span><br></pre></td></tr></table></figure></p>
+<p>添加在application标签里。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.app.MyApplication&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:networkSecurityConfig</span>=<span class="string">&quot;@xml/network_security_config&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h2><h3 id="系统App"><a href="#系统App" class="headerlink" title="系统App"></a>系统App</h3><p>把apk放进root后的手机里，当做是系统app。</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">F:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">root</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">remount</span></span><br><span class="hljs-function"><span class="hljs-title">remount</span> <span class="hljs-title">succeeded</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">mkdir</span> /<span class="hljs-title">system</span>/<span class="hljs-title">priv</span>-<span class="hljs-title">app</span>/<span class="hljs-title">MyApp</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">chmod</span> 755 /<span class="hljs-title">system</span>/<span class="hljs-title">priv</span>-<span class="hljs-title">app</span>/<span class="hljs-title">MyApp</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">chmod</span> 644 /<span class="hljs-title">system</span>/<span class="hljs-title">priv</span>-<span class="hljs-title">app</span>/<span class="hljs-title">MyApp</span>/<span class="hljs-title">MyApp.apk</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">chmod</span> 755 /<span class="hljs-title">system</span>/<span class="hljs-title">priv</span>-<span class="hljs-title">app</span>/<span class="hljs-title">MyApp</span>/<span class="hljs-title">lib</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">chmod</span> 755 /<span class="hljs-title">system</span>/<span class="hljs-title">priv</span>-<span class="hljs-title">app</span>/<span class="hljs-title">MyApp</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">arm</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">sync</span></span><br><span class="hljs-function"><span class="hljs-title">F</span>:\<span class="hljs-title">IE</span>\<span class="hljs-title">MyApp0826</span>\<span class="hljs-title">app</span>\<span class="hljs-title">libs</span>&gt;<span class="hljs-title">adb</span> <span class="hljs-title">shell</span> <span class="hljs-title">reboot</span></span><br></code></pre></td></tr></table></figure>
-<h3 id="范围内随机数"><a href="#范围内随机数" class="headerlink" title="范围内随机数"></a>范围内随机数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Random rand = <span class="hljs-keyword">new</span> Random(seed);<br><span class="hljs-keyword">int</span> random_integer = rand.nextInt(upperbound-lowerbound) + lowerbound;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">F:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">root</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">remount</span></span></span><br><span class="line"><span class="function"><span class="title">remount</span> <span class="title">succeeded</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">mkdir</span> /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 644 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">MyApp.apk</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">lib</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">lib</span>/<span class="title">arm</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">sync</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">reboot</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="范围内随机数"><a href="#范围内随机数" class="headerlink" title="范围内随机数"></a>范围内随机数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Random</span> <span class="variable">rand</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>(seed);</span><br><span class="line"><span class="type">int</span> <span class="variable">random_integer</span> <span class="operator">=</span> rand.nextInt(upperbound-lowerbound) + lowerbound;</span><br></pre></td></tr></table></figure>
 <h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h3 id="Handler与单例"><a href="#Handler与单例" class="headerlink" title="Handler与单例"></a>Handler与单例</h3><p>单例模式加上Handler。有人把handler直接交给单例。长生命周期的一直持有短生命周期的对象，没法回收造成内存泄漏。</p>
-<p>viewModel中有一个handler，而handler被单例持有。handler是直接实例化的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">aHandler = <span class="hljs-keyword">new</span> Handler() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Message msg)</span> </span>&#123;<br>        handleResult(msg);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><br>handleResult方法中使用了viewModel的数据列表。</p>
+<p>viewModel中有一个handler，而handler被单例持有。handler是直接实例化的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aHandler = <span class="keyword">new</span> <span class="title class_">Handler</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> &#123;</span><br><span class="line">        handleResult(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>handleResult方法中使用了viewModel的数据列表。</p>
 <p>这样在新建一个viewModel的时候，单例持有旧的handler，handler持有的还是旧的那个数据列表。<br>内存中就有2份不一样的数据列表。</p>
 <p>修复方案：<br>首先不能让单例持有这个handler。<br>其次退出viewModel的时候，把handler中的消息清空。</p>
-
-                
-              </div>
+</div><div class="article-licensing box"><div class="licensing-title"><p>「Learn」开发记录</p><p><a href="https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/">https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Rust Fisher</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-09-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-02-20</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay-qr-code-fish.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat-pay-qr-code-fish.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/09/05/Flutter/Flutter-Navigator_demo1/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Flutter - 页面间跳转操作</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/08/22/Android/Android-OkHttp_Retrofit_use_intro/"><span class="level-item">Android OkHttp + Retrofit 使用示例</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "ceebb09d4413804117823128d8d013a1",
+            repo: "rustblogtalk",
+            owner: "RustFisher",
+            clientID: "d1dba86294f751746fa5",
+            clientSecret: "25345baefac12d7d462730664ccc7b42b6e35f70",
+            admin: ["RustFisher"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
             
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">#开发记录</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>「Learn」开发记录</div>
-      <div>https://blog.rustfisher.com/2018/09/01/Dev-note/dev-note-app-learn/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Rust Fisher</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2018年9月1日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
             
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
+            enableHotKey: true,
             
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2018/09/05/Flutter/Flutter-Navigator_demo1/" title="Flutter - 页面间跳转操作">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Flutter - 页面间跳转操作</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2018/08/22/Android/Android-OkHttp_Retrofit_use_intro/" title="Android OkHttp + Retrofit 使用示例">
-                        <span class="hidden-mobile">Android OkHttp + Retrofit 使用示例</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-  
-  
-    <article id="comments" lazyload>
-      
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appKey":"vx6LVMyCsch2GR8CczKPMc5A","path":"window.location.pathname","placeholder":"输入评论...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"appid":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appkey":"vx6LVMyCsch2GR8CczKPMc5A"},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
         })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">107</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">55</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#音频"><span class="level-left"><span class="level-item">1</span><span class="level-item">音频</span></span></a></li><li><a class="level is-mobile" href="#自定义ViewGroup"><span class="level-left"><span class="level-item">2</span><span class="level-item">自定义ViewGroup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#crash-ViewGroup-resetResolvedLayoutDirection"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">crash ViewGroup.resetResolvedLayoutDirection</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Bugly热更新"><span class="level-left"><span class="level-item">3</span><span class="level-item">Bugly热更新</span></span></a></li><li><a class="level is-mobile" href="#Assets遍历文件"><span class="level-left"><span class="level-item">4</span><span class="level-item">Assets遍历文件</span></span></a></li><li><a class="level is-mobile" href="#语音识别方案"><span class="level-left"><span class="level-item">5</span><span class="level-item">语音识别方案</span></span></a></li><li><a class="level is-mobile" href="#下载文件"><span class="level-left"><span class="level-item">6</span><span class="level-item">下载文件</span></span></a></li><li><a class="level is-mobile" href="#限速下载"><span class="level-left"><span class="level-item">7</span><span class="level-item">限速下载</span></span></a></li><li><a class="level is-mobile" href="#下载安装apk"><span class="level-left"><span class="level-item">8</span><span class="level-item">下载安装apk</span></span></a></li><li><a class="level is-mobile" href="#修改Android系统镜像（img）"><span class="level-left"><span class="level-item">9</span><span class="level-item">修改Android系统镜像（img）</span></span></a></li><li><a class="level is-mobile" href="#动画效果"><span class="level-left"><span class="level-item">10</span><span class="level-item">动画效果</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#属性动画-星星飞行"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">属性动画 - 星星飞行</span></span></a></li></ul></li><li><a class="level is-mobile" href="#退出App"><span class="level-left"><span class="level-item">11</span><span class="level-item">退出App</span></span></a></li><li><a class="level is-mobile" href="#crash"><span class="level-left"><span class="level-item">12</span><span class="level-item">crash</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#gc超时"><span class="level-left"><span class="level-item">12.1</span><span class="level-item">gc超时</span></span></a></li><li><a class="level is-mobile" href="#RuntimeException-Cannot-create-an-instance-of-class"><span class="level-left"><span class="level-item">12.2</span><span class="level-item">RuntimeException: Cannot create an instance of class</span></span></a></li></ul></li><li><a class="level is-mobile" href="#ANR"><span class="level-left"><span class="level-item">13</span><span class="level-item">ANR</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#死循环导致的ANR"><span class="level-left"><span class="level-item">13.1</span><span class="level-item">死循环导致的ANR</span></span></a></li></ul></li><li><a class="level is-mobile" href="#gradle"><span class="level-left"><span class="level-item">14</span><span class="level-item">gradle</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#多渠道自动打包"><span class="level-left"><span class="level-item">14.1</span><span class="level-item">多渠道自动打包</span></span></a></li></ul></li><li><a class="level is-mobile" href="#框架"><span class="level-left"><span class="level-item">15</span><span class="level-item">框架</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#BindingCommand-问题"><span class="level-left"><span class="level-item">15.1</span><span class="level-item">BindingCommand 问题</span></span></a></li></ul></li><li><a class="level is-mobile" href="#界面UI"><span class="level-left"><span class="level-item">16</span><span class="level-item">界面UI</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#android-跑马灯重复抖动的解决方法"><span class="level-left"><span class="level-item">16.1</span><span class="level-item">android 跑马灯重复抖动的解决方法</span></span></a></li><li><a class="level is-mobile" href="#EditText划词选词弹出菜单"><span class="level-left"><span class="level-item">16.2</span><span class="level-item">EditText划词选词弹出菜单</span></span></a></li><li><a class="level is-mobile" href="#竖直的进度条"><span class="level-left"><span class="level-item">16.3</span><span class="level-item">竖直的进度条</span></span></a></li><li><a class="level is-mobile" href="#获取statusbar高度"><span class="level-left"><span class="level-item">16.4</span><span class="level-item">获取statusbar高度</span></span></a></li><li><a class="level is-mobile" href="#drawable-vector-assets"><span class="level-left"><span class="level-item">16.5</span><span class="level-item">drawable - vector assets</span></span></a></li><li><a class="level is-mobile" href="#设计界面"><span class="level-left"><span class="level-item">16.6</span><span class="level-item">设计界面</span></span></a></li></ul></li><li><a class="level is-mobile" href="#网络请求"><span class="level-left"><span class="level-item">17</span><span class="level-item">网络请求</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#设计接口获取数据"><span class="level-left"><span class="level-item">17.1</span><span class="level-item">设计接口获取数据</span></span></a></li></ul></li><li><a class="level is-mobile" href="#AsyncTask"><span class="level-left"><span class="level-item">18</span><span class="level-item">AsyncTask</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#资源分配"><span class="level-left"><span class="level-item">18.1</span><span class="level-item">资源分配</span></span></a></li></ul></li><li><a class="level is-mobile" href="#App设置"><span class="level-left"><span class="level-item">19</span><span class="level-item">App设置</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#分屏设置"><span class="level-left"><span class="level-item">19.1</span><span class="level-item">分屏设置</span></span></a></li></ul></li><li><a class="level is-mobile" href="#adb"><span class="level-left"><span class="level-item">20</span><span class="level-item">adb</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#系统App"><span class="level-left"><span class="level-item">20.1</span><span class="level-item">系统App</span></span></a></li><li><a class="level is-mobile" href="#范围内随机数"><span class="level-left"><span class="level-item">20.2</span><span class="level-item">范围内随机数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#内存泄漏"><span class="level-left"><span class="level-item">21</span><span class="level-item">内存泄漏</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Handler与单例"><span class="level-left"><span class="level-item">21.1</span><span class="level-item">Handler与单例</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-30T15:59:59.000Z">2021-09-30</time></p><p class="title"><a href="/2021/09/30/Summary/2021-9/">2021年9月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-    </article>
-  
-
-
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-</div>
-
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
