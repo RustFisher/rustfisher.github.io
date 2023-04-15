@@ -1,39 +1,354 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Android 广播机制（Broadcast）介绍与使用 - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="广播的介绍和使用"><meta property="og:type" content="blog"><meta property="og:title" content="Android 广播机制（Broadcast）介绍与使用"><meta property="og:url" content="https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="广播的介绍和使用"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/android-cover-2.png"><meta property="article:published_time" content="2015-10-29T07:09:35.000Z"><meta property="article:modified_time" content="2023-04-09T06:26:01.974Z"><meta property="article:author" content="Rust Fisher"><meta property="article:tag" content="Android_Broadcast"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/android-cover-2.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/"},"headline":"Android 广播机制（Broadcast）介绍与使用","image":["https://blog.rustfisher.com/img/android-cover-2.png"],"datePublished":"2015-10-29T07:09:35.000Z","dateModified":"2023-04-09T06:26:01.974Z","author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"广播的介绍和使用"}</script><link rel="canonical" href="https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/"><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="广播的介绍和使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 广播机制（Broadcast）介绍与使用">
+<meta property="og:url" content="https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="广播的介绍和使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-10-29T07:09:35.000Z">
+<meta property="article:modified_time" content="2023-04-09T06:26:01.974Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="Android_Broadcast">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Android 广播机制（Broadcast）介绍与使用 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/android-cover-2.png" alt="Android 广播机制（Broadcast）介绍与使用"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2015-10-29T07:09:35.000Z" title="2015/10/29 15:09:35">2015-10-29</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.974Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android-note/">Android_note</a></span><span class="level-item">15 分钟读完 (大约2189个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Android 广播机制（Broadcast）介绍与使用</h1><div class="content"><p>Android应用可以通过广播从系统或其他App接收或发送消息。类似于订阅-发布设计模式。当某些事件发生时，可以发出广播。<br>系统在某些状态改变时会发出广播，例如开机、充电。App也可发送自定义广播。广播可用于应用间的通讯，是IPC的一种方式。</p>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android 广播机制（Broadcast）介绍与使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-10-29 15:09" pubdate>
+          2015年10月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android 广播机制（Broadcast）介绍与使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Android应用可以通过广播从系统或其他App接收或发送消息。类似于订阅-发布设计模式。当某些事件发生时，可以发出广播。<br>系统在某些状态改变时会发出广播，例如开机、充电。App也可发送自定义广播。广播可用于应用间的通讯，是IPC的一种方式。</p>
 <h2 id="广播的种类"><a href="#广播的种类" class="headerlink" title="广播的种类"></a>广播的种类</h2><p>广播的种类也可以看成是广播的属性。</p>
 <h3 id="标准广播（Normal-Broadcasts）"><a href="#标准广播（Normal-Broadcasts）" class="headerlink" title="标准广播（Normal Broadcasts）"></a>标准广播（Normal Broadcasts）</h3><p>完全异步的广播。广播发出后，所有的广播接收器几乎同时接收到这条广播。<br>不同的App可以注册并接到标准广播。例如系统广播。</p>
 <h3 id="有序广播（Ordered-Broadcasts）"><a href="#有序广播（Ordered-Broadcasts）" class="headerlink" title="有序广播（Ordered Broadcasts）"></a>有序广播（Ordered Broadcasts）</h3><p>同步广播。同一时刻只有一个广播接收器能接收到这条广播。这个接收器处理完后，广播才会继续传递。<br>有序广播是全局的广播。</p>
@@ -42,88 +357,455 @@
 <h2 id="接收广播"><a href="#接收广播" class="headerlink" title="接收广播"></a>接收广播</h2><p>创建广播接收器，调用<code>onReceive()</code>方法，需要一个继承BroadcastReceiver的类。</p>
 <h3 id="注册广播"><a href="#注册广播" class="headerlink" title="注册广播"></a>注册广播</h3><p>代码中注册称为动态注册。在AndroidManifest.xml中注册称为静态注册。动态注册的刚波接收器一定要取消注册。在onDestroy()方法中调用unregisterReceiver()方法来取消注册。</p>
 <p>不要在onReceive()方法中添加过多的逻辑操作或耗时的操作。因为在广播接收器中不允许开启线程，当onReceive()方法运行较长时间而没结束时，程序会报错。因此广播接收器一般用来打开其他组件，比如创建一条状态栏通知或启动一个服务。</p>
-<p>新建一个MyExampleReceiver继承自BroadcastReceiver。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyExampleReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Toast.makeText(context,<span class="string">&quot;Got it&quot;</span>,Toast.LENGTH_SHORT).show();</span><br><span class="line">        <span class="comment">//abortBroadcast();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><code>abortBroadcast()</code>可以截断有序广播</p>
-<p>在AndroidManifest.xml中注册广播接收器；name里填接收器的名字。<br>可以设置广播接收器优先级：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">&quot;100&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">&quot;.MyExampleReceiver&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>让接收器接收到一条“com.rust.broadcasttest.MY_BROADCAST”广播。<br>发送自定义广播（标准广播）时，要传送这个值。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(<span class="string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>);</span><br><span class="line">sendBroadcast(intent);</span><br></pre></td></tr></table></figure></p>
-<p>发送有序广播，应当调用sendOrderedBroadcast()；<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(<span class="string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>);</span><br><span class="line">sendOrderedBroadcast(intent，<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></p>
+<p>新建一个MyExampleReceiver继承自BroadcastReceiver。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyExampleReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BroadcastReceiver</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Toast.makeText(context,<span class="hljs-string">&quot;Got it&quot;</span>,Toast.LENGTH_SHORT).show();<br>        <span class="hljs-comment">//abortBroadcast();</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><br><code>abortBroadcast()</code>可以截断有序广播</p>
+<p>在AndroidManifest.xml中注册广播接收器；name里填接收器的名字。<br>可以设置广播接收器优先级：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span> <span class="hljs-attr">android:priority</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">receiver</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MyExampleReceiver&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">receiver</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>让接收器接收到一条“com.rust.broadcasttest.MY_BROADCAST”广播。<br>发送自定义广播（标准广播）时，要传送这个值。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(<span class="hljs-string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>);<br>sendBroadcast(intent);<br></code></pre></td></tr></table></figure></p>
+<p>发送有序广播，应当调用sendOrderedBroadcast()；<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(<span class="hljs-string">&quot;com.rust.broadcasttest.MY_BROADCAST&quot;</span>);<br>sendOrderedBroadcast(intent，<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure></p>
 <h2 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h2><p>App有3种发送广播的方式。发送广播需要使用Intent类。</p>
 <h3 id="sendOrderedBroadcast-Intent-String"><a href="#sendOrderedBroadcast-Intent-String" class="headerlink" title="sendOrderedBroadcast(Intent, String)"></a>sendOrderedBroadcast(Intent, String)</h3><p>发送有序广播。每次只有1个广播接收器能接到广播。<br>接收器接到有序广播后，可以完全地截断广播，或者传递一些信息给下一个接收器。<br>有序广播的顺序可受<code>android:priority</code>标签影响。同等级的接收器收到广播的顺序是随机的。</p>
 <h3 id="sendBroadcast-Intent"><a href="#sendBroadcast-Intent" class="headerlink" title="sendBroadcast(Intent)"></a>sendBroadcast(Intent)</h3><p>以一个未定义的顺序向所有接收器发送广播。也称作普通广播。<br>这种方式更高效，但是接收器不能给下一个接收器传递消息。这类广播也无法截断。</p>
 <h3 id="LocalBroadcastManager-sendBroadcast"><a href="#LocalBroadcastManager-sendBroadcast" class="headerlink" title="LocalBroadcastManager.sendBroadcast"></a>LocalBroadcastManager.sendBroadcast</h3><p>广播只能在应用程序内部进行传递，并且广播接收器也只能接收到来自本应用程序发出的广播。<br>这个方法比全局广播更高效（不需要Interprocess communication，IPC），而且不需要担心其它App会收到你的广播以及其他安全问题。</p>
 <h2 id="广播与权限"><a href="#广播与权限" class="headerlink" title="广播与权限"></a>广播与权限</h2><h3 id="发送带着权限的广播"><a href="#发送带着权限的广播" class="headerlink" title="发送带着权限的广播"></a>发送带着权限的广播</h3><p>当你调用<code>sendBroadcast(Intent, String)</code>或<code>sendOrderedBroadcast(Intent, String, BroadcastReceiver, Handler, int, String, Bundle)</code>时，你可以指定一个权限。<br>接收器在manifest中申请了相应权限时才能收到这个广播。</p>
-<p>例如发送一个带着权限的广播<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sendBroadcast(<span class="keyword">new</span> <span class="title class_">Intent</span>(<span class="string">&quot;com.example.NOTIFY&quot;</span>),</span><br><span class="line">              Manifest.permission.SEND_SMS);</span><br></pre></td></tr></table></figure></p>
-<p>接收广播的app必须注册相应的权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.SEND_SMS&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>当然也可以使用自定义<a target="_blank" rel="noopener" href="https://developer.android.com/guide/topics/manifest/permission-element.html">permission</a>。在manifest中使用permission标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">&quot;custom_permission&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure><br>添加后编译一下。即可调用<code>Manifest.permission.custom_permission</code></p>
+<p>例如发送一个带着权限的广播<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">sendBroadcast(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(<span class="hljs-string">&quot;com.example.NOTIFY&quot;</span>),<br>              Manifest.permission.SEND_SMS);<br></code></pre></td></tr></table></figure></p>
+<p>接收广播的app必须注册相应的权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.SEND_SMS&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>当然也可以使用自定义<a target="_blank" rel="noopener" href="https://developer.android.com/guide/topics/manifest/permission-element.html">permission</a>。在manifest中使用permission标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;custom_permission&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure><br>添加后编译一下。即可调用<code>Manifest.permission.custom_permission</code></p>
 <h3 id="接收带权限的广播"><a href="#接收带权限的广播" class="headerlink" title="接收带权限的广播"></a>接收带权限的广播</h3><p>若注册广播接收器时申明了权限，那么只会接收到带着相应权限的广播。</p>
-<p>在配置文件中声明权限，程序才能访问一些关键信息。<br>例如允许查询系统网络状态。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 机器开机广播 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BOOT_COMPLETED&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure><br>如果没有申请权限，程序可能会意外关闭。</p>
+<p>在配置文件中声明权限，程序才能访问一些关键信息。<br>例如允许查询系统网络状态。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 机器开机广播 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.BOOT_COMPLETED&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><br>如果没有申请权限，程序可能会意外关闭。</p>
 <h2 id="示例-使用标准广播，本地广播，带权限的广播，有序广播"><a href="#示例-使用标准广播，本地广播，带权限的广播，有序广播" class="headerlink" title="示例 - 使用标准广播，本地广播，带权限的广播，有序广播"></a>示例 - 使用标准广播，本地广播，带权限的广播，有序广播</h2><p>发送和接收广播。分为发送和接收方2个App。</p>
-<p>使用带权限的广播。系统权限与自定义权限。<br>使用权限需要在AndroidManifest.xml中声明。如果是自定义权限，需要先添加自定义权限。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 自定义的权限  给广播用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用带权限的广播。系统权限与自定义权限。<br>使用权限需要在AndroidManifest.xml中声明。如果是自定义权限，需要先添加自定义权限。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 自定义的权限  给广播用 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p>发送广播时带上权限声明。接收方（不论是否己方App）需要在<code>AndroidManifest.xml</code>中申请权限。<br>注册接收器时也需要声明权限。</p>
-<p>发送不带权限的有序广播<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendStandardOrderBroadcast</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(MSG_PHONE);</span><br><span class="line">    sendOrderedBroadcast(intent, <span class="literal">null</span>);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;[App1] 发送不带权限的有序广播, &quot;</span> + intent.getAction());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>发送方App1代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;rustApp&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">MSG_PHONE</span> <span class="operator">=</span> <span class="string">&quot;msg_phone&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PERMISSION_RUST_1</span> <span class="operator">=</span> <span class="string">&quot;com.rust.permission_rust_1&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注册广播接收器</span></span><br><span class="line">    registerReceiver(mStandardReceiver1, makeIF());</span><br><span class="line">    registerReceiver(mStandardReceiver2, makeIF());</span><br><span class="line">    registerReceiver(mStandardReceiver3, makeIF());</span><br><span class="line"></span><br><span class="line">    registerReceiver(mStandardReceiverWithPermission, makeIF(),</span><br><span class="line">            Manifest.permission.permission_rust_1, <span class="literal">null</span>);  <span class="comment">// 带上权限</span></span><br><span class="line"></span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .registerReceiver(mLocalReceiver1, makeIF());</span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .registerReceiver(mLocalReceiver2, makeIF());</span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .registerReceiver(mLocalReceiver3, makeIF());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解除接收器</span></span><br><span class="line">    unregisterReceiver(mStandardReceiver1);</span><br><span class="line">    unregisterReceiver(mStandardReceiver2);</span><br><span class="line">    unregisterReceiver(mStandardReceiver3);</span><br><span class="line"></span><br><span class="line">    unregisterReceiver(mStandardReceiverWithPermission);</span><br><span class="line"></span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .unregisterReceiver(mLocalReceiver1);</span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .unregisterReceiver(mLocalReceiver2);</span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">            .unregisterReceiver(mLocalReceiver3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送标准广播</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendStandardBroadcast</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(MSG_PHONE);</span><br><span class="line">    sendBroadcast(intent);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;[App1] Dispatcher 发送标准广播&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送带权限的标准广播</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendStandardBroadcastWithPermission</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(MSG_PHONE);</span><br><span class="line">    sendBroadcast(intent, PERMISSION_RUST_1);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;[App1] Dispatcher 发送带权限的标准广播&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送本地广播</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendAppLocalBroadcast</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(MSG_PHONE);</span><br><span class="line">    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;[App1] Dispatcher 发送本地广播&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> IntentFilter <span class="title function_">makeIF</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">IntentFilter</span> <span class="variable">intentFilter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IntentFilter</span>(MSG_PHONE);</span><br><span class="line">    intentFilter.addAction(Intent.ACTION_TIME_TICK);</span><br><span class="line">    intentFilter.addAction(Intent.ACTION_TIME_CHANGED);</span><br><span class="line">    <span class="keyword">return</span> intentFilter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准接收器  用context来注册</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mStandardReceiver1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 标准接收器1 收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准接收器  用context来注册</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mStandardReceiver2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 标准接收器2 收到: &quot;</span> + intent.getAction());</span><br><span class="line">        <span class="keyword">if</span> (intent.getAction().endsWith(MSG_PHONE)) &#123;</span><br><span class="line">            abortBroadcast(); <span class="comment">// 截断有序广播</span></span><br><span class="line">            Log.d(TAG, <span class="string">&quot;[App1] 标准接收器2截断有序广播 &quot;</span> + intent.getAction());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准接收器  用context来注册</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mStandardReceiver3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 标准接收器3 收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册的时候给它带权限  标准接收器</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mStandardReceiverWithPermission</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 带权限的标准接收器收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用LocalBroadcastManager来注册成为本地接收器</span></span><br><span class="line"><span class="comment"> * 收不到标准广播 - 不论是本app发出的还是别的地方发出来的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mLocalReceiver1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 本地接收器1 收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mLocalReceiver2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 本地接收器2 收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mLocalReceiver3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;[App1] 本地接收器3 收到: &quot;</span> + intent.getAction());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>接收方App2代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 自定义的权限  给广播用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">permission</span> <span class="attr">android:name</span>=<span class="string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">MSG_PHONE</span> <span class="operator">=</span> <span class="string">&quot;msg_phone&quot;</span>;</span><br><span class="line">        registerReceiver(mDefaultReceiver, makeIF());</span><br><span class="line">        LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">                .registerReceiver(mLocalReceiver, makeIF());</span><br><span class="line"></span><br><span class="line">        unregisterReceiver(mDefaultReceiver);</span><br><span class="line">        LocalBroadcastManager.getInstance(getApplicationContext())</span><br><span class="line">                .unregisterReceiver(mLocalReceiver);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mDefaultReceiver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;[App2] standard receive: &quot;</span> + intent.getAction());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">BroadcastReceiver</span> <span class="variable">mLocalReceiver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BroadcastReceiver</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;[App2] local receive: &quot;</span> + intent.getAction());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IntentFilter <span class="title function_">makeIF</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">IntentFilter</span> <span class="variable">intentFilter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IntentFilter</span>(MSG_PHONE);</span><br><span class="line">        intentFilter.addAction(Intent.ACTION_TIME_TICK);</span><br><span class="line">        intentFilter.addAction(Intent.ACTION_TIME_CHANGED);</span><br><span class="line">        <span class="keyword">return</span> intentFilter;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>发送不带权限的有序广播<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendStandardOrderBroadcast</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(MSG_PHONE);<br>    sendOrderedBroadcast(intent, <span class="hljs-literal">null</span>);<br>    Log.d(TAG, <span class="hljs-string">&quot;[App1] 发送不带权限的有序广播, &quot;</span> + intent.getAction());<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>发送方App1代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;rustApp&quot;</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">MSG_PHONE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;msg_phone&quot;</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">PERMISSION_RUST_1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;com.rust.permission_rust_1&quot;</span>;<br><br>    <span class="hljs-comment">// 注册广播接收器</span><br>    registerReceiver(mStandardReceiver1, makeIF());<br>    registerReceiver(mStandardReceiver2, makeIF());<br>    registerReceiver(mStandardReceiver3, makeIF());<br><br>    registerReceiver(mStandardReceiverWithPermission, makeIF(),<br>            Manifest.permission.permission_rust_1, <span class="hljs-literal">null</span>);  <span class="hljs-comment">// 带上权限</span><br><br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .registerReceiver(mLocalReceiver1, makeIF());<br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .registerReceiver(mLocalReceiver2, makeIF());<br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .registerReceiver(mLocalReceiver3, makeIF());<br><br>    <span class="hljs-comment">// 解除接收器</span><br>    unregisterReceiver(mStandardReceiver1);<br>    unregisterReceiver(mStandardReceiver2);<br>    unregisterReceiver(mStandardReceiver3);<br><br>    unregisterReceiver(mStandardReceiverWithPermission);<br><br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .unregisterReceiver(mLocalReceiver1);<br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .unregisterReceiver(mLocalReceiver2);<br>    LocalBroadcastManager.getInstance(getApplicationContext())<br>            .unregisterReceiver(mLocalReceiver3);<br><br><br><span class="hljs-comment">// 发送标准广播</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendStandardBroadcast</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(MSG_PHONE);<br>    sendBroadcast(intent);<br>    Log.d(TAG, <span class="hljs-string">&quot;[App1] Dispatcher 发送标准广播&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// 发送带权限的标准广播</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendStandardBroadcastWithPermission</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(MSG_PHONE);<br>    sendBroadcast(intent, PERMISSION_RUST_1);<br>    Log.d(TAG, <span class="hljs-string">&quot;[App1] Dispatcher 发送带权限的标准广播&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// 发送本地广播</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendAppLocalBroadcast</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(MSG_PHONE);<br>    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);<br>    Log.d(TAG, <span class="hljs-string">&quot;[App1] Dispatcher 发送本地广播&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">private</span> IntentFilter <span class="hljs-title function_">makeIF</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">IntentFilter</span> <span class="hljs-variable">intentFilter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntentFilter</span>(MSG_PHONE);<br>    intentFilter.addAction(Intent.ACTION_TIME_TICK);<br>    intentFilter.addAction(Intent.ACTION_TIME_CHANGED);<br>    <span class="hljs-keyword">return</span> intentFilter;<br>&#125;<br><br><span class="hljs-comment">// 标准接收器  用context来注册</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mStandardReceiver1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 标准接收器1 收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 标准接收器  用context来注册</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mStandardReceiver2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 标准接收器2 收到: &quot;</span> + intent.getAction());<br>        <span class="hljs-keyword">if</span> (intent.getAction().endsWith(MSG_PHONE)) &#123;<br>            abortBroadcast(); <span class="hljs-comment">// 截断有序广播</span><br>            Log.d(TAG, <span class="hljs-string">&quot;[App1] 标准接收器2截断有序广播 &quot;</span> + intent.getAction());<br>        &#125;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 标准接收器  用context来注册</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mStandardReceiver3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 标准接收器3 收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 注册的时候给它带权限  标准接收器</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mStandardReceiverWithPermission</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 带权限的标准接收器收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用LocalBroadcastManager来注册成为本地接收器</span><br><span class="hljs-comment"> * 收不到标准广播 - 不论是本app发出的还是别的地方发出来的</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mLocalReceiver1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 本地接收器1 收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mLocalReceiver2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 本地接收器2 收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mLocalReceiver3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;[App1] 本地接收器3 收到: &quot;</span> + intent.getAction());<br>    &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure></p>
+<p>接收方App2代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 自定义的权限  给广播用 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.rust.permission_rust_1&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">MSG_PHONE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;msg_phone&quot;</span>;<br>        registerReceiver(mDefaultReceiver, makeIF());<br>        LocalBroadcastManager.getInstance(getApplicationContext())<br>                .registerReceiver(mLocalReceiver, makeIF());<br><br>        unregisterReceiver(mDefaultReceiver);<br>        LocalBroadcastManager.getInstance(getApplicationContext())<br>                .unregisterReceiver(mLocalReceiver);<br><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mDefaultReceiver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;[App2] standard receive: &quot;</span> + intent.getAction());<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">BroadcastReceiver</span> <span class="hljs-variable">mLocalReceiver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BroadcastReceiver</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> &#123;<br>            Log.d(TAG, <span class="hljs-string">&quot;[App2] local receive: &quot;</span> + intent.getAction());<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">private</span> IntentFilter <span class="hljs-title function_">makeIF</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">IntentFilter</span> <span class="hljs-variable">intentFilter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntentFilter</span>(MSG_PHONE);<br>        intentFilter.addAction(Intent.ACTION_TIME_TICK);<br>        intentFilter.addAction(Intent.ACTION_TIME_CHANGED);<br>        <span class="hljs-keyword">return</span> intentFilter;<br>    &#125;<br></code></pre></td></tr></table></figure>
 <p>使用<code>LocalBroadcastManager</code>发出的本地广播，另一个App是接收不到的。<br>要收到本地广播，同样需要<code>LocalBroadcastManager</code>来注册接收器。</p>
 <p>可以把本地广播看成是一个局部的，App内的广播体系。</p>
 <p>实验中我们注意到，<code>Intent.ACTION_TIME_TICK</code>广播是可以截断的。</p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>Android 广播机制（Broadcast）介绍与使用</p><p><a href="https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/">https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Rust Fisher</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2015-10-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-04-09</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Android-Broadcast/">Android_Broadcast</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay-qr-code-fish.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat-pay-qr-code-fish.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2015/11/29/Linux/grep_note/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">grep 搜索字符串</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2015/10/26/Android/Android-AIDL_intro_and_use/"><span class="level-item">Android AIDL 了解与使用</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://fastly.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
-            id: "56eb76eee30908bb0e5e7cd67f076c52",
-            repo: "rustblogtalk",
-            owner: "RustFisher",
-            clientID: "d1dba86294f751746fa5",
-            clientSecret: "25345baefac12d7d462730664ccc7b42b6e35f70",
-            admin: ["RustFisher"],
-            createIssueManually: false,
-            distractionFreeMode: false,
-            perPage: 10,
-            pagerDirection: "last",
+
+                
+              </div>
             
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android-Broadcast/">#Android_Broadcast</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Android 广播机制（Broadcast）介绍与使用</div>
+      <div>https://blog.rustfisher.com/2015/10/29/Android/Android-Broadcast_intro_use/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2015年10月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
-            enableHotKey: true,
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2015/11/29/Linux/grep_note/" title="grep 搜索字符串">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">grep 搜索字符串</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2015/10/26/Android/Android-AIDL_intro_and_use/" title="Android AIDL 了解与使用">
+                        <span class="hidden-mobile">Android AIDL 了解与使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appKey":"vx6LVMyCsch2GR8CczKPMc5A","path":"window.location.pathname","placeholder":"输入评论...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"appid":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appkey":"vx6LVMyCsch2GR8CczKPMc5A"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
-        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="Rust Fisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Rust Fisher</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
       });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

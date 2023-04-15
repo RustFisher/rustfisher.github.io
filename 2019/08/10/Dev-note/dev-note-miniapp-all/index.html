@@ -1,39 +1,356 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>「小程序」开发记录 - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="小程序开发过程中遇到的问题记录，经验总结。"><meta property="og:type" content="blog"><meta property="og:title" content="「小程序」开发记录"><meta property="og:url" content="https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="小程序开发过程中遇到的问题记录，经验总结。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://rustblogres.rustfisher.com/mini_progress_text_0201.png"><meta property="article:published_time" content="2019-08-10T14:26:14.000Z"><meta property="article:modified_time" content="2021-02-22T14:56:01.757Z"><meta property="article:author" content="Rust Fisher"><meta property="article:tag" content="开发记录"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://rustblogres.rustfisher.com/mini_progress_text_0201.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/"},"headline":"「小程序」开发记录","image":["http://rustblogres.rustfisher.com/mini_progress_text_0201.png"],"datePublished":"2019-08-10T14:26:14.000Z","dateModified":"2021-02-22T14:56:01.757Z","author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"小程序开发过程中遇到的问题记录，经验总结。"}</script><link rel="canonical" href="https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/"><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="小程序开发过程中遇到的问题记录，经验总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「小程序」开发记录">
+<meta property="og:url" content="https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="小程序开发过程中遇到的问题记录，经验总结。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://rustblogres.rustfisher.com/mini_progress_text_0201.png">
+<meta property="article:published_time" content="2019-08-10T14:26:14.000Z">
+<meta property="article:modified_time" content="2021-02-22T14:56:01.757Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="开发记录">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://rustblogres.rustfisher.com/mini_progress_text_0201.png">
+  
+  
+  
+  <title>「小程序」开发记录 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-08-10T14:26:14.000Z" title="2019/8/10 22:26:14">2019-08-10</time>发表</span><span class="level-item"><time dateTime="2021-02-22T14:56:01.757Z" title="2021/2/22 22:56:01">2021-02-22</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/miniprogram/">miniprogram</a></span><span class="level-item">13 分钟读完 (大约1903个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">「小程序」开发记录</h1><div class="content"><h2 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h2><p>标签严格闭合。<br>rpx（responsive pixel）尺寸单位。<br>大小写敏感。</p>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="「小程序」开发记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-08-10 22:26" pubdate>
+          2019年8月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「小程序」开发记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h2><p>标签严格闭合。<br>rpx（responsive pixel）尺寸单位。<br>大小写敏感。</p>
 <p>我们只要保持一个原则就可以提高小程序的渲染性能：每次只设置需要改变的最小单位数据。<br>此外需要注意以下3点：</p>
 <ul>
 <li>直接修改 Page实例的this.data 而不调用 this.setData 是无法改变页面的状态的，还会造成数据不一致。</li>
@@ -53,106 +370,473 @@
 <p>WXML 提供两种文件引用方式import和include。</p>
 <p>import 可以在该文件中使用目标文件定义的 template</p>
 <p>import 不具有递归的特性。</p>
-<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><p>在wxml中使用<code>wx:if</code>。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;showPing&#125;&#125;&quot;</span>&gt;</span>&#123;&#123;s.ping&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><p>在wxml中使用<code>wx:if</code>。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">wx:if</span>=<span class="hljs-string">&quot;&#123;&#123;showPing&#125;&#125;&quot;</span>&gt;</span>&#123;&#123;s.ping&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p>WXML 中，使用 wx:if=”“ 来判断是否需要渲染该代码块。标签定义的前部使用逻辑判断。<br>使用 wx:elif 和 wx:else 来添加一个 else 块。</p>
-<h2 id="排版布局"><a href="#排版布局" class="headerlink" title="排版布局"></a>排版布局</h2><h3 id="水平居中内容"><a href="#水平居中内容" class="headerlink" title="水平居中内容"></a>水平居中内容</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;width:100%; display:flex;flex-direction:row;justify-content:center;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="flex垂直方向居中"><a href="#flex垂直方向居中" class="headerlink" title="flex垂直方向居中"></a>flex垂直方向居中</h3><p>主要靠<code>align-items: center;</code>。<br>不设置高度的时候。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cfg-start</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>设置了绝对定位。需要同时设置高度。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cfg-end</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5vh</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="确定宽高的view里居中内容"><a href="#确定宽高的view里居中内容" class="headerlink" title="确定宽高的view里居中内容"></a>确定宽高的view里居中内容</h3><p>需要设置<code>display: flex;</code>，<code>justify-content:center;</code>，<code>align-items: center;</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ball</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">2px</span> <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>:center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">color</span>:white;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="排版布局"><a href="#排版布局" class="headerlink" title="排版布局"></a>排版布局</h2><h3 id="水平居中内容"><a href="#水平居中内容" class="headerlink" title="水平居中内容"></a>水平居中内容</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%; display:flex;flex-direction:row;justify-content:center;&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="flex垂直方向居中"><a href="#flex垂直方向居中" class="headerlink" title="flex垂直方向居中"></a>flex垂直方向居中</h3><p>主要靠<code>align-items: center;</code>。<br>不设置高度的时候。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.cfg-start</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-direction</span>: row;<br>  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>设置了绝对定位。需要同时设置高度。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.cfg-end</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">5vh</span>;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-direction</span>: row;<br>  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">2px</span>;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="确定宽高的view里居中内容"><a href="#确定宽高的view里居中内容" class="headerlink" title="确定宽高的view里居中内容"></a>确定宽高的view里居中内容</h3><p>需要设置<code>display: flex;</code>，<code>justify-content:center;</code>，<code>align-items: center;</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.ball</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">height</span>:<span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span>;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>:center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">15px</span>;<br>  <span class="hljs-attribute">color</span>:white;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h3 id="view位于父容器底部"><a href="#view位于父容器底部" class="headerlink" title="view位于父容器底部"></a>view位于父容器底部</h3><p>或者叫做div位于父容器底部。<br>父容器设置<code>position: relative</code>。<br>子view设置<code>position: absolute</code>。<br>如果父容器没有设置relative属性，子div（或子view）会相对于页面的底部。</p>
-<p>CSS DIV在另一个DIV底部居中例子<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> style=&quot;<span class="attribute">min-height</span>: <span class="number">360px</span>;<span class="attribute">position</span>:relative;&quot;&gt;</span><br><span class="line">	&lt;<span class="selector-tag">div</span> style=&quot;<span class="attribute">position</span>: absolute;<span class="attribute">bottom</span>: <span class="number">0px</span>;<span class="attribute">left</span>: <span class="number">50%</span>;<span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);&quot;&gt;</span><br><span class="line">	&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure><br>设置<code>bottom</code>的时候记得带单位。</p>
-<p>动态判断背景色。idx表示下标。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;background:&#123;&#123;idx%2 == 0? &#x27;#757575&#x27;:&#x27;#424242&#x27;&#125;&#125;&quot;</span>&gt;</span>五<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>动态改变文字颜色<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">bindtap</span>=<span class="string">&quot;onTapShowType&quot;</span> <span class="attr">data-type</span>=<span class="string">&#x27;1&#x27;</span> <span class="attr">style</span>=<span class="string">&quot;color:&#123;&#123; showLetterType == 1? &#x27;#4fa003&#x27;:&#x27;#424242&#x27;&#125;&#125;&quot;</span>&gt;</span>五<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>CSS DIV在另一个DIV底部居中例子<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;<span class="hljs-selector-tag">div</span> style=&quot;<span class="hljs-attribute">min-height</span>: <span class="hljs-number">360px</span>;<span class="hljs-attribute">position</span>:relative;&quot;&gt;<br>	&lt;<span class="hljs-selector-tag">div</span> style=&quot;<span class="hljs-attribute">position</span>: absolute;<span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;<span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);&quot;&gt;<br>	&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>&lt;<span class="hljs-selector-tag">div</span>&gt;<br></code></pre></td></tr></table></figure><br>设置<code>bottom</code>的时候记得带单位。</p>
+<p>动态判断背景色。idx表示下标。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background:&#123;&#123;idx%2 == 0? &#x27;#757575&#x27;:&#x27;#424242&#x27;&#125;&#125;&quot;</span>&gt;</span>五<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>动态改变文字颜色<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;onTapShowType&quot;</span> <span class="hljs-attr">data-type</span>=<span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color:&#123;&#123; showLetterType == 1? &#x27;#4fa003&#x27;:&#x27;#424242&#x27;&#125;&#125;&quot;</span>&gt;</span>五<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <h3 id="text"><a href="#text" class="headerlink" title="text"></a>text</h3><p>font-size 字体大小。<br>font-weight 字体粗细，580左右能有粗体效果。</p>
-<p>下划线<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-decoration</span>: underline;</span><br></pre></td></tr></table></figure></p>
-<h3 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h3><p>使用scroll view。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">class</span>=<span class="string">&#x27;word-field&#x27;</span> <span class="attr">enable-back-to-top</span> <span class="attr">scroll-into-view</span>=<span class="string">&quot;&#123;&#123;toView&#125;&#125;&quot;</span> <span class="attr">scroll-y</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scroll-with-animation</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;child-field&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>下划线<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">text-decoration</span>: underline;<br></code></pre></td></tr></table></figure></p>
+<h3 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h3><p>使用scroll view。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">scroll-view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;word-field&#x27;</span> <span class="hljs-attr">enable-back-to-top</span> <span class="hljs-attr">scroll-into-view</span>=<span class="hljs-string">&quot;&#123;&#123;toView&#125;&#125;&quot;</span> <span class="hljs-attr">scroll-y</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">scroll-with-animation</span>=<span class="hljs-string">&quot;true&quot;</span> &gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child-field&quot;</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scroll-view</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <h3 id="wx-for子项方向"><a href="#wx-for子项方向" class="headerlink" title="wx:for子项方向"></a>wx:for子项方向</h3><p>wx:for的子项方向其实是由它的父view来决定的。</p>
-<h4 id="列表自动换行"><a href="#列表自动换行" class="headerlink" title="列表自动换行"></a>列表自动换行</h4><p>假设横向（row）排列子项，子项太多的时候会换到下一行。<br>需要设置<code>flex-flow</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.correct-field</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>: row wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="css-圆角"><a href="#css-圆角" class="headerlink" title="css 圆角"></a>css 圆角</h3><p>只设置一个值的话，是4个圆角。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br></pre></td></tr></table></figure><br>单位是px。如果单位用rpx，则不显示圆角。</p>
-<h3 id="背景半透明"><a href="#背景半透明" class="headerlink" title="背景半透明"></a>背景半透明</h3><p>真机调试时，小程序设置<code>background: #895fcce0;</code>是无效的，看不到颜色。<br>要使用<code>opacity</code>属性来设置不透明度。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="number">#895fcc</span>;</span><br><span class="line"><span class="attribute">opacity</span>:<span class="number">0.85</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表自动换行"><a href="#列表自动换行" class="headerlink" title="列表自动换行"></a>列表自动换行</h4><p>假设横向（row）排列子项，子项太多的时候会换到下一行。<br>需要设置<code>flex-flow</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.correct-field</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-flow</span>: row wrap;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="css-圆角"><a href="#css-圆角" class="headerlink" title="css 圆角"></a>css 圆角</h3><p>只设置一个值的话，是4个圆角。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;<br></code></pre></td></tr></table></figure><br>单位是px。如果单位用rpx，则不显示圆角。</p>
+<h3 id="背景半透明"><a href="#背景半透明" class="headerlink" title="背景半透明"></a>背景半透明</h3><p>真机调试时，小程序设置<code>background: #895fcce0;</code>是无效的，看不到颜色。<br>要使用<code>opacity</code>属性来设置不透明度。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background</span>: <span class="hljs-number">#895fcc</span>;<br><span class="hljs-attribute">opacity</span>:<span class="hljs-number">0.85</span>;<br></code></pre></td></tr></table></figure></p>
 <p>背景渐变色<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/06e11913e57af653ca251462fcc134f2">https://developers.weixin.qq.com/community/develop/doc/06e11913e57af653ca251462fcc134f2</a></p>
-<h3 id="css-class-按条件选择"><a href="#css-class-按条件选择" class="headerlink" title="css class 按条件选择"></a>css class 按条件选择</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;&#123;&#123;showPage==1?&#x27;chooser.chosen&#x27;:&#x27;chooser&#x27;&#125;&#125;&quot;</span> &gt;</span>sample<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="css-class-按条件选择"><a href="#css-class-按条件选择" class="headerlink" title="css class 按条件选择"></a>css class 按条件选择</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&#123;&#123;showPage==1?&#x27;chooser.chosen&#x27;:&#x27;chooser&#x27;&#125;&#125;&quot;</span> &gt;</span>sample<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>用大括号里的三目判断。</p>
-<h3 id="例子🌰-进度条和文字"><a href="#例子🌰-进度条和文字" class="headerlink" title="例子🌰 - 进度条和文字"></a>例子🌰 - 进度条和文字</h3><p><img src="http://rustblogres.rustfisher.com/mini_progress_text_0201.png" alt="进度条和文字效果图"></p>
-<p>需求：显示做题的进度。<br>进度条作为背景。文字盖在上面。头尾各一个文字。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.top-bar</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.pb</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.top-title-field</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;top-bar&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">progress</span> <span class="attr">class</span>=<span class="string">&quot;pb&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;40px&quot;</span> <span class="attr">activeColor</span>=<span class="string">&quot;#42A5F5&quot;</span> <span class="attr">percent</span>=<span class="string">&quot;40&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;top-title-field&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span>单项选择<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;progress-text&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span>4/10<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="例子🌰-进度条和文字"><a href="#例子🌰-进度条和文字" class="headerlink" title="例子🌰 - 进度条和文字"></a>例子🌰 - 进度条和文字</h3><p><img src="http://rustblogres.rustfisher.com/mini_progress_text_0201.png" srcset="/img/loading.gif" lazyload alt="进度条和文字效果图"></p>
+<p>需求：显示做题的进度。<br>进度条作为背景。文字盖在上面。头尾各一个文字。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.top-bar</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.pb</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.top-title-field</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;top-bar&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pb&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;40px&quot;</span> <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;#42A5F5&quot;</span> <span class="hljs-attr">percent</span>=<span class="hljs-string">&quot;40&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;top-title-field&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>单项选择<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;progress-text&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>4/10<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <h2 id="播放音频"><a href="#播放音频" class="headerlink" title="播放音频"></a>播放音频</h2><p>播放音频需要用到<code>InnerAudioContext</code></p>
-<h3 id="播放本地文件"><a href="#播放本地文件" class="headerlink" title="播放本地文件"></a>播放本地文件</h3><p>播放本地音频。<br>音频文件在audio目录里。audio目录和pages目录同级。<br>先创建InnerAudioContext。并且在onLoad方法中设置监听。<br>注意本地音频文件的路径写法，不用写相对路径，用绝对路径就好。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> iac = wx.<span class="title function_">createInnerAudioContext</span>()</span><br><span class="line"></span><br><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面加载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">onLoad</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">registerAudioContext</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;ac &#x27;</span>, iac)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">onTapSound</span>: <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="comment">// console.log(event)</span></span><br><span class="line">    <span class="keyword">var</span> word = event.<span class="property">currentTarget</span>.<span class="property">id</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cilck&#x27;</span>, word)</span><br><span class="line">    iac.<span class="property">src</span> = <span class="string">&#x27;audio/a.mp3&#x27;</span></span><br><span class="line">    iac.<span class="property">volume</span> = <span class="number">2</span></span><br><span class="line">    iac.<span class="property">loop</span> = <span class="literal">false</span></span><br><span class="line">    iac.<span class="title function_">play</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;tap sound done. &#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册音频</span></span><br><span class="line">  <span class="attr">registerAudioContext</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    iac.<span class="title function_">onEnded</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;on ended&#x27;</span>, res)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    iac.<span class="title function_">onError</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 播放音频失败的回调</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;播放音频失败&#x27;</span>, res);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    iac.<span class="title function_">onStop</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;播放结束!&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="播放本地文件"><a href="#播放本地文件" class="headerlink" title="播放本地文件"></a>播放本地文件</h3><p>播放本地音频。<br>音频文件在audio目录里。audio目录和pages目录同级。<br>先创建InnerAudioContext。并且在onLoad方法中设置监听。<br>注意本地音频文件的路径写法，不用写相对路径，用绝对路径就好。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> iac = wx.<span class="hljs-title function_">createInnerAudioContext</span>()<br><br><span class="hljs-title class_">Page</span>(&#123;<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 生命周期函数--监听页面加载</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-attr">onLoad</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">registerAudioContext</span>()<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ac &#x27;</span>, iac)<br>  &#125;,<br><br>  <span class="hljs-attr">onTapSound</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) &#123;<br>    <span class="hljs-comment">// console.log(event)</span><br>    <span class="hljs-keyword">var</span> word = event.<span class="hljs-property">currentTarget</span>.<span class="hljs-property">id</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;cilck&#x27;</span>, word)<br>    iac.<span class="hljs-property">src</span> = <span class="hljs-string">&#x27;audio/a.mp3&#x27;</span><br>    iac.<span class="hljs-property">volume</span> = <span class="hljs-number">2</span><br>    iac.<span class="hljs-property">loop</span> = <span class="hljs-literal">false</span><br>    iac.<span class="hljs-title function_">play</span>()<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;tap sound done. &#x27;</span>)<br>  &#125;,<br><br>  <span class="hljs-comment">// 注册音频</span><br>  <span class="hljs-attr">registerAudioContext</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    iac.<span class="hljs-title function_">onEnded</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;on ended&#x27;</span>, res)<br>    &#125;)<br><br>    iac.<span class="hljs-title function_">onError</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>      <span class="hljs-comment">// 播放音频失败的回调</span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;播放音频失败&#x27;</span>, res);<br>    &#125;)<br><br>    iac.<span class="hljs-title function_">onStop</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;播放结束!&#x27;</span>);<br>    &#125;)<br><br>  &#125;,<br>&#125;)<br></code></pre></td></tr></table></figure></p>
 <p>测试发现，安卓手机播放的音频支持mp3与pepm。iPhone Xs不能播放pepm。<br>在本地放音频文件时，小程序会提示“文件未上传”。可能是小程序编译完成需小于某个大小（2M）才能上传。<br>那么我们把音频文件放在服务器上吧。<br>可以使用微信云开发里的存储。上传文件后，找到文件的下载地址，https开头的。设置给iac的src。</p>
-<h3 id="播放网络音频"><a href="#播放网络音频" class="headerlink" title="播放网络音频"></a>播放网络音频</h3><p>找到音频文件的url，赋值给iac.src。然后播放。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iac.<span class="property">src</span> = <span class="string">&#x27;https://audio....&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="播放网络音频"><a href="#播放网络音频" class="headerlink" title="播放网络音频"></a>播放网络音频</h3><p>找到音频文件的url，赋值给iac.src。然后播放。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">iac.<span class="hljs-property">src</span> = <span class="hljs-string">&#x27;https://audio....&#x27;</span><br></code></pre></td></tr></table></figure></p>
 <h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html">https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html</a></p>
 <p>使用<code>FileSystemManager</code>的方法。</p>
-<h3 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h3><p>异步的方式判断文件是否存在。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = wx.<span class="title function_">getFileSystemManager</span>()</span><br><span class="line">fs.<span class="title function_">access</span>(&#123;</span><br><span class="line">  <span class="attr">path</span>: audioDir,</span><br><span class="line">  <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(audioDir, remoteDir, res)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">fail</span>(<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>同步判断。如果不存在则会报错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  fs.<span class="title function_">accessSync</span>(localFilePath)</span><br><span class="line">&#125; <span class="keyword">catch</span> (t) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(localFilePath, <span class="string">&#x27;not exists.&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="创建目录-mkdir"><a href="#创建目录-mkdir" class="headerlink" title="创建目录 mkdir"></a>创建目录 mkdir</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">mkdir</span>(&#123;</span><br><span class="line">  <span class="attr">dirPath</span>: audioDir,</span><br><span class="line">  <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">fail</span>(<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Can not create dir.&#x27;</span>, audioDir, err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><h3 id="跳回上一个界面"><a href="#跳回上一个界面" class="headerlink" title="跳回上一个界面"></a>跳回上一个界面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">navigateBack</span>(&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">navigateBack</span>(&#123;</span><br><span class="line">  <span class="attr">delta</span>: <span class="number">1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 操作</span></span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h3><p>异步的方式判断文件是否存在。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> fs = wx.<span class="hljs-title function_">getFileSystemManager</span>()<br>fs.<span class="hljs-title function_">access</span>(&#123;<br>  <span class="hljs-attr">path</span>: audioDir,<br>  <span class="hljs-title function_">success</span>(<span class="hljs-params">res</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(audioDir, remoteDir, res)<br>  &#125;,<br>  <span class="hljs-title function_">fail</span>(<span class="hljs-params">err</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err)<br>  &#125;<br>&#125;);<br><br></code></pre></td></tr></table></figure></p>
+<p>同步判断。如果不存在则会报错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">try</span> &#123;<br>  fs.<span class="hljs-title function_">accessSync</span>(localFilePath)<br>&#125; <span class="hljs-keyword">catch</span> (t) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(localFilePath, <span class="hljs-string">&#x27;not exists.&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="创建目录-mkdir"><a href="#创建目录-mkdir" class="headerlink" title="创建目录 mkdir"></a>创建目录 mkdir</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">fs.<span class="hljs-title function_">mkdir</span>(&#123;<br>  <span class="hljs-attr">dirPath</span>: audioDir,<br>  <span class="hljs-title function_">success</span>(<span class="hljs-params">res</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br>  &#125;,<br>  <span class="hljs-title function_">fail</span>(<span class="hljs-params">err</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Can not create dir.&#x27;</span>, audioDir, err)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><h3 id="跳回上一个界面"><a href="#跳回上一个界面" class="headerlink" title="跳回上一个界面"></a>跳回上一个界面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">wx.<span class="hljs-title function_">navigateBack</span>(&#123;&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">wx.<span class="hljs-title function_">navigateBack</span>(&#123;<br>  <span class="hljs-attr">delta</span>: <span class="hljs-number">1</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// 操作</span><br>&#125;, <span class="hljs-number">1000</span>)<br></code></pre></td></tr></table></figure>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>微信小程序提供了下载api。</p>
-<h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">downloadFile</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: targetUrl,</span><br><span class="line">  <span class="attr">filePath</span>: localFilePath,</span><br><span class="line">  <span class="attr">success</span>: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;download success&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">fail</span>: <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;download fail&#x27;</span>,err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">wx.<span class="hljs-title function_">downloadFile</span>(&#123;<br>  <span class="hljs-attr">url</span>: targetUrl,<br>  <span class="hljs-attr">filePath</span>: localFilePath,<br>  <span class="hljs-attr">success</span>: <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;download success&#x27;</span>)<br>  &#125;,<br>  <span class="hljs-attr">fail</span>: <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;download fail&#x27;</span>,err)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 <h2 id="点击事件"><a href="#点击事件" class="headerlink" title="点击事件"></a>点击事件</h2><p>点击事件主要靠<code>bindtap</code>方法。</p>
-<h3 id="点击事件传递参数"><a href="#点击事件传递参数" class="headerlink" title="点击事件传递参数"></a>点击事件传递参数</h3><p>数据在soundRowA里面。渲染一个列表。<br>wxml中加上data类型，这里是<code>data-word</code>。也可以起别的名字，但一定要<code>data-</code>开头。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;soundRowA&#125;&#125;&quot;</span> <span class="attr">wx:for-index</span>=<span class="string">&quot;idx&quot;</span> <span class="attr">wx:for-item</span>=<span class="string">&quot;s&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">bindtap</span>=<span class="string">&quot;onTapSound&quot;</span> <span class="attr">data-word</span>=<span class="string">&#x27;&#123;&#123;s&#125;&#125;&#x27;</span>&gt;</span></span><br><span class="line">    显示一些数据</span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>js中实现<code>onTapSound</code>方法。获取点击事件event。<br>传递回来的数据是在<code>event.currentTarget.dataset</code>中。<br>根据wxml中<code>data-word</code>，传递回来的数据的key是<code>word</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">onTapSound</span>: <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> word = event.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">word</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="点击事件传递参数"><a href="#点击事件传递参数" class="headerlink" title="点击事件传递参数"></a>点击事件传递参数</h3><p>数据在soundRowA里面。渲染一个列表。<br>wxml中加上data类型，这里是<code>data-word</code>。也可以起别的名字，但一定要<code>data-</code>开头。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;soundRowA&#125;&#125;&quot;</span> <span class="hljs-attr">wx:for-index</span>=<span class="hljs-string">&quot;idx&quot;</span> <span class="hljs-attr">wx:for-item</span>=<span class="hljs-string">&quot;s&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;onTapSound&quot;</span> <span class="hljs-attr">data-word</span>=<span class="hljs-string">&#x27;&#123;&#123;s&#125;&#125;&#x27;</span>&gt;</span><br>    显示一些数据<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>js中实现<code>onTapSound</code>方法。获取点击事件event。<br>传递回来的数据是在<code>event.currentTarget.dataset</code>中。<br>根据wxml中<code>data-word</code>，传递回来的数据的key是<code>word</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">onTapSound</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-keyword">var</span> word = event.<span class="hljs-property">currentTarget</span>.<span class="hljs-property">dataset</span>.<span class="hljs-property">word</span><br>&#125;,<br></code></pre></td></tr></table></figure></p>
 <h2 id="tabbar"><a href="#tabbar" class="headerlink" title="tabbar"></a>tabbar</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/extended/weui/tabbar.html">https://developers.weixin.qq.com/miniprogram/dev/extended/weui/tabbar.html</a></p>
 <p>在底部，起导航作用</p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>「小程序」开发记录</p><p><a href="https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/">https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Rust Fisher</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-08-10</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-02-22</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay-qr-code-fish.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat-pay-qr-code-fish.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/08/20/Android/Android-mmap_intro_and_use/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Android mmap 文件映射到内存介绍</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/08/08/Android/Android-Binder_mechanism_intro/"><span class="level-item">Android Binder 机制介绍</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://fastly.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
-            id: "7a60607d9bc69d8a02c1e658ebc54871",
-            repo: "rustblogtalk",
-            owner: "RustFisher",
-            clientID: "d1dba86294f751746fa5",
-            clientSecret: "25345baefac12d7d462730664ccc7b42b6e35f70",
-            admin: ["RustFisher"],
-            createIssueManually: false,
-            distractionFreeMode: false,
-            perPage: 10,
-            pagerDirection: "last",
+
+                
+              </div>
             
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/miniprogram/" class="category-chain-item">miniprogram</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">#开发记录</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>「小程序」开发记录</div>
+      <div>https://blog.rustfisher.com/2019/08/10/Dev-note/dev-note-miniapp-all/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年8月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
-            enableHotKey: true,
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/20/Android/Android-mmap_intro_and_use/" title="Android mmap 文件映射到内存介绍">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android mmap 文件映射到内存介绍</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/08/Android/Android-Binder_mechanism_intro/" title="Android Binder 机制介绍">
+                        <span class="hidden-mobile">Android Binder 机制介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appKey":"vx6LVMyCsch2GR8CczKPMc5A","path":"window.location.pathname","placeholder":"输入评论...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"appid":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","appkey":"vx6LVMyCsch2GR8CczKPMc5A"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
-        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="Rust Fisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Rust Fisher</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
       });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,185 +1,475 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>标签: Linux - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:type" content="blog"><meta property="og:title" content="RustFisher的自留地"><meta property="og:url" content="https://blog.rustfisher.com/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:author" content="Rust Fisher"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com"},"headline":"RustFisher的自留地","image":["https://blog.rustfisher.com/img/og_image.png"],"author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"技术学习与实践，一些开发记录，读书笔记"}</script><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签 - Linux">
+<meta property="og:url" content="https://blog.rustfisher.com/tags/Linux/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>标签 - Linux - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">Linux</a></li></ul></nav></div></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/19/Linux/for-use/"><img class="fill" src="/img/computer-table-1.jpg" alt="Shell for循环语句"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-19T10:58:17.000Z" title="2021/6/19 18:58:17">2021-06-19</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.998Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">7 分钟读完 (大约1121个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/19/Linux/for-use/">Shell for循环语句</a></p><div class="content"><p>Shell里的for循环语句写法。我们分别用命令行和shell脚本来进行演示。</p>
-<p>常见的一种for结构如下。for里面要跟着<code>do</code>和<code>done</code>关键字。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in &#123;1..3&#125;</span><br><span class="line">do</span><br><span class="line">    echo YES $i # 这里是循环体</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h2 id="数字范围"><a href="#数字范围" class="headerlink" title="数字范围"></a>数字范围</h2><p>数字范围，例如从1到3，从1到100。</p>
-<h3 id="for-in"><a href="#for-in" class="headerlink" title="for in"></a>for in</h3><p>for in 的写法，定义<code>i</code>为变量，使用大括号来指定范围。范围的数字之间有2个点<code>..</code>。例如<code>&#123;1..3&#125;</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..3&#125;;<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">now is 2</span><br><span class="line">now is 3</span><br></pre></td></tr></table></figure><br>上面是命令行，一行把所有的指令写完。也可以再加一行代码，同样用分号<code>;</code>来分隔。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..3&#125;;<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 2</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 3</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>或者写成脚本。其实就是拆成几行。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">for i in &#123;1..3&#125;</span><br><span class="line">do</span><br><span class="line">    echo now is $i</span><br><span class="line">    echo rustfisher.com</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>前面我们用的是大括号来指定循环范围。我们也可以用<code>$(seq 1 3)</code>。<br>开头依旧是<code>for i in</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">seq</span> 1 3);<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 2</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 3</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>写成脚本如下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">for i in $(seq 1 3)</span><br><span class="line">do </span><br><span class="line">    echo now is $i</span><br><span class="line">    echo rustfisher.com</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>实际上我们使用了<code>seq</code>命令。seq后面接2个数字，可以输出这个范围内的数字。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">seq</span> 1 5</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">~ $ <span class="built_in">seq</span> 5 1</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p>
-<h3 id="for-i-1-i-lt-3-i"><a href="#for-i-1-i-lt-3-i" class="headerlink" title="for((i=1;i&lt;=3;i++))"></a>for((i=1;i&lt;=3;i++))</h3><p>我们也可以写成像Java/C语言里的for循环那样。但要注意这里的for有2层小括号。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++));<span class="keyword">do</span> <span class="built_in">echo</span> -n now is [<span class="variable">$i</span>] ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is [1]rustfisher.com</span><br><span class="line">now is [2]rustfisher.com</span><br><span class="line">now is [3]rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>更改一下步进值，改为<code>i+=2</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i+=<span class="number">2</span>));<span class="keyword">do</span> <span class="built_in">echo</span> -n now is [<span class="variable">$i</span>] ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is [1]rustfisher.com</span><br><span class="line">now is [3]rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>或者加上一些小运算，用<code>expr</code>加上我们想要的运算。注意<code>$i</code>与<code>\*</code>和<code>3</code>之间要有空格。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i+=<span class="number">2</span>));<span class="keyword">do</span> <span class="built_in">echo</span> -n $(<span class="built_in">expr</span> <span class="variable">$i</span> \* 3) <span class="string">&#x27; &#x27;</span> ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">3  rustfisher.com</span><br><span class="line">9  rustfisher.com</span><br></pre></td></tr></table></figure><br>后面加的空格是为了隔开好看一些。</p>
-<p>在shell脚本中，我们有时候会定义变量。变量也可以作为for循环的范围。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">startNum=1</span><br><span class="line">endNum=3</span><br><span class="line"></span><br><span class="line">for i in $(seq $startNum $endNum)</span><br><span class="line">do</span><br><span class="line">    echo current is $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure><br>我们定义2个变量<code>startNum</code>与<code>endNum</code>。要使用它们的值时，需要加上<code>$</code>符号。</p>
-<h2 id="字符循环"><a href="#字符循环" class="headerlink" title="字符循环"></a>字符循环</h2><p>for循环可以与一些指令结合起来，获取指令中的结果。</p>
-<h3 id="for-i-in-ls"><a href="#for-i-in-ls" class="headerlink" title="for i in ls"></a>for i in <code>ls</code></h3><p>先用命令行看一个效果，for与ls结合使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span>`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure><br>当前目录里只有1个文件。</p>
-<p>如果是<code>ls -a</code>命令，输出会更多。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span> -a`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">.</span><br><span class="line">..</span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>换一个目录，我们可以输出所有png文件的文件名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span> *.png`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">android-cover-2.png</span><br><span class="line">fish.png</span><br><span class="line">ic_book_blue.png</span><br><span class="line">ic_tools_gear.png</span><br><span class="line">ic_web.png</span><br><span class="line">kotlin-android-1.png</span><br><span class="line">python-logo.png</span><br><span class="line">ts-blue-1.png</span><br></pre></td></tr></table></figure></p>
-<h3 id="for-i-in-ll"><a href="#for-i-in-ll" class="headerlink" title="for i in ll"></a>for i in <code>ll</code></h3><p>换成<code>ll</code>命令，输出更加丰富<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `ll`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">total</span><br><span class="line">8</span><br><span class="line">-rw-r--r--</span><br><span class="line">1</span><br><span class="line">rustfisher</span><br><span class="line">staff</span><br><span class="line">183</span><br><span class="line">6</span><br><span class="line">19</span><br><span class="line">21:25</span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>我们知道<code>ll</code>命令会输出当前目录下的文件信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--  1 rustfisher  staff  183  6 19 21:25 for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>结合for循环可以看出，for循环是获取了空格或换行为间隔的字符串。</p>
-<p>显示各个子目录里md文件的个数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span>`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; find <span class="variable">$i</span> -name <span class="string">&quot;*.md&quot;</span> | <span class="built_in">wc</span> -l; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h3><p>那么我们可以在脚本中尝试一些，for循环配合字符串<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">word=&quot;Welcome      to rustfisher.com&quot;</span><br><span class="line">for i in $word</span><br><span class="line">do</span><br><span class="line">    echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p><code>word</code>中间有很多个空格，但输出的依旧是这3行。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Welcome</span><br><span class="line">to</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>进一步扩展，定义3个变量，都作为for in的参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">word1=&quot;Welcome        to rustfisher.com&quot;</span><br><span class="line">word2=&quot;Hello world&quot;</span><br><span class="line">word3=&quot;我很好&quot;</span><br><span class="line">for i in $word1 $word2 $word3</span><br><span class="line">do</span><br><span class="line">    echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>输出<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Welcome</span><br><span class="line">to</span><br><span class="line">rustfisher.com</span><br><span class="line">Hello</span><br><span class="line">world</span><br><span class="line">我很好</span><br></pre></td></tr></table></figure></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>例如查找某个目录下的文件。</p>
-<p>当前目录中有一个img目录，里面有一些图片。我们在for in 后面用<code>img/*</code>来表示查找这个目录中所有文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> img/*; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">img/android-2botsm.jpg</span><br><span class="line">img/android-cover-2.png</span><br></pre></td></tr></table></figure></p>
-<p>如果只想看png文件，路径写为<code>img/*.png</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> img/*.png; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">img/android-cover-2.png</span><br></pre></td></tr></table></figure></p>
-<p>从上面的例子可以看出，for in结构用的十分频繁。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-10-10T14:18:01.000Z" title="2017/10/10 22:18:01">2017-10-10</time>发表</span><span class="level-item"><time dateTime="2020-10-10T02:59:08.564Z" title="2020/10/10 10:59:08">2020-10-10</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">1 分钟读完 (大约131个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/10/10/Linux/find-use/">find的使用</a></p><div class="content"><p>比如删除～结尾的文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*~&quot; -type f -print -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>删除文件名有特定字符的文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*abcd*&quot; -exec rm -f &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>修改执行命令和文件类型，安装目录下所有apk文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.apk&quot; -type f -print -exec adb install &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>找到所有的json文件并且删除<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.json&quot; -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>删除指定目录，比如删除所有的git目录<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -iname &quot;.git&quot; -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>找到当前目录下所有的apk并安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">&quot;*.apk&quot;</span> -<span class="built_in">exec</span> adb install &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2015-12-16T14:11:01.000Z" title="2015/12/16 22:11:01">2015-12-16</time>发表</span><span class="level-item"><time dateTime="2021-06-17T06:13:08.450Z" title="2021/6/17 14:13:08">2021-06-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">2 分钟读完 (大约337个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2015/12/16/Linux/awk-use/">awk命令的使用</a></p><div class="content"><p>Ubuntu14.04</p>
-<h2 id="目的：想用awk来统计某个文本中单词出现的次数，并以一定的格式输出结构"><a href="#目的：想用awk来统计某个文本中单词出现的次数，并以一定的格式输出结构" class="headerlink" title="目的：想用awk来统计某个文本中单词出现的次数，并以一定的格式输出结构"></a>目的：想用awk来统计某个文本中单词出现的次数，并以一定的格式输出结构</h2><p>通常，awk逐行处理文本。awk每接收文件的一行，然后执行相应的命令来处理。</p>
-<p>用legal文件来做示例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/legal</span><br><span class="line"></span><br><span class="line">The programs included with the Ubuntu system are free software;</span><br><span class="line">the exact distribution terms for each program are described in the</span><br><span class="line">individual files in /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span><br><span class="line">applicable law.</span><br></pre></td></tr></table></figure></p>
-<h3 id="搜索统计单词“law”的个数"><a href="#搜索统计单词“law”的个数" class="headerlink" title="搜索统计单词“law”的个数"></a>搜索统计单词“law”的个数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ awk -F : &#x27;/law/&#123;count++&#125; END&#123;print &quot;the count is &quot;,count&#125;&#x27; /etc/legal</span><br><span class="line">the count is  1</span><br></pre></td></tr></table></figure>
-<h3 id="统计单词“the”的个数"><a href="#统计单词“the”的个数" class="headerlink" title="统计单词“the”的个数"></a>统计单词“the”的个数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ awk -F : &#x27;/the/&#123;count++&#125; END&#123;print &quot;the count is &quot;,count&#125;&#x27; /etc/legal</span><br><span class="line">the count is  3</span><br></pre></td></tr></table></figure>
-<p>找到指定单词，自定义变量count自增，最后输出语句和count值</p>
-<p>命令sort，把各行按首字母排列顺序重新排列起来</p>
-<ul>
-<li>sort -nr，每行都以数字开头，按数字从达到小，排列各行</li>
-<li>uniq -c，统计各行出现的次数，并把次数打印在每行前端</li>
-<li>awk参数 NF - 浏览记录的域的个数</li>
-</ul>
-<p>综合起来，命令就是<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F&#x27; &#x27; &#x27;&#123;for(i=1;i&lt;=NF;i=i+1)&#123;print $i&#125;&#125;&#x27; /etc/legal |</span><br><span class="line">sort|uniq -c|sort -nr|awk -F&#x27; &#x27; &#x27;&#123;printf(&quot;%s %s\n&quot;,$2,$1)&#125;&#x27;</span><br></pre></td></tr></table></figure><br>统计/etc/legal中单词出现次数，并以“单词 次数”格式输出结果</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2015-11-29T03:58:17.000Z" title="2015/11/29 11:58:17">2015-11-29</time>发表</span><span class="level-item"><time dateTime="2021-11-23T00:24:34.333Z" title="2021/11/23 08:24:34">2021-11-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">11 分钟读完 (大约1601个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2015/11/29/Linux/grep_note/">grep 搜索字符串</a></p><div class="content"><h2 id="grep-搜索，怎样排除某些目录？"><a href="#grep-搜索，怎样排除某些目录？" class="headerlink" title="grep 搜索，怎样排除某些目录？"></a>grep 搜索，怎样排除某些目录？</h2><p>使用 <code>--exclude-dir</code> 选项。</p>
-<p>语法:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--exclude-dir=DIR</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>Exclude directories matching the pattern DIR from recursive searches.</p>
-</blockquote>
-<h3 id="单个目录示例"><a href="#单个目录示例" class="headerlink" title="单个目录示例"></a>单个目录示例</h3><p><code>-R</code>是表示启用正则<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &quot;http&quot;  ./ -R --exclude-dir=.git</span><br></pre></td></tr></table></figure></p>
-<h3 id="多个目录示例"><a href="#多个目录示例" class="headerlink" title="多个目录示例"></a>多个目录示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">&quot;http&quot;</span>  . -R --exclude-dir=&#123;.git,res,bin&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多个文件示例"><a href="#多个文件示例" class="headerlink" title="多个文件示例"></a>多个文件示例</h3><h4 id="排除扩展名为-java-和-js-的文件"><a href="#排除扩展名为-java-和-js-的文件" class="headerlink" title="排除扩展名为 java 和 js 的文件"></a>排除扩展名为 java 和 js 的文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">&quot;http&quot;</span>  . -R --exclude=*.&#123;java,js&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="排除扩展名为-java，md-和-js-的文件"><a href="#排除扩展名为-java，md-和-js-的文件" class="headerlink" title="排除扩展名为 java，md~ 和 js 的文件"></a>排除扩展名为 java，md~ 和 js 的文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~/wd/rustNote/Linux_note$ grep -E DIR -R --exclude=*.&#123;java,js,md~&#125;</span><br><span class="line">grep_note.md:    --exclude-dir=DIR</span><br><span class="line">grep_note.md:	    Exclude directories matching the pattern DIR from recursive searches.</span><br></pre></td></tr></table></figure>
-<p>排除扩展名为java， js 和 md~ 的文件</p>
-<p>排除一些文件，并且显示行号<code>-n</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n -E <span class="string">&quot;org/webrtc/&quot;</span> . -R --exclude=*.&#123;java,ninja,TOC,so,o,jar&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何在-Linux-系统和类-Unix-的操作系统中使用带正则表达式的-grep-命令呢？"><a href="#如何在-Linux-系统和类-Unix-的操作系统中使用带正则表达式的-grep-命令呢？" class="headerlink" title="如何在 Linux 系统和类 Unix 的操作系统中使用带正则表达式的 grep 命令呢？"></a>如何在 Linux 系统和类 Unix 的操作系统中使用带正则表达式的 grep 命令呢？</h2><p>Linux 系统自带了支持拓展正则表达式的 GNU 版本 grep 工具。所有的 Linux 系统中默认安装的都是 GNU 版 grep 。<br>grep 命令被用来检索一台服务器或工作站上任何位置的文本信息。</p>
-<h3 id="快速了解正则表达式"><a href="#快速了解正则表达式" class="headerlink" title="快速了解正则表达式"></a>快速了解正则表达式</h3><h4 id="如何匹配你要查找的内容？"><a href="#如何匹配你要查找的内容？" class="headerlink" title="如何匹配你要查找的内容？"></a>如何匹配你要查找的内容？</h4><p>正则表达式只不过是每个输入行匹配的模式。模式是一个字符序列。下面都是范例：</p>
-<p>例如：<code>^w1”、“w1|w2”、“[^ ]</code>。</p>
-<p>在 <code>/etc/passswd</code> 中检索 <code>vivek</code> ： <code>grep vivek /etc/passwd</code></p>
-<p>输出结果案例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vivek:x:1000:1000:Vivek Gite,,,:/home/vivek:/bin/bash</span><br><span class="line">vivekgite:x:1001:1001::/home/vivekgite:/bin/sh</span><br><span class="line">gitevivek:x:1002:1002::/home/gitevivek:/bin/sh</span><br></pre></td></tr></table></figure><br>在任何情况下都搜索 ‘vivek’  (即不区分大小)：<code>grep -i -w vivek /etc/passwd</code><br>不区分大小写地检索 ‘vivek’ 和 ‘raj’ ： <code>grep -E -i -w &#39;vivek|raj&#39; /etc/passwd</code><br>在最后一个例子中，使用了扩展正则表达式的模式。</p>
-<p>固定检索内容的位置：<br>你可以使用 ^ 和 $ 符号强制一个正则表达式分别匹配一行的开始或结束的位置。<br>下面的示例显示以 ‘vivek’ 开头的文本： <code>grep ^vivek /etc/passwd</code><br>输出结果示例：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vivek:x:1000:1000:Vivek Gite,,,:/home/vivek:/bin/bash</span><br><span class="line">vivekgite:x:1001:1001::/home/vivekgite:/bin/sh</span><br></pre></td></tr></table></figure></p>
-<p>以<code>#!</code>开头的行<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rust@rust-pc:~/note/Linux_note$ grep &#x27;^#!&#x27; *</span><br><span class="line">organize_so_names.sh:#! /bin/sh</span><br><span class="line">sort_ranking_solution.md:#! /bin/sh</span><br></pre></td></tr></table></figure></p>
-<p>你可以只显示以 vivek 开头的文本行。举例说就是不显示 vivekgite , vivekg 这样单词开头的。<br><code>grep -w ^vivek /etc/passwd</code></p>
-<p>检索以 ‘foo’ 结尾的文本格式：<code>grep &#39;foo$&#39; FILENAME</code></p>
-<p>你还可以用下面这样的方式搜索空白行：<code>grep &#39;^$&#39; FILENAME</code></p>
-<h4 id="如何匹配具体字符？"><a href="#如何匹配具体字符？" class="headerlink" title="如何匹配具体字符？"></a>如何匹配具体字符？</h4><p>匹配 ‘Vivek’ 或 ‘vivek’ ：<code>grep &#39;[vV]ivek&#39; FILENAME</code></p>
-<p>或者可以这样：<code>grep &#39;[vV][iI][Vv][Ee][kK]&#39; FILENAME</code></p>
-<p>你可以匹配数字（例如匹配 vivek1 或 Vivek2 ）：<code>grep -w &#39;[vV]ivek[0-9]&#39; FILENAME</code></p>
-<p>你可以匹配两位数（例如匹配 foo11 ， foo12 ）：<code>grep &#39;foo[0-9][0-9]&#39; FILENAME</code></p>
-<p>不仅仅是数字，你可以匹配字母：<code>grep &#39;[A-Za-z]&#39; FILENAME</code></p>
-<p>显示所有包含 “w” 或 “n” 字母的文本行：<code>grep [wn] FILENAME</code></p>
-<p>在括号内的表达式中，在“ [: ”和“ :] ”中所附的字符类的名称：代表属于该类的所有字符的列表。标准字符类名称：</p>
-<ul>
-<li>[:alnum:] – 字母数字字符</li>
-<li>[:alpha:] – 字母顺序</li>
-<li>[:blank:] – 空格和制表符</li>
-<li>[:digit:] – 数字： ‘0 1 2 3 4 5 6 7 8 9’</li>
-<li>[:lower:] – 小写字母：‘a b c d e f ’</li>
-<li>[:space:] – 特殊字符：制表符，换行符，垂直制表符、换页，回车，和空间</li>
-<li>[:upper:] – 大写字母：‘A B C D E F G H I J K L M N O P Q R S T U V W X Y Z’</li>
-</ul>
-<p>在下面这个例子中，匹配所有大写字母：<code>grep &#39;[:upper:]&#39; FILENAME</code></p>
-<h4 id="如何使用通配符？"><a href="#如何使用通配符？" class="headerlink" title="如何使用通配符？"></a>如何使用通配符？</h4><p>你可以用 “.” 来代替单个字符。在下面的例子中，查询了所有以字母 “b” 开头、字母 “t” 结尾的三个字符的单词。<br><code>grep &#39;\&lt;b.t\&gt;&#39; FILENAME</code><br>在上面的例子中，<br><code>\&lt;</code> 在单词的开始位置匹配空格字符串<br><code>\&gt;</code> 在单词的结尾匹配空格字符串<br>检索并输出所有两个字母的结果：<code>grep &#39;^..$&#39; FILENAME</code><br>检索并显示所有以 ‘.’ 和数字开头的结果：<code>grep &#39;^\.[0-9]&#39; FILENAME</code><br>转义字符’.’<br>正则表达式查找 IP 地址 192.168.1.254 将不能获得预期的结果：<code>grep &#39;192.168.1.254&#39; /etc/hosts</code><br>其中三个点都需要被转义：<code>grep &#39;192\.168\.1\.254&#39; /etc/hosts</code></p>
-<p>以下示例将只匹配一个地址：<br><code>egrep &#39;[[:digit:]]&#123;1,3&#125;\.[[:digit:]]&#123;1,3&#125;\.[[:digit:]]&#123;1,3&#125;\.[[:digit:]]&#123;1,3&#125;&#39; FILENAME</code></p>
-<p>以下将不分大小写地匹配单词 Linux 或 Unix ：<code>egrep -i &#39;^(linux|unix)&#39; FILENAME</code></p>
-<h3 id="深入探索-grep-高级查找模式"><a href="#深入探索-grep-高级查找模式" class="headerlink" title="深入探索 grep 高级查找模式"></a>深入探索 grep 高级查找模式</h3><h4 id="如何检索一个具有以-‘-‘-开头的的模式？"><a href="#如何检索一个具有以-‘-‘-开头的的模式？" class="headerlink" title="如何检索一个具有以 ‘-‘ 开头的的模式？"></a>如何检索一个具有以 ‘-‘ 开头的的模式？</h4><p>使用 -e 选项搜索所有匹配 ‘–test–‘ 的结果。grep 会尝试把 ‘–test–‘ 作为一个选项解析：<br><code>grep -e &#39;--test--&#39; FILENAME</code></p>
-<h4 id="如何在grep中使用-OR-的逻辑运算-？"><a href="#如何在grep中使用-OR-的逻辑运算-？" class="headerlink" title="如何在grep中使用 OR 的逻辑运算 ？"></a>如何在grep中使用 OR 的逻辑运算 ？</h4><p><code>grep -E &#39;word1|word2&#39; FILENAME</code> 或者 <code>egrep &#39;word1|word2&#39; FILENAME</code><br>或者可以这样做<code>grep &#39;word1\|word2&#39; FILENAME</code></p>
-<h4 id="如何在grep中使用-AND-的逻辑运算-？"><a href="#如何在grep中使用-AND-的逻辑运算-？" class="headerlink" title="如何在grep中使用 AND 的逻辑运算 ？"></a>如何在grep中使用 AND 的逻辑运算 ？</h4><p>按照下面的语法显示所有包含了单词 ‘word1′ 和 ‘word2′ 的结果：<br><code>grep &#39;word1&#39; FILENAME | grep &#39;word2&#39;</code></p>
-<p>或者可以这样：<code>grep &#39;foo.*bar\|word3.*word4&#39; FILENAME</code></p>
-<h4 id="如何测试序列？"><a href="#如何测试序列？" class="headerlink" title="如何测试序列？"></a>如何测试序列？</h4><p>你可以使用下面的语法测试一个字符在序列中的重复的次数：</p>
-<ul>
-<li>{N}</li>
-<li>{N,}</li>
-<li>{min,max}</li>
-</ul>
-<p>匹配包含两个字母 v 的字符串结果：<code>egrep &quot;v&#123;2&#125;&quot; FILENAME</code></p>
-<p>下面的例子中将检索文件内包含 “col” 和 “cool” 的字符串结果：<code>egrep &#39;co&#123;1,2&#125;l&#39; FILENAME</code></p>
-<p>搜索<code>pattern</code>或<code>patern</code><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rust@rust-pc:~/note/Linux_note$ egrep &#x27;pat&#123;1,2&#125;ern&#x27; *</span><br><span class="line">grep_note.md:Exclude directories matching the pattern DIR from recursive searches.</span><br><span class="line">grep_note.md:grep_note.md:	    Exclude directories matching the pattern DIR from recursive searches.</span><br></pre></td></tr></table></figure><br>下面的例子中将匹配至少含有3个字母 c 的结果：<code>egrep &#39;c&#123;3,&#125;&#39; FILENAME</code></p>
-<p>下面的示例将匹配 “91-1234567890″ 格式的手机号码（即 “两位数字-十位数字”）<br><code>grep &quot;[[:digit:]]\&#123;2\&#125;[ -]\?[[:digit:]]\&#123;10\&#125;&quot; FILENAME</code></p>
-<h4 id="如何使-grep-的输出结果高亮标注？"><a href="#如何使-grep-的输出结果高亮标注？" class="headerlink" title="如何使 grep 的输出结果高亮标注？"></a>如何使 grep 的输出结果高亮标注？</h4><p>使用下面例子的语法：<code>grep --color regex FILENAME</code></p>
-<h4 id="如何使-grep-的输出只显示匹配的部分而不是整行？"><a href="#如何使-grep-的输出只显示匹配的部分而不是整行？" class="headerlink" title="如何使 grep 的输出只显示匹配的部分而不是整行？"></a>如何使 grep 的输出只显示匹配的部分而不是整行？</h4><p>使用下面例子的语法：<code>grep -o regex FILENAME</code></p>
-<h2 id="统计行数"><a href="#统计行数" class="headerlink" title="统计行数"></a>统计行数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;&quot; -r . | wc -l</span><br></pre></td></tr></table></figure></div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="标签 - Linux"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 4 篇文章</p>
+  <hr>
+  
+  
+    
+      
+      <p class="h5">2021</p>
+    
+    <a href="/2021/06/19/Linux/for-use/" class="list-group-item list-group-item-action">
+      <time>06-19</time>
+      <div class="list-group-item-title">Shell for循环语句</div>
+    </a>
+  
+    
+      
+      <p class="h5">2017</p>
+    
+    <a href="/2017/10/10/Linux/find-use/" class="list-group-item list-group-item-action">
+      <time>10-10</time>
+      <div class="list-group-item-title">find的使用</div>
+    </a>
+  
+    
+      
+      <p class="h5">2015</p>
+    
+    <a href="/2015/12/16/Linux/awk-use/" class="list-group-item list-group-item-action">
+      <time>12-16</time>
+      <div class="list-group-item-title">awk命令的使用</div>
+    </a>
+  
+    
+    <a href="/2015/11/29/Linux/grep_note/" class="list-group-item list-group-item-action">
+      <time>11-29</time>
+      <div class="list-group-item-title">grep 搜索字符串</div>
+    </a>
+  
+</div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

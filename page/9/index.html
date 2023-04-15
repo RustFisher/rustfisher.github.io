@@ -1,244 +1,1033 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:type" content="blog"><meta property="og:title" content="RustFisher的自留地"><meta property="og:url" content="https://blog.rustfisher.com/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:author" content="Rust Fisher"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com"},"headline":"RustFisher的自留地","image":["https://blog.rustfisher.com/img/og_image.png"],"author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"技术学习与实践，一些开发记录，读书笔记"}</script><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RustFisher的自留地">
+<meta property="og:url" content="https://blog.rustfisher.com/page/9/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><a class="image is-7by3" href="/2019/04/21/Android/Android-SparseArray_src_code_note/"><img class="fill" src="/img/android-cover-2.png" alt="Android SparseArray 原理解析"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-04-21T14:13:16.000Z" title="2019/4/21 22:13:16">2019-04-21</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.974Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android-note/">Android_note</a></span><span class="level-item">10 分钟读完 (大约1431个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/04/21/Android/Android-SparseArray_src_code_note/">Android SparseArray 原理解析</a></p><div class="content"><h1 id="Android-SparseArray-原理解析"><a href="#Android-SparseArray-原理解析" class="headerlink" title="Android SparseArray 原理解析"></a>Android SparseArray 原理解析</h1><h2 id="什么是SparseArray？"><a href="#什么是SparseArray？" class="headerlink" title="什么是SparseArray？"></a>什么是SparseArray？</h2><p>SparseArray存储的是键值对，以int作为key，Object作为value。Sparse有稀疏、缺少的意思。SparseArray应用场景是相对稀少的数据，一般是几百以内。</p>
-<h2 id="SparseArray采用的数据结构？"><a href="#SparseArray采用的数据结构？" class="headerlink" title="SparseArray采用的数据结构？"></a>SparseArray采用的数据结构？</h2><p>SparseArray并不像HashMap采用一维数组+单链表和二叉树结构，而是采用两个一维数组，一个是存储key(int类型),一个是存value object。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">int</span>[] mKeys; <span class="comment">// 存储key</span></span><br><span class="line"><span class="keyword">private</span> Object[] mValues; <span class="comment">// 存储value对象</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> mSize; <span class="comment">// 记录存储键值对的数量</span></span><br></pre></td></tr></table></figure>
-<p>mKeys和mValues读写时采用的下标是一一对应的。<br><img src="http://rustblogres.rustfisher.com/Android-SparseArray-mKeys-mValues.pngg" alt=""></p>
-<h2 id="SparseArray默认容量多大？"><a href="#SparseArray默认容量多大？" class="headerlink" title="SparseArray默认容量多大？"></a>SparseArray默认容量多大？</h2><p>SparseArray在默认构造函数中指定其默认容量大小。默认为10</p>
-<p>初始化后<code>mSize = 0</code>，实例化mKeys和mValues。</p>
-<h2 id="SparseArray-get方法的流程分析"><a href="#SparseArray-get方法的流程分析" class="headerlink" title="SparseArray get方法的流程分析"></a>SparseArray get方法的流程分析</h2><p>输入一个int型的key，通过二分法查找匹配的下标。若没找到对应的下标，则返回null或用户指定的默认对象。</p>
-<p>key是递增存放的。二分法查找下标时，可能会返回一个负值，此时表示在mKeys中没找到对应的键。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> E <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> get(key, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Gets the Object mapped from the specified key, or the specified Object</span></span><br><span class="line"><span class="comment"> * if no such mapping has been made.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">public</span> E <span class="title function_">get</span><span class="params">(<span class="type">int</span> key, E valueIfKeyNotFound)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> ContainerHelpers.binarySearch(mKeys, mSize, key); <span class="comment">// 二分法查找下标</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || mValues[i] == DELETED) &#123; </span><br><span class="line">    <span class="comment">// 找到的下标为负或当前位置元素以被删除，表明没找到</span></span><br><span class="line">        <span class="keyword">return</span> valueIfKeyNotFound;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (E) mValues[i]; <span class="comment">// 找到指定元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SparseArray-put方法的流程分析"><a href="#SparseArray-put方法的流程分析" class="headerlink" title="SparseArray put方法的流程分析"></a>SparseArray put方法的流程分析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, E value)</span> &#123;</span><br><span class="line">       <span class="comment">// 二分法找到key的下标</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 代表当前已经存在key及其对应的值，直接替换value</span></span><br><span class="line">            mValues[i] = value;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 表示当前并不存在key，则应添加新的键值对</span></span><br><span class="line">            <span class="comment">// i取反，得到要添加的数组位置下标。二叉查找返回的是key的“应当”存放的位置下标。</span></span><br><span class="line">            i = ~i;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (i &lt; mSize &amp;&amp; mValues[i] == DELETED) &#123;</span><br><span class="line">                <span class="comment">// 原来位置上的元素已经被删掉了，直接赋值替换</span></span><br><span class="line">                mKeys[i] = key;</span><br><span class="line">                mValues[i] = value;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (mGarbage &amp;&amp; mSize &gt;= mKeys.length) &#123;</span><br><span class="line">                <span class="comment">// 容量不足，进行回收操作</span></span><br><span class="line">                gc();</span><br><span class="line">                <span class="comment">// 重新查找目标下标</span></span><br><span class="line">                i = ~ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 目标下标为i，将key添加进mKeys数组中</span></span><br><span class="line">            mKeys = GrowingArrayUtils.insert(mKeys, mSize, i, key);</span><br><span class="line">            <span class="comment">// 目标下标为i，将value插入mValues数组中</span></span><br><span class="line">            mValues = GrowingArrayUtils.insert(mValues, mSize, i, value);</span><br><span class="line">            <span class="comment">// 已存储的数据个数加1</span></span><br><span class="line">            mSize++;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// GrowingArrayUtils.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] insert(T[] array, <span class="type">int</span> currentSize, <span class="type">int</span> index, T element) &#123;</span><br><span class="line">        <span class="keyword">assert</span> currentSize &lt;= array.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (currentSize + <span class="number">1</span> &lt;= array.length) &#123;</span><br><span class="line">            <span class="comment">// 当前数组容量充足，index开始的元素后移1位</span></span><br><span class="line">            System.arraycopy(array, index, array, index + <span class="number">1</span>, currentSize - index);</span><br><span class="line">            array[index] = element;</span><br><span class="line">            <span class="keyword">return</span> array;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 容量不足，先扩容生成新的数组newArray</span></span><br><span class="line">        <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">        T[] newArray = ArrayUtils.newUnpaddedArray((Class&lt;T&gt;)array.getClass().getComponentType(),</span><br><span class="line">                growSize(currentSize));</span><br><span class="line">        <span class="comment">// 将原来数组index之前的部分复制到新数组对象中</span></span><br><span class="line">        System.arraycopy(array, <span class="number">0</span>, newArray, <span class="number">0</span>, index);</span><br><span class="line">        newArray[index] = element; <span class="comment">// 插入元素</span></span><br><span class="line">        <span class="comment">// 将原数组index+1之后的元素拷贝到新数组中</span></span><br><span class="line">        System.arraycopy(array, index, newArray, index + <span class="number">1</span>, array.length - index);</span><br><span class="line">        <span class="keyword">return</span> newArray;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 扩容计算规则，当前容量小于等于4则返回8；否则返回2倍的容量</span></span><br><span class="line"><span class="comment">// 扩容后最小容量是8</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">growSize</span><span class="params">(<span class="type">int</span> currentSize)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> currentSize &lt;= <span class="number">4</span> ? <span class="number">8</span> : currentSize * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="key下标的二叉查找方法分析"><a href="#key下标的二叉查找方法分析" class="headerlink" title="key下标的二叉查找方法分析"></a>key下标的二叉查找方法分析</h2><p>二叉查找方法<code>ContainerHelpers.binarySearch(int[] array, int size, int value)</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] array, <span class="type">int</span> size, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">lo</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">hi</span> <span class="operator">=</span> size - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (lo + hi) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">midVal</span> <span class="operator">=</span> array[mid];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (midVal &lt; value) &#123;</span><br><span class="line">            lo = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (midVal &gt; value) &#123;</span><br><span class="line">            hi = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;  <span class="comment">// value found</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ~lo;  <span class="comment">// value not present</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果没有找到输入value对应的下标，则会返回一个按位取反后的值（一般是个负值）。</p>
-<p>例如输入array是 [1,2,4,5]，size是4，value是3；那么会得到2的取反值。而<code>2</code>就是value的目标位置下标。</p>
-<h2 id="SparseArray最大容量？每次扩容多少？"><a href="#SparseArray最大容量？每次扩容多少？" class="headerlink" title="SparseArray最大容量？每次扩容多少？"></a>SparseArray最大容量？每次扩容多少？</h2><p>SparseArray并不像HashMap一样定义有最大容量是多少，最大可以达到Integer.MAX_VALUE，可能会报oom。每次扩容时如果当前容量小于5则扩容是8，否则扩容为原容量的2倍。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">growSize</span><span class="params">(<span class="type">int</span> currentSize)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> currentSize &lt;= <span class="number">4</span> ? <span class="number">8</span> : currentSize * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SparseArray与HashMap的比较，应用场景是？"><a href="#SparseArray与HashMap的比较，应用场景是？" class="headerlink" title="SparseArray与HashMap的比较，应用场景是？"></a>SparseArray与HashMap的比较，应用场景是？</h2><ul>
-<li>SparseArray采用的不是哈希算法，HashMap采用的是哈希算法。</li>
-<li>SparseArray采用的是两个一维数组分别用于存储键和值，HashMap采用的是一维数组+单向链表或二叉树。</li>
-<li>SparseArray key只能是int类型，而HashMap的key是Object。</li>
-<li>SparseArray  key是有序存储（升序），而HashMap不是。</li>
-<li>SparseArray 默认容量是10，而HashMap默认容量是16。</li>
-<li>SparseArray 默认每次扩容是2倍于原来的容量，而HashMap默认每次扩容时是原容量*0.75倍</li>
-<li>SparseArray value的存储被不像HashMap一样需要额外的需要一个实体类（Node）进行包装</li>
-<li>SparseArray查找元素总体而言比HashMap要逊色，因为SparseArray查找是需要经过二分法的过程，而HashMap不存在冲突的情况其技术处的hash对应的下标直接就可以取到值。</li>
-</ul>
-<p>针对上面与HashMap的比较，采用SparseArray还是HashMap，建议根据如下需求选取：</p>
-<ul>
-<li>如果对内存要求比较高，而对查询效率没什么大的要求，可以是使用SparseArray</li>
-<li>数量在百级别的SparseArray比HashMap有更好的优势</li>
-<li>要求key是int类型的，因为HashMap会对int自定装箱变成Integer类型</li>
-<li>要求key是有序的且是升序</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/30a2bfb202b4">https://www.jianshu.com/p/30a2bfb202b4</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-26T06:21:11.000Z" title="2019/2/26 14:21:11">2019-02-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T14:33:30.934Z" title="2021/1/6 22:33:30">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Database/">Database</a></span><span class="level-item">3 分钟读完 (大约398个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/26/Database/MySQL-install_and_config_Mac/">MySQL Mac 安装与简单配置</a></p><div class="content"><h2 id="homebrew安装mysql"><a href="#homebrew安装mysql" class="headerlink" title="homebrew安装mysql"></a>homebrew安装mysql</h2><p>使用brew命令安装mysql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mb:~ rustfisher$ brew install mysql</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动停止mysql服务"><a href="#启动停止mysql服务" class="headerlink" title="启动停止mysql服务"></a>启动停止mysql服务</h2><p>启动服务 <code>mysql.server start</code><br>安装时没有设置密码，可以直接<code>mysql -uroot</code>登入。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mb:~ rustfisher$ mysql.server start</span><br><span class="line">Starting MySQL</span><br><span class="line">. SUCCESS! </span><br><span class="line"></span><br><span class="line">mb:~ rustfisher$ mysql -uroot</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection <span class="built_in">id</span> is 9</span><br><span class="line">Server version: 8.0.12 Homebrew</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">exit</span>;</span><br><span class="line">Bye</span><br></pre></td></tr></table></figure></p>
-<p>输入mysql指令遇到错误<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show database;</span><br><span class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;database&#x27; at line 1</span><br></pre></td></tr></table></figure></p>
-<p>指令输入错误，修正一下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>停止mysql服务的命令 <code>mysql.server stop</code><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mb:anindexserver rustfisher$ mysql.server stop</span><br><span class="line">Shutting down MySQL</span><br><span class="line">... SUCCESS! </span><br></pre></td></tr></table></figure></p>
-<h2 id="简单操作"><a href="#简单操作" class="headerlink" title="简单操作"></a>简单操作</h2><h3 id="更改密码"><a href="#更改密码" class="headerlink" title="更改密码"></a>更改密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;yourpwd&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.05 sec)</span><br></pre></td></tr></table></figure>
-<p>设定了密码后，登录需要输入密码<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mb:anindexserver rustfisher$ mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html">https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html</a></li>
-</ul>
-<h2 id="可视化工具-mysql-workbench"><a href="#可视化工具-mysql-workbench" class="headerlink" title="可视化工具 mysql workbench"></a>可视化工具 mysql workbench</h2><p>官方文档请参考 <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
-<h3 id="mysql-workbench-需要primary-key"><a href="#mysql-workbench-需要primary-key" class="headerlink" title="mysql workbench 需要primary key"></a>mysql workbench 需要primary key</h3><p>需要有primary key才能编辑内容</p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10815029/mysql-workbench-edit-table-data-is-read-only">https://stackoverflow.com/questions/10815029/mysql-workbench-edit-table-data-is-read-only</a></p>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>mac中配置文件默认路径为 <code>/usr/local/etc/my.cnf</code></p>
-<p>可以修改port。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Default Homebrew MySQL server config</span><br><span class="line">[mysqld]</span><br><span class="line"># Only allow connections from localhost</span><br><span class="line">port=9527</span><br><span class="line">bind-address = 127.0.0.1</span><br></pre></td></tr></table></figure><br>这里限制了连接的端口。</p>
-<p>参考： <a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/change-default-mysql-port-under-linuxunix/">https://www.cyberciti.biz/faq/change-default-mysql-port-under-linuxunix/</a></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2018/11/14/Python/python3-send-email/"><img class="fill" src="/img/python-logo.png" alt="python3 发送邮件功能"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-11-14T12:27:20.000Z" title="2018/11/14 20:27:20">2018-11-14</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.999Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">3 分钟读完 (大约452个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/14/Python/python3-send-email/">python3 发送邮件功能</a></p><div class="content"><p>发信邮箱是腾讯企业邮箱。开发环境 Windows7。</p>
-<p>主要使用<strong>smtplib</strong>来实现发邮件的功能。</p>
-<h2 id="简单的发送邮件功能"><a href="#简单的发送邮件功能" class="headerlink" title="简单的发送邮件功能"></a>简单的发送邮件功能</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发送邮件</span></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_email</span>():</span><br><span class="line">    fromaddr = <span class="string">&quot;from1@your_email.com&quot;</span> <span class="comment"># 你的发件邮箱</span></span><br><span class="line">    toaddr = <span class="string">&quot;to1@your_email.com&quot;</span> <span class="comment"># 目标邮箱</span></span><br><span class="line">    msg = MIMEMultipart()</span><br><span class="line">    msg[<span class="string">&#x27;From&#x27;</span>] = fromaddr</span><br><span class="line">    msg[<span class="string">&#x27;To&#x27;</span>] = toaddr</span><br><span class="line">    msg[<span class="string">&#x27;Subject&#x27;</span>] = <span class="string">&quot;SUBJECT OF THE MAIL&quot;</span></span><br><span class="line"></span><br><span class="line">    body = <span class="string">&quot;YOUR MESSAGE HERE&quot;</span></span><br><span class="line">    msg.attach(MIMEText(body, <span class="string">&#x27;plain&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    server = smtplib.SMTP(<span class="string">&#x27;smtp.exmail.qq.com&#x27;</span>, <span class="number">25</span>) <span class="comment"># 默认端口25</span></span><br><span class="line">    server.starttls()</span><br><span class="line">    server.login(fromaddr, <span class="string">&quot;xxxx密码&quot;</span>)</span><br><span class="line">    text = msg.as_string()</span><br><span class="line">    server.sendmail(fromaddr, toaddr, text)</span><br><span class="line">    server.quit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;start sending email&#x27;</span>)</span><br><span class="line">    send_email()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;end...&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="邮件带上附件"><a href="#邮件带上附件" class="headerlink" title="邮件带上附件"></a>邮件带上附件</h2><p>Windows下注意文件路径的表达方式。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发送邮件</span></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">from</span> email <span class="keyword">import</span> encoders</span><br><span class="line"><span class="keyword">from</span> email.mime.base <span class="keyword">import</span> MIMEBase</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_email</span>(<span class="params">from_email, pwd, target_email_list=[], attachment_file_list=[]</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    单独发送邮件</span></span><br><span class="line"><span class="string">    create on 2018-11-14</span></span><br><span class="line"><span class="string">    :param from_email: 源邮箱</span></span><br><span class="line"><span class="string">    :param pwd: 源邮箱密码</span></span><br><span class="line"><span class="string">    :param target_email_list:  目标邮件列表</span></span><br><span class="line"><span class="string">    :param attachment_file_list:  附件路径列表</span></span><br><span class="line"><span class="string">    :return: void</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(target_email_list) &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;ERR: 目标邮件列表为空 -&gt; 退出&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> target_email <span class="keyword">in</span> target_email_list:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;sending to &#x27;</span> + target_email)</span><br><span class="line">        msg = MIMEMultipart()</span><br><span class="line">        msg[<span class="string">&#x27;From&#x27;</span>] = from_email</span><br><span class="line">        msg[<span class="string">&#x27;To&#x27;</span>] = target_email</span><br><span class="line">        msg[<span class="string">&#x27;Subject&#x27;</span>] = <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">        body = <span class="string">&#x27;&#x27;&#x27;尊敬的客户，</span></span><br><span class="line"><span class="string">    你好，请查收文件。</span></span><br><span class="line"><span class="string">谢谢！</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        msg.attach(MIMEText(body, <span class="string">&#x27;plain&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> file_path <span class="keyword">in</span> attachment_file_list:</span><br><span class="line">            filename = <span class="built_in">str</span>(file_path).split(<span class="string">&#x27;\\&#x27;</span>)[-<span class="number">1</span>]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;file_path &quot;</span> + file_path + <span class="string">&quot; filename: &quot;</span> + filename)</span><br><span class="line">            attachment = <span class="built_in">open</span>(file_path, <span class="string">&quot;rb&quot;</span>)</span><br><span class="line"></span><br><span class="line">            part = MIMEBase(<span class="string">&#x27;application&#x27;</span>, <span class="string">&#x27;octet-stream&#x27;</span>)</span><br><span class="line">            part.set_payload(attachment.read())</span><br><span class="line">            encoders.encode_base64(part)</span><br><span class="line">            part.add_header(<span class="string">&#x27;Content-Disposition&#x27;</span>, <span class="string">&quot;attachment; filename= %s&quot;</span> % filename)</span><br><span class="line"></span><br><span class="line">            msg.attach(part)</span><br><span class="line"></span><br><span class="line">            server = smtplib.SMTP(<span class="string">&#x27;smtp.exmail.qq.com&#x27;</span>, <span class="number">25</span>)</span><br><span class="line">            server.starttls()</span><br><span class="line">            server.login(from_email, pwd)</span><br><span class="line">            text = msg.as_string()</span><br><span class="line">            server.sendmail(from_email, target_email, text)</span><br><span class="line">            server.quit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;start sending email&#x27;</span>)</span><br><span class="line">    send_email(from_email=<span class="string">&quot;your_email.com&quot;</span>,</span><br><span class="line">               pwd=<span class="string">&quot;密码&quot;</span>,</span><br><span class="line">               target_email_list=[<span class="string">&quot;target1@foxmail.com&quot;</span>, <span class="string">&quot;target2@qq.com&quot;</span>],</span><br><span class="line">               attachment_file_list=[</span><br><span class="line">                   <span class="string">r&quot;E:\your_path.rar&quot;</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;end...&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011846143/article/details/78274911?locationNum=9&amp;fps=1">https://blog.csdn.net/u011846143/article/details/78274911?locationNum=9&amp;fps=1</a></li>
-<li><a target="_blank" rel="noopener" href="http://naelshiab.com/tutorial-send-email-python/">http://naelshiab.com/tutorial-send-email-python/</a></li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-09-06T12:56:13.000Z" title="2018/9/6 20:56:13">2018-09-06</time>发表</span><span class="level-item"><time dateTime="2020-10-09T13:27:43.415Z" title="2020/10/9 21:27:43">2020-10-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Flutter-note/">Flutter_note</a></span><span class="level-item">3 分钟读完 (大约435个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/06/Flutter/Flutter-Gesture_handle/">Flutter - 处理手势</a></p><div class="content"><h1 id="Flutter-处理手势"><a href="#Flutter-处理手势" class="headerlink" title="Flutter - 处理手势"></a>Flutter - 处理手势</h1><p>点击，滑动等等手势。</p>
-<h2 id="处理点击"><a href="#处理点击" class="headerlink" title="处理点击"></a>处理点击</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
-<li>创建自定义button类</li>
-<li>在其中使用<code>GestureDetector</code>并复写<code>onTap</code>回调</li>
-</ul>
-<p>代码实现<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="language-markdown">自定义button</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ButtonSample1</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> GestureDetector(</span><br><span class="line">      onTap: () &#123;</span><br><span class="line">        <span class="keyword">final</span> snackBar = SnackBar(content: Text(<span class="string">&quot;Now you tap the <span class="subst">$this</span>&quot;</span>),);</span><br><span class="line">        Scaffold.of(context).showSnackBar(snackBar);</span><br><span class="line">      &#125;,</span><br><span class="line">      child: Container(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">12.0</span>),</span><br><span class="line">        margin: EdgeInsets.all(<span class="number">12.0</span>),</span><br><span class="line">        decoration: BoxDecoration(color: Theme</span><br><span class="line">            .of(context)</span><br><span class="line">            .buttonColor,</span><br><span class="line">            borderRadius: BorderRadius.circular(<span class="number">8.0</span>)),</span><br><span class="line">        child: Text(<span class="string">&quot;<span class="subst">$this</span>&quot;</span>),),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>参考： <a target="_blank" rel="noopener" href="https://flutter.io/cookbook/gestures/handling-taps/">https://flutter.io/cookbook/gestures/handling-taps/</a></p>
-<h4 id="带波纹效果的按钮"><a href="#带波纹效果的按钮" class="headerlink" title="带波纹效果的按钮"></a>带波纹效果的按钮</h4><p>使用<code>InkWell</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="language-markdown">带有波纹效果的按钮</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ButtonSample2</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> InkWell(</span><br><span class="line">      onTap: () &#123;</span><br><span class="line">        <span class="keyword">final</span> snackBar = SnackBar(content: Text(<span class="string">&quot;Now you tap the <span class="subst">$this</span>&quot;</span>),);</span><br><span class="line">        Scaffold.of(context).showSnackBar(snackBar);</span><br><span class="line">      &#125;,</span><br><span class="line">      child: Container(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">12.0</span>),</span><br><span class="line">        child: Text(<span class="string">&quot;<span class="subst">$this</span>&quot;</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Flutter提供的按钮控件还有<code>RaisedButton</code>和<code>FlatButton</code>。</p>
-<h2 id="列表侧滑删除"><a href="#列表侧滑删除" class="headerlink" title="列表侧滑删除"></a>列表侧滑删除</h2><p>步骤：</p>
-<ul>
-<li>创建一个列表</li>
-<li>用<code>Dismissible</code>包装每一个item</li>
-<li>提供删除时的UI显示</li>
-</ul>
-<h3 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> items = <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;.generate(<span class="number">10</span>, (i) =&gt; <span class="string">&quot;Item <span class="subst">$i</span>&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>创建字符串列表。这个列表不能放在<code>build</code>中，要定义为State的全局变量。<br>否则删除item时，无法从view tree中移除item，从而报错。</p>
-<h3 id="删除时的UI"><a href="#删除时的UI" class="headerlink" title="删除时的UI"></a>删除时的UI</h3><p>设置<code>Dismissible</code>的background，可以在删除时显示。</p>
-<p>示例界面代码<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="language-markdown">侧滑删除列表界面</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SwipeToDismissPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  SwipeToDismissPage(&#123;Key key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    <span class="keyword">return</span> SwipeState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SwipeState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">SwipeToDismissPage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> items = <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;.generate(<span class="number">10</span>, (i) =&gt; <span class="string">&quot;Item <span class="subst">$i</span>&quot;</span>); <span class="comment">// 列表必须放在外面定义</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(</span><br><span class="line">          <span class="string">&quot;Swipe to dismiss&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      body: ListView.builder(</span><br><span class="line">          itemCount: items.length,</span><br><span class="line">          itemBuilder: (context, index) &#123;</span><br><span class="line">            <span class="keyword">final</span> item = items[index];</span><br><span class="line">            <span class="keyword">return</span> Dismissible(</span><br><span class="line">              key: Key(item),</span><br><span class="line">              onDismissed: (direction) &#123;</span><br><span class="line">                setState(() &#123;</span><br><span class="line">                  items.removeAt(index);</span><br><span class="line">                  <span class="built_in">print</span>(direction);</span><br><span class="line">                &#125;);</span><br><span class="line">                Scaffold.of(context)</span><br><span class="line">                    .showSnackBar(SnackBar(content: Text(<span class="string">&#x27;remove <span class="subst">$item</span>&#x27;</span>)));</span><br><span class="line">              &#125;,</span><br><span class="line">              child: ListTile(</span><br><span class="line">                title: Text(<span class="string">&#x27;<span class="subst">$item</span>&#x27;</span>),</span><br><span class="line">              ),</span><br><span class="line">              background: Container(</span><br><span class="line">                color: Colors.red,</span><br><span class="line">              ),</span><br><span class="line">            );</span><br><span class="line">          &#125;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="选择GestureDetector的响应形式"><a href="#选择GestureDetector的响应形式" class="headerlink" title="选择GestureDetector的响应形式"></a>选择GestureDetector的响应形式</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">behavior: HitTestBehavior.opaque</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://docs.flutter.io/flutter/rendering/HitTestBehavior-class.html">https://docs.flutter.io/flutter/rendering/HitTestBehavior-class.html</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-09-05T12:49:13.000Z" title="2018/9/5 20:49:13">2018-09-05</time>发表</span><span class="level-item"><time dateTime="2020-10-09T12:58:54.350Z" title="2020/10/9 20:58:54">2020-10-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Flutter-note/">Flutter_note</a></span><span class="level-item">3 分钟读完 (大约482个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/05/Flutter/Flutter-Navigator_demo1/">Flutter - 页面间跳转操作</a></p><div class="content"><h2 id="切换到一个新的界面并且能跳回来"><a href="#切换到一个新的界面并且能跳回来" class="headerlink" title="切换到一个新的界面并且能跳回来"></a>切换到一个新的界面并且能跳回来</h2><p>大多数App都包含多个界面。比如数据列表页和详细页。<br>Android中的页面可以是Activity；iOS中使用ViewController。在Flutter中，页面也是<code>widget</code>。<br>使用<code>Navigator</code>来切换页面。</p>
-<p>步骤：</p>
-<ul>
-<li>1.创建2个页面</li>
-<li>2.用<code>Navigator.push</code>跳去第二个页面</li>
-<li>3.用<code>Navigator.pop</code>回到第一个页面</li>
-</ul>
-<p>push和pop很容易让人联想到栈。Android中有ActivityStack，用来存放Activity。当前的Activity就在栈顶。</p>
-<h3 id="1-创建2个页面"><a href="#1-创建2个页面" class="headerlink" title="1.创建2个页面"></a>1.创建2个页面</h3><p>创建2个简单的界面，界面中只有一个按钮。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(appBar: AppBar(title: Text(<span class="string">&#x27;First page&#x27;</span>),),</span><br><span class="line">      body: Center(child: RaisedButton(</span><br><span class="line">          child: Text(<span class="string">&#x27;Go to 2nd page&#x27;</span>),</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;This is first page&#x27;</span>);</span><br><span class="line">            <span class="comment">// 执行想要的操作..........</span></span><br><span class="line">          &#125;),),);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;<span class="subst">$&#123;<span class="keyword">this</span>&#125;</span> hashCode=<span class="subst">$&#123;<span class="keyword">this</span>.hashCode&#125;</span>&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> Scaffold(appBar: AppBar(title: Text(<span class="string">&#x27;Second page&#x27;</span>),),</span><br><span class="line">      body: Center(child: RaisedButton(</span><br><span class="line">          child: Text(<span class="string">&quot;Go back&quot;</span>),</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;This is 2nd page&#x27;</span>);</span><br><span class="line">            <span class="comment">// 执行操作........</span></span><br><span class="line">          &#125;),),);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-用Navigator-push跳转去第二个界面"><a href="#2-用Navigator-push跳转去第二个界面" class="headerlink" title="2.用Navigator.push跳转去第二个界面"></a>2.用<code>Navigator.push</code>跳转去第二个界面</h3><p><code>push</code>方法会向栈中添加一个由Navigator管理的<code>Route</code>。<br><code>push</code>方法接受一个<code>Route</code>（暂称为路由），这里新建一个<code>Route</code>，使用用<code>MaterialPageRoute</code>。</p>
-<p>在第一个页面中按钮添加回调的操作<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onPressed: () &#123;</span><br><span class="line">Navigator.push(context,</span><br><span class="line">    MaterialPageRoute(builder: (context) =&gt; SecondScreen()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-用Navigator-pop回到第一个界面"><a href="#3-用Navigator-pop回到第一个界面" class="headerlink" title="3.用Navigator.pop回到第一个界面"></a>3.用<code>Navigator.pop</code>回到第一个界面</h3><p><code>Navigator.pop</code>会移除navigator管理的当前的路由（效果是移除当前界面）。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个页面中</span></span><br><span class="line">onPressed: () &#123;</span><br><span class="line">  Navigator.pop(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">new</span> MaterialApp(</span><br><span class="line">    title: <span class="string">&#x27;navigate demo&#x27;</span>,</span><br><span class="line">    home: <span class="keyword">new</span> FirstScreen(),));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(appBar: AppBar(title: Text(<span class="string">&#x27;First page&#x27;</span>),),</span><br><span class="line">      body: Center(child: RaisedButton(</span><br><span class="line">          child: Text(<span class="string">&#x27;Go to 2nd page&#x27;</span>),</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;This is first page&#x27;</span>);</span><br><span class="line">            Navigator.push(context,</span><br><span class="line">                MaterialPageRoute(builder: (context) =&gt; SecondScreen()));</span><br><span class="line">          &#125;),),);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;<span class="subst">$&#123;<span class="keyword">this</span>&#125;</span> hashCode=<span class="subst">$&#123;<span class="keyword">this</span>.hashCode&#125;</span>&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> Scaffold(appBar: AppBar(title: Text(<span class="string">&#x27;Second page&#x27;</span>),),</span><br><span class="line">      body: Center(child: RaisedButton(</span><br><span class="line">          child: Text(<span class="string">&quot;Go back&quot;</span>),</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;This is 2nd page&#x27;</span>);</span><br><span class="line">            Navigator.pop(context);</span><br><span class="line">          &#125;),),);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码请参阅： <a target="_blank" rel="noopener" href="https://github.com/RustFisher/flutter_basic">https://github.com/RustFisher/flutter_basic</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-09-01T14:58:43.000Z" title="2018/9/1 22:58:43">2018-09-01</time>发表</span><span class="level-item"><time dateTime="2020-02-20T01:40:44.063Z" title="2020/2/20 09:40:44">2020-02-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android-note/">Android_note</a></span><span class="level-item">23 分钟读完 (大约3376个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/01/Dev-note/dev-note-app-learn/">「Learn」开发记录</a></p><div class="content"><p>开发App过程中遇到的一些问题和解决办法。临时记录一些解决方案。</p>
-<h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer基础。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">在线音频播放，使用MediaPlayer。</a><br><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">下载在线音频到本地，使用URLConnection。</a></p>
-<h2 id="自定义ViewGroup"><a href="#自定义ViewGroup" class="headerlink" title="自定义ViewGroup"></a>自定义ViewGroup</h2><p>继承自LinearLayout，自定义子View的排布方式。</p>
-<h3 id="crash-ViewGroup-resetResolvedLayoutDirection"><a href="#crash-ViewGroup-resetResolvedLayoutDirection" class="headerlink" title="crash ViewGroup.resetResolvedLayoutDirection"></a>crash ViewGroup.resetResolvedLayoutDirection</h3><p>给LinearLayout addView的时候报错<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E/AndroidRuntime:     at android.view.ViewGroup.resetResolvedLayoutDirection(ViewGroup.java:7291)</span><br><span class="line">    at android.view.ViewGroup.resetResolvedLayoutDirection(ViewGroup.java:7291)</span><br></pre></td></tr></table></figure></p>
-<p>检查代码，发现addView的时候把LinearLayout自己添加进去了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">LinearLayout</span> <span class="variable">wordCube</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinearLayout</span>(<span class="built_in">this</span>);</span><br><span class="line">wordCube.addView(wordCube, chTvParams);</span><br></pre></td></tr></table></figure></p>
-<p>改成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">LinearLayout</span> <span class="variable">wordCube</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinearLayout</span>(<span class="built_in">this</span>);</span><br><span class="line">wordCube.addView(tv, chTvParams); <span class="comment">// 要加的是tv</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="Bugly热更新"><a href="#Bugly热更新" class="headerlink" title="Bugly热更新"></a>Bugly热更新</h2><p>Bugly热更新方案集成了腾讯的tinker，自带了补丁包发布平台。</p>
-<p>文档</p>
-<p><a target="_blank" rel="noopener" href="https://bugly.qq.com/docs/user-guide/instruction-manual-android-hotfix/?v=20181014122344#_3">https://bugly.qq.com/docs/user-guide/instruction-manual-android-hotfix/?v=20181014122344#_3</a></p>
-<p>tinker不支持热更新新增四大组件，不能修改Manifest文件。但是可以修改四大组件里面的逻辑。<br>可以修改layout文件和资源文件。</p>
-<h2 id="Assets遍历文件"><a href="#Assets遍历文件" class="headerlink" title="Assets遍历文件"></a>Assets遍历文件</h2><p>assets里存放着四千多个文件，红米6A遍历一次要2秒多。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] list = context.getAssets().list(<span class="string">&quot;folder&quot;</span>); <span class="comment">// 执行这一句要两千多毫秒</span></span><br></pre></td></tr></table></figure>
-<h2 id="语音识别方案"><a href="#语音识别方案" class="headerlink" title="语音识别方案"></a>语音识别方案</h2><p>主力方案为百度语音识别。</p>
-<p>综合价格考虑，将科大讯飞的<a target="_blank" rel="noopener" href="https://www.xfyun.cn/services/voicedictation">语音听写</a>作为备用方案。</p>
-<p>将百度语音识别与讯飞听写的SDK一起引入到App中。由后台控制用户使用哪一个语音引擎。</p>
-<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p>项目采用的是mvvm架构。有2个页面要用到同一个数据源。把这个数据源单独抽出来，设计监听器。</p>
-<p>原框架的下载文件功能有一个bug。如果下载时抛出了异常，也会调用success回调。<br>这里是在下载时记录目标文件的长度，在success回调中检查本地文件大小与这个长度是否一致。</p>
-<h2 id="限速下载"><a href="#限速下载" class="headerlink" title="限速下载"></a>限速下载</h2><p>在io流那里进行延时操作。用Thread.sleep方法。<br>阻塞的是socket的操作。</p>
-<h2 id="下载安装apk"><a href="#下载安装apk" class="headerlink" title="下载安装apk"></a>下载安装apk</h2><p>下载了新版本apk后，调用代码进行安装。根据手机系统版本的不同选择不同的安装方式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title function_">installApk</span><span class="params">(Context context,String downloadApk)</span> &#123;</span><br><span class="line">    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Intent.ACTION_VIEW);</span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(downloadApk);</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</span><br><span class="line">        <span class="type">Uri</span> <span class="variable">apkUri</span> <span class="operator">=</span> FileProvider.getUriForFile(context, <span class="string">&quot;com.iNTGO.nndc.fileprovider&quot;</span>, file);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|</span><br><span class="line">                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line">        intent.setDataAndType(apkUri, <span class="string">&quot;application/vnd.android.package-archive&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.fromFile(file);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">        intent.setDataAndType(uri, <span class="string">&quot;application/vnd.android.package-archive&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    context.startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于小米4c android 5.1.1（API 22），如果把apk放在app内部存储，packageInstaller是无法安装的。要把apk放在公共存储中才能安装。</p>
-<h2 id="修改Android系统镜像（img）"><a href="#修改Android系统镜像（img）" class="headerlink" title="修改Android系统镜像（img）"></a>修改Android系统镜像（img）</h2><p>装一个VMware Workstation Pro，下载一个Ubuntu 16的镜像（iso）。用的是阿里云的资源，比较快。<br>一系列的mount，打包后，刷机一直不成功。找到个ROM助手，尝试一下。修改了system.img后，线刷进去，卡米（卡在开机的MI logo界面）。<br>查一下发现，是selinux处于enforcing状态，没法装。小米4c用的是MIUI8，商家说没法root。MiUI7可以root。<br>还没找到非root情况下关闭selinux的方法。</p>
-<h2 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h2><p>加一些动效会让界面更加生动有活力。</p>
-<h3 id="属性动画-星星飞行"><a href="#属性动画-星星飞行" class="headerlink" title="属性动画 - 星星飞行"></a>属性动画 - 星星飞行</h3><p>控制星星飞入，定位，飞出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">flyInTime</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">stayTime</span> <span class="operator">=</span> <span class="number">520</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">flyOutTime</span> <span class="operator">=</span> <span class="number">250</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">totalTime</span> <span class="operator">=</span> flyInTime + stayTime + flyOutTime;</span><br><span class="line">        binding.starIv.setX(inX);</span><br><span class="line">        binding.starIv.setY(yStay);</span><br><span class="line">        binding.starIv.setVisibility(View.VISIBLE);</span><br><span class="line">        setStarIvSize(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">final</span> <span class="type">ValueAnimator</span> <span class="variable">animator</span> <span class="operator">=</span> ValueAnimator.ofInt(<span class="number">1</span>, totalTime);</span><br><span class="line">        animator.setDuration(totalTime);</span><br><span class="line">        animator.setInterpolator(<span class="keyword">new</span> <span class="title class_">AccelerateInterpolator</span>());</span><br><span class="line">        animator.addUpdateListener(<span class="keyword">new</span> <span class="title class_">ValueAnimator</span>.AnimatorUpdateListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onAnimationUpdate</span><span class="params">(ValueAnimator valueAnimator)</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> (<span class="type">int</span>) valueAnimator.getAnimatedValue();</span><br><span class="line">                <span class="type">ImageView</span> <span class="variable">starIv</span> <span class="operator">=</span> binding.starIv;</span><br><span class="line">                <span class="keyword">if</span> (value &lt; flyInTime) &#123;</span><br><span class="line">                    <span class="type">float</span> <span class="variable">inProgress</span> <span class="operator">=</span> value / (<span class="number">1.0f</span> * flyInTime);</span><br><span class="line">                    <span class="type">float</span> <span class="variable">x</span> <span class="operator">=</span> inProgress * (xStay - inX) + inX;</span><br><span class="line">                    <span class="type">float</span> y;</span><br><span class="line">                    <span class="keyword">if</span> (value &lt; flyInTime / <span class="number">2</span>) &#123;</span><br><span class="line">                        y = yStay + <span class="number">20</span> - inProgress * <span class="number">60</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        y = yStay - <span class="number">20</span> + inProgress * <span class="number">60</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    starIv.setX(x);</span><br><span class="line">                    starIv.setY(y);</span><br><span class="line">                    setStarIvSize((<span class="type">int</span>) (mStarIvOriginWid * (inProgress)), (<span class="type">int</span>) (mStarIvOriginHeight * (inProgress)));</span><br><span class="line"><span class="comment">//                    Log.d(TAG, &quot;onAnimationUpdate: value: &quot; + value + &quot;, progress: &quot; + inProgress + &quot;, x: &quot; + x);</span></span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value &lt; flyInTime + stayTime) &#123;</span><br><span class="line">                    starIv.setX(xStay);</span><br><span class="line">                    starIv.setY(yStay);</span><br><span class="line">                    setStarIvSize(mStarIvOriginWid, mStarIvOriginHeight);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (valueAnimator.isRunning()) &#123;</span><br><span class="line">                        <span class="type">float</span> <span class="variable">progress</span> <span class="operator">=</span> (value - flyInTime - stayTime) / (<span class="number">1.0f</span> * flyOutTime);</span><br><span class="line">                        starIv.setX(xStay + (progress * Math.abs(endX - xStay)));</span><br><span class="line">                        starIv.setY(yStay - (progress * Math.abs(endY - yStay)));</span><br><span class="line">                        setStarIvSize((<span class="type">int</span>) (mStarIvOriginWid * (<span class="number">1</span> - progress)), (<span class="type">int</span>) (mStarIvOriginHeight * (<span class="number">1</span> - progress)));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (value &gt;= totalTime - <span class="number">10</span>) &#123;</span><br><span class="line">                    binding.starIv.setVisibility(View.GONE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        animator.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 改变星星ImageView的大小，LayoutParams不能弄错了</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">setStarIvSize</span><span class="params">(<span class="type">int</span> wid, <span class="type">int</span> height)</span> &#123;</span><br><span class="line">        RelativeLayout.<span class="type">LayoutParams</span> <span class="variable">lp</span> <span class="operator">=</span> (RelativeLayout.LayoutParams) binding.starIv.getLayoutParams();</span><br><span class="line">        lp.width = wid;</span><br><span class="line">        lp.height = height;</span><br><span class="line">        binding.starIv.setLayoutParams(lp);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>如果一个View在LinearLayout里，它的坐标没有那么容易获取。</p>
-<p>下面的代码获取到的坐标是[0,0]。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">imageView.post(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] location = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line">        imageView.getLocationOnScreen(location);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/transitions/custom-transitions">创建自定义过渡动画 - Google</a><br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/animation/layout.html">自动为布局更新添加动画 - Google</a></p>
-<h2 id="退出App"><a href="#退出App" class="headerlink" title="退出App"></a>退出App</h2><p>在登录界面，点击返回键即退出整个App。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">mExitApp</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onBackPressed</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onBackPressed();</span><br><span class="line">        mExitApp = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onDestroy();</span><br><span class="line">        <span class="keyword">if</span> (mExitApp) &#123;</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="crash"><a href="#crash" class="headerlink" title="crash"></a>crash</h2><p>为了提高程序的健壮性，很多时候并不能过于相信服务器返回的结果。该加判空就判空。<br>如果服务器返回空的数据或者字段，要有对应的措施。</p>
-<h3 id="gc超时"><a href="#gc超时" class="headerlink" title="gc超时"></a>gc超时</h3><p>该异常表示调用超时。</p>
-<p>解决方案：一般是系统在gc时，调用对象的finalize超时导致</p>
-<p>解决办法：<br>1.检查分析finalize的实现为什么耗时较高，修复它；<br>2.检查日志查看GC是否过于频繁，导致超时，减少内容开销，防止内存泄露。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android.content.res.XmlBlock$Parser.finalize() timed out after 10 seconds</span><br><span class="line"></span><br><span class="line">android.content.res.AssetManager.xmlBlockGone(AssetManager.java:500)</span><br><span class="line"></span><br><span class="line">android.content.res.AssetManager.xmlBlockGone(AssetManager.java:500)</span><br><span class="line">android.content.res.XmlBlock.decOpenCountLocked(XmlBlock.java:63)</span><br><span class="line">android.content.res.XmlBlock.access$1600(XmlBlock.java:34)</span><br><span class="line">android.content.res.XmlBlock$Parser.close(XmlBlock.java:448)</span><br><span class="line">android.content.res.XmlBlock$Parser.finalize(XmlBlock.java:454)</span><br><span class="line">java.lang.Daemons$FinalizerDaemon.doFinalize(Daemons.java:191)</span><br><span class="line">java.lang.Daemons$FinalizerDaemon.run(Daemons.java:174)</span><br><span class="line">java.lang.Thread.run(Thread.java:818)</span><br></pre></td></tr></table></figure>
-<h3 id="RuntimeException-Cannot-create-an-instance-of-class"><a href="#RuntimeException-Cannot-create-an-instance-of-class" class="headerlink" title="RuntimeException: Cannot create an instance of class"></a>RuntimeException: Cannot create an instance of class</h3><p>使用了MVVM的框架，创建viewModel时报错。检查发现忘记复写方法<code>initViewModel</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> MyViewModel <span class="title function_">initViewModel</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">MyAppViewModelFactory</span> <span class="variable">factory</span> <span class="operator">=</span> MyAppViewModelFactory.getInstance(getApplication());</span><br><span class="line">    <span class="keyword">return</span> ViewModelProviders.of(<span class="built_in">this</span>, factory).get(MyViewModel.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="ANR"><a href="#ANR" class="headerlink" title="ANR"></a>ANR</h2><h3 id="死循环导致的ANR"><a href="#死循环导致的ANR" class="headerlink" title="死循环导致的ANR"></a>死循环导致的ANR</h3><p>之前业务逻辑中，有一个随机添加不重复字符串的功能。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (needCheckList.size() &lt; <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">rd</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">String</span> <span class="variable">word</span> <span class="operator">=</span> wordList.get(rd.nextInt(wordList.size()));</span><br><span class="line">    <span class="keyword">if</span>(!needCheckList.contains(word)) &#123;</span><br><span class="line">        needCheckList.add(word);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// .....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这段代码的效率不高。伪随机数不能保证高效地不重复地取到新的下标。<br>在某些性能较差的手机上，陷入多次循环后有可能导致anr。 anr message 表明此时CPU占用率超过100%。<br>我们使用<code>Collections.shuffle(wordList);</code>来代替伪随机数，也能实现随机取出字符串的效果。提高健壮性。</p>
-<h2 id="gradle"><a href="#gradle" class="headerlink" title="gradle"></a>gradle</h2><p>想在Terminal里使用gradlew命令，还得先在电脑上安装jdk。<br>现在（2019-11-18）想在官网下载个jdk，还得登录oracle账号。网速很慢，去别的地方下载jdk-8u181-windows-x64。</p>
-<h3 id="多渠道自动打包"><a href="#多渠道自动打包" class="headerlink" title="多渠道自动打包"></a>多渠道自动打包</h3><p>假设我们有很多种渠道，每个渠道的<code>manifestPlaceholders</code>的内容都不同。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">productFlavors &#123;</span><br><span class="line">    xxx &#123;</span><br><span class="line">        manifestPlaceholders = [XX_ID  : <span class="string">&quot;123&quot;</span>,</span><br><span class="line">                                XX_KEY : <span class="string">&quot;key_key&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>之前渠道少的时候，可以点击gradle task一个个来打包。<br>现在渠道种类多了（比如二十多个），再一个个点击就很累。想要一键打包或者一行命令打包，有什么成熟好用的多渠道打包方式呢？<br>我们尝试了<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/walle">美团点评的walle</a>，号称是<code>Android Signature V2 Scheme签名下的新一代渠道包打包神器</code>。<br>试着接入walle的姿势可能不对，打包不成功。此时看到有人说<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/walle/issues/312">不支持多渠道不同的包名和配置manifestPlaceholders</a>，暂时先不使用walle。</p>
-<p>已经使用了Bugly，有很多形如<code>assembleXxxRelease</code>的任务。<br>我们可以在终端命令行里执行gradlew命令来打包。<br>Windows环境下就是<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew assembleXxxRelease</span><br></pre></td></tr></table></figure></p>
-<p>那么写一个bat脚本，把这几十个渠道包按顺序一个个打包出来。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew assembleXxxRelease &amp;&amp; gradlew assembleYyyRelease &amp;&amp; gradlew assembleZzzRelease</span><br></pre></td></tr></table></figure><br>这个方法非常“暴力”，仅仅是替代了手动执行的过程。</p>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="BindingCommand-问题"><a href="#BindingCommand-问题" class="headerlink" title="BindingCommand 问题"></a>BindingCommand 问题</h3><p>由于历史原因，App使用了一个MVVM框架。layout中可以绑定BindingCommand。<br>不知道是不是开发姿势不对，快速点击某个按钮时，对应的<code>BindingCommand</code>并不能立即响应。连续点击会错过点击事件。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">BindingCommand</span> <span class="variable">myCommand</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BindingCommand</span>(<span class="keyword">new</span> <span class="title class_">BindingAction</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// my logic</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>而换用<code>setOnClickListener</code>可以立刻监听到每一个点击事件。<br>为了追求响应速度，在某些地方采用设置监听器的方式了。</p>
-<h2 id="界面UI"><a href="#界面UI" class="headerlink" title="界面UI"></a>界面UI</h2><h3 id="android-跑马灯重复抖动的解决方法"><a href="#android-跑马灯重复抖动的解决方法" class="headerlink" title="android 跑马灯重复抖动的解决方法"></a>android 跑马灯重复抖动的解决方法</h3><p>解决的方法，在跑马灯控件外层，再嵌套一个布局控件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_weight</span>=<span class="string">&quot;55&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">com.rustfisher.view.MarqueeTextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:ellipsize</span>=<span class="string">&quot;marquee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:focusable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:focusableInTouchMode</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxWidth</span>=<span class="string">&quot;150dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:singleLine</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;10sp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="EditText划词选词弹出菜单"><a href="#EditText划词选词弹出菜单" class="headerlink" title="EditText划词选词弹出菜单"></a>EditText划词选词弹出菜单</h3><p>et可选，弹出了系统的菜单。</p>
-<p>et不可选，弹出了自定义的菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">registerForContextMenu(mEt);</span><br><span class="line">mEt.setOnCreateContextMenuListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnCreateContextMenuListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreateContextMenu</span><span class="params">(<span class="keyword">final</span> ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;onCreateContextMenu: selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd()); <span class="comment">// 都是0</span></span><br><span class="line">        getMenuInflater().inflate(R.menu.et_menu, menu);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>et可选，弹出了自定义菜单。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">mEt.setCustomSelectionActionModeCallback(genActionModeCallback1());</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> ActionMode.Callback <span class="title function_">genActionModeCallback1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ActionMode</span>.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onCreateActionMode</span><span class="params">(ActionMode mode, Menu menu)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onCreateActionMode:&quot;</span></span><br><span class="line">                    + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onPrepareActionMode</span><span class="params">(ActionMode mode, Menu menu)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onPrepareActionMode: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            menu.clear();</span><br><span class="line">            mode.getMenuInflater().inflate(R.menu.et_menu, menu);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onActionItemClicked</span><span class="params">(ActionMode mode, MenuItem item)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onActionItemClicked: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">            mode.finish();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDestroyActionMode</span><span class="params">(ActionMode mode)</span> &#123;</span><br><span class="line">            Log.d(TAG, <span class="string">&quot;onDestroyActionMode: &quot;</span> + <span class="string">&quot; selected: &quot;</span> + mEt.getSelectionStart() + <span class="string">&quot;, &quot;</span> + mEt.getSelectionEnd());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>1+手机可以用，但小米手机无法弹出自定义菜单。此法不能通用。</p>
-<h3 id="竖直的进度条"><a href="#竖直的进度条" class="headerlink" title="竖直的进度条"></a>竖直的进度条</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3926395/android-set-a-progressbar-to-be-a-vertical-bar-instead-of-horizontal">https://stackoverflow.com/questions/3926395/android-set-a-progressbar-to-be-a-vertical-bar-instead-of-horizontal</a></p>
-<h3 id="获取statusbar高度"><a href="#获取statusbar高度" class="headerlink" title="获取statusbar高度"></a>获取statusbar高度</h3><p>在Activity中获取DecorView。通过DecorView的位置来判断statusBar的高度。Activity别设置成全屏的就好。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">getStatusBarHeight</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Rect</span> <span class="variable">rectangle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Rect</span>();</span><br><span class="line">    <span class="type">Window</span> <span class="variable">window</span> <span class="operator">=</span> getWindow();</span><br><span class="line">    window.getDecorView().getWindowVisibleDisplayFrame(rectangle);</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;getStatusBarHeight: &quot;</span> + rectangle.top);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>让statusbar不占位置，并设置成透明背景。<br>底下的虚拟系统按键（Home，back，menu）不能受影响。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentStatus&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentNavigation&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:statusBarColor&quot;</span>&gt;</span>@android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="drawable-vector-assets"><a href="#drawable-vector-assets" class="headerlink" title="drawable - vector assets"></a>drawable - vector assets</h3><p>通过引入svg文件得到的drawable，layout中直接设置src使用drawable。小米4c和红米6A手机屏幕上图像错乱。<br>改变ImageView的大小不起作用。清楚as缓存也不起作用。</p>
-<p>如果不在layout中设置，而是在代码中<code>setImageResource</code>则显示正常。</p>
-<h3 id="设计界面"><a href="#设计界面" class="headerlink" title="设计界面"></a>设计界面</h3><p>去花瓣网上找灵感。<br>比如设计列表界面，可以给每个项目增加一个小背景。可以是颜色，可以是背景图。</p>
-<h2 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h2><h3 id="设计接口获取数据"><a href="#设计接口获取数据" class="headerlink" title="设计接口获取数据"></a>设计接口获取数据</h3><p>项目里用OKHttp框架来进行网络请求。返回结果被转化成对象<code>Entity</code>。<br>同一个服务器返回里装有相同结构的A,B,C对象。它们的名字不一样，GsonFormat的时候是分开成3个类的。<br>为了让代码更简洁，把这3个对象进行抽象。<br>一开始是做了一个抽象类，让这3个类继承。但是OKHttp那边会报错。</p>
-<p>然后改用了接口的方式。设计的接口里有一些通用方法。在<code>Entity</code>里让那3个类都实现这个接口，然后在方法中返回我们要的数据。</p>
-<h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><h3 id="资源分配"><a href="#资源分配" class="headerlink" title="资源分配"></a>资源分配</h3><p>AsyncTask背后有一个线程池。调用了<code>execute()</code>并不能保证任务立刻被执行。<br>换用Thread。</p>
-<h2 id="App设置"><a href="#App设置" class="headerlink" title="App设置"></a>App设置</h2><h3 id="分屏设置"><a href="#分屏设置" class="headerlink" title="分屏设置"></a>分屏设置</h3><p>如果不进行设置，默认是允许分屏的。这里我们把分屏给禁止。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android:networkSecurityConfig=&quot;@xml/network_security_config&quot;</span><br><span class="line">android:resizeableActivity=&quot;false&quot;</span><br></pre></td></tr></table></figure></p>
-<p>添加在application标签里。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.app.MyApplication&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:networkSecurityConfig</span>=<span class="string">&quot;@xml/network_security_config&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h2><h3 id="系统App"><a href="#系统App" class="headerlink" title="系统App"></a>系统App</h3><p>把apk放进root后的手机里，当做是系统app。</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">F:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">root</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">remount</span></span></span><br><span class="line"><span class="function"><span class="title">remount</span> <span class="title">succeeded</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">mkdir</span> /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 644 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">MyApp.apk</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">lib</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">chmod</span> 755 /<span class="title">system</span>/<span class="title">priv</span>-<span class="title">app</span>/<span class="title">MyApp</span>/<span class="title">lib</span>/<span class="title">arm</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">sync</span></span></span><br><span class="line"><span class="function"><span class="title">F</span>:\<span class="title">IE</span>\<span class="title">MyApp0826</span>\<span class="title">app</span>\<span class="title">libs</span>&gt;<span class="title">adb</span> <span class="title">shell</span> <span class="title">reboot</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="范围内随机数"><a href="#范围内随机数" class="headerlink" title="范围内随机数"></a>范围内随机数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Random</span> <span class="variable">rand</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>(seed);</span><br><span class="line"><span class="type">int</span> <span class="variable">random_integer</span> <span class="operator">=</span> rand.nextInt(upperbound-lowerbound) + lowerbound;</span><br></pre></td></tr></table></figure>
-<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h3 id="Handler与单例"><a href="#Handler与单例" class="headerlink" title="Handler与单例"></a>Handler与单例</h3><p>单例模式加上Handler。有人把handler直接交给单例。长生命周期的一直持有短生命周期的对象，没法回收造成内存泄漏。</p>
-<p>viewModel中有一个handler，而handler被单例持有。handler是直接实例化的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aHandler = <span class="keyword">new</span> <span class="title class_">Handler</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> &#123;</span><br><span class="line">        handleResult(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>handleResult方法中使用了viewModel的数据列表。</p>
-<p>这样在新建一个viewModel的时候，单例持有旧的handler，handler持有的还是旧的那个数据列表。<br>内存中就有2份不一样的数据列表。</p>
-<p>修复方案：<br>首先不能让单例持有这个handler。<br>其次退出viewModel的时候，把handler中的消息清空。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/8/">上一页</a></div><div class="pagination-next"><a href="/page/10/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link is-current" href="/page/9/">9</a></li><li><a class="pagination-link" href="/page/10/">10</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/18/">18</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/big/banner1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RustFisher的自留地。技术学习与实践，一些开发记录，读书笔记"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/07/01/Python/Python-scan-file/" target="_self">
+          Python 查看目录中的文件
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/07/01/Python/Python-scan-file/" target="_self">
+        <div>
+          一些关于文件的操作例如，实现查看目录内容的功能。类似Linux下的tree命令。统计目录下指定后缀文件的行数。 功能是将目录下所有的文件路径存入list中。可以加入后缀判断功能，搜索指定的后缀名文件。主要利用递归的方法来检索文件。 仿造 tree 功能示例代码 Python2.7  列出目录下所有文件递归法123456789101112131415161718192021import osdef
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-07-01 21:47" pubdate>
+              2017-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/06/22/Android/Android-AsyncTask_use_and_RTFSC/" target="_self">
+          Android AsyncTask 使用与分析
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/06/22/Android/Android-AsyncTask_use_and_RTFSC/" target="_self">
+        <div>
+          简单介绍Android中的AsyncTask，并从源码角度分析它的流程和特点。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-06-22 22:13" pubdate>
+              2017-06-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Thread/">#Thread</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/06/09/Android/Android-IntentService-intro1/" target="_self">
+          Android IntentService 分析和用法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/06/09/Android/Android-IntentService-intro1/" target="_self">
+        <div>
+          实用性介绍。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-06-09 23:49" pubdate>
+              2017-06-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android-service/">#Android_service</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/06/07/Android/Android-Handler_src_note/" target="_self">
+          Android Handler，Looper 与 MessageQueue 使用与分析
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/06/07/Android/Android-Handler_src_note/" target="_self">
+        <div>
+          从源码角度分析Handler。有利于使用Handler和分析Handler的相关问题。认识Looper与Handler的关系。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-06-07 23:23" pubdate>
+              2017-06-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android%E6%BA%90%E7%A0%81/">#Android源码</a>
+            
+              <a href="/tags/Handler/">#Handler</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/25/Python/Python-mysql_use/" target="_self">
+          Python 操作 MySQL
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/05/25/Python/Python-mysql_use/" target="_self">
+        <div>
+          本文链接Python 操作 MySQL 开发环境与配置  win_x64 Ubuntu14.04 Python3.x  pip安装pymysql模块直接使用pip安装 pip install pymysqlwin64上直接在cmd中执行 连接本地数据库使用模块pymysql连接数据库本地数据库相关配置请参阅：   https://rustfisher.com/2019/02/26/Database
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-25 22:31" pubdate>
+              2017-05-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/05/Python/Python-dictionary-JSON-file/" target="_self">
+          Python3 Dictionary与JSON
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/05/05/Python/Python-dictionary-JSON-file/" target="_self">
+        <div>
+          JSON与Dictionary简介 Python3 PyCharm CE  JSON简介JSON(JavaScript Object Notation)是一种轻量级的数据交换格式。它是一种文本格式。它的结构主要由键值对来构成。一个键（key）对应一个值（value）。最外围用大括号&#123; &#125;包围起来。例如1234&#123;    &quot;firstName&quot;: &q
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-05 21:09" pubdate>
+              2017-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/04/29/Python/Python-pip-solution/" target="_self">
+          pip 相关
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/04/29/Python/Python-pip-solution/" target="_self">
+        <div>
+          Ubuntu 14.04  pip 使用国内镜像源使用pip install 的时候总是出现read timeout 之类的错误 使用国内镜像  https://pypi.tuna.tsinghua.edu.cn/simple例如我要安装 scrapy1pip install -i https://pypi.tuna.tsinghua.edu.cn/simple scrapy 添加源的配置 Li
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-04-29 20:59" pubdate>
+              2017-04-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/03/26/DesignPattern/Adapter-Pattern/" target="_self">
+          适配器模式 Adapter Pattern - Java实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/03/26/DesignPattern/Adapter-Pattern/" target="_self">
+        <div>
+          定义将一个类的接口变换成客户端锁期待的另一种接口，从而使原本因接口不匹配而无法工作在一起的两个类能够在一起工作。也叫作变压器模式，亦称包装模式，但包装模式不止一个。简单而言，适配器模式就是把一个接口或类转换成其他的接口或类。 应用优点：  可以让没有任何关系的类在一起运行 增加了类的透明性 提高了类的复用度 灵活度好  注意事项：在详细阶段不要考虑适配器模式，它主要是用来解决正在服役的项目问题 代
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-03-26 15:35" pubdate>
+              2017-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Design-pattern/" class="category-chain-item">Design_pattern</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/03/16/Android/NDK-read_write_file/" target="_self">
+          Android NDK 读写文件
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/03/16/Android/NDK-read_write_file/" target="_self">
+        <div>
+          读写文件。进入Linux的世界，读写文件。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-03-16 21:01" pubdate>
+              2017-03-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NDK/">#NDK</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/02/25/Database/MySQL-use_add_del_check_update/" target="_self">
+          MySQL 增删查改
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/02/25/Database/MySQL-use_add_del_check_update/" target="_self">
+        <div>
+          环境： win7_x64， Navicat for MySQL 本文链接 操作数据库前面已经将MySQL服务跑起来了。  Mac安装MySQL Windows安装MySQL  现在我们以root身份进行MySQL操作进入MySQL1C:\Users\Administrator&gt;mysql -uroot -p 新建数据库12mysql&gt; create database samp_db1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-02-25 18:20" pubdate>
+              2017-02-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Database/" class="category-chain-item">Database</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,499 +1,1037 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:type" content="blog"><meta property="og:title" content="RustFisher的自留地"><meta property="og:url" content="https://blog.rustfisher.com/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:author" content="Rust Fisher"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com"},"headline":"RustFisher的自留地","image":["https://blog.rustfisher.com/img/og_image.png"],"author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"技术学习与实践，一些开发记录，读书笔记"}</script><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RustFisher的自留地">
+<meta property="og:url" content="https://blog.rustfisher.com/page/3/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/07/10/NestJS/nestjs-static-file/"><img class="fill" src="/img/nest-og.png" alt="NestJS 静态文件"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-07-10T10:09:18.000Z" title="2021/7/10 18:09:18">2021-07-10</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.997Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/NestJS/">NestJS</a></span><span class="level-item">5 分钟读完 (大约819个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/07/10/NestJS/nestjs-static-file/">NestJS 静态文件</a></p><div class="content"><p>为了提供静态资源，我们可以用<code>@nestjs/serve-static</code>包里的<code>ServeStaticModule</code>。<br>服务器上的静态资源，一般指的是文件，比如图片、音频、视频、文本文件或者二进制文件等等。</p>
-<p>或者是一些单页面应用程序(Single Page Application, SPA)。从服务器上请求得到网页，然后网页再执行自己的业务。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先我们需要安装<code>@nestjs/serve-static</code>包。<br>在工程路径下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save @nestjs/serve-static</span><br></pre></td></tr></table></figure></p>
-<p>安装完成后，工程的<strong>package.json</strong>里会多出<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;@nestjs/serve-static&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.1.4&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在root <code>AppModule</code>中，引入<code>ServeStaticModule</code>模块。</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ServeStaticModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/serve-static&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">  <span class="title class_">ServeStaticModule</span>.<span class="title function_">forRoot</span>(&#123;</span><br><span class="line">    <span class="attr">rootPath</span>: <span class="title function_">join</span>(__dirname, <span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;rustfisherData&#x27;</span>),</span><br><span class="line">    <span class="attr">exclude</span>: [<span class="string">&#x27;/api*&#x27;</span>],</span><br><span class="line">  &#125;),],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppModule</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
-<p><code>imports</code>里添加了<code>ServeStaticModule</code>模块。需要用到<code>ServeStaticModule.forRoot</code>方法。</p>
-<ul>
-<li><code>rootPath</code> 指定了静态文件的根目录</li>
-<li><code>exclude</code> 表明排除在外的文件和目录</li>
-</ul>
-<h3 id="路径说明"><a href="#路径说明" class="headerlink" title="路径说明"></a>路径说明</h3><p>我们关心的是，服务器上哪个目录可以让客户端访问，哪个目录是不开放的。</p>
-<p><code>__dirname</code> 获取到的是当前目录的路径。<br>使用<code>join()</code>方法，拼接出一个新的路径。</p>
-<p>工程编译出来的文件放在<code>dist</code>目录中。<code>app.module.js</code>文件也在里面。<br>此时<code>__dirname</code>表示的是<code>dist</code>目录的路径。<br>那么<code>join(__dirname, &#39;..&#39;, &#39;rustfisherData&#39;)</code>得到的路径就是与<code>dist</code>目录同级的<code>rustfisherData</code>。</p>
-<p>假设我们服务器上运行目录是<code>/home/rustfisher/server/rf-server-nest/dist</code><br>那么静态文件存放的目录就是<code>/home/rustfisher/server/rf-server-nest/rustfisherData</code></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><code>ServeStaticModule</code>提供了丰富的自定义控制。开发者可以自定义它的行为。<br>比如像前面那样设置静态文件根目录<code>rootPath</code>；设置排除的路径<code>exclude</code>。</p>
-<p>GitHub上有<a target="_blank" rel="noopener" href="https://github.com/nestjs/serve-static/blob/master/lib/interfaces/serve-static-options.interface.ts">详细配置</a></p>
-<blockquote>
-<p><strong>注意</strong><br>访问目录时，默认会找<code>index.html</code>文件发送回去。后文会有更多说明。</p>
-</blockquote>
-<h2 id="客户端访问"><a href="#客户端访问" class="headerlink" title="客户端访问"></a>客户端访问</h2><p>假设服务部署好了（并不是真实项目），网址是 <a target="_blank" rel="noopener" href="https://rustfisher.com">https://rustfisher.com</a> 。部署好服务后，我们测试一下。</p>
-<p>打开浏览器，访问url： <a target="_blank" rel="noopener" href="https://rustfisher.com/some/path/to/img/11.jpg">https://rustfisher.com/some/path/to/img/11.jpg</a><br>可以在网页上看到图片（并不是真实项目）。</p>
-<p>如果访问一个不存在的路径（文件），它会返回一个默认的<code>index.html</code>。如果没有这个文件，则会报一个ENOENT错误信息<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Nest] 32378   - 07/10/2021, 8:15:00 PM   [ExceptionsHandler] ENOENT: no such file or directory, </span><br><span class="line">stat &#x27;/home/rustfisher/server/rf-server-nest/rustfisherData/index.html&#x27; +234539ms</span><br></pre></td></tr></table></figure></p>
-<p>不想让它报这个错，我们可以自己弄一个<code>index.html</code>文件放到对应路径上。<br>这样做的话，访问目录或者不存在的文件会默认返回<code>index.html</code>文件。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>提供访问静态文件的功能比较常见。客户端使用一个url，就能访问服务器上的文件。<br>现在很常见的做法是把文件放在CDN上，减轻服务器的io压力和网络压力。<br>在Linux服务器上，nginx和同类的服务也能轻松实现类似的提供静态文件的功能。</p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/07/09/MongoDB/mongodb-install-deploy/"><img class="fill" src="/img/mongodb-cover1.jpg" alt="MongoDB安装和部署"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-07-09T14:59:01.000Z" title="2021/7/9 22:59:01">2021-07-09</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.999Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/MongoDB/">MongoDB</a></span><span class="level-item">7 分钟读完 (大约1047个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/07/09/MongoDB/mongodb-install-deploy/">MongoDB安装和部署</a></p><div class="content"><p>MongoDB的版本可以在官网 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/installation/">https://docs.mongodb.com/manual/installation/</a> 上查询。</p>
-<p>我们使用的是社区版。</p>
-<h2 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h2><p>目前用mac来开发，需要在本地安装运行一个mongdb，便于测试调试。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>mac上安装mongodb。在终端中用brew来安装速度有点太慢了。</p>
-<p>我们去 <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/enterprise">https://www.mongodb.com/try/download/enterprise</a> 下载一个mac使用的版本。<br>在网页右侧选择mongodb版本（这里选的是4.4.4），Platform选择macOS，压缩格式选tgz即可。<br>点击Download需要填一些资料。填好后确认Submit即可。下载后解压文件，得到一个文件夹。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mongodb-macos-x86_64-enterprise-4.4.6</span><br><span class="line">├── LICENSE-Enterprise.txt</span><br><span class="line">├── MPL-2</span><br><span class="line">├── README</span><br><span class="line">├── THIRD-PARTY-NOTICES</span><br><span class="line">├── bin</span><br><span class="line">│   ├── install_compass</span><br><span class="line">│   ├── mongo</span><br><span class="line">│   ├── mongocryptd</span><br><span class="line">│   ├── mongod</span><br><span class="line">│   ├── mongodecrypt</span><br><span class="line">│   ├── mongokerberos</span><br><span class="line">│   ├── mongoldap</span><br><span class="line">│   └── mongos</span><br><span class="line">└── snmp</span><br><span class="line">    ├── MONGOD-MIB.txt</span><br><span class="line">    ├── MONGODBINC-MIB.txt</span><br><span class="line">    ├── README-snmp.txt</span><br><span class="line">    ├── mongod.conf.master</span><br><span class="line">    └── mongod.conf.subagent</span><br></pre></td></tr></table></figure>
-<p>我们将这个目录复制到<code>/usr/local/mongo</code>中，需要用到管理员权限。</p>
-<p>修改<code>~/.bash_profile</code>，添加如下命令。即mongo的目录添加到环境变量中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mongo db</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/mongo/bin</span><br></pre></td></tr></table></figure></p>
-<p>此时可以重启命令行（终端）。</p>
-<p>检查版本<code>mongod --version</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">~ $ mongod --version</span><br><span class="line">db version v4.4.4</span><br><span class="line">Build Info: &#123;</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;4.4.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;gitVersion&quot;</span>: <span class="string">&quot;8db30a63db1a9d84bdcad0c83369623f708e0397&quot;</span>,</span><br><span class="line">    <span class="string">&quot;modules&quot;</span>: [],</span><br><span class="line">    <span class="string">&quot;allocator&quot;</span>: <span class="string">&quot;system&quot;</span>,</span><br><span class="line">    <span class="string">&quot;environment&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;distarch&quot;</span>: <span class="string">&quot;x86_64&quot;</span>,</span><br><span class="line">        <span class="string">&quot;target_arch&quot;</span>: <span class="string">&quot;x86_64&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>能看到版本说明mongodb安装完成。</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>Mac上启动。我们可以指定数据库路径<code>--dbpath</code>和log位置<code>--logpath</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mongod --dbpath /Users/rustfisher/.mongodb/data --logpath /Users/rustfisher/.mongodb/log/mongodb1.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
-<p>如果不用<code>sudo</code>，可能会报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: child process failed, exited with 14</span><br></pre></td></tr></table></figure></p>
-<p>后台启动，需要加上<code>--fork</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mongod --dbpath /Users/rustfisher/.mongodb/data --logpath /Users/rustfisher/.mongodb/log/mongodb1.<span class="built_in">log</span> --port 1993 --fork</span><br><span class="line">about to fork child process, waiting until server is ready <span class="keyword">for</span> connections.</span><br><span class="line">forked process: 7580</span><br><span class="line">child process started successfully, parent exiting</span><br></pre></td></tr></table></figure></p>
-<p>查询mongo进程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps aux | grep mong</span><br><span class="line">rustfisher        7608   0.0  0.0  4268424    732 s003  S+    7:45下午   0:00.00 grep mong</span><br><span class="line">root              7580   0.0  0.2  5548488  27868   ??  S     7:44下午   0:01.02 mongod --dbpath /Users/rustfisher/.mongodb/data --logpath /Users/rustfisher/.mongodb/log/mongodb1.<span class="built_in">log</span> --fork</span><br></pre></td></tr></table></figure></p>
-<h2 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h2><p>我们的服务器一般是Linux。接下来在Ubuntu上安装运行mongodb。</p>
-<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>Ubuntu上安装mongodb比较简单，用<code>apt-get</code>命令。</p>
-<p>先upadate一次<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
-<p>然后装上4.4.4版本的mongodb<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y mongodb-org=4.4.4 mongodb-org-server=4.4.4 mongodb-org-shell=4.4.4 mongodb-org-mongos=4.4.4 mongodb-org-tools=4.4.4</span><br></pre></td></tr></table></figure></p>
-<p>等它装完后，看一下版本号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">~$ mongod --version</span><br><span class="line">db version v4.4.4</span><br><span class="line">Build Info: &#123;</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;4.4.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;gitVersion&quot;</span>: <span class="string">&quot;8db30a63db1a9d84bdcad0c83369623f708e0397&quot;</span>,</span><br><span class="line">    <span class="string">&quot;openSSLVersion&quot;</span>: <span class="string">&quot;OpenSSL 1.0.2g  1 Mar 2016&quot;</span>,</span><br><span class="line">    <span class="string">&quot;modules&quot;</span>: [],</span><br><span class="line">    <span class="string">&quot;allocator&quot;</span>: <span class="string">&quot;tcmalloc&quot;</span>,</span><br><span class="line">    <span class="string">&quot;environment&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;distmod&quot;</span>: <span class="string">&quot;ubuntu1604&quot;</span>,</span><br><span class="line">        <span class="string">&quot;distarch&quot;</span>: <span class="string">&quot;x86_64&quot;</span>,</span><br><span class="line">        <span class="string">&quot;target_arch&quot;</span>: <span class="string">&quot;x86_64&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以发现，这里的gitVersion和前面用mac装的是一样的。<br>一些关于Linux的操作笔记，可以访问 <a target="_blank" rel="noopener" href="https://rustfisher.com/tags/Linux/">https://rustfisher.com/tags/Linux/</a></p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>Ubuntu操作mongodb的<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/">官方文档</a></p>
-<p>默认的配置文件为 <code>/etc/mongod.conf</code></p>
-<p>把端口改为1993，服务器如果启用了防火墙，记得允许1993端口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 1993</span><br></pre></td></tr></table></figure><br>或者在云服务器控制台那里检查一些，是否开放了端口</p>
-<p>服务器使用的是<code>systemctl</code></p>
-<p>启动mongodb<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mongod</span><br></pre></td></tr></table></figure></p>
-<p>查看状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status mongod</span><br></pre></td></tr></table></figure></p>
-<p>重启<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart mongod</span><br></pre></td></tr></table></figure></p>
-<h2 id="MongoDB-Compasss"><a href="#MongoDB-Compasss" class="headerlink" title="MongoDB Compasss"></a>MongoDB Compasss</h2><p>前面我们已经安装好了mongodb，并且运行起来了。接下来我们找一个有图形化界面的软件来访问数据库。</p>
-<p>MongoDB Compass能让用户清晰地看到文档结构，执行查询，修改等等操作。</p>
-<p>在这里可以下载MongoDB Compasss <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/compass">https://www.mongodb.com/try/download/compass</a><br>这里我们使用mac下的1.25.0版本。</p>
-<p>连接到本地的数据库，在Compass中选择新建连接<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://127.0.0.1:1993/rustfisher-db?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false</span><br></pre></td></tr></table></figure><br>前面我们启动mongodb是在1993端口，连接的时候要注意端口号。</p>
-<p><code>127.0.0.1</code>是我们本地的ip，如果要连接到服务器的mongodb，一般可以直接用服务器ip来连接。</p>
-<p>例如服务器公网ip是<code>1.2.3.4</code>，端口是<code>1993</code><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://1.2.3.4:1993/rustfisher-db?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false</span><br></pre></td></tr></table></figure></p>
-<p>连上mongodb后，就可以自由地进行操作了。</p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/28/Python/Python-op-draw-funnel-1/"><img class="fill" src="/img/meeting-1.jpg" alt="【运营的Python指南】绘制漏斗图"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-28T12:14:47.000Z" title="2021/6/28 20:14:47">2021-06-28</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:02.000Z" title="2023/4/9 14:26:02">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">13 分钟读完 (大约1915个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/28/Python/Python-op-draw-funnel-1/">【运营的Python指南】绘制漏斗图</a></p><div class="content"><p>写给运营朋友的Python指南。</p>
-<p>漏斗图可对业务的各个关键环节进行描述，衡量各个环节的业务表现。可以非常直观地看到各个业务地转化程度。</p>
-<p>本文介绍使用Python从Excel中读取数据，使用pyecharts绘制漏斗图。</p>
-<h2 id="操作步骤说明"><a href="#操作步骤说明" class="headerlink" title="操作步骤说明"></a>操作步骤说明</h2><p>下面是操作的具体步骤。</p>
-<h3 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1.开发环境"></a>1.开发环境</h3><p>示例使用的IDE是PyCharm社区版，开发语言是Python3.x。</p>
-<p>在工程中，新建Python文件<code>demo_data_funnel.py</code>。然后在同级的位置新建一个<code>res</code>文件夹，后面用来存放文件。</p>
-<h3 id="2-准备数据"><a href="#2-准备数据" class="headerlink" title="2.准备数据"></a>2.准备数据</h3><p>创建一个Excel文件<code>事件demo.xlsx</code>。将表名改为<code>data3</code>。这个名字在代码中会用到。</p>
-<p>写入两列数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">事件	次数</span><br><span class="line">e1	10000</span><br><span class="line">e2	4695</span><br><span class="line">e3	2584</span><br><span class="line">e4	1295</span><br><span class="line">e5	954</span><br></pre></td></tr></table></figure><br>得到如下的表格：<br><img src="excel.png" alt=""></p>
-<p>与<code>demo_data_funnel.py</code>同级的地方新建了<code>res</code>文件夹，把Excel文件放进去。</p>
-<p><img src="proj.png" alt="Excel文件放的位置示意图"></p>
-<blockquote>
-<p>这里我们暂时用测试数据看效果。后面再填入你的真实数据。</p>
-</blockquote>
-<h3 id="3-编写脚本"><a href="#3-编写脚本" class="headerlink" title="3.编写脚本"></a>3.编写脚本</h3><p>现在开始写Python代码。<br><code>demo_data_funnel.py</code>完整的代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Funnel</span><br><span class="line"><span class="keyword">import</span> pyecharts.options <span class="keyword">as</span> opts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_in_data</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)</span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb[<span class="string">&#x27;data3&#x27;</span>]</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> row_index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, st.max_row + <span class="number">1</span>):</span><br><span class="line">        event_name = st.cell(row=row_index, column=<span class="number">1</span>).value</span><br><span class="line">        event_value = st.cell(row=row_index, column=<span class="number">2</span>).value</span><br><span class="line">        data_list.append([event_name, event_value])</span><br><span class="line">    <span class="built_in">print</span>(data_list)</span><br><span class="line">    <span class="keyword">return</span> data_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_default</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;800px&quot;</span>, height=<span class="string">&quot;400px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;默认样式&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_1.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_2</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;600px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;改变了label&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_2.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_3</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    data = input_data.copy()  <span class="comment"># 复制一份出来处理标题</span></span><br><span class="line">    base_value = data[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">        event_name = data[x][<span class="number">0</span>]</span><br><span class="line">        value = data[x][<span class="number">1</span>]  <span class="comment"># 拿到数值</span></span><br><span class="line">        ratio = value / base_value</span><br><span class="line">        event_name += <span class="string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(ratio * <span class="number">100</span>)</span><br><span class="line">        <span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">            event_name += <span class="string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(<span class="number">100</span> * value / data[x - <span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">        data[x][<span class="number">0</span>] = event_name</span><br><span class="line">        <span class="built_in">print</span>(event_name)</span><br><span class="line"></span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;800px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;修改了各项的标题&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_3.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    src_data = read_in_data(<span class="string">&#x27;res/事件demo.xlsx&#x27;</span>)</span><br><span class="line">    draw_funnel_default(src_data)</span><br><span class="line">    draw_funnel_2(src_data)</span><br><span class="line">    draw_funnel_3(src_data)</span><br></pre></td></tr></table></figure><br>把上面的代码复制进你的脚本里。<br>可能会需要装上<code>pyecharts</code>和<code>openpyxl</code>。用PyCharm的时候，可以点到报红线的地方，根据它的提示，把这2个库装上。</p>
-<p>运行代码，会得到3个html文件</p>
-<p><img src="proj-html.png" alt="输出的html文件"></p>
-<p>用浏览器打开这3个html就可以看到效果了。</p>
-<p>把你的数据填到那个Excel里，保存。然后运行代码即可。</p>
-<p>比如说把Excel里的事件改一下</p>
-<p><img src="excel-data2.png" alt="修改后的数据"></p>
-<p>运行代码，可以得到新的结果</p>
-<p><img src="demo2-f1.png" alt=""></p>
-<p>以上是简化流程，运营朋友照着做，一般都可以看到运行结果。下面我们来看一些细节。</p>
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><p>我们先准备一些测试数据。新建一个xlsx文件，填入测试数据。如下图：</p>
-<p><img src="excel.png" alt=""></p>
-<p>我们把数据放在了<code>data3</code>里。A列是事件名称，B列是次数。名称这里可以随意替换，可根据业务需求进行修改。<br>事件流程按照先后顺序，从上到下排列好。</p>
-<p>首先需要把数据从excel中读取出来。我们用openpyxl来操作。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_in_data</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)</span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb[<span class="string">&#x27;data3&#x27;</span>]</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> row_index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, st.max_row + <span class="number">1</span>):</span><br><span class="line">        event_name = st.cell(row=row_index, column=<span class="number">1</span>).value</span><br><span class="line">        event_value = st.cell(row=row_index, column=<span class="number">2</span>).value</span><br><span class="line">        data_list.append([event_name, event_value])</span><br><span class="line">    <span class="built_in">print</span>(data_list)</span><br><span class="line">    <span class="keyword">return</span> data_list</span><br></pre></td></tr></table></figure><br>将事件名和数据装到一个小的列表里<code>[event_name, event_value]</code>。<br>所有的事件放进一个大的列表，并返回。</p>
-<p>当然，从别的途径拿到数据也是可以的。</p>
-<h2 id="绘制漏斗图"><a href="#绘制漏斗图" class="headerlink" title="绘制漏斗图"></a>绘制漏斗图</h2><p>我们用<a target="_blank" rel="noopener" href="https://pyecharts.org/">pyecharts</a>来绘制漏斗图。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/ecomfe/echarts">Echarts</a> 是一个由百度开源的数据可视化，凭借着良好的交互性，精巧的图表设计，得到了众多开发者的认可。而 Python 是一门富有表达力的语言，很适合用于数据处理。当数据分析遇上数据可视化时，pyecharts 诞生了。</p>
-</blockquote>
-<p>pyecharts会输出html文件。</p>
-<h3 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h3><p>拿到数据后，我们把数据传给<strong>Funnel</strong>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Funnel</span><br><span class="line"><span class="keyword">import</span> pyecharts.options <span class="keyword">as</span> opts</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_default</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;800px&quot;</span>, height=<span class="string">&quot;400px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;默认样式&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_1.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    src_data = read_in_data(<span class="string">&#x27;res/事件demo.xlsx&#x27;</span>)</span><br><span class="line">    draw_funnel_default(src_data)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始配置里设定宽高 <code>InitOpts(width=&quot;800px&quot;, height=&quot;400px&quot;)</code></li>
-<li><code>input_data</code>就是我们前面获取的数据列表；将它传给<code>data_pair</code>，即<code>data_pair=input_data</code></li>
-<li>输出的网页文件名为<code>funnel_chart_1.html</code></li>
-<li><code>set_global_opts()</code>方法设置全局配置<ul>
-<li>标题设置 <code>title=&quot;漏斗图1&quot;</code></li>
-<li>副标题设置 <code>subtitle=&quot;默认样式&quot;</code></li>
-</ul>
-</li>
-</ul>
-<p>输出的html文件，用浏览器打开，如图：</p>
-<p><img src="demo-default.png" alt=""></p>
-<p>鼠标放上去会有小弹框提示（tooltip）</p>
-<p><a href="/art/py/op-funnel/funnel_chart_1.html">🔗 默认样式网页的链接</a></p>
-<h3 id="修改label"><a href="#修改label" class="headerlink" title="修改label"></a>修改label</h3><p>pyecharts开放了很多配置。我们可以修改一下每一项的标题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_2</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;600px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;改变了label&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_2.html&quot;</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
-<h4 id="formatter"><a href="#formatter" class="headerlink" title="formatter"></a>formatter</h4><ul>
-<li><code>&#123;a&#125;</code>是<code>series_name</code>，在这里是图表的名字</li>
-<li><code>&#123;b&#125;</code>是这一项的标题</li>
-<li><code>&#123;c&#125;</code>是这一项的数量</li>
-</ul>
-<p><code>tooltip_opts</code>和<code>label_opts</code>都会用到<code>formatter</code>。</p>
-<p><img src="f2.png" alt=""></p>
-<p><a href="/art/py/op-funnel/funnel_chart_2.html">🔗  浏览网页</a></p>
-<h3 id="自己计算转化率"><a href="#自己计算转化率" class="headerlink" title="自己计算转化率"></a>自己计算转化率</h3><p>为了显示出相对转化率和总体转化率。我们可以自己计算。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_3</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    data = input_data.copy()  <span class="comment"># 复制一份出来处理标题</span></span><br><span class="line">    base_value = data[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">        event_name = data[x][<span class="number">0</span>]</span><br><span class="line">        value = data[x][<span class="number">1</span>]  <span class="comment"># 拿到数值</span></span><br><span class="line">        ratio = value / base_value</span><br><span class="line">        event_name += <span class="string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(ratio * <span class="number">100</span>)</span><br><span class="line">        <span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">            event_name += <span class="string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(<span class="number">100</span> * value / data[x - <span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">        data[x][<span class="number">0</span>] = event_name</span><br><span class="line">        <span class="built_in">print</span>(event_name)</span><br><span class="line"></span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;800px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;修改了各项的标题&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_3.html&quot;</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
-<p>在for循环里计算转化率，并把结果写到事件的名称里。</p>
-<p><img src="f3.png" alt=""></p>
-<p><a href="/art/py/op-funnel/funnel_chart_3.html">🔗  浏览网页</a></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/25/Network/http-code/"><img class="fill" src="/img/http-1.jpeg" alt="HTTP状态码"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-25T14:17:06.000Z" title="2021/6/25 22:17:06">2021-06-25</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.999Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/HTTP/">HTTP</a></span><span class="level-item">6 分钟读完 (大约855个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/25/Network/http-code/">HTTP状态码</a></p><div class="content"><p>HTTP状态码被分成了5大类。本文对每一类常见的状态码进行总结。</p>
-<p>列出的是<code>HTTP/1.1</code>规范推荐使用的原因短语。</p>
-<h2 id="100-199-信息性状态码"><a href="#100-199-信息性状态码" class="headerlink" title="100~199 信息性状态码"></a>100~199 信息性状态码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">状态码</th>
-<th style="text-align:center">原因短语</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">(图文无关)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">100</td>
-<td style="text-align:center">Continue</td>
-<td style="text-align:left">说明收到了请求的初始部分，请客户端继续。</td>
-<td style="text-align:left"><img src="cat-100.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">101</td>
-<td style="text-align:center">Switching Protocols</td>
-<td style="text-align:left">说明服务器正在根据客户端的指定，将协议切换成Update首部所列的协议</td>
-<td style="text-align:left">*</td>
-</tr>
-</tbody>
-</table>
-<h2 id="200-299-成功状态码"><a href="#200-299-成功状态码" class="headerlink" title="200~299 成功状态码"></a>200~299 成功状态码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">状态码</th>
-<th style="text-align:center">原因短语</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">(图文无关)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">200</td>
-<td style="text-align:center">OK</td>
-<td style="text-align:left">OK</td>
-<td style="text-align:left"><img src="cat-200.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">201</td>
-<td style="text-align:center">Created</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-<tr>
-<td style="text-align:center">202</td>
-<td style="text-align:center">Accepted</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-<tr>
-<td style="text-align:center">203</td>
-<td style="text-align:center">Non-Authoritative Information</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-<tr>
-<td style="text-align:center">204</td>
-<td style="text-align:center">No Content</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-<tr>
-<td style="text-align:center">205</td>
-<td style="text-align:center">Reset Content</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-<tr>
-<td style="text-align:center">206</td>
-<td style="text-align:center">Partical Content</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">*</td>
-</tr>
-</tbody>
-</table>
-<h2 id="300-399-重定向状态码"><a href="#300-399-重定向状态码" class="headerlink" title="300~399 重定向状态码"></a>300~399 重定向状态码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">状态码</th>
-<th style="text-align:center">原因短语</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">(图文无关)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">300</td>
-<td style="text-align:center">Multiple Choices</td>
-<td style="text-align:left">客户端请求一个实际指向多个资源的URL时会返回这个状态码，比如服务器上有某个HTML文档的英语和法语版本。服务器可以在location首部包含首选URL。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">301</td>
-<td style="text-align:center">Moved Permanently</td>
-<td style="text-align:left">在请求的URL已被移除时使用。响应的Location首部中应该包含资源现在所处的URL。</td>
-<td style="text-align:left"><img src="man-301.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">302</td>
-<td style="text-align:center">Found</td>
-<td style="text-align:left">与301类似，但客户端应该使用Location首部给出的URL来临时定位资源。</td>
-<td style="text-align:left"><img src="man-302.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">304</td>
-<td style="text-align:center">Not Modified</td>
-<td style="text-align:left">有条件的首部。如果客户端发起了一个条件GET请求，而最近资源未被修改，就可以用这个状态码来说没资源未被修改。带有这个状态码的响应不应该包含实体的主体部分。</td>
-<td style="text-align:left">*</td>
-</tr>
-</tbody>
-</table>
-<h2 id="400-499-客户端错误状态码"><a href="#400-499-客户端错误状态码" class="headerlink" title="400~499 客户端错误状态码"></a>400~499 客户端错误状态码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">状态码</th>
-<th style="text-align:center">原因短语</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">(图文无关)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">400</td>
-<td style="text-align:center">Bad Request</td>
-<td style="text-align:left">告知客户端发送了一个错误的请求。</td>
-<td style="text-align:left"><img src="man-400.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">401</td>
-<td style="text-align:center">Unauthorized</td>
-<td style="text-align:left">未认证。</td>
-<td style="text-align:left"><img src="cat-401.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">403</td>
-<td style="text-align:center">Forbidden</td>
-<td style="text-align:left">请求被服务器拒绝。</td>
-<td style="text-align:left"><img src="cat-403.png" alt="">   <img src="man-403.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">404</td>
-<td style="text-align:center">Not Found</td>
-<td style="text-align:left">服务器无法找到所请求的URL。</td>
-<td style="text-align:left"><img src="cat-404.png" alt="">   <img src="man-404.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">405</td>
-<td style="text-align:center">Method Not Allowed</td>
-<td style="text-align:left">发起的请求中带有所请求的URL不支持的方法时，使用此状态码。应该在响应中包含Allow首部，以告知客户端对所请求的资源可以使用哪些方法。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">406</td>
-<td style="text-align:center">Not Acceptable</td>
-<td style="text-align:left">服务器没有与客户端可接受的URL相匹配的资源时，使用此代码。</td>
-<td style="text-align:left"><img src="cat-406.png" alt="">   <img src="man-406.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">408</td>
-<td style="text-align:center">Request Timeout</td>
-<td style="text-align:left">如果客户端完成请求所花的时间太长，服务器可以回送此状态码，并关闭连接。</td>
-<td style="text-align:left"><img src="cat-408.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">410</td>
-<td style="text-align:center">Gone</td>
-<td style="text-align:left">与404类似，只是服务器曾经有过此资源。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">411</td>
-<td style="text-align:center">Length Required</td>
-<td style="text-align:left">服务器要求Content-Length首部。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">412</td>
-<td style="text-align:center">Precondition Failed</td>
-<td style="text-align:left">客户端发起了条件请求，且其中一个条件失败了。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">415</td>
-<td style="text-align:center">Unsupported Media Type</td>
-<td style="text-align:left">服务器无法理解或无法支持客户端所发实体的内容类型。</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">416</td>
-<td style="text-align:center">Requested Range Not Satisfiable</td>
-<td style="text-align:left">请求报文所请求的是指定资源的某个范围，而此范围无效或无法满足。</td>
-<td style="text-align:left"><img src="cat-416.png" alt=""></td>
-</tr>
-</tbody>
-</table>
-<h2 id="500-599-服务器错误状态码"><a href="#500-599-服务器错误状态码" class="headerlink" title="500~599 服务器错误状态码"></a>500~599 服务器错误状态码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">状态码</th>
-<th style="text-align:center">原因短语</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">(图文无关)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">500</td>
-<td style="text-align:center">Internal Server Error</td>
-<td style="text-align:left">服务器遇到一个妨碍它为请求提供服务的错误</td>
-<td style="text-align:left"><img src="cat-500.png" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center">501</td>
-<td style="text-align:center">Not Implement</td>
-<td style="text-align:left">客户端发起的请求超过服务器能力范围</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">503</td>
-<td style="text-align:center">Service Unavailable</td>
-<td style="text-align:left">服务器现在无法为请求提供服务，但将来可以</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">504</td>
-<td style="text-align:center">Gateway Timeout</td>
-<td style="text-align:left">与408类似，只是这里的响应来自一个网关或代理</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">505</td>
-<td style="text-align:center">HTTP Version Not Supported</td>
-<td style="text-align:left">服务器收到的请求使用了它无法或不愿支持的协议版本</td>
-<td style="text-align:left">*</td>
-</tr>
-</tbody>
-</table>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/20/NestJS/nest-devops/"><img class="fill" src="/img/nest-og.png" alt="NestJS 部署与维护"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-20T14:52:18.000Z" title="2021/6/20 22:52:18">2021-06-20</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.997Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/NestJS/">NestJS</a></span><span class="level-item">10 分钟读完 (大约1437个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/20/NestJS/nest-devops/">NestJS 部署与维护</a></p><div class="content"><p>我们可以把nestjs的工程传到服务器上，然后直接进行npm操作。<br>也可以在本地打包出nestjs的包，将<code>dist</code>目录传到服务器上。</p>
-<p>在这里为了方便演示，我们描述的是将工程传到服务器后的操作。<br>传工程文件，可以用github/gitee当作中间桥梁，也可以用vscode的插件传输，或者使用scp命令。</p>
-<p>同理，<code>dist</code>目录也可以传到github/gitee上，服务器直接使用编译好的文件。</p>
-<h2 id="直接启动"><a href="#直接启动" class="headerlink" title="直接启动"></a>直接启动</h2><p>启动前，进入工程目录，先安装一次。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
-<p>用<code>npm run</code>命令启动服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开发模式</span></span><br><span class="line">$ npm run start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 观察模式</span></span><br><span class="line">$ npm run start:dev</span><br></pre></td></tr></table></figure></p>
-<p>在服务器上，运行正式环境（生产环境 production）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动生产环境前 先start</span></span><br><span class="line">$ npm run start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生产环境</span></span><br><span class="line">$ npm run start:prod</span><br></pre></td></tr></table></figure><br>使用<code>npm run</code>运行的程序，可以<code>ctrl + c</code>停止。</p>
-<p>run起来后，编译后的文件在<code>dist</code>目录里。</p>
-<h2 id="使用pm2管理"><a href="#使用pm2管理" class="headerlink" title="使用pm2管理"></a>使用pm2管理</h2><p>pm2是常用的node进程管理工具，它可以提供node.js应用管理，如自动重载、性能监控、负载均衡等。</p>
-<p>在服务器上，我们使用npm安装这个工具<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install pm2</span><br></pre></td></tr></table></figure></p>
-<p>安装完毕后，查看一下版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 -v</span><br><span class="line">4.4.1</span><br></pre></td></tr></table></figure></p>
-<h3 id="pm2启动服务"><a href="#pm2启动服务" class="headerlink" title="pm2启动服务"></a>pm2启动服务</h3><p>我们知道，nestjs编译后的文件在<code>dist</code>目录里，入口文件是<code>dist/main.js</code></p>
-<p>用pm2启动服务之前，先把该装的库用npm装好。运行<code>npm run start:prod</code>，然后<code>ctrl + c</code>停止。</p>
-<p>接下来用pm2启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start dist/main.js --name=<span class="string">&quot;这里是自定义的名字&quot;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="查看服务"><a href="#查看服务" class="headerlink" title="查看服务"></a>查看服务</h3><p>使用命令<code>pm2 list</code>查看服务</p>
-<p>例如在某个服务器上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 list </span><br><span class="line">┌─────┬───────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐</span><br><span class="line">│ <span class="built_in">id</span>  │ name              │ namespace   │ version │ mode    │ pid      │ <span class="built_in">uptime</span> │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │</span><br><span class="line">├─────┼───────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤</span><br><span class="line">│ 3   │ rustfisher-debug  │ default     │ 1.0.0   │ fork    │ 12260    │ 2M     │ 0    │ online    │ 0%       │ 39.7mb   │ ubuntu   │ disabled │</span><br><span class="line">│ 2   │ rustfisher-release│ default     │ 1.0.0   │ fork    │ 12090    │ 2M     │ 46   │ online    │ 0%       │ 44.6mb   │ ubuntu   │ disabled │</span><br><span class="line">│ 0   │ index             │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 68   │ stopped   │ 0%       │ 0b       │ ubuntu   │ disabled │</span><br><span class="line">│ 1   │ index             │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 15   │ stopped   │ 0%       │ 0b       │ ubuntu   │ disabled │</span><br><span class="line">│ 4   │ an.rustfisher     │ default     │ 0.0.1   │ fork    │ 32252    │ 74m    │ 0    │ online    │ 0%       │ 51.5mb   │ ubuntu   │ disabled │</span><br><span class="line">└─────┴───────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘</span><br></pre></td></tr></table></figure></p>
-<h3 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h3><p>想要停止某个服务，使用<code>pm2 stop</code> + 服务名（name）或者id</p>
-<p>例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 stop rustfisher-debug</span><br></pre></td></tr></table></figure><br>执行完毕后，会自动运行一次<code>pm2 list</code></p>
-<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><p>用<code>pm2 restart</code> + 服务名（name）或者id<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 restart rustfisher-debug</span><br></pre></td></tr></table></figure><br>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 restart 3</span><br></pre></td></tr></table></figure></p>
-<h3 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h3><p>默认情况下，pm2的日志存放在<code>~/.pm2/log</code>里。每个启动的服务有对应的log文件。</p>
-<p>例如，在某个服务器上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> .pm2/logs/</span><br><span class="line">app-error.log  dr-debug-error.log  dr-release-error.log  index-error.log   www-error.log</span><br><span class="line">app-out.log    dr-debug-out.log    dr-release-out.log    index-out.log     www-out.log</span><br></pre></td></tr></table></figure></p>
-<h2 id="nohup后台启动"><a href="#nohup后台启动" class="headerlink" title="nohup后台启动"></a>nohup后台启动</h2><p>我们也可用nohup后台启动。</p>
-<p>进入工程目录，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> npm run start:prod &gt;&gt; nohup.log &amp;</span><br></pre></td></tr></table></figure></p>
-<p>查看进程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ps -aux | grep node</span><br><span class="line">ubuntu   11826  0.0  1.2 674064 10988 ?        Ssl  Mar16   0:00 /usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/update-notifier/check.js &#123;<span class="string">&quot;pkg&quot;</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;npm&quot;</span>,<span class="string">&quot;version&quot;</span>:<span class="string">&quot;6.14.6&quot;</span>&#125;&#125;</span><br><span class="line">ubuntu   16478  0.0  0.0   4512   788 pts/3    S    11:49   0:00 sh -c node dist/main</span><br><span class="line">ubuntu   16479  0.4  5.1 578840 45228 pts/3    Sl   11:49   0:00 node dist/main</span><br><span class="line">ubuntu   16959  0.0  0.1  13232   928 pts/3    S+   11:52   0:00 grep --color=auto node</span><br></pre></td></tr></table></figure><br>可以看到有2个相关的进程16478和16479</p>
-<p>查看端口占用情况。假设我们工程监听的是8090端口。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -anp | grep 8090</span><br><span class="line">(Not all processes could be identified, non-owned process info</span><br><span class="line"> will not be shown, you would have to be root to see it all.)</span><br><span class="line">tcp        0      0 127.0.0.1:52788         127.0.0.1:8090          TIME_WAIT   -               </span><br><span class="line">tcp6       0      0 :::8090                 :::*                    LISTEN      16479/node      </span><br></pre></td></tr></table></figure></p>
-<p>结合一看，进程16479是我们后台运行的服务没错了。</p>
-<p>停止后台进程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">kill</span> 16479</span><br></pre></td></tr></table></figure><br>kill然后再查询进程和端口占用情况，就没有相关的进程了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可以用不同的方式后台启动服务。<br>启动生产环境之前，要先同步并编译。</p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/19/Linux/for-use/"><img class="fill" src="/img/computer-table-1.jpg" alt="Shell for循环语句"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-19T10:58:17.000Z" title="2021/6/19 18:58:17">2021-06-19</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.998Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">7 分钟读完 (大约1121个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/19/Linux/for-use/">Shell for循环语句</a></p><div class="content"><p>Shell里的for循环语句写法。我们分别用命令行和shell脚本来进行演示。</p>
-<p>常见的一种for结构如下。for里面要跟着<code>do</code>和<code>done</code>关键字。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in &#123;1..3&#125;</span><br><span class="line">do</span><br><span class="line">    echo YES $i # 这里是循环体</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h2 id="数字范围"><a href="#数字范围" class="headerlink" title="数字范围"></a>数字范围</h2><p>数字范围，例如从1到3，从1到100。</p>
-<h3 id="for-in"><a href="#for-in" class="headerlink" title="for in"></a>for in</h3><p>for in 的写法，定义<code>i</code>为变量，使用大括号来指定范围。范围的数字之间有2个点<code>..</code>。例如<code>&#123;1..3&#125;</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..3&#125;;<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">now is 2</span><br><span class="line">now is 3</span><br></pre></td></tr></table></figure><br>上面是命令行，一行把所有的指令写完。也可以再加一行代码，同样用分号<code>;</code>来分隔。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..3&#125;;<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 2</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 3</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>或者写成脚本。其实就是拆成几行。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">for i in &#123;1..3&#125;</span><br><span class="line">do</span><br><span class="line">    echo now is $i</span><br><span class="line">    echo rustfisher.com</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>前面我们用的是大括号来指定循环范围。我们也可以用<code>$(seq 1 3)</code>。<br>开头依旧是<code>for i in</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">seq</span> 1 3);<span class="keyword">do</span> <span class="built_in">echo</span> now is <span class="variable">$i</span>;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is 1</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 2</span><br><span class="line">rustfisher.com</span><br><span class="line">now is 3</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>写成脚本如下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">for i in $(seq 1 3)</span><br><span class="line">do </span><br><span class="line">    echo now is $i</span><br><span class="line">    echo rustfisher.com</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>实际上我们使用了<code>seq</code>命令。seq后面接2个数字，可以输出这个范围内的数字。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">seq</span> 1 5</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">~ $ <span class="built_in">seq</span> 5 1</span><br><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p>
-<h3 id="for-i-1-i-lt-3-i"><a href="#for-i-1-i-lt-3-i" class="headerlink" title="for((i=1;i&lt;=3;i++))"></a>for((i=1;i&lt;=3;i++))</h3><p>我们也可以写成像Java/C语言里的for循环那样。但要注意这里的for有2层小括号。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++));<span class="keyword">do</span> <span class="built_in">echo</span> -n now is [<span class="variable">$i</span>] ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is [1]rustfisher.com</span><br><span class="line">now is [2]rustfisher.com</span><br><span class="line">now is [3]rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>更改一下步进值，改为<code>i+=2</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i+=<span class="number">2</span>));<span class="keyword">do</span> <span class="built_in">echo</span> -n now is [<span class="variable">$i</span>] ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">now is [1]rustfisher.com</span><br><span class="line">now is [3]rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>或者加上一些小运算，用<code>expr</code>加上我们想要的运算。注意<code>$i</code>与<code>\*</code>和<code>3</code>之间要有空格。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span>((i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i+=<span class="number">2</span>));<span class="keyword">do</span> <span class="built_in">echo</span> -n $(<span class="built_in">expr</span> <span class="variable">$i</span> \* 3) <span class="string">&#x27; &#x27;</span> ;<span class="built_in">echo</span> rustfisher.com; <span class="keyword">done</span></span><br><span class="line">3  rustfisher.com</span><br><span class="line">9  rustfisher.com</span><br></pre></td></tr></table></figure><br>后面加的空格是为了隔开好看一些。</p>
-<p>在shell脚本中，我们有时候会定义变量。变量也可以作为for循环的范围。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">startNum=1</span><br><span class="line">endNum=3</span><br><span class="line"></span><br><span class="line">for i in $(seq $startNum $endNum)</span><br><span class="line">do</span><br><span class="line">    echo current is $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure><br>我们定义2个变量<code>startNum</code>与<code>endNum</code>。要使用它们的值时，需要加上<code>$</code>符号。</p>
-<h2 id="字符循环"><a href="#字符循环" class="headerlink" title="字符循环"></a>字符循环</h2><p>for循环可以与一些指令结合起来，获取指令中的结果。</p>
-<h3 id="for-i-in-ls"><a href="#for-i-in-ls" class="headerlink" title="for i in ls"></a>for i in <code>ls</code></h3><p>先用命令行看一个效果，for与ls结合使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span>`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure><br>当前目录里只有1个文件。</p>
-<p>如果是<code>ls -a</code>命令，输出会更多。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span> -a`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">.</span><br><span class="line">..</span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>换一个目录，我们可以输出所有png文件的文件名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span> *.png`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">android-cover-2.png</span><br><span class="line">fish.png</span><br><span class="line">ic_book_blue.png</span><br><span class="line">ic_tools_gear.png</span><br><span class="line">ic_web.png</span><br><span class="line">kotlin-android-1.png</span><br><span class="line">python-logo.png</span><br><span class="line">ts-blue-1.png</span><br></pre></td></tr></table></figure></p>
-<h3 id="for-i-in-ll"><a href="#for-i-in-ll" class="headerlink" title="for i in ll"></a>for i in <code>ll</code></h3><p>换成<code>ll</code>命令，输出更加丰富<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> `ll`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">total</span><br><span class="line">8</span><br><span class="line">-rw-r--r--</span><br><span class="line">1</span><br><span class="line">rustfisher</span><br><span class="line">staff</span><br><span class="line">183</span><br><span class="line">6</span><br><span class="line">19</span><br><span class="line">21:25</span><br><span class="line">for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>我们知道<code>ll</code>命令会输出当前目录下的文件信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--  1 rustfisher  staff  183  6 19 21:25 for1.sh</span><br></pre></td></tr></table></figure></p>
-<p>结合for循环可以看出，for循环是获取了空格或换行为间隔的字符串。</p>
-<p>显示各个子目录里md文件的个数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">ls</span>`; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; find <span class="variable">$i</span> -name <span class="string">&quot;*.md&quot;</span> | <span class="built_in">wc</span> -l; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h3><p>那么我们可以在脚本中尝试一些，for循环配合字符串<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">word=&quot;Welcome      to rustfisher.com&quot;</span><br><span class="line">for i in $word</span><br><span class="line">do</span><br><span class="line">    echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p><code>word</code>中间有很多个空格，但输出的依旧是这3行。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Welcome</span><br><span class="line">to</span><br><span class="line">rustfisher.com</span><br></pre></td></tr></table></figure></p>
-<p>进一步扩展，定义3个变量，都作为for in的参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"></span><br><span class="line">word1=&quot;Welcome        to rustfisher.com&quot;</span><br><span class="line">word2=&quot;Hello world&quot;</span><br><span class="line">word3=&quot;我很好&quot;</span><br><span class="line">for i in $word1 $word2 $word3</span><br><span class="line">do</span><br><span class="line">    echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>输出<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Welcome</span><br><span class="line">to</span><br><span class="line">rustfisher.com</span><br><span class="line">Hello</span><br><span class="line">world</span><br><span class="line">我很好</span><br></pre></td></tr></table></figure></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>例如查找某个目录下的文件。</p>
-<p>当前目录中有一个img目录，里面有一些图片。我们在for in 后面用<code>img/*</code>来表示查找这个目录中所有文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> img/*; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">img/android-2botsm.jpg</span><br><span class="line">img/android-cover-2.png</span><br></pre></td></tr></table></figure></p>
-<p>如果只想看png文件，路径写为<code>img/*.png</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> img/*.png; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span> ; <span class="keyword">done</span></span><br><span class="line">img/android-cover-2.png</span><br></pre></td></tr></table></figure></p>
-<p>从上面的例子可以看出，for in结构用的十分频繁。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/18/">18</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/big/banner1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RustFisher的自留地。技术学习与实践，一些开发记录，读书笔记"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/12/28/CocosCreator/ccc-drag-anywhere/" target="_self">
+          Cocos Creator 拖动效果
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/12/28/CocosCreator/ccc-drag-anywhere/" target="_self">
+        <div>
+          CocosCreator 拖动效果，拖去任意位置
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-28 21:01" pubdate>
+              2020-12-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CocosCreator/" class="category-chain-item">CocosCreator</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Cocos-Creator/">#Cocos Creator</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/12/27/Ts/ts-singleton-pattern/" target="_self">
+          TypeScript 单例模式
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/12/27/Ts/ts-singleton-pattern/" target="_self">
+        <div>
+          ts中的单例模式  构造器设置为私有的 建立static方法，获取唯一的对象  1234567891011121314export default class DataMgr &#123;    private static mgr: DataMgr;    private constructor() &#123;        // 构造器    &#125;    public static
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-27 21:32" pubdate>
+              2020-12-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/TypeScript/" class="category-chain-item">TypeScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/12/26/CocosCreator/ccc-touch-event/" target="_self">
+          Cocos Creator 触摸事件穿透
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/12/26/CocosCreator/ccc-touch-event/" target="_self">
+        <div>
+          CocosCreator 触摸事件穿透
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-26 16:26" pubdate>
+              2020-12-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CocosCreator/" class="category-chain-item">CocosCreator</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Cocos-Creator/">#Cocos Creator</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/10/Kotlin/kotlin-breif-intro/" target="_self">
+          Kotlin快速上手
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/04/10/Kotlin/kotlin-breif-intro/" target="_self">
+        <div>
+          快速介绍Kotlin的用法。有些地方会和Java进行类比。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-10 08:08" pubdate>
+              2020-04-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kotlin/" class="category-chain-item">Kotlin</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/02/03/Miniprogram/wx-mini-css_center_tutorial/" target="_self">
+          微信小程序 居中布局css
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/02/03/Miniprogram/wx-mini-css_center_tutorial/" target="_self">
+        <div>
+          微信小程序的居中布局方法。水平居中，垂直居中。css设置。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-02-03 18:00" pubdate>
+              2020-02-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/miniprogram/" class="category-chain-item">miniprogram</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#小程序</a>
+            
+              <a href="/tags/css/">#css</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/11/Android/Android-Camera_SurfaceView_TextureView_get_nv21/" target="_self">
+          Android SurfaceView TextureView 预览Camera，获取NV21数据
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/01/11/Android/Android-Camera_SurfaceView_TextureView_get_nv21/" target="_self">
+        <div>
+          使用 Camera API 进行视频的采集，分别使用 SurfaceView、TextureView 来预览 Camera 数据，取到 NV21 的数据回调
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-11 21:52" pubdate>
+              2020-01-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android-Media/">#Android_Media</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/11/Android/Android-Camera_record_video_and_output/" target="_self">
+          Android Camera API 音视频采集、编码、封包成mp4
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/01/11/Android/Android-Camera_record_video_and_output/" target="_self">
+        <div>
+          使用camera的api录制音视频，输出mp4文件。完整示例。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-11 01:15" pubdate>
+              2020-01-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/10/Android/Android-AudioRecord_AudioTrack_pcm_wav/" target="_self">
+          Android 音频PCM数据的采集和播放，读写音频wav文件
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/01/10/Android/Android-AudioRecord_AudioTrack_pcm_wav/" target="_self">
+        <div>
+          使用AudioRecord和AudioTrack实现音频PCM数据的采集和播放，并读写音频wav文件。实用指南。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-10 18:52" pubdate>
+              2020-01-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android-Media/">#Android_Media</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/08/Android_tutorial_2020/Android-tutorial_2020_a_menu/" target="_self">
+          Android教程2020 - 系列简介
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2019/12/08/Android_tutorial_2020/Android-tutorial_2020_a_menu/" target="_self">
+        <div>
+          Android tutorial 2020 - 2020年的Android新手教程。简单明了，上手快，适合自学。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-08 01:01" pubdate>
+              2019-12-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-tutorial-2020/" class="category-chain-item">Android_tutorial_2020</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android-2020/">#Android-2020</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/" target="_self">
+          【运营的Python指南】Python Excel 绘制柱形图
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/" target="_self">
+        <div>
+          写给运营人员的Python指南。使用Python操作Excel绘制柱形图。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-19 10:28" pubdate>
+              2019-11-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/">#运营的Python指南</a>
+            
+              <a href="/tags/openpyxl/">#openpyxl</a>
+            
+              <a href="/tags/Excel/">#Excel</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

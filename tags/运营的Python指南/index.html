@@ -1,304 +1,472 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>标签: 运营的Python指南 - RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:type" content="blog"><meta property="og:title" content="RustFisher的自留地"><meta property="og:url" content="https://blog.rustfisher.com/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:author" content="Rust Fisher"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com"},"headline":"RustFisher的自留地","image":["https://blog.rustfisher.com/img/og_image.png"],"author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"技术学习与实践，一些开发记录，读书笔记"}</script><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签 - 运营的Python指南">
+<meta property="og:url" content="https://blog.rustfisher.com/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>标签 - 运营的Python指南 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":"UA-145397854-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">运营的Python指南</a></li></ul></nav></div></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/07/16/Python/operation/matplotlib-intro1/"><img class="fill" src="/img/chart-1.jpg" alt="【运营的Python指南】绘制图表Matplotlib快速入门"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-07-16T15:08:11.000Z" title="2021/7/16 23:08:11">2021-07-16</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:02.000Z" title="2023/4/9 14:26:02">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">5 分钟读完 (大约802个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/07/16/Python/operation/matplotlib-intro1/">【运营的Python指南】绘制图表Matplotlib快速入门</a></p><div class="content"><p>绘制图表是运营工作中常见的需求。前面我们试着用<a target="_blank" rel="noopener" href="https://rustfisher.com/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/">Python操作Excel来绘制图表</a>，其实调用的是Excel里的图表功能。<br>接下来我们利用<code>Matplotlib</code>来绘制图表。</p>
-<blockquote>
-<p>Matplotlib 是一个综合性的库。它是 Python 的可视化工具，可创建静态、带动画和可交互的图表<br>Matplotlib 官网 <a target="_blank" rel="noopener" href="https://matplotlib.org/">https://matplotlib.org/</a><br>官方使用手册 <a target="_blank" rel="noopener" href="https://matplotlib.org/stable/users/index.html">https://matplotlib.org/stable/users/index.html</a></p>
-</blockquote>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>官方给出的安装方法是使用pip<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install -U pip</span><br><span class="line">python -m pip install -U matplotlib</span><br></pre></td></tr></table></figure></p>
-<p>我们使用PyCharm，也可以先打<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure><br>其中<code>matplotlib</code>下面有红线，跟着PyCharm的提示，把缺失的包装上就好。</p>
-<h2 id="简单例子-绘制折线图"><a href="#简单例子-绘制折线图" class="headerlink" title="简单例子-绘制折线图"></a>简单例子-绘制折线图</h2><p>接下来使用<code>matplotlib</code>绘制一个简单的折线图，先把这个库用起来。</p>
-<h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>我们用<code>math.sin</code>来模拟。x从0到100，y=sin(x)。一个简单的sin函数。</p>
-<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>准备数据，然后绘制出图表。完整代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">demo1</span>():</span><br><span class="line">    x_list = []</span><br><span class="line">    y_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">100</span>):</span><br><span class="line">        x_list.append(i)</span><br><span class="line">        y_list.append(math.sin(i * <span class="number">0.1</span>))</span><br><span class="line">    plt.plot(x_list, y_list)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;rustfisher 绘制折线图事例1&#x27;</span>)</span><br><span class="line">    demo1()</span><br></pre></td></tr></table></figure></p>
-<p>Mac的PyCharm运行下能得到这样的图<br><img src="intro1.png" alt=""></p>
-<p>代码中</p>
-<ul>
-<li><code>plt.plot(x_list, y_list)</code>指定x，y值，都是列表。这2个列表的长度要相等。</li>
-<li><code>plt.show()</code>是直接绘制图表。</li>
-</ul>
-<p>可以看到图中缺少很多元素。图的标题没有指定，x轴和y轴都没有说明。</p>
-<h3 id="增加一些细节"><a href="#增加一些细节" class="headerlink" title="增加一些细节"></a>增加一些细节</h3><p>为操作图表，我们需拿到图表对象<code>ax = plt.gca()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ax = plt.gca()</span><br><span class="line">ax.set_title(<span class="string">&#x27;rustfisher.com mapplotlib example&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;y = sin(x)&#x27;</span>)</span><br><span class="line">ax.grid()</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><code>set_title</code> 设置图表标题</li>
-<li><code>set_xlabel</code> 设置x轴名称</li>
-<li><code>set_ylabel</code> 设置y轴名称</li>
-<li><code>grid()</code> 显示格子</li>
-</ul>
-<p>修改后的代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">demo1</span>():</span><br><span class="line">    x_list = []</span><br><span class="line">    y_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">100</span>):</span><br><span class="line">        x_list.append(i)</span><br><span class="line">        y_list.append(math.sin(i * <span class="number">0.1</span>))</span><br><span class="line">    ax = plt.gca()</span><br><span class="line">    ax.set_title(<span class="string">&#x27;rustfisher.com mapplotlib example&#x27;</span>)</span><br><span class="line">    ax.set_xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">&#x27;y = sin(x)&#x27;</span>)</span><br><span class="line">    ax.grid()</span><br><span class="line">    plt.plot(x_list, y_list)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
-<p>运行结果<br><img src="2.png" alt=""></p>
-<h3 id="操作说明"><a href="#操作说明" class="headerlink" title="操作说明"></a>操作说明</h3><p>从前面图中我们可以看到下面有一排按钮。这些按钮提供了一些操作图表的功能。<br>从左到右我们排个序1，2，3，4..</p>
-<p><img src="btns.png" alt=""></p>
-<ol>
-<li>让图表恢复到初始状态</li>
-<li>上一个图表状态</li>
-<li>下一个图表状态</li>
-<li>移动图表</li>
-<li>缩放图表</li>
-<li>调整图表显示的位置<ol>
-<li>点击缩放按钮后，鼠标按住左键去框选一个区域，松开左键后就是放大那个区域。</li>
-<li>按住右键再框选，则是缩小显示区域。</li>
-</ol>
-</li>
-<li>保存图片</li>
-</ol>
-<h3 id="直接保存"><a href="#直接保存" class="headerlink" title="直接保存"></a>直接保存</h3><p>如果我们想直接保存得到的图片，可以不调用<code>show</code>方法。而是调用<code>savefig()</code>方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># plt.show()</span></span><br><span class="line">plt.savefig(<span class="string">&#x27;out.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>参考</p>
-<ul>
-<li>Python操作Excel来绘制图表 <a target="_blank" rel="noopener" href="https://rustfisher.com/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/">https://rustfisher.com/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/</a></li>
-<li>Python绘制漏斗图 <a target="_blank" rel="noopener" href="https://rustfisher.com/2021/06/28/Python/Python-op-draw-funnel-1/">https://rustfisher.com/2021/06/28/Python/Python-op-draw-funnel-1/</a></li>
-<li>Python合集 <a target="_blank" rel="noopener" href="https://rustfisher.com/categories/Python/">https://rustfisher.com/categories/Python/</a></li>
-</ul>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/06/28/Python/Python-op-draw-funnel-1/"><img class="fill" src="/img/meeting-1.jpg" alt="【运营的Python指南】绘制漏斗图"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-28T12:14:47.000Z" title="2021/6/28 20:14:47">2021-06-28</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:02.000Z" title="2023/4/9 14:26:02">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">13 分钟读完 (大约1915个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/06/28/Python/Python-op-draw-funnel-1/">【运营的Python指南】绘制漏斗图</a></p><div class="content"><p>写给运营朋友的Python指南。</p>
-<p>漏斗图可对业务的各个关键环节进行描述，衡量各个环节的业务表现。可以非常直观地看到各个业务地转化程度。</p>
-<p>本文介绍使用Python从Excel中读取数据，使用pyecharts绘制漏斗图。</p>
-<h2 id="操作步骤说明"><a href="#操作步骤说明" class="headerlink" title="操作步骤说明"></a>操作步骤说明</h2><p>下面是操作的具体步骤。</p>
-<h3 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1.开发环境"></a>1.开发环境</h3><p>示例使用的IDE是PyCharm社区版，开发语言是Python3.x。</p>
-<p>在工程中，新建Python文件<code>demo_data_funnel.py</code>。然后在同级的位置新建一个<code>res</code>文件夹，后面用来存放文件。</p>
-<h3 id="2-准备数据"><a href="#2-准备数据" class="headerlink" title="2.准备数据"></a>2.准备数据</h3><p>创建一个Excel文件<code>事件demo.xlsx</code>。将表名改为<code>data3</code>。这个名字在代码中会用到。</p>
-<p>写入两列数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">事件	次数</span><br><span class="line">e1	10000</span><br><span class="line">e2	4695</span><br><span class="line">e3	2584</span><br><span class="line">e4	1295</span><br><span class="line">e5	954</span><br></pre></td></tr></table></figure><br>得到如下的表格：<br><img src="excel.png" alt=""></p>
-<p>与<code>demo_data_funnel.py</code>同级的地方新建了<code>res</code>文件夹，把Excel文件放进去。</p>
-<p><img src="proj.png" alt="Excel文件放的位置示意图"></p>
-<blockquote>
-<p>这里我们暂时用测试数据看效果。后面再填入你的真实数据。</p>
-</blockquote>
-<h3 id="3-编写脚本"><a href="#3-编写脚本" class="headerlink" title="3.编写脚本"></a>3.编写脚本</h3><p>现在开始写Python代码。<br><code>demo_data_funnel.py</code>完整的代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Funnel</span><br><span class="line"><span class="keyword">import</span> pyecharts.options <span class="keyword">as</span> opts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_in_data</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)</span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb[<span class="string">&#x27;data3&#x27;</span>]</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> row_index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, st.max_row + <span class="number">1</span>):</span><br><span class="line">        event_name = st.cell(row=row_index, column=<span class="number">1</span>).value</span><br><span class="line">        event_value = st.cell(row=row_index, column=<span class="number">2</span>).value</span><br><span class="line">        data_list.append([event_name, event_value])</span><br><span class="line">    <span class="built_in">print</span>(data_list)</span><br><span class="line">    <span class="keyword">return</span> data_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_default</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;800px&quot;</span>, height=<span class="string">&quot;400px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;默认样式&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_1.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_2</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;600px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;改变了label&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_2.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_3</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    data = input_data.copy()  <span class="comment"># 复制一份出来处理标题</span></span><br><span class="line">    base_value = data[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">        event_name = data[x][<span class="number">0</span>]</span><br><span class="line">        value = data[x][<span class="number">1</span>]  <span class="comment"># 拿到数值</span></span><br><span class="line">        ratio = value / base_value</span><br><span class="line">        event_name += <span class="string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(ratio * <span class="number">100</span>)</span><br><span class="line">        <span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">            event_name += <span class="string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(<span class="number">100</span> * value / data[x - <span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">        data[x][<span class="number">0</span>] = event_name</span><br><span class="line">        <span class="built_in">print</span>(event_name)</span><br><span class="line"></span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;800px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;修改了各项的标题&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_3.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    src_data = read_in_data(<span class="string">&#x27;res/事件demo.xlsx&#x27;</span>)</span><br><span class="line">    draw_funnel_default(src_data)</span><br><span class="line">    draw_funnel_2(src_data)</span><br><span class="line">    draw_funnel_3(src_data)</span><br></pre></td></tr></table></figure><br>把上面的代码复制进你的脚本里。<br>可能会需要装上<code>pyecharts</code>和<code>openpyxl</code>。用PyCharm的时候，可以点到报红线的地方，根据它的提示，把这2个库装上。</p>
-<p>运行代码，会得到3个html文件</p>
-<p><img src="proj-html.png" alt="输出的html文件"></p>
-<p>用浏览器打开这3个html就可以看到效果了。</p>
-<p>把你的数据填到那个Excel里，保存。然后运行代码即可。</p>
-<p>比如说把Excel里的事件改一下</p>
-<p><img src="excel-data2.png" alt="修改后的数据"></p>
-<p>运行代码，可以得到新的结果</p>
-<p><img src="demo2-f1.png" alt=""></p>
-<p>以上是简化流程，运营朋友照着做，一般都可以看到运行结果。下面我们来看一些细节。</p>
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><p>我们先准备一些测试数据。新建一个xlsx文件，填入测试数据。如下图：</p>
-<p><img src="excel.png" alt=""></p>
-<p>我们把数据放在了<code>data3</code>里。A列是事件名称，B列是次数。名称这里可以随意替换，可根据业务需求进行修改。<br>事件流程按照先后顺序，从上到下排列好。</p>
-<p>首先需要把数据从excel中读取出来。我们用openpyxl来操作。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_in_data</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)</span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb[<span class="string">&#x27;data3&#x27;</span>]</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> row_index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, st.max_row + <span class="number">1</span>):</span><br><span class="line">        event_name = st.cell(row=row_index, column=<span class="number">1</span>).value</span><br><span class="line">        event_value = st.cell(row=row_index, column=<span class="number">2</span>).value</span><br><span class="line">        data_list.append([event_name, event_value])</span><br><span class="line">    <span class="built_in">print</span>(data_list)</span><br><span class="line">    <span class="keyword">return</span> data_list</span><br></pre></td></tr></table></figure><br>将事件名和数据装到一个小的列表里<code>[event_name, event_value]</code>。<br>所有的事件放进一个大的列表，并返回。</p>
-<p>当然，从别的途径拿到数据也是可以的。</p>
-<h2 id="绘制漏斗图"><a href="#绘制漏斗图" class="headerlink" title="绘制漏斗图"></a>绘制漏斗图</h2><p>我们用<a target="_blank" rel="noopener" href="https://pyecharts.org/">pyecharts</a>来绘制漏斗图。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/ecomfe/echarts">Echarts</a> 是一个由百度开源的数据可视化，凭借着良好的交互性，精巧的图表设计，得到了众多开发者的认可。而 Python 是一门富有表达力的语言，很适合用于数据处理。当数据分析遇上数据可视化时，pyecharts 诞生了。</p>
-</blockquote>
-<p>pyecharts会输出html文件。</p>
-<h3 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h3><p>拿到数据后，我们把数据传给<strong>Funnel</strong>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Funnel</span><br><span class="line"><span class="keyword">import</span> pyecharts.options <span class="keyword">as</span> opts</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_default</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;800px&quot;</span>, height=<span class="string">&quot;400px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;默认样式&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_1.html&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    src_data = read_in_data(<span class="string">&#x27;res/事件demo.xlsx&#x27;</span>)</span><br><span class="line">    draw_funnel_default(src_data)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始配置里设定宽高 <code>InitOpts(width=&quot;800px&quot;, height=&quot;400px&quot;)</code></li>
-<li><code>input_data</code>就是我们前面获取的数据列表；将它传给<code>data_pair</code>，即<code>data_pair=input_data</code></li>
-<li>输出的网页文件名为<code>funnel_chart_1.html</code></li>
-<li><code>set_global_opts()</code>方法设置全局配置<ul>
-<li>标题设置 <code>title=&quot;漏斗图1&quot;</code></li>
-<li>副标题设置 <code>subtitle=&quot;默认样式&quot;</code></li>
-</ul>
-</li>
-</ul>
-<p>输出的html文件，用浏览器打开，如图：</p>
-<p><img src="demo-default.png" alt=""></p>
-<p>鼠标放上去会有小弹框提示（tooltip）</p>
-<p><a href="/art/py/op-funnel/funnel_chart_1.html">🔗 默认样式网页的链接</a></p>
-<h3 id="修改label"><a href="#修改label" class="headerlink" title="修改label"></a>修改label</h3><p>pyecharts开放了很多配置。我们可以修改一下每一项的标题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_2</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;600px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;改变了label&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_2.html&quot;</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
-<h4 id="formatter"><a href="#formatter" class="headerlink" title="formatter"></a>formatter</h4><ul>
-<li><code>&#123;a&#125;</code>是<code>series_name</code>，在这里是图表的名字</li>
-<li><code>&#123;b&#125;</code>是这一项的标题</li>
-<li><code>&#123;c&#125;</code>是这一项的数量</li>
-</ul>
-<p><code>tooltip_opts</code>和<code>label_opts</code>都会用到<code>formatter</code>。</p>
-<p><img src="f2.png" alt=""></p>
-<p><a href="/art/py/op-funnel/funnel_chart_2.html">🔗  浏览网页</a></p>
-<h3 id="自己计算转化率"><a href="#自己计算转化率" class="headerlink" title="自己计算转化率"></a>自己计算转化率</h3><p>为了显示出相对转化率和总体转化率。我们可以自己计算。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">draw_funnel_3</span>(<span class="params">input_data</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)</span><br><span class="line">    data = input_data.copy()  <span class="comment"># 复制一份出来处理标题</span></span><br><span class="line">    base_value = data[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data)):</span><br><span class="line">        event_name = data[x][<span class="number">0</span>]</span><br><span class="line">        value = data[x][<span class="number">1</span>]  <span class="comment"># 拿到数值</span></span><br><span class="line">        ratio = value / base_value</span><br><span class="line">        event_name += <span class="string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(ratio * <span class="number">100</span>)</span><br><span class="line">        <span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">            event_name += <span class="string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="built_in">format</span>(<span class="number">100</span> * value / data[x - <span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">        data[x][<span class="number">0</span>] = event_name</span><br><span class="line">        <span class="built_in">print</span>(event_name)</span><br><span class="line"></span><br><span class="line">    (</span><br><span class="line">        Funnel(init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;800px&quot;</span>))</span><br><span class="line">            .add(series_name=<span class="string">&#x27;漏斗1&#x27;</span>, data_pair=data,</span><br><span class="line">                 label_opts=opts.LabelOpts(position=<span class="string">&quot;inside&quot;</span>, formatter=<span class="string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),</span><br><span class="line">                 gap=<span class="number">2</span>,</span><br><span class="line">                 tooltip_opts=opts.TooltipOpts(trigger=<span class="string">&quot;item&quot;</span>, formatter=<span class="string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),</span><br><span class="line">                 )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;漏斗图1&quot;</span>, subtitle=<span class="string">&quot;修改了各项的标题&quot;</span>))</span><br><span class="line">            .render(<span class="string">&quot;funnel_chart_3.html&quot;</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
-<p>在for循环里计算转化率，并把结果写到事件的名称里。</p>
-<p><img src="f3.png" alt=""></p>
-<p><a href="/art/py/op-funnel/funnel_chart_3.html">🔗  浏览网页</a></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/"><img class="fill" src="/img/meeting-1.jpg" alt="【运营的Python指南】Python Excel 绘制柱形图"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-11-19T02:28:38.000Z" title="2019/11/19 10:28:38">2019-11-19</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.999Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">6 分钟读完 (大约947个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/">【运营的Python指南】Python Excel 绘制柱形图</a></p><div class="content"><p>这是一份写给运营人员的Python指南。本文主要讲述如何使用Python操作Excel绘制柱形图。</p>
-<p>相关代码请参考 <a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">https://github.com/RustFisher/python-playground</a></p>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://www.rustfisher.com/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/">https://www.rustfisher.com/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/</a></p>
-<p>开发工具，环境</p>
-<ul>
-<li>PyCharm</li>
-<li>Python3</li>
-<li>Office Excel</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://www.rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/">前面</a>我们已经创建好了一张Excel表。<br>现在我们要根据已有的数据，往里面添加柱形图。</p>
-<h2 id="柱形图-BarChart"><a href="#柱形图-BarChart" class="headerlink" title="柱形图 BarChart"></a>柱形图 BarChart</h2><p>参考<a target="_blank" rel="noopener" href="https://rustfisher.com/2019/11/14/Python/Python-openpyxl_charts_Bar_and_Column/">《Python openpyxl Excel绘制柱形图》</a>得知，我们主要使用<code>BarChart</code>与<code>BarChart3D</code>类。<br>图表中许多的细节由BarChart属性控制。</p>
-<p>后文都以chart1来表示柱形图对象 <code>chart1 = BarChart()</code> 。</p>
-<h3 id="数据来源范围-Reference"><a href="#数据来源范围-Reference" class="headerlink" title="数据来源范围 Reference"></a>数据来源范围 Reference</h3><p>首先我们应该确定数据的范围。有数据才好绘图。这里使用的是<code>Reference</code>类来表示数据“引用”范围。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data1 = Reference(st, min_col=<span class="number">2</span>, min_row=<span class="number">1</span>, max_row=<span class="number">7</span>, max_col=<span class="number">3</span>)</span><br><span class="line">cats1 = Reference(st, min_col=<span class="number">1</span>, min_row=<span class="number">2</span>, max_row=<span class="number">7</span>)</span><br></pre></td></tr></table></figure><br>需要注意的是，范围的下标是从1开始的。<br>这里的data1把标题也框进去了。设定数据的时候，需要设置<code>titles_from_data=True</code><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chart1.add_data(data1, titles_from_data=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure></p>
-<p>设置种类使用<code>set_categories</code>方法，也是把一个范围（Reference）的数据传入。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chart1.set_categories(cats1)</span><br></pre></td></tr></table></figure></p>
-<h3 id="柱子方向控制-type"><a href="#柱子方向控制-type" class="headerlink" title="柱子方向控制 type"></a>柱子方向控制 type</h3><p>方向由属性<code>type</code>来控制，有2个可选参数：<code>bar</code>表示横向，<code>col</code>表示竖直。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chart1.<span class="built_in">type</span> = <span class="string">&quot;bar&quot;</span> <span class="comment"># 横向柱形图</span></span><br><span class="line">chart1.<span class="built_in">type</span> = <span class="string">&quot;col&quot;</span> <span class="comment"># 纵向柱形图</span></span><br></pre></td></tr></table></figure>
-<h3 id="标题-title"><a href="#标题-title" class="headerlink" title="标题 title"></a>标题 title</h3><p>属性title控制标题。如果置为None则不显示标题。</p>
-<p>图表的标题 <code>chart1.title = &quot;日均值对比&quot;</code></p>
-<p>坐标的标题，首先需要拿到x，y的坐标。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chart1.y_axis.title = <span class="string">&#x27;数值&#x27;</span></span><br><span class="line">chart1.x_axis.title = st.cell(column=<span class="number">1</span>, row=<span class="number">1</span>).value  <span class="comment"># 直接用单元格的内容做标题</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="添加图表"><a href="#添加图表" class="headerlink" title="添加图表"></a>添加图表</h3><p>add_chart将图表添加到sheet中。图表的左上角对齐某个单元格。下面是对齐A8。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.add_chart(chart1, <span class="string">&#x27;A8&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="3D柱形图-BarChart3D"><a href="#3D柱形图-BarChart3D" class="headerlink" title="3D柱形图 BarChart3D"></a>3D柱形图 BarChart3D</h3><h4 id="柱子的形状-shape"><a href="#柱子的形状-shape" class="headerlink" title="柱子的形状 shape"></a>柱子的形状 shape</h4><p>默认是立方体，但也可以从下面的形状里选一个。</p>
-<p><code>&#123;&#39;box&#39;, &#39;pyramid&#39;, &#39;pyramidToMax&#39;, &#39;coneToMax&#39;, &#39;cone&#39;, &#39;cylinder&#39;&#125;</code></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chart1.<span class="built_in">type</span> = <span class="string">&#x27;cone&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>box 是立方体，中规中矩。<br>pyramid 是金字塔，顶部也是尖的。<br>cone 是圆锥，看起来很尖锐。<br>cylinder 是圆柱。</p>
-<h4 id="配色风格-style"><a href="#配色风格-style" class="headerlink" title="配色风格 style"></a>配色风格 style</h4><p>style 会影响图表的配色风格，一般用10比较多彩多样。</p>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>绘制图表用的数据来自<a target="_blank" rel="noopener" href="https://rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/">运营的Python指南 - Python 操作Excel</a>。<br>我们在已有的表格中添加柱形图。代码参考<a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">python-playground - Github</a></p>
-<h4 id="绘制2D柱形图"><a href="#绘制2D柱形图" class="headerlink" title="绘制2D柱形图"></a>绘制2D柱形图</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_bar_chart_1</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    插入柱形图</span></span><br><span class="line"><span class="string">    :param file_path: Excel 文件路径</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb.active</span><br><span class="line"></span><br><span class="line">    data1 = Reference(st, min_col=<span class="number">2</span>, min_row=<span class="number">1</span>, max_row=<span class="number">7</span>, max_col=<span class="number">3</span>)</span><br><span class="line">    cats1 = Reference(st, min_col=<span class="number">1</span>, min_row=<span class="number">2</span>, max_row=<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">    chart1 = BarChart()</span><br><span class="line">    chart1.<span class="built_in">type</span> = <span class="string">&quot;col&quot;</span></span><br><span class="line">    chart1.style = <span class="number">9</span></span><br><span class="line">    chart1.title = <span class="string">&quot;日均值对比&quot;</span></span><br><span class="line">    <span class="comment"># chart1.y_axis.title = &#x27;数值&#x27;</span></span><br><span class="line">    chart1.x_axis.title = st.cell(column=<span class="number">1</span>, row=<span class="number">1</span>).value</span><br><span class="line"></span><br><span class="line">    chart1.add_data(data1, titles_from_data=<span class="literal">True</span>)</span><br><span class="line">    chart1.set_categories(cats1)</span><br><span class="line">    chart1.shape = <span class="number">0</span></span><br><span class="line">    st.add_chart(chart1, <span class="string">&#x27;A8&#x27;</span>)</span><br><span class="line">    wb.save(file_path)</span><br></pre></td></tr></table></figure>
-<h4 id="绘制3D柱形图"><a href="#绘制3D柱形图" class="headerlink" title="绘制3D柱形图"></a>绘制3D柱形图</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_bar_chart_2</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    插入3D柱形图</span></span><br><span class="line"><span class="string">    :param file_path: Excel 文件路径</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb.active</span><br><span class="line"></span><br><span class="line">    data1 = Reference(st, min_col=<span class="number">2</span>, min_row=<span class="number">1</span>, max_row=<span class="number">7</span>, max_col=<span class="number">3</span>)</span><br><span class="line">    cats1 = Reference(st, min_col=<span class="number">1</span>, min_row=<span class="number">2</span>, max_row=<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">    chart1 = BarChart3D()</span><br><span class="line">    chart1.<span class="built_in">type</span> = <span class="string">&quot;bar&quot;</span></span><br><span class="line">    chart1.style = <span class="number">10</span></span><br><span class="line">    chart1.title = <span class="string">&quot;日均值对比&quot;</span></span><br><span class="line">    chart1.x_axis.title = <span class="literal">None</span></span><br><span class="line">    chart1.shape = <span class="string">&#x27;cylinder&#x27;</span></span><br><span class="line"></span><br><span class="line">    chart1.add_data(data1, titles_from_data=<span class="literal">True</span>)</span><br><span class="line">    chart1.set_categories(cats1)</span><br><span class="line">    st.add_chart(chart1, <span class="string">&#x27;A26&#x27;</span>)</span><br><span class="line">    wb.save(file_path)</span><br></pre></td></tr></table></figure>
-<p>运行结果示例图片</p>
-<p><img src="py-op-excel-bar-chart-4.png" alt="整体图片 - Excel打开"></p>
-<p>相关代码请参考 <a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">https://github.com/RustFisher/python-playground</a></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2019/11/05/Python/Python-op-excel_openpyxl_use/"><img class="fill" src="/img/meeting-1.jpg" alt="【运营的Python指南】Python 操作Excel"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-11-05T14:37:12.000Z" title="2019/11/5 22:37:12">2019-11-05</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:01.999Z" title="2023/4/9 14:26:01">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">7 分钟读完 (大约1066个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/11/05/Python/Python-op-excel_openpyxl_use/">【运营的Python指南】Python 操作Excel</a></p><div class="content"><p>这是一份写给运营人员的Python指南。本文主要讲述如何使用Python操作Excel。完成Excel的创建，查询和修改操作。<br>相关代码请参考 <a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">https://github.com/RustFisher/python-playground</a></p>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://www.rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/">https://www.rustfisher.com/2019/11/05/Python/Python-op-excel_openpyxl_use/</a></p>
-<p>开发工具，环境</p>
-<ul>
-<li>PyCharm - 方便好用的IDE</li>
-<li>Python3</li>
-</ul>
-<p>这里默认你的电脑上已经装有python3.x，环境变量已经配置好。</p>
-<h2 id="引入openpyxl"><a href="#引入openpyxl" class="headerlink" title="引入openpyxl"></a>引入openpyxl</h2><p>这里使用<a target="_blank" rel="noopener" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>库来操作Excel。类似的库还有xlrd。</p>
-<p>penpyxl的基础使用方法请参见<a target="_blank" rel="noopener" href="http://rustfisher.com/2019/11/03/Python/Python-openpyxl_tutorial/">Python openpyxl 处理Excel使用指南</a>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure>
-<h2 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h2><p>假定数据来自百度指数，以常见的一些搜索指数为例。给后面的操作准备一些数据，把数据写入Excel中。</p>
-<p>创建Workbook对象，获取到当前可用的表格（sheet）。<br>直接使用<code>append</code>方法把一行数据追加写入。最后调用Workbook的保存方法，存储数据。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_excel_demo</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    创建Excel文件，并写入数据</span></span><br><span class="line"><span class="string">    :param file_path: 目标文件路径</span></span><br><span class="line"><span class="string">    :return none</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    wb = Workbook()</span><br><span class="line">    ws = wb.active</span><br><span class="line">    ws.title = <span class="string">&#x27;搜索指数概览&#x27;</span></span><br><span class="line"></span><br><span class="line">    ws.append([<span class="string">&#x27;关键词&#x27;</span>, <span class="string">&#x27;整体日均值&#x27;</span>, <span class="string">&#x27;移动日均值&#x27;</span>, <span class="string">&#x27;整体同比&#x27;</span>, <span class="string">&#x27;整体环比&#x27;</span>, <span class="string">&#x27;移动同比&#x27;</span>, <span class="string">&#x27;移动环比&#x27;</span>])</span><br><span class="line">    ws.append([<span class="string">&#x27;excel&#x27;</span>, <span class="number">27782</span>, <span class="number">18181</span>, -<span class="number">0.11</span>, -<span class="number">2</span>, <span class="number">0.21</span>, <span class="number">0.02</span>])</span><br><span class="line">    ws.append([<span class="string">&#x27;python&#x27;</span>, <span class="number">24267</span>, <span class="number">8204</span>, <span class="number">0.27</span>, <span class="number">0.06</span>, <span class="number">0.56</span>, <span class="number">0.01</span>])</span><br><span class="line">    ws.append([<span class="string">&#x27;文案&#x27;</span>, <span class="number">2411</span>, <span class="number">1690</span>, <span class="number">0.56</span>, <span class="number">0.33</span>, <span class="number">0.91</span>, <span class="number">0.46</span>])</span><br><span class="line">    ws.append([<span class="string">&#x27;okr&#x27;</span>, <span class="number">1928</span>, <span class="number">880</span>, <span class="number">0.38</span>, <span class="number">0.15</span>, <span class="number">0.29</span>, <span class="number">0.09</span>])</span><br><span class="line">    ws.append([<span class="string">&#x27;kpi&#x27;</span>, <span class="number">4212</span>, <span class="number">2784</span>, <span class="number">0.21</span>, -<span class="number">0.19</span>, <span class="number">0.36</span>, -<span class="number">0.22</span>])</span><br><span class="line">    wb.save(file_path)</span><br></pre></td></tr></table></figure>
-<p>创建出来的表格，示例数据如下</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键词</th>
-<th style="text-align:center">整体日均值</th>
-<th style="text-align:center">移动日均值</th>
-<th style="text-align:center">整体同比</th>
-<th style="text-align:center">整体环比</th>
-<th style="text-align:center">移动同比</th>
-<th style="text-align:center">移动环比</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">excel</td>
-<td style="text-align:center">27782</td>
-<td style="text-align:center">18181</td>
-<td style="text-align:center">-0.11</td>
-<td style="text-align:center">-2</td>
-<td style="text-align:center">0.21</td>
-<td style="text-align:center">0.02</td>
-</tr>
-<tr>
-<td style="text-align:left">python</td>
-<td style="text-align:center">24267</td>
-<td style="text-align:center">8204</td>
-<td style="text-align:center">0.27</td>
-<td style="text-align:center">0.06</td>
-<td style="text-align:center">0.56</td>
-<td style="text-align:center">0.01</td>
-</tr>
-<tr>
-<td style="text-align:left">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><h3 id="访问整个表格的数据"><a href="#访问整个表格的数据" class="headerlink" title="访问整个表格的数据"></a>访问整个表格的数据</h3><p>访问表格中所有的数据，并打印出来。<br>首先我们要知道表格中有数据的单元格的范围，使用sheet.max_row与sheet.max_column获取表格的行列数量。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">read_xlsx_basic</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    读取Excel的数据并打印出来</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    wb = load_workbook(file_path)</span><br><span class="line">    st = wb.active</span><br><span class="line">    end_row = st.max_row + <span class="number">1</span></span><br><span class="line">    end_column = st.max_column + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(st.title, <span class="string">&#x27;有&#x27;</span>, end_row, <span class="string">&#x27;行&#x27;</span>, end_column, <span class="string">&#x27;列&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, end_row):</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, end_column):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;&#123;:10&#125;&#x27;</span>.<span class="built_in">format</span>(st.cell(row=row, column=col).value), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，单元格下标是从1开始的。如果使用了不当的下标，报错信息</p>
-<blockquote>
-<p>ValueError: Row or column values must be at least 1</p>
-</blockquote>
-<p>参考： <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34492322/how-to-scan-all-sheet-cells">https://stackoverflow.com/questions/34492322/how-to-scan-all-sheet-cells</a></p>
-<h2 id="修改表格"><a href="#修改表格" class="headerlink" title="修改表格"></a>修改表格</h2><p>有了Excel表格后，我们可以修改表格的一些格式和数据。</p>
-<p><code>st</code>表示当前表。</p>
-<h3 id="调整列的宽度"><a href="#调整列的宽度" class="headerlink" title="调整列的宽度"></a>调整列的宽度</h3><p>用 column_dimensions 来获取列。例如column_dimensions[‘A’]获取到的是第A列。<br><code>ord</code>方法是将字符转换为ascii码。ord(‘A’)得到65。</p>
-<p>这里调整的是A列到G列的宽度。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;G&#x27;</span>) + <span class="number">1</span>):</span><br><span class="line">    st.column_dimensions[<span class="built_in">chr</span>(col)].width = <span class="number">15</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="设置单元格格式"><a href="#设置单元格格式" class="headerlink" title="设置单元格格式"></a>设置单元格格式</h3><p>格式，比如字体大小，对齐模式，粗体斜体等。</p>
-<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><p>首先我们要拿到单元格cell，这里使用st.cell(row=1, column=col)来获取某一个格子。<br>Cell持有的font是不可修改的。不能使用如<code>cell.font.size = 13</code>这样的操作，会报异常。<br>copy方法是复制一个对象。这里复制的是font。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cell = st.cell(row=<span class="number">1</span>, column=col)</span><br><span class="line">font = copy(cell.font)</span><br><span class="line">font.size = <span class="number">13</span></span><br><span class="line">font.bold = <span class="literal">True</span></span><br><span class="line">cell.font = font</span><br></pre></td></tr></table></figure>
-<h4 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h4><p>对齐模式。使用alignment属性。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.alignment = Alignment(horizontal=<span class="string">&quot;center&quot;</span>, vertical=<span class="string">&quot;center&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<h4 id="数据显示"><a href="#数据显示" class="headerlink" title="数据显示"></a>数据显示</h4><p>操作Excel时，我们可以设置单元格数据显示的方式，比如常规，数值，货币，百分比等等。<br>这里使用的是number_format属性。</p>
-<p>如果数据（value）是0.02，经过下面的设置后，Excel中显示的是2%。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.number_format = <span class="string">&#x27;0%&#x27;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h4><p>修改单元格的数值（value）。<br>修改数据首先要拿到那个单元格cell，然后对其value赋值。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.cell(row=<span class="number">2</span>, column=<span class="number">7</span>).value = <span class="number">0.42</span>  <span class="comment"># 修改数值</span></span><br></pre></td></tr></table></figure></p>
-<p>修改了单元格的样式和数据后，可以打开表格看看效果。</p>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/12387212/openpyxl-setting-number-format">https://stackoverflow.com/questions/12387212/openpyxl-setting-number-format</a></li>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/30050716/how-to-put-two-decimals-in-cell-with-type-of-percent">https://stackoverflow.com/questions/30050716/how-to-put-two-decimals-in-cell-with-type-of-percent</a></li>
-</ul>
-<p>相关代码请参考 <a target="_blank" rel="noopener" href="https://github.com/RustFisher/python-playground">https://github.com/RustFisher/python-playground</a></p>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-145397854-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="标签 - 运营的Python指南"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 4 篇文章</p>
+  <hr>
+  
+  
+    
+      
+      <p class="h5">2021</p>
+    
+    <a href="/2021/07/16/Python/operation/matplotlib-intro1/" class="list-group-item list-group-item-action">
+      <time>07-16</time>
+      <div class="list-group-item-title">【运营的Python指南】绘制图表Matplotlib快速入门</div>
+    </a>
+  
+    
+    <a href="/2021/06/28/Python/Python-op-draw-funnel-1/" class="list-group-item list-group-item-action">
+      <time>06-28</time>
+      <div class="list-group-item-title">【运营的Python指南】绘制漏斗图</div>
+    </a>
+  
+    
+      
+      <p class="h5">2019</p>
+    
+    <a href="/2019/11/19/Python/Python-op-excel_openpyxl_bar_column_chart/" class="list-group-item list-group-item-action">
+      <time>11-19</time>
+      <div class="list-group-item-title">【运营的Python指南】Python Excel 绘制柱形图</div>
+    </a>
+  
+    
+    <a href="/2019/11/05/Python/Python-op-excel_openpyxl_use/" class="list-group-item list-group-item-action">
+      <time>11-05</time>
+      <div class="list-group-item-title">【运营的Python指南】Python 操作Excel</div>
+    </a>
+  
+</div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
