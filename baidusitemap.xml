@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/2023/04/27/fun/zt-zhihu-1/</loc>
+    <lastmod>2023-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2023/05/08/fun/zt-zhihu-2/</loc>
+    <lastmod>2023-05-08</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/2023/01/18/unclassified/web-res-move-2023/</loc>
     <lastmod>2023-05-05</lastmod>
   </url>
@@ -10,10 +18,6 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2023/05/03/fun/zt-nga-1/</loc>
-    <lastmod>2023-05-04</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/2023/04/27/fun/zt-zhihu-1/</loc>
     <lastmod>2023-05-04</lastmod>
   </url>
   <url>
@@ -125,19 +129,19 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/04/10/Kotlin/kotlin-breif-intro/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2021/06/19/Linux/for-use/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
+    <loc>https://blog.rustfisher.com/2020/04/10/Kotlin/kotlin-breif-intro/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2020/02/03/Miniprogram/wx-mini-css_center_tutorial/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -281,11 +285,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/11/09/WebRTC/webRTC-concept-intro/</loc>
+    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
+    <loc>https://blog.rustfisher.com/2021/11/09/WebRTC/webRTC-concept-intro/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
