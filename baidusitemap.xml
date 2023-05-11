@@ -73,11 +73,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/20/Python/operation/matplotlib-intro-parts/</loc>
+    <loc>https://blog.rustfisher.com/2021/07/16/Python/operation/matplotlib-intro1/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/16/Python/operation/matplotlib-intro1/</loc>
+    <loc>https://blog.rustfisher.com/2021/07/20/Python/operation/matplotlib-intro-parts/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -133,10 +133,6 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/06/19/Linux/for-use/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2020/04/10/Kotlin/kotlin-breif-intro/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
@@ -145,11 +141,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
+    <loc>https://blog.rustfisher.com/2021/06/19/Linux/for-use/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/07/31/Python/Python-get-path/</loc>
+    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -157,11 +153,15 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/05/25/Python/Python-mysql_use/</loc>
+    <loc>https://blog.rustfisher.com/2017/07/31/Python/Python-get-path/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2017/11/21/Python/Python-logging-use/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2017/05/25/Python/Python-mysql_use/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -209,11 +209,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2018/06/01/Android/Android-Intent_extra_size_limit/</loc>
+    <loc>https://blog.rustfisher.com/2017/12/20/Android/Android-MediaCodec_use_demo/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/12/20/Android/Android-MediaCodec_use_demo/</loc>
+    <loc>https://blog.rustfisher.com/2018/06/01/Android/Android-Intent_extra_size_limit/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -245,11 +245,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/01/19/Android/Gradle_for_android_Start/</loc>
+    <loc>https://blog.rustfisher.com/2017/01/19/Android/Gradle_for_android_Creating_Build_Variants/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/01/19/Android/Gradle_for_android_Creating_Build_Variants/</loc>
+    <loc>https://blog.rustfisher.com/2017/01/19/Android/Gradle_for_android_Start/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
