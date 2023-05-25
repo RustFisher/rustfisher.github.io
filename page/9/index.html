@@ -277,282 +277,6 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/09/20/PyQt_note/PyQt-Locale/" target="_self">
-          PyQt 语言国际化
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2017/09/20/PyQt_note/PyQt-Locale/" target="_self">
-        <div>
-          PyQt4 语言国际化使用pylupdate4将界面的py文件转成ts文件。 进入py文件所在目录，执行转换命令。1/d/python27/Lib/site-packages/PyQt4/pylupdate4 ui_main.py -ts zh_CN.ts 得到zh_CN.ts文件。这个文件本质上是xml文件。当界面的py文件修改时，运行pylupdate4生成ts不会破坏原ts的翻译。 用Qt语
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-09-20 14:39" pubdate>
-              2017-09-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/PyQt/" class="category-chain-item">PyQt</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/09/19/PyQt_note/PyQt-Drag_and_drop/" target="_self">
-          PyQt 拖入
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2017/09/19/PyQt_note/PyQt-Drag_and_drop/" target="_self">
-        <div>
-          PyQt支持拖入功能。比如拖入文件或者一段文本。 拖入文本定义了一个label继承自QLabel，初始化时设置允许拖入。 参见pyqt5-drag-and-drop1234567891011121314151617from PyQt5 import QtCorefrom PyQt5.QtWidgets import QMainWindow, QApplication, QListWidget, Q
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-09-19 10:45" pubdate>
-              2017-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/PyQt/" class="category-chain-item">PyQt</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/09/18/PyQt_note/PyQt-Pack_app/" target="_self">
-          PyQt 打包
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2017/09/18/PyQt_note/PyQt-Pack_app/" target="_self">
-        <div>
-          py2exePyQt4 中打包成EXE文件将某个GUI程序打包成EXE文件。 Python2.7，在PyCharm中直接执行这个文件。 123456789101112131415161718192021222324252627# -*- coding: utf-8 -*-from distutils.core import setupimport py2exeimport sysimport ma
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-09-18 12:03" pubdate>
-              2017-09-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/PyQt/" class="category-chain-item">PyQt</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2017/07/31/Python/Python-get-path/" target="_self">
-          <img src="/img/python-logo.png" srcset="/img/loading.gif" lazyload alt="Python 获取当前路径的方法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/07/31/Python/Python-get-path/" target="_self">
-          Python 获取当前路径的方法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2017/07/31/Python/Python-get-path/" target="_self">
-        <div>
-          本文链接 Python2.7 中获取路径的各种方法sys.path模块搜索路径的字符串列表。由环境变量PYTHONPATH初始化得到。sys.path[0]是调用Python解释器的当前脚本所在的目录。 sys.argv一个传给Python脚本的指令参数列表。sys.argv[0]是脚本的名字（由系统决定是否是全名）假设显示调用python指令，如python demo.py，会得到绝对路径；若直
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-07-31 22:15" pubdate>
-              2017-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Python/" class="category-chain-item">Python</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/07/11/PyQt_note/PyQt-QThread/" target="_self">
-          PyQt 线程类 QThread
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2017/07/11/PyQt_note/PyQt-QThread/" target="_self">
-        <div>
-          PyQt中的线程类 QtCore.QThread，使用时继承QThread类 启动界面的线程暂称为UI线程。界面执行命令时都在自己的UI线程中。如果在UI线程中执行网络连接和数据库操作等耗时的操作，界面会被卡住，Windows下有可能会出现“无响应”的警告。阻塞UI线程会降低用户体验和应用稳定性。因此我们可以把耗时操作放在线程中去执行。 QThread代表一个线程，我们可以复写run函数来执行我们
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-07-11 23:15" pubdate>
-              2017-07-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/PyQt/" class="category-chain-item">PyQt</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2017/07/05/Python/Python-adb-use/" target="_self">
           <img src="/img/python-logo.png" srcset="/img/loading.gif" lazyload alt="Python 调用adb命令">
@@ -873,11 +597,326 @@
     </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2017/05/25/Python/Python-mysql_use/" target="_self">
+          <img src="/img/python-logo.png" srcset="/img/loading.gif" lazyload alt="Python 操作 MySQL">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/25/Python/Python-mysql_use/" target="_self">
+          Python 操作 MySQL
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2017/05/25/Python/Python-mysql_use/" target="_self">
+        <div>
+          本文链接Python 操作 MySQL 开发环境与配置  win_x64 Ubuntu14.04 Python3.x  pip安装pymysql模块直接使用pip安装 pip install pymysqlwin64上直接在cmd中执行 连接本地数据库使用模块pymysql连接数据库本地数据库相关配置请参阅：   https://rustfisher.com/2019/02/26/Database
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-25 22:31" pubdate>
+              2017-05-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2017/05/05/Python/Python-dictionary-JSON-file/" target="_self">
+          <img src="/img/python-logo.png" srcset="/img/loading.gif" lazyload alt="Python3 Dictionary与JSON">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/05/Python/Python-dictionary-JSON-file/" target="_self">
+          Python3 Dictionary与JSON
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2017/05/05/Python/Python-dictionary-JSON-file/" target="_self">
+        <div>
+          JSON与Dictionary简介 Python3 PyCharm CE  JSON简介JSON(JavaScript Object Notation)是一种轻量级的数据交换格式。它是一种文本格式。它的结构主要由键值对来构成。一个键（key）对应一个值（value）。最外围用大括号&#123; &#125;包围起来。例如1234&#123;    &quot;firstName&quot;: &q
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-05 21:09" pubdate>
+              2017-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2017/04/29/Python/Python-pip-solution/" target="_self">
+          <img src="/img/python-logo.png" srcset="/img/loading.gif" lazyload alt="pip 相关">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/04/29/Python/Python-pip-solution/" target="_self">
+          pip 相关
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2017/04/29/Python/Python-pip-solution/" target="_self">
+        <div>
+          Ubuntu 14.04  pip 使用国内镜像源使用pip install 的时候总是出现read timeout 之类的错误 使用国内镜像  https://pypi.tuna.tsinghua.edu.cn/simple例如我要安装 scrapy1pip install -i https://pypi.tuna.tsinghua.edu.cn/simple scrapy 添加源的配置 Li
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-04-29 20:59" pubdate>
+              2017-04-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/03/26/DesignPattern/Adapter-Pattern/" target="_self">
+          适配器模式 Adapter Pattern - Java实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2017/03/26/DesignPattern/Adapter-Pattern/" target="_self">
+        <div>
+          定义将一个类的接口变换成客户端锁期待的另一种接口，从而使原本因接口不匹配而无法工作在一起的两个类能够在一起工作。也叫作变压器模式，亦称包装模式，但包装模式不止一个。简单而言，适配器模式就是把一个接口或类转换成其他的接口或类。 应用优点：  可以让没有任何关系的类在一起运行 增加了类的透明性 提高了类的复用度 灵活度好  注意事项：在详细阶段不要考虑适配器模式，它主要是用来解决正在服役的项目问题 代
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-03-26 15:35" pubdate>
+              2017-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Design-pattern/" class="category-chain-item">Design_pattern</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2017/03/16/Android/NDK-read_write_file/" target="_self">
+          <img src="/img/android-cover-2.png" srcset="/img/loading.gif" lazyload alt="Android NDK 读写文件">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/03/16/Android/NDK-read_write_file/" target="_self">
+          Android NDK 读写文件
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2017/03/16/Android/NDK-read_write_file/" target="_self">
+        <div>
+          读写文件。进入Linux的世界，读写文件。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-03-16 21:01" pubdate>
+              2017-03-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NDK/">#NDK</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
