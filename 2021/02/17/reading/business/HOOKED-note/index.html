@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《上瘾：让用户养成使用习惯的四大产品逻辑》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记">
+<meta property="og:url" content="https://blog.rustfisher.com/2021/02/17/reading/business/HOOKED-note/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="《上瘾：让用户养成使用习惯的四大产品逻辑》">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-17T06:07:59.000Z">
+<meta property="article:modified_time" content="2023-06-08T06:18:46.182Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="读书笔记">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-17 14:07" pubdate>
+          2021年2月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年6月8日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><div class="note note-info">
+            <p>《上瘾：让用户养成使用习惯的四大产品逻辑》</p><p>作者：尼尔·埃亚尔 瑞安·胡佛</p>
+          </div>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><h3 id="前言-为什么有的产品会让人上瘾？"><a href="#前言-为什么有的产品会让人上瘾？" class="headerlink" title="前言 为什么有的产品会让人上瘾？"></a>前言 为什么有的产品会让人上瘾？</h3><ul>
+<li>习惯是指我们下意识做出的举动。</li>
+<li>集网络连接、海量数据、超快网速三者于一身的技术正在使这个世界上瘾成性。</li>
+<li>生产习惯养成类产品可以让商家稳占竞争优势。</li>
+<li>上瘾模型将用户面临的问题与企业提供的应对策略衔接在一起，二者频繁互动，促成用户养成习惯。</li>
+<li>上瘾模型包括四个阶段：触发，行动，多变的酬赏，投入。</li>
+</ul>
+<h3 id="第一章-习惯的力量：-如何让你的产品从维生素变成止痛药"><a href="#第一章-习惯的力量：-如何让你的产品从维生素变成止痛药" class="headerlink" title="第一章 习惯的力量： 如何让你的产品从维生素变成止痛药"></a>第一章 习惯的力量： 如何让你的产品从维生素变成止痛药</h3><p>当大脑试图走捷径而不再主动思考接下来该做些什么时，习惯就养成了。[插图]为解决当下面临的问题，大脑会在极短的时间内从行为存储库里提取出相宜的对策。</p>
+<p>在马克·扎克伯格放弃学业，将刚出炉的Facebook推向市场时，MySpace和Friendster均发展态势良好，都拥有数千万用户，但尽管如此，社交网络领域的主导地位最终还是被Facebook所抢占。</p>
+<blockquote>
+<p>后来居上也是有可能的</p>
+</blockquote>
+<h3 id="第二章-触发：-提醒人们采取下一步行动"><a href="#第二章-触发：-提醒人们采取下一步行动" class="headerlink" title="第二章 触发： 提醒人们采取下一步行动"></a>第二章 触发： 提醒人们采取下一步行动</h3><p>选择项越多，用户用于权衡的时间就越久。太多的或者无关的选项会让他们游移不定，不知所措，甚至就此罢手。[插图]减少有关下一步行动的思考时间，这会提高某种行为发展为无意识习惯的可能性。</p>
+<p>利用人际型触发来促使用户积极地与他人分享产品的优势</p>
+<p>付费型触发、回馈型触发以及人际型触发都是以争取新用户为主要目标，而自主型触发以驱动用户重复某种行为作为重点，目的是让用户逐渐形成习惯。如若没有自主型触发，不能在用户默许的前提下获得他们的关注，产品就很难以足够高的出现频率渗透进用户的使用习惯里。</p>
+<p>情绪，尤其是负面情绪，是一种威力强大的内部触发，能给我们的日常生活带来极大的影响。</p>
+<p>Instagram不仅具备相机的功能，还为用户搭建了一个社交网络平台。</p>
+<p>触发是上瘾模型的第一个阶段，它可促使用户采取行动。</p>
+<p>触发分为两类——外部触发和内部触发。</p>
+<ul>
+<li>外部触发通过将信息渗透在用户生活的各个方面来引导他们采取下一步行动。</li>
+<li>内部触发通过用户记忆存储中的各种关联来提醒他们采取下一步行动。</li>
+<li>负面情绪往往可以充当内部触发。</li>
+<li>要开发习惯养成类产品，设计者需要揣摩用户的心理，了解那些有可能成为内部触发的各种情绪，并且要知道如何利用外部触发来促使用户付诸行动。</li>
+</ul>
+<h3 id="第三章-行动：-人们在期待酬赏时的直接反应"><a href="#第三章-行动：-人们在期待酬赏时的直接反应" class="headerlink" title="第三章 行动： 人们在期待酬赏时的直接反应"></a>第三章 行动： 人们在期待酬赏时的直接反应</h3><p>要使人们行动起来，三个要素必不可少。第一，充分的动机；第二，完成这一行为的能力；第三，促使人们付诸行动的触发。</p>
+<p>福格博士认为，能够驱使我们采取行动的核心动机不外乎三种。第一种，追求快乐，逃避痛苦；第二种，追求希望，逃避恐惧；第三种，追求认同，逃避排斥</p>
+<p>丹尼斯·豪普特利将产品的创新过程分解成了三个基本步骤。第一步，了解人们使用某个产品或服务的原因。接下来，列举出用户使用该产品时的必经环节。最后一步，在明确整个过程的所有环节之后，开始做减法，把无关环节全部删除，直至将使用过程简化到极致。</p>
+<p>在豪普特利看来，越简单的东西越受欢迎。</p>
+<p>当你使用某个产品时所需花费的步骤（在上述例子中，这个步骤指的是接入网络、登录网页）能被缩减或是优化时，用户使用它的频率就会增加。</p>
+<p>先解决能力问题。</p>
+<p>就算不存在任何客观差异，人们还是会因为预知的信息对产品产生判断误差。</p>
+<blockquote>
+<p>包装和宣传很重要</p>
+</blockquote>
+<p>目标渐近效应的存在，当人们认为自己距离目标越来越近时，完成任务的动机会更强烈。</p>
+<p>让用户对你的产品爱不释手，最好先对这些认知偏差有所了解，并在设计产品时加以利用，因为它们可以有效地帮助你强化用户的动机，提高用户对产品的使用能力。</p>
+<h3 id="第四章-多变的酬赏：-满足用户的需求，激发使用欲"><a href="#第四章-多变的酬赏：-满足用户的需求，激发使用欲" class="headerlink" title="第四章 多变的酬赏： 满足用户的需求，激发使用欲"></a>第四章 多变的酬赏： 满足用户的需求，激发使用欲</h3><p>多变的酬赏主要表现为三种形式：社交酬赏，猎物酬赏，自我酬赏</p>
+<p>用户无法预知下一次访问网站时会看到些什么，这种不确定性就像是一种无形的力量，推动着他们一次又一次地重新登录。</p>
+<p>每一个步骤提供及时的反馈</p>
+<p>Quora之所以成功，是因为它准确把握了人们的心理。事实证明，人们对于社交酬赏以及同伴认同的渴望要远远大于对经济利益的期待。Quora设计的投票系统可以让用户对满意的答案投出赞成票，从而建立起一套稳定的社交反馈机制。比起Mahalo的经济酬赏，Quora的社交酬赏更有号召力。</p>
+<p>如果公司的产品或服务理念不能迎合用户的需求，那再多的“游戏化”元素都无济于事。</p>
+<p>研究人员设计出的这句神秘话语就是：你有权接受，也有权拒绝。</p>
+<h3 id="第五章-投入：-通过用户对产品的投入，培养“回头客”"><a href="#第五章-投入：-通过用户对产品的投入，培养“回头客”" class="headerlink" title="第五章 投入： 通过用户对产品的投入，培养“回头客”"></a>第五章 投入： 通过用户对产品的投入，培养“回头客”</h3><p>上瘾模型的最后一步是用户投入阶段，该阶段要求用户进行一些小小的投入。</p>
+<p>回报恩情</p>
+<h3 id="第六章-上瘾模型与道德操控"><a href="#第六章-上瘾模型与道德操控" class="headerlink" title="第六章 上瘾模型与道德操控"></a>第六章 上瘾模型与道德操控</h3><p>健身类应用程序、慈善网站以及声称能将艰苦的工作瞬间变成乐趣的产品往往属于兜售商这一类别</p>
+<p>面对刺激，大脑的反应是获取越多越好，对层出不穷的新奇事物永远充满渴望。</p>
+<blockquote>
+<p>这是渴望。不是快乐</p>
+</blockquote>
+<p>为帮助习惯养成类技术的设计者评估其操控用户背后的道德责任，首先要确定其工作性质属于四象限中的哪一个。你是一名健康习惯推广者、兜售商、娱乐用户者，还是经销商？</p>
+<h3 id="第七章-案例研究：-《圣经》应用程序"><a href="#第七章-案例研究：-《圣经》应用程序" class="headerlink" title="第七章 案例研究： 《圣经》应用程序"></a>第七章 案例研究： 《圣经》应用程序</h3><p>如果创业只为名利，很可能两者都得不到。如果为意义而创业，那就不可能失败。</p>
+<p>使用轻松</p>
+<blockquote>
+<p>要把产品做的易用。</p>
+</blockquote>
+<p>只要将一种目的性行为变得越轻松容易，该行为出现的频率就越高。</p>
+<blockquote>
+<p>第一，有目的。第二，轻松容易。</p>
+</blockquote>
+<p>未知因素</p>
+<blockquote>
+<p>未知，随机，抽奖，盲盒。<br>勾起人的兴趣，多巴胺。</p>
+</blockquote>
+<p>给读者塑造出了一个积极正面的形象，也就是所谓的“谦虚地吹牛”</p>
+<blockquote>
+<p>如果是健康类应用，也可以给类似的谦虚吹牛，或者体现出用户很辛苦，很累，很努力</p>
+</blockquote>
+<h3 id="第八章-习惯测试和寻找机会"><a href="#第八章-习惯测试和寻找机会" class="headerlink" title="第八章 习惯测试和寻找机会"></a>第八章 习惯测试和寻找机会</h3><p>上瘾模型有助于产品设计者为习惯养成类技术制定一个初始标准，还有助于从现有产品的习惯养成潜能中发现隐性的弱点。</p>
+<ul>
+<li>一旦产品被开发出来，“习惯测试”有助于确定产品粉丝，找出哪些产品因素有助于用户形成习惯（如果有的话），搞清楚产品的这些方面为何会令用户行为发生改变。习惯测试包括三个步骤：确定用户、分析用户行为和改进产品。</li>
+<li>首先，深入研究数据，确定人们的行为方式和使用产品的方式。</li>
+<li>其次，对这些发现进行分析，找出习惯用户。要想得出新的推测，研究忠实用户的行为和习惯路径。</li>
+<li>最后，改进产品，吸引更多用户走上习惯用户所走的路径，然后评估结果，视需要继续修改。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/reading/" class="category-chain-item">reading</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">#读书笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记</div>
+      <div>https://blog.rustfisher.com/2021/02/17/reading/business/HOOKED-note/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/19/Linux/for-use/" title="Shell for循环语句">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Shell for循环语句</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/30/CocosCreator/ccc-drag-to-target/" title="Cocos Creator 拖动去指定区域">
+                        <span class="hidden-mobile">Cocos Creator 拖动去指定区域</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
