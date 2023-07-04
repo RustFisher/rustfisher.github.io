@@ -844,97 +844,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/MySQL/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/mac/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E5%AE%89%E8%A3%85mysql/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/Cocos-Creator/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/ENVI/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/Linux/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/Tools/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/Shell/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/for/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/css/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/tags/AIDL/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
@@ -1054,6 +963,83 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/tags/Cocos-Creator/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/MySQL/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/mac/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E5%AE%89%E8%A3%85mysql/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/ENVI/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/Linux/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/Tools/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/Shell/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/for/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/tags/MongoDB/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
@@ -1062,6 +1048,20 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/css/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1090,6 +1090,20 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/WebSocket/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/http/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1166,27 +1180,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/%E7%9F%A5%E4%B9%8E/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/http/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/tags/web/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
@@ -1202,6 +1195,13 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/python/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E7%9F%A5%E4%B9%8E/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1252,7 +1252,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/categories/Database/</loc>
+    <loc>https://blog.rustfisher.com/categories/Android-note/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1266,21 +1266,14 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/categories/Database/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/categories/Design-pattern/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/categories/Flutter-note/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/categories/Android-note/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1295,6 +1288,13 @@
   
   <url>
     <loc>https://blog.rustfisher.com/categories/Web-note/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/categories/Flutter-note/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1330,6 +1330,13 @@
   
   <url>
     <loc>https://blog.rustfisher.com/categories/NestJS/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/categories/HTTP/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1379,13 +1386,6 @@
   
   <url>
     <loc>https://blog.rustfisher.com/categories/unclassified/</loc>
-    <lastmod>2023-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/categories/HTTP/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
