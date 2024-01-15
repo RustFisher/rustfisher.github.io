@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/2024/01/14/fun/zt-douyin-waipodehuasheng/</loc>
+    <lastmod>2024-01-15</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/2024/01/11/fun/zt-zhihu-riji/riji-3024-1-11/</loc>
     <lastmod>2024-01-12</lastmod>
   </url>
@@ -89,11 +93,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/01/10/Android/Android-AudioRecord_AudioTrack_pcm_wav/</loc>
+    <loc>https://blog.rustfisher.com/2017/06/22/Android/Android-AsyncTask_use_and_RTFSC/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/06/22/Android/Android-AsyncTask_use_and_RTFSC/</loc>
+    <loc>https://blog.rustfisher.com/2020/01/10/Android/Android-AudioRecord_AudioTrack_pcm_wav/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -133,11 +137,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2018/02/05/Android/adb_mock_touch_and_monkeyrunner/</loc>
+    <loc>https://blog.rustfisher.com/2016/06/14/Android/NDK-use_sample_2/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2016/06/14/Android/NDK-use_sample_2/</loc>
+    <loc>https://blog.rustfisher.com/2018/02/05/Android/adb_mock_touch_and_monkeyrunner/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -293,11 +297,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
+    <loc>https://blog.rustfisher.com/2021/08/31/Summary/2021-8/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/08/31/Summary/2021-8/</loc>
+    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
