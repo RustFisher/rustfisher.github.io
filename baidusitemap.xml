@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/2024/02/05/Career/zt-zhihu-68467783-answer-2560111521/</loc>
+    <lastmod>2024-02-06</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/2024/02/04/Career/zt-juejin-on-the-way-out-615370768790158/</loc>
     <lastmod>2024-02-04</lastmod>
   </url>
@@ -117,11 +121,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/06/09/Android/Android-IntentService-intro1/</loc>
+    <loc>https://blog.rustfisher.com/2017/06/07/Android/Android-Handler_src_note/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/06/07/Android/Android-Handler_src_note/</loc>
+    <loc>https://blog.rustfisher.com/2017/06/09/Android/Android-IntentService-intro1/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
