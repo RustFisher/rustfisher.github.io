@@ -1,133 +1,498 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>RustFisher的自留地</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="RustFisher的自留地"><meta name="msapplication-TileImage" content="/img/fish.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RustFisher的自留地"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:type" content="blog"><meta property="og:title" content="RustFisher的自留地"><meta property="og:url" content="https://blog.rustfisher.com/"><meta property="og:site_name" content="RustFisher的自留地"><meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://blog.rustfisher.com/img/og_image.png"><meta property="article:author" content="Rust Fisher"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://blog.rustfisher.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rustfisher.com"},"headline":"RustFisher的自留地","image":["https://blog.rustfisher.com/img/og_image.png"],"author":{"@type":"Person","name":"Rust Fisher"},"publisher":{"@type":"Organization","name":"RustFisher的自留地","logo":{"@type":"ImageObject","url":"https://blog.rustfisher.com/img/fish.png"}},"description":"技术学习与实践，一些开发记录，读书笔记"}</script><link rel="icon" href="/img/fish.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-NT4BCBCQTP" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-NT4BCBCQTP');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-7286632197002340" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fish.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RustFisher的自留地">
+<meta property="og:url" content="https://blog.rustfisher.com/page/13/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-10-10T14:18:01.000Z" title="2017/10/10 22:18:01">2017-10-10</time>发表</span><span class="level-item"><time dateTime="2020-10-10T02:59:08.564Z" title="2020/10/10 10:59:08">2020-10-10</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-note/">Linux_note</a></span><span class="level-item">1 分钟读完 (大约131个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/10/10/Linux/find-use/">find的使用</a></p><div class="content"><p>比如删除～结尾的文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*~&quot; -type f -print -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>删除文件名有特定字符的文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*abcd*&quot; -exec rm -f &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>修改执行命令和文件类型，安装目录下所有apk文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.apk&quot; -type f -print -exec adb install &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>找到所有的json文件并且删除<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.json&quot; -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>删除指定目录，比如删除所有的git目录<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -iname &quot;.git&quot; -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>找到当前目录下所有的apk并安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">&quot;*.apk&quot;</span> -<span class="built_in">exec</span> adb install &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-09-26T09:43:20.000Z" title="2017/9/26 17:43:20">2017-09-26</time>发表</span><span class="level-item"><time dateTime="2018-09-21T01:03:47.000Z" title="2018/9/21 09:03:47">2018-09-21</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/PyQt/">PyQt</a></span><span class="level-item">2 分钟读完 (大约320个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/09/26/PyQt_note/PyQt-Adjust_screen_resolution/">PyQt 适配不同屏幕分辨率</a></p><div class="content"><p>在宽高为<code>1366*768</code>下设计开发的界面，到了<code>2860*1620</code>屏幕下会显示不正常。<br>因为像素密度不同，<code>2860*1620</code>屏幕显示出来的控件很小。</p>
-<h2 id="适配方法-根据当前屏幕调整控件大小和位置"><a href="#适配方法-根据当前屏幕调整控件大小和位置" class="headerlink" title="适配方法 - 根据当前屏幕调整控件大小和位置"></a>适配方法 - 根据当前屏幕调整控件大小和位置</h2><p>初始化时获取到当前屏幕的宽高像素值。<br>与原像素值相比求出比例<code>self.ratio_wid</code>，<code>self.ratio_height</code>。</p>
-<p>找出所有的QWidget <code>self.findChildren(QWidget)</code>，遍历来改变大小和位置。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt4.QtGui <span class="keyword">import</span> QMainWindow, QApplication, QWidget</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ReMainWindow</span>(<span class="title class_ inherited__">QMainWindow</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, parent=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="comment"># ...........</span></span><br><span class="line">        self.app = QApplication.instance()  <span class="comment"># Calculate the ratio. Design screen is [1366, 768]</span></span><br><span class="line">        screen_resolution = self.app.desktop().screenGeometry()</span><br><span class="line">        self.hw_ratio = <span class="number">768</span> / <span class="number">1366</span>  <span class="comment"># height / width</span></span><br><span class="line">        self.ratio_wid = screen_resolution.width() / <span class="number">1366</span></span><br><span class="line">        <span class="keyword">if</span> self.ratio_wid &lt; <span class="number">1</span>:</span><br><span class="line">            self.ratio_wid = <span class="number">1</span></span><br><span class="line">        self.ratio_height = screen_resolution.height() / <span class="number">768</span></span><br><span class="line">        <span class="keyword">if</span> self.ratio_height &lt; <span class="number">1</span>:</span><br><span class="line">            self.ratio_height = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_init_ui_size</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Travel all the widgets and resize according to the ratio &quot;&quot;&quot;</span></span><br><span class="line">        self._resize_with_ratio(self)</span><br><span class="line">        <span class="keyword">for</span> q_widget <span class="keyword">in</span> self.findChildren(QWidget):</span><br><span class="line">            <span class="comment"># print q_widget.objectName()</span></span><br><span class="line">            self._resize_with_ratio(q_widget)</span><br><span class="line">            self._move_with_ratio(q_widget)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Don&#x27;t deal with the text browser</span></span><br><span class="line">            <span class="comment"># for q_widget in self.findChildren(QAbstractScrollArea):</span></span><br><span class="line">            <span class="comment">#     print q_widget.objectName()</span></span><br><span class="line">            <span class="comment">#     self._resize_with_ratio(q_widget)</span></span><br><span class="line">            <span class="comment">#     self._move_with_ratio(q_widget)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_resize_with_ratio</span>(<span class="params">self, input_ui</span>):</span><br><span class="line">        input_ui.resize(input_ui.width() * self.ratio_wid, input_ui.height() * self.ratio_height)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_move_with_ratio</span>(<span class="params">self, input_ui</span>):</span><br><span class="line">        input_ui.move(input_ui.x() * self.ratio_wid, input_ui.y() * self.ratio_height)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>实践发现，不需要对QTextBrowser所属的<code>QAbstractScrollArea</code>处理。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-09-20T06:39:20.000Z" title="2017/9/20 14:39:20">2017-09-20</time>发表</span><span class="level-item"><time dateTime="2018-09-21T01:03:47.000Z" title="2018/9/21 09:03:47">2018-09-21</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/PyQt/">PyQt</a></span><span class="level-item">4 分钟读完 (大约581个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/09/20/PyQt_note/PyQt-Locale/">PyQt 语言国际化</a></p><div class="content"><h2 id="PyQt4-语言国际化"><a href="#PyQt4-语言国际化" class="headerlink" title="PyQt4 语言国际化"></a>PyQt4 语言国际化</h2><p>使用<code>pylupdate4</code>将界面的py文件转成ts文件。</p>
-<p>进入py文件所在目录，执行转换命令。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/d/python27/Lib/site-packages/PyQt4/pylupdate4 ui_main.py -ts zh_CN.ts</span><br></pre></td></tr></table></figure></p>
-<p>得到<code>zh_CN.ts</code>文件。这个文件本质上是xml文件。<br>当界面的py文件修改时，运行<code>pylupdate4</code>生成ts不会破坏原ts的翻译。</p>
-<p>用Qt语言家（Linguist）打开<code>zh_CN.ts</code>文件。可以对相应的字符串进行翻译。<br>点击“发布”可获得<code>zh_CN.qm</code>文件。这就是qt的语言资源文件，是一个二进制文件。</p>
-<p>创建app时，先加载语言资源文件<code>zh_CN.qm</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    configs.init_configs()  <span class="comment"># 确定语言配置</span></span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    trans = QTranslator()  <span class="comment"># Setup locale, we need .qm files</span></span><br><span class="line">    <span class="keyword">if</span> configs.g_locale_type == configs.LOCALE_ZH_CH:</span><br><span class="line">        trans.load(<span class="string">&quot;res/locale/zh_CN&quot;</span>)  <span class="comment"># No need suffix .qm</span></span><br><span class="line">        app.installTranslator(trans)</span><br><span class="line"></span><br><span class="line">    main_d = FAMainWindow()</span><br><span class="line">    main_d.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<h2 id="App运行中切换语言"><a href="#App运行中切换语言" class="headerlink" title="App运行中切换语言"></a>App运行中切换语言</h2><p>在程序运行时，我们可以选择当前显示的语言。不需要重新启动程序即可完成切换。</p>
-<h3 id="准备语言资源文件"><a href="#准备语言资源文件" class="headerlink" title="准备语言资源文件"></a>准备语言资源文件</h3><p>以英文和简体中文为例，想要切换语言，需要这2种语言包<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /d/python27/Lib/site-packages/PyQt4/pylupdate4 ui_main.py -ts zh_CN.ts</span><br><span class="line">$ /d/python27/Lib/site-packages/PyQt4/pylupdate4 ui_main.py -ts en.ts</span><br></pre></td></tr></table></figure><br>借助Qt语言家发布得到<code>en.qm</code>和<code>zh_CN.qm</code>这2个文件，放在<code>res/locale</code>目录里</p>
-<h3 id="在UI上设置触发切换语言"><a href="#在UI上设置触发切换语言" class="headerlink" title="在UI上设置触发切换语言"></a>在UI上设置触发切换语言</h3><p>界面上需要按钮或菜单栏的action；需要持有<code>QTranslator</code>；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    self.trans = QTranslator()  <span class="comment"># 初始化时获取 QTranslator</span></span><br><span class="line">    self._init_trans()</span><br><span class="line">    <span class="comment"># 添加了action来触发切换动作</span></span><br><span class="line">    self.connect(self.ma.actionEnglish, SIGNAL(<span class="string">&quot;triggered()&quot;</span>), self._trigger_english)</span><br><span class="line">    self.ma.action_ZhCN.triggered.connect(self._trigger_zh_cn)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_init_trans</span>(<span class="params">self</span>):</span><br><span class="line">    ctx.read_locale_config()  <span class="comment"># 自定义的方法，用来读取json文件中的配置</span></span><br><span class="line">    <span class="keyword">if</span> ctx.g_locale_type == ctx.LOCALE_ZH_CH:</span><br><span class="line">        self._trigger_zh_cn()</span><br><span class="line">    <span class="keyword">elif</span> ctx.g_locale_type == ctx.LOCALE_EN:</span><br><span class="line">        self._trigger_english()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_trigger_english</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[MainWindow] Change to English&quot;</span></span><br><span class="line">    self.trans.load(<span class="string">&quot;res/locale/en&quot;</span>)</span><br><span class="line">    _app = QApplication.instance()  <span class="comment"># 获取app实例</span></span><br><span class="line">    _app.installTranslator(self.trans)</span><br><span class="line">    self.ma.retranslateUi(self)</span><br><span class="line">    ctx.change_to_en()  <span class="comment"># 将新的配置更新入json文件中</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_trigger_zh_cn</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[MainWindow] Change to zh_CN&quot;</span></span><br><span class="line">    self.trans.load(<span class="string">&quot;res/locale/zh_CN&quot;</span>)</span><br><span class="line">    _app = QApplication.instance()</span><br><span class="line">    _app.installTranslator(self.trans)</span><br><span class="line">    self.ma.retranslateUi(self)</span><br><span class="line">    ctx.change_to_zh_cn()</span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-09-19T02:45:15.000Z" title="2017/9/19 10:45:15">2017-09-19</time>发表</span><span class="level-item"><time dateTime="2018-09-21T01:03:47.000Z" title="2018/9/21 09:03:47">2018-09-21</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/PyQt/">PyQt</a></span><span class="level-item">3 分钟读完 (大约489个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/09/19/PyQt_note/PyQt-Drag_and_drop/">PyQt 拖入</a></p><div class="content"><p>PyQt支持拖入功能。比如拖入文件或者一段文本。</p>
-<h3 id="拖入文本"><a href="#拖入文本" class="headerlink" title="拖入文本"></a>拖入文本</h3><p>定义了一个label继承自<code>QLabel</code>，初始化时设置允许拖入。</p>
-<p>参见<a target="_blank" rel="noopener" href="https://pythonspot.com/en/pyqt5-drag-and-drop/">pyqt5-drag-and-drop</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QListWidget, QAbstractItemView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomLabel</span>(<span class="title class_ inherited__">QLabel</span>):</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, title, parent</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(title, parent)</span><br><span class="line">        self.setAcceptDrops(<span class="literal">True</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dragEnterEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">if</span> e.mimeData().hasFormat(<span class="string">&#x27;text/plain&#x27;</span>):</span><br><span class="line">            e.accept()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e.ignore()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dropEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        self.setText(e.mimeData().text())</span><br></pre></td></tr></table></figure><br>直接调用这个类，将它添加到界面上去。</p>
-<h3 id="拖入文件，读取文件路径"><a href="#拖入文件，读取文件路径" class="headerlink" title="拖入文件，读取文件路径"></a>拖入文件，读取文件路径</h3><p>这里继承了QLabel。<code>Ui_MainWindow</code>是用designer画出来的界面。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QListWidget, QAbstractItemView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LabMainWindow</span>(<span class="title class_ inherited__">QMainWindow</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LabMainWindow, self).__init__()</span><br><span class="line">        self.ma = Ui_MainWindow()</span><br><span class="line">        self.ma.setupUi(self)</span><br><span class="line">        self.drag_in_widget = DragInWidget(<span class="string">&quot;Drag in&quot;</span>, self)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_init_ui</span>(<span class="params">self</span>):</span><br><span class="line">        self.drag_in_widget.move(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DragInWidget</span>(<span class="title class_ inherited__">QLabel</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, title, parent</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(title, parent)</span><br><span class="line">        self.setAcceptDrops(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dragEnterEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">if</span> e.mimeData().hasUrls():</span><br><span class="line">            e.accept()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e.ignore()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dropEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> e.mimeData().urls():</span><br><span class="line">            path = url.toLocalFile()</span><br><span class="line">            <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">                <span class="built_in">print</span>(path)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="QtWidgets-QFrame监听拖入事件"><a href="#QtWidgets-QFrame监听拖入事件" class="headerlink" title="QtWidgets.QFrame监听拖入事件"></a>QtWidgets.QFrame监听拖入事件</h3><p>监听到有效拖动事件后，利用<code>QtCore.pyqtSignal</code>把信息传递出去</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QListWidget, QAbstractItemView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DragInWidget</span>(QtWidgets.QFrame):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; Drag files to this widget &quot;&quot;&quot;</span></span><br><span class="line">    s_content = QtCore.pyqtSignal(<span class="built_in">str</span>)  <span class="comment"># emit file path</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, parent</span>):</span><br><span class="line">        <span class="built_in">super</span>(DragInWidget, self).__init__(parent)</span><br><span class="line">        self.setAcceptDrops(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dragEnterEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">if</span> e.mimeData().hasUrls():</span><br><span class="line">            e.accept()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e.ignore()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dropEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> e.mimeData().urls():</span><br><span class="line">            path = url.toLocalFile()</span><br><span class="line">            <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">                self.s_content.emit(path)</span><br><span class="line">                <span class="built_in">print</span>(path)</span><br></pre></td></tr></table></figure>
-<p>这个Frame可以覆盖在其他控件上面时，会拦截操作</p>
-<h3 id="QListWidget拖入事件"><a href="#QListWidget拖入事件" class="headerlink" title="QListWidget拖入事件"></a>QListWidget拖入事件</h3><p>向<code>QListWidget</code>拖入文件，获取文件路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QListWidget, QAbstractItemView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DragInWidget</span>(<span class="title class_ inherited__">QListWidget</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; Drag files to this widget &quot;&quot;&quot;</span></span><br><span class="line">    s_content = QtCore.pyqtSignal(<span class="built_in">str</span>)  <span class="comment"># emit file path</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, parent</span>):</span><br><span class="line">        <span class="built_in">super</span>(DragInWidget, self).__init__(parent)</span><br><span class="line">        self.setAcceptDrops(<span class="literal">True</span>)</span><br><span class="line">        self.setDragDropMode(QAbstractItemView.InternalMove)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dragEnterEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">if</span> e.mimeData().hasUrls():</span><br><span class="line">            e.accept()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            e.ignore()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dropEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> e.mimeData().urls():</span><br><span class="line">            path = url.toLocalFile()</span><br><span class="line">            <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">                self.s_content.emit(path)</span><br><span class="line">                <span class="built_in">print</span>(path)</span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-09-18T04:03:05.000Z" title="2017/9/18 12:03:05">2017-09-18</time>发表</span><span class="level-item"><time dateTime="2019-02-20T06:32:52.000Z" title="2019/2/20 14:32:52">2019-02-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/PyQt/">PyQt</a></span><span class="level-item">4 分钟读完 (大约615个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/09/18/PyQt_note/PyQt-Pack_app/">PyQt 打包</a></p><div class="content"><h2 id="py2exe"><a href="#py2exe" class="headerlink" title="py2exe"></a>py2exe</h2><h3 id="PyQt4-中打包成EXE文件"><a href="#PyQt4-中打包成EXE文件" class="headerlink" title="PyQt4 中打包成EXE文件"></a>PyQt4 中打包成EXE文件</h3><p>将某个GUI程序打包成EXE文件。</p>
-<p>Python2.7，在PyCharm中直接执行这个文件。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> distutils.core <span class="keyword">import</span> setup</span><br><span class="line"><span class="keyword">import</span> py2exe</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> main_window_re</span><br><span class="line"></span><br><span class="line"><span class="comment"># this allows to run it with a simple double click.</span></span><br><span class="line">sys.argv.append(<span class="string">&#x27;py2exe&#x27;</span>)</span><br><span class="line"></span><br><span class="line">py2exe_options = &#123;</span><br><span class="line">    <span class="string">&quot;includes&quot;</span>: [<span class="string">&quot;sip&quot;</span>],</span><br><span class="line">    <span class="string">&quot;dll_excludes&quot;</span>: [<span class="string">&quot;MSVCP90.dll&quot;</span>, ],</span><br><span class="line">    <span class="string">&quot;compressed&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;optimize&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">&quot;ascii&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;bundle_files&quot;</span>: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=<span class="string">&#x27;Reliability_test&#x27;</span>,</span><br><span class="line">    version=main_window_re.VERSION_NAME,</span><br><span class="line">    windows=[<span class="string">&#x27;main_window_re.py&#x27;</span>, ],</span><br><span class="line">    zipfile=<span class="literal">None</span>,</span><br><span class="line">    options=&#123;<span class="string">&#x27;py2exe&#x27;</span>: py2exe_options&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>尝试过3.6和3.5版本，py2exe都不能正常工作。</p>
-<h2 id="pyinstaller"><a href="#pyinstaller" class="headerlink" title="pyinstaller"></a>pyinstaller</h2><p><a target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/wiki/FAQ">https://github.com/pyinstaller/pyinstaller/wiki/FAQ</a></p>
-<p>由于电脑上安装了多个版本的Python，环境变量制定了Python2。<br>这里使用3.5版本的pyinstaller来打包。<br>注意<code>--paths</code>指定了路径。环境变量中并没有设置这个路径。我们指定去找PyQt5的依赖dll。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-p DIR, --paths DIR   A path to search for imports (like using PYTHONPATH).</span><br><span class="line">                      Multiple paths are allowed, separated by &#x27;;&#x27;, or use</span><br><span class="line">                      this option multiple times</span><br></pre></td></tr></table></figure>
-<p>路径最好是加上引号，比如这里指定Qt5和PyQt5的路径<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -p &quot;D:\Qt\Qt5\5.6.3\msvc2015\bin&quot; -p &quot;D:\Python27_qt5\Lib\site-packages\PyQt5&quot; main_lab.py</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ /d/python35/Scripts/pyinstaller --paths /d/python35/Lib/site-packages/PyQt5/Qt/bin --onefile main_lab.py</span><br><span class="line">106 INFO: PyInstaller: 3.2.1</span><br><span class="line">106 INFO: Python: 3.5.4rc1</span><br><span class="line">106 INFO: Platform: Windows-7-6.1.7601-SP1</span><br><span class="line">108 INFO: wrote E:\ws\eslab\lab\main_lab.spec</span><br><span class="line">109 INFO: UPX is not available.</span><br><span class="line">110 INFO: Extending PYTHONPATH with paths</span><br><span class="line">[&#x27;E:\\ws\\eslab\\lab&#x27;,</span><br><span class="line"> &#x27;D:\\python35\\Lib\\site-packages\\PyQt5\\Qt\\bin&#x27;,</span><br><span class="line"> &#x27;E:\\ws\\eslab\\lab&#x27;]</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>生成单个窗口EXE文件。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /d/python35/Scripts/pyinstaller --paths /d/python35/Lib/site-packages/PyQt5/Qt/bin -F -w main_lab.py</span><br></pre></td></tr></table></figure></p>
-<p>生成exe文件后，报了一个找不到<code>lab</code>模块的错误。<br>这个模块刚好就是我们主界面所在的模块。<br>将引用的模块名<code>lab</code>删掉。重新生成exe文件。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lab.file_utils <span class="keyword">import</span> FileUtils</span><br><span class="line"><span class="keyword">from</span> lab.mainwindow <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="comment">####################################</span></span><br><span class="line"><span class="keyword">from</span> file_utils <span class="keyword">import</span> FileUtils</span><br><span class="line"><span class="keyword">from</span> mainwindow <span class="keyword">import</span> Ui_MainWindow</span><br></pre></td></tr></table></figure></p>
-<h3 id="运行exe找不到模块报错"><a href="#运行exe找不到模块报错" class="headerlink" title="运行exe找不到模块报错"></a>运行exe找不到模块报错</h3><p>使用默认方式打包，得到exe与文件目录<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller main_lab.py</span><br></pre></td></tr></table></figure><br>将dist中的目录复制到另一台电脑，点击运行exe文件；提示找不到模块<br>在主ui文件中，添加路径<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">sys.path.append(os.getcwd())  <span class="comment"># Prepare path</span></span><br></pre></td></tr></table></figure></p>
-<p>找不到模块，一般会报 <code>ImportError: No module named &#39;xxx&#39;</code> 错误<br>此时一般是找不到我们自己写的模块。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> my_package.ui_main <span class="keyword">import</span> Ui_MainWindow  <span class="comment"># 显示指定了my_package 打包得到的exe会找不到这个包</span></span><br><span class="line"><span class="keyword">from</span> my_widget <span class="keyword">import</span> DragInWidget  <span class="comment"># 不显示指定package  否则打包得到的exe会找不到包而无法运行</span></span><br></pre></td></tr></table></figure></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2017/07/31/Python/Python-get-path/"><img class="fill" src="/img/python-logo.png" alt="Python 获取当前路径的方法"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-07-31T14:15:36.000Z" title="2017/7/31 22:15:36">2017-07-31</time>发表</span><span class="level-item"><time dateTime="2023-04-09T06:26:02.000Z" title="2023/4/9 14:26:02">2023-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">4 分钟读完 (大约636个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/07/31/Python/Python-get-path/">Python 获取当前路径的方法</a></p><div class="content"><p><a target="_blank" rel="noopener" href="https://rustfisher.com/2017/07/31/Python/Python-get-path/">本文链接</a></p>
-<h1 id="Python2-7-中获取路径的各种方法"><a href="#Python2-7-中获取路径的各种方法" class="headerlink" title="Python2.7 中获取路径的各种方法"></a>Python2.7 中获取路径的各种方法</h1><h2 id="sys-path"><a href="#sys-path" class="headerlink" title="sys.path"></a><code>sys.path</code></h2><p>模块搜索路径的字符串列表。由环境变量PYTHONPATH初始化得到。<br>sys.path[0]是调用Python解释器的当前脚本所在的目录。</p>
-<h2 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a><code>sys.argv</code></h2><p>一个传给Python脚本的指令参数列表。<br>sys.argv[0]是脚本的名字（由系统决定是否是全名）<br>假设显示调用python指令，如<code>python demo.py</code>，会得到绝对路径；<br>若直接执行脚本，如<code>./demo.py</code>，会得到相对路径。</p>
-<h2 id="os-getcwd"><a href="#os-getcwd" class="headerlink" title="os.getcwd()"></a><code>os.getcwd()</code></h2><p>获取当前工作路径。在这里是绝对路径。<br><a target="_blank" rel="noopener" href="https://docs.python.org/2/library/os.html#os.getcwd">https://docs.python.org/2/library/os.html#os.getcwd</a></p>
-<h2 id="file"><a href="#file" class="headerlink" title="__file__"></a><code>__file__</code></h2><p>获得模块所在的路径，可能得到相对路径。<br>如果显示执行Python，会得到绝对路径。<br>若按相对路径来直接执行脚本<code>./pyws/path_demo.py</code>，会得到相对路径。<br>为了获取绝对路径，可调用<code>os.path.abspath()</code></p>
-<h1 id="os-path-中的一些方法"><a href="#os-path-中的一些方法" class="headerlink" title="os.path 中的一些方法"></a>os.path 中的一些方法</h1><h2 id="os-path-split-path"><a href="#os-path-split-path" class="headerlink" title="os.path.split(path)"></a><code>os.path.split(path)</code></h2><p>将路径名称分成头和尾一对。尾部永远不会带有斜杠。如果输入的路径以斜杠结尾，那么得到的空的尾部。<br>如果输入路径没有斜杠，那么头部位为空。如果输入路径为空，那么得到的头和尾都是空。<br><a target="_blank" rel="noopener" href="https://docs.python.org/2/library/os.path.html#os.path.split">https://docs.python.org/2/library/os.path.html#os.path.split</a></p>
-<h2 id="os-path-realpath-path"><a href="#os-path-realpath-path" class="headerlink" title="os.path.realpath(path)"></a><code>os.path.realpath(path)</code></h2><p>返回特定文件名的绝对路径。<br><a target="_blank" rel="noopener" href="https://docs.python.org/2/library/os.path.html#os.path.realpath">https://docs.python.org/2/library/os.path.html#os.path.realpath</a></p>
-<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><p>环境 Win7, Python2.7<br>以<code>/e/pyws/path_demo.py</code>为例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;sys.path[0] =&quot;</span>, sys.path[<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;sys.argv[0] =&quot;</span>, sys.argv[<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;__file__ =&quot;</span>, __file__</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;os.path.abspath(__file__) =&quot;</span>, os.path.abspath(__file__)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;os.path.realpath(__file__) = &quot;</span>, os.path.realpath(__file__)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;os.path.dirname(os.path.realpath(__file__)) =&quot;</span>, os.path.dirname(os.path.realpath(__file__))</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;os.path.split(os.path.realpath(__file__)) =&quot;</span>, os.path.split(os.path.realpath(__file__))</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;os.getcwd() =&quot;</span>, os.getcwd()</span><br></pre></td></tr></table></figure></p>
-<p>在<code>/d</code>中运行，输出为<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ python /e/pyws/path_demo.py</span><br><span class="line">sys.path[0] = E:\pyws</span><br><span class="line">sys.argv[0] = E:/pyws/path_demo.py</span><br><span class="line">__file__ = E:/pyws/path_demo.py</span><br><span class="line">os.path.abspath(__file__) = E:\pyws\path_demo.py</span><br><span class="line">os.path.realpath(__file__) =  E:\pyws\path_demo.py</span><br><span class="line">os.path.dirname(os.path.realpath(__file__)) = E:\pyws</span><br><span class="line">os.path.split(os.path.realpath(__file__)) = (&#x27;E:\\pyws&#x27;, &#x27;path_demo.py&#x27;)</span><br><span class="line">os.getcwd() = D:\</span><br></pre></td></tr></table></figure></p>
-<p>在e盘中用命令行直接执行脚本<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./pyws/path_demo.py</span><br><span class="line">sys.path[0] = E:\pyws</span><br><span class="line">sys.argv[0] = ./pyws/path_demo.py</span><br><span class="line">__file__ = ./pyws/path_demo.py</span><br><span class="line">os.path.abspath(__file__) = E:\pyws\path_demo.py</span><br><span class="line">os.path.realpath(__file__) =  E:\pyws\path_demo.py</span><br><span class="line">os.path.dirname(os.path.realpath(__file__)) = E:\pyws</span><br><span class="line">os.path.split(os.path.realpath(__file__)) = (&#x27;E:\\pyws&#x27;, &#x27;path_demo.py&#x27;)</span><br><span class="line">os.getcwd() = E:\</span><br></pre></td></tr></table></figure></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/12/">上一页</a></div><div class="pagination-next"><a href="/page/14/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/12/">12</a></li><li><a class="pagination-link is-current" href="/page/13/">13</a></li><li><a class="pagination-link" href="/page/14/">14</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/18/">18</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/fish.png" alt="RustFisher"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">RustFisher</p><p class="is-size-6 is-block">技术，学习，实践，开发，读书</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">108</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">20</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">56</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/RustFisher" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/RustFisher"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://an.rustfisher.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">技术记录</span></span><span class="level-right"><span class="level-item tag">an.rustfisher.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android-note/"><span class="level-start"><span class="level-item">Android_note</span></span><span class="level-end"><span class="level-item tag">37</span></span></a></li><li><a class="level is-mobile" href="/categories/Android-tutorial-2020/"><span class="level-start"><span class="level-item">Android_tutorial_2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/CocosCreator/"><span class="level-start"><span class="level-item">CocosCreator</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Design-pattern/"><span class="level-start"><span class="level-item">Design_pattern</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Flutter-note/"><span class="level-start"><span class="level-item">Flutter_note</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/HTTP/"><span class="level-start"><span class="level-item">HTTP</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Kotlin/"><span class="level-start"><span class="level-item">Kotlin</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Linux-note/"><span class="level-start"><span class="level-item">Linux_note</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/MongoDB/"><span class="level-start"><span class="level-item">MongoDB</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/NestJS/"><span class="level-start"><span class="level-item">NestJS</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/PyQt/"><span class="level-start"><span class="level-item">PyQt</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/WebRTC/"><span class="level-start"><span class="level-item">WebRTC</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web-note/"><span class="level-start"><span class="level-item">Web_note</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/miniprogram/"><span class="level-start"><span class="level-item">miniprogram</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/reading/"><span class="level-start"><span class="level-item">reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/unclassified/"><span class="level-start"><span class="level-item">unclassified</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%80%BB%E7%BB%93/"><span class="level-start"><span class="level-item">总结</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T06:12:59.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/reading/SocialScience/TRIBE-OF-MENTORS-note/">《巨人的方法》读书笔记</a></p><p class="categories"><a href="/categories/reading/">reading</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-01-18T08:32:32.000Z">2023-01-18</time></p><p class="title"><a href="/2023/01/18/unclassified/web-res-move-2023/">网站资源迁移说明</a></p><p class="categories"><a href="/categories/unclassified/">unclassified</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-30T15:59:59.000Z">2021-11-30</time></p><p class="title"><a href="/2021/11/30/Summary/2021-11/">2021年11月总结</a></p><p class="categories"><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-09T12:28:11.000Z">2021-11-09</time></p><p class="title"><a href="/2021/11/09/WebRTC/webRTC-concept-intro/">WebRTC概念介绍</a></p><p class="categories"><a href="/categories/WebRTC/">WebRTC</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-13T15:15:14.000Z">2021-10-13</time></p><p class="title"><a href="/2021/10/13/Python/scrapy-hw-blog-record/">Python抓取博客记录，获取标题与url</a></p><p class="categories"><a href="/categories/Python/">Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/"><span class="level-start"><span class="level-item">2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/"><span class="level-start"><span class="level-item">2017</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/"><span class="level-start"><span class="level-item">2016</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/"><span class="level-start"><span class="level-item">2015</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AIDL/"><span class="tag">AIDL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-2020/"><span class="tag">Android-2020</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Broadcast/"><span class="tag">Android_Broadcast</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-Media/"><span class="tag">Android_Media</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-View/"><span class="tag">Android_View</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android-service/"><span class="tag">Android_service</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android%E6%BA%90%E7%A0%81/"><span class="tag">Android源码</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Binder/"><span class="tag">Binder</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Cocos-Creator/"><span class="tag">Cocos Creator</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Excel/"><span class="tag">Excel</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Handler/"><span class="tag">Handler</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Media/"><span class="tag">Media</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MediaPlayer/"><span class="tag">MediaPlayer</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MongoDB/"><span class="tag">MongoDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NDK/"><span class="tag">NDK</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NestJS/"><span class="tag">NestJS</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network/"><span class="tag">Network</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OkHttp/"><span class="tag">OkHttp</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Shell/"><span class="tag">Shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tools/"><span class="tag">Tools</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebRTC/"><span class="tag">WebRTC</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebSocket/"><span class="tag">WebSocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/echarts/"><span class="tag">echarts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for/"><span class="tag">for</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo%E4%B8%BB%E9%A2%98/"><span class="tag">hexo主题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mmap/"><span class="tag">mmap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/network/"><span class="tag">network</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openpyxl/"><span class="tag">openpyxl</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plot/"><span class="tag">plot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/plt/"><span class="tag">plt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pyecharts/"><span class="tag">pyecharts</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="tag">公众号</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"><span class="tag">华为云社区</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E8%A3%85mysql/"><span class="tag">安装mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="tag">开发记录</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%BB%E7%BB%93/"><span class="tag">总结</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/"><span class="tag">运营的Python指南</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/fish.png" alt="RustFisher的自留地" height="28"></a><p class="is-size-7"><span>&copy; 2023 Rust Fisher</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2023 Rust Fisher</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://fastly.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://fastly.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://fastly.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://fastly.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://fastly.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/big/banner1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RustFisher的自留地。技术学习与实践，一些开发记录，读书笔记"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2015/10/26/Android/NDK-compile_import_a_file/" target="_self">
+          <img src="/img/android-cover-2.png" srcset="/img/loading.gif" lazyload alt="Android NDK 使用.a">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2015/10/26/Android/NDK-compile_import_a_file/" target="_self">
+          Android NDK 使用.a
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2015/10/26/Android/NDK-compile_import_a_file/" target="_self">
+        <div>
+          有的时候NDK中使用别人编译好的.a文件。这里给出了一个具体例子。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2015-10-26 15:09" pubdate>
+              2015-10-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NDK/">#NDK</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/12/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><span class="page-number current">13</span>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

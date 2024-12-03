@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/2025/11/02/fun/zt-fupeng-2024/</loc>
+    <lastmod>2024-12-03</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/2024/02/05/Career/zt-zhihu-68467783-answer-2560111521/</loc>
     <lastmod>2024-02-06</lastmod>
   </url>
@@ -81,10 +85,6 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/09/02/Web/note-echarts-py-url/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2019/10/09/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
@@ -101,11 +101,15 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/20/Python/operation/matplotlib-intro-parts/</loc>
+    <loc>https://blog.rustfisher.com/2021/09/02/Web/note-echarts-py-url/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2021/07/16/Python/operation/matplotlib-intro1/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2021/07/20/Python/operation/matplotlib-intro-parts/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -117,7 +121,7 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/06/09/Android/Android-IntentService-intro1/</loc>
+    <loc>https://blog.rustfisher.com/2020/01/11/Android/Android-Camera_SurfaceView_TextureView_get_nv21/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -125,7 +129,7 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/01/11/Android/Android-Camera_SurfaceView_TextureView_get_nv21/</loc>
+    <loc>https://blog.rustfisher.com/2017/06/09/Android/Android-IntentService-intro1/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -153,19 +157,15 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2016/06/14/Android/NDK-use_sample_2/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2018/02/05/Android/adb_mock_touch_and_monkeyrunner/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/04/10/Kotlin/kotlin-breif-intro/</loc>
+    <loc>https://blog.rustfisher.com/2016/06/14/Android/NDK-use_sample_2/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
+    <loc>https://blog.rustfisher.com/2020/04/10/Kotlin/kotlin-breif-intro/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -174,6 +174,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2020/02/03/Miniprogram/wx-mini-css_center_tutorial/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2021/07/09/MongoDB/mongodb-install-deploy/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -241,10 +245,6 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/12/20/Android/Android-MediaCodec_use_demo/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2018/03/01/Android/Android-MediaMuxer_MediaExtractor_mp4/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
@@ -254,6 +254,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2017/12/20/Android/Android-MediaCodec_use_demo/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -285,11 +289,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/12/30/CocosCreator/ccc-drag-to-target/</loc>
+    <loc>https://blog.rustfisher.com/2020/12/29/CocosCreator/ccc-postion-and-cvt/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/12/29/CocosCreator/ccc-postion-and-cvt/</loc>
+    <loc>https://blog.rustfisher.com/2020/12/30/CocosCreator/ccc-drag-to-target/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -317,11 +321,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2021/11/09/WebRTC/webRTC-concept-intro/</loc>
+    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2020/12/27/Ts/ts-singleton-pattern/</loc>
+    <loc>https://blog.rustfisher.com/2021/11/09/WebRTC/webRTC-concept-intro/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -449,19 +453,19 @@
     <lastmod>2018-09-21</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/09/26/PyQt_note/PyQt-Adjust_screen_resolution/</loc>
-    <lastmod>2018-09-21</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/2017/09/19/PyQt_note/PyQt-Drag_and_drop/</loc>
     <lastmod>2018-09-21</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/2017/10/25/PyQt_note/PyQt-Install_licensed_PyQt/</loc>
+    <loc>https://blog.rustfisher.com/2017/09/26/PyQt_note/PyQt-Adjust_screen_resolution/</loc>
     <lastmod>2018-09-21</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/2017/09/20/PyQt_note/PyQt-Locale/</loc>
+    <lastmod>2018-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/2017/10/25/PyQt_note/PyQt-Install_licensed_PyQt/</loc>
     <lastmod>2018-09-21</lastmod>
   </url>
   <url>
