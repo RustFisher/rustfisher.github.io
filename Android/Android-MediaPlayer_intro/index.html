@@ -1,0 +1,866 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MediaPlayer的基本概念，状态，常用的方法与监听器介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android MediaPlayer 基础简介">
+<meta property="og:url" content="https://blog.rustfisher.com/Android/Android-MediaPlayer_intro/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="MediaPlayer的基本概念，状态，常用的方法与监听器介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
+<meta property="article:published_time" content="2019-09-19T11:30:00.000Z">
+<meta property="article:modified_time" content="2023-04-15T07:26:52.297Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="Android_Media">
+<meta property="article:tag" content="Media">
+<meta property="article:tag" content="MediaPlayer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/android-cover-2.png">
+  
+  
+  
+  <title>Android MediaPlayer 基础简介 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android MediaPlayer 基础简介"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-09-19 19:30" pubdate>
+          2019年9月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android MediaPlayer 基础简介</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月15日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文链接： <a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
+<p>简单介绍MediaPlayer的基本概念，状态，常用的方法与监听器。</p>
+<h2 id="什么是MediaPlayer"><a href="#什么是MediaPlayer" class="headerlink" title="什么是MediaPlayer"></a>什么是MediaPlayer</h2><p>MediaPlayer类可以用来播放音视频文件，或者是音频流。开发者可以用它来播放本地音频，或者是网络在线音频。</p>
+<p>MediaPlayer属于<code>android.media</code>包。</p>
+<h2 id="MediaPlayer的状态"><a href="#MediaPlayer的状态" class="headerlink" title="MediaPlayer的状态"></a>MediaPlayer的状态</h2><p>播放控制由状态机控制。在日常生活中，我们常见的音频状态有播放中，暂停，停止，缓冲等等。<br>MediaPlayer的状态有如下几种：</p>
+<ul>
+<li>Idle</li>
+<li>End</li>
+<li>Error</li>
+<li>Initialized</li>
+<li>Preparing</li>
+<li>Prepared</li>
+<li>Started</li>
+<li>Stopped</li>
+<li>Paused</li>
+<li>PlaybackCompleted</li>
+</ul>
+<p>状态的切换参考<a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/media/MediaPlayer">官方</a>图例。<br>这里稍微解释一下状态转换图片。椭圆代表MediaPlayer可能停留的状态。椭圆之间的箭头表示方法调用，状态切换的方向。单箭头表示方法同步调用，双箭头表示异步调用。</p>
+<p><img src="http://rustblogres.rustfisher.com/Android-mediaplayer_state_diagram.gif" srcset="/img/loading.gif" lazyload alt="mediaplayer_state_diagram"></p>
+<p>从图中我们可以看出状态切换的路径和涉及到的方法。</p>
+<h3 id="Idle与End状态"><a href="#Idle与End状态" class="headerlink" title="Idle与End状态"></a>Idle与End状态</h3><p>当new一个MediaPlayer或者调用了reset方法，当前MediaPlayer会处于Idle状态。调用release后，会处于End状态。在这2个状态之间的状态可以看做是MediaPlayer对象的生命周期。</p>
+<p>在新创建MediaPlayer和调用reset的MediaPlayer之间有一些细微的差别。<br>这两种情况都处于Idle状态，调用 getCurrentPosition(), getDuration(), getVideoHeight(), getVideoWidth(), setAudioAttributes(android.media.AudioAttributes), setLooping(boolean), setVolume(float, float), pause(), start(), stop(), seekTo(long, int), prepare() 或 prepareAsync()方法都会抛出错误，如果是新实例化的MediaPlayer，不会回调 OnErrorListener.onError()；但如果是reset后的MediaPlayer，会回调 OnErrorListener.onError()并且转换到Error状态。</p>
+<p>如果MediaPlayer对象不再使用了，立即调用release()方法，释放内部播放器占用的资源。这些资源可能是唯一的，比如硬件加速组件。如果调用release失败，可能会引起一连串的MediaPlayer实例失效。当MediaPlayer处于End状态，它就不能再转移到其它状态了。</p>
+<p>new一个MediaPlayer，处于Idle状态。如果用create方法创建实例，当创建完成时处于Prepared状态。</p>
+<h3 id="发生错误"><a href="#发生错误" class="headerlink" title="发生错误"></a>发生错误</h3><p>一些情形可能会让MediaPlayer操作失败，比如不支持的音视频格式，分辨率过高，网络超时等等。<br>因此在这些情形下错误处理和恢复非常重要。有时候编程错误也会导致MediaPlayer操作错误。<br>开发者可以设置错误监听器<code>setOnErrorListener(android.media.MediaPlayer.OnErrorListener)</code>。当错误发生时，会调用用户实现的OnErrorListener.onError()方法。</p>
+<p>不管有没有设置监听器，错误发生时MediaPlayer会进入Error状态。</p>
+<p>为了重复使用同一个MediaPlayer对象，可以使用<code>reset()</code>方法把它从Error状态恢复到Idle状态。<br>设置错误监听器OnErrorListener是一个好的编程习惯。开发者可以监听到播放引擎的错误通知。<br>有时候会抛出IllegalStateException异常，比如在错误的状态调用了prepare(), prepareAsync()方法，或是setDataSource方法。</p>
+<h3 id="设置音源-setDataSource"><a href="#设置音源-setDataSource" class="headerlink" title="设置音源 setDataSource"></a>设置音源 setDataSource</h3><p>调用setDataSource(java.io.FileDescriptor), 或者 setDataSource(java.lang.String), 或者 setDataSource(android.content.Context, android.net.Uri), 或者 setDataSource(java.io.FileDescriptor, long, long), 或者 setDataSource(android.media.MediaDataSource) 可以将MediaPlayer的状态从Idle转到Initialized状态。<br>如果在Idle状态之外的状态调用了setDataSource()，会抛出IllegalStateException异常。<br>开发者应该留意setDataSource方法抛出的IllegalArgumentException和IOException异常。</p>
+<h3 id="播放音频前必须在Prepared状态"><a href="#播放音频前必须在Prepared状态" class="headerlink" title="播放音频前必须在Prepared状态"></a>播放音频前必须在Prepared状态</h3><p>MediaPlayer在开始播放音频前必须处于Prepared状态。</p>
+<p>MediaPlayer有同步和异步2种方式来进入Prepared状态。如果是异步的方式，会先转到Preparing状态，再转到Prepared状态。<br>当准备完成时，内部的播放引擎会回调用户之前设置的OnPreparedListener的onPrepared()方法。</p>
+<p>开发者必须注意的是，Preparing状态是一个过渡状态（transient state）。</p>
+<p>处于Prepared状态时，可以通过相对应的方法设置音量，屏幕常亮，播放循环等。</p>
+<h3 id="开始播放"><a href="#开始播放" class="headerlink" title="开始播放"></a>开始播放</h3><p>播放音频必须调用start()方法。调用start()返回成功后，MediaPlayer处于Started状态。<br>可以通过isPlaying()来判断当前是否在Started状态。</p>
+<p>如果开发者设置了OnBufferingUpdateListener，Android内部播放器会向外传递buffer信息。</p>
+<p>如果当前处于Started状态，再调用start()方法没有效果。</p>
+<h3 id="暂停播放与继续播放"><a href="#暂停播放与继续播放" class="headerlink" title="暂停播放与继续播放"></a>暂停播放与继续播放</h3><p>音频可以被暂停播放和继续播放，也可以调整播放的位置。通过pause()方法来暂停音频播放。<br>成功调用pause()方法后，MediaPlayer进入Paused状态。<br>应当注意的是，MediaPlayer在Started状态与Paused状态之间切换是异步的。播放音频流的时候，这个转换过程可能会需要几秒钟。</p>
+<p>MediaPlayer暂停时，start()方法可以从暂停的位置继续播放。成功调用start方法后会进入Started状态。</p>
+<p>处于Paused状态时，调用pause()方法没有效果。</p>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><p>调用stop()方法让MediaPlayer从Started, Paused, Prepared 或 PlaybackCompleted 状态进入 Stopped 状态。</p>
+<p>在Stopped状态时，必须先调用prepare() 或 prepareAsync()进入Prepared状态后，才能播放音频。</p>
+<p>处于Stopped状态时，调用stop()方法没有效果。</p>
+<h3 id="调整播放位置"><a href="#调整播放位置" class="headerlink" title="调整播放位置"></a>调整播放位置</h3><p>调用seekTo(long, int)来调整播放位置。</p>
+<p>seekTo(long, int)是一个异步方法，虽然它能立刻返回，但实际的位置调整可能会消耗一段时间，特别是在播放音频流的时候。当实际播放位置调整后，内部播放器会回调开发者设置的OnSeekComplete.onSeekComplete()。</p>
+<p>在Prepared, Paused 和 PlaybackCompleted状态中，都可以调用seekTo方法。</p>
+<p>可以通过getCurrentPosition()方法来获取当前播放位置。开发者可以得知当前播放的进度等等。</p>
+<h3 id="播放完毕"><a href="#播放完毕" class="headerlink" title="播放完毕"></a>播放完毕</h3><p>音频播放完成后，播放完毕。</p>
+<p>如果调用setLooping(boolean)为true，MediaPlayer会停留在Started状态。</p>
+<p>如果setLooping为false，内部播放器会调用开发者设置的OnCompletion.onCompletion()，并且进入PlaybackCompleted状态。</p>
+<p>处于PlaybackCompleted状态时，调用start()方法可以从头开始播放音频。</p>
+<h2 id="常用监听器"><a href="#常用监听器" class="headerlink" title="常用监听器"></a>常用监听器</h2><p>开发者可以设置一些监听器，监听MediaPlayer的状态，错误事件等等。开发者应在同一个线程中创建MediaPlayer与设置的监听器。</p>
+<p><code>setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener)</code><br>监听MediaPlayer准备完成。一般与<code>prepareAsync</code>配合使用。</p>
+<p><code>setOnVideoSizeChangedListener(android.media.MediaPlayer.OnVideoSizeChangedListener)</code><br>获知video大小或video大小改变时的监听。</p>
+<p><code>setOnSeekCompleteListener(android.media.MediaPlayer.OnSeekCompleteListener)</code><br>监听调整位置完成。</p>
+<p><code>setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener)</code><br>播放完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">mediaPlayer.setOnCompletionListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MediaPlayer</span>.OnCompletionListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCompletion</span><span class="hljs-params">(MediaPlayer mediaPlayer)</span> &#123;<br>        <span class="hljs-comment">// 当前播放完毕</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><code>setOnBufferingUpdateListener(android.media.MediaPlayer.OnBufferingUpdateListener)</code><br>监听缓冲进度。在播放网络音频时常用。</p>
+<p>缓冲监听器<code>OnBufferingUpdateListener</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">mMediaPlayer.prepareAsync();<br>mMediaPlayer.setOnBufferingUpdateListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MediaPlayer</span>.OnBufferingUpdateListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onBufferingUpdate</span><span class="hljs-params">(MediaPlayer mp, <span class="hljs-type">int</span> percent)</span> &#123;<br>        <span class="hljs-comment">// 例如在这里更新UI</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><code>setOnInfoListener(android.media.MediaPlayer.OnInfoListener)</code><br>监听普通信息或者警告信息。</p>
+<p><code>setOnErrorListener(android.media.MediaPlayer.OnErrorListener)</code><br>监听错误信息。错误发生时，可以在这里处理错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">mediaPlayer.setOnErrorListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MediaPlayer</span>.OnErrorListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">onError</span><span class="hljs-params">(MediaPlayer mediaPlayer, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> i1)</span> &#123;<br>        LogUtil.e(TAG_PREFIX + <span class="hljs-string">&quot; onERR i = &quot;</span> + i + <span class="hljs-string">&quot; i1 = &quot;</span> + i1);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// 返回true表示在此处理错误，不会回调onCompletion</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>注意onError的返回值。可以选择自己处理error。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"> * <span class="hljs-meta">@return</span> True <span class="hljs-keyword">if</span> the method handled the error, <span class="hljs-literal">false</span> <span class="hljs-keyword">if</span> it didn<span class="hljs-string">&#x27;t.</span><br><span class="hljs-string"> * Returning false, or not having an OnErrorListener at all, will</span><br><span class="hljs-string"> * cause the OnCompletionListener to be called.</span><br><span class="hljs-string"> */</span><br><span class="hljs-string">boolean onError(MediaPlayer mp, int what, int extra);</span><br></code></pre></td></tr></table></figure>
+<h2 id="需要的权限"><a href="#需要的权限" class="headerlink" title="需要的权限"></a>需要的权限</h2><p>播放网络音频时需要Manifest.permission.INTERNET权限。</p>
+<p>更多参考：</p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/19/Android/Android-MediaPlayer_intro/">Android MediaPlayer 基础简介</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/22/Android/Android-MediaPlayer_use_play_audio/">Android MediaPlayer 播放音频</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/23/Android/Android-Media_download_stream_file/">Android 使用URLConnection下载音频文件</a></p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/09/25/Android/Android-MediaPlayer_use_play_speed/">Android MediaPlayer 音频倍速播放，调整播放速度</a></p>
+<p>Android音视频相关文章请参考 <a target="_blank" rel="noopener" href="https://rustfisher.com/tags/Android-Media/">https://rustfisher.com/tags/Android-Media/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android-Media/">#Android_Media</a>
+      
+        <a href="/tags/Media/">#Media</a>
+      
+        <a href="/tags/MediaPlayer/">#MediaPlayer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Android MediaPlayer 基础简介</div>
+      <div>https://blog.rustfisher.com/Android/Android-MediaPlayer_intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年9月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Android/Android-MediaPlayer_use_play_audio/" title="Android MediaPlayer 播放音频">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android MediaPlayer 播放音频</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Android/Android-mmap_intro_and_use/" title="Android mmap 文件映射到内存介绍">
+                        <span class="hidden-mobile">Android mmap 文件映射到内存介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在博客网站发布了一些博客。总共有四十多篇。现在查看这些博客需要翻页，不是很方便。想要弄出一个列表，把标题和链接展示出来。用Python来实现这个过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python抓取博客记录，获取标题与url">
+<meta property="og:url" content="https://blog.rustfisher.com/Python/scrapy-hw-blog-record/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="在博客网站发布了一些博客。总共有四十多篇。现在查看这些博客需要翻页，不是很方便。想要弄出一个列表，把标题和链接展示出来。用Python来实现这个过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-13T15:15:14.000Z">
+<meta property="article:modified_time" content="2023-04-15T07:26:52.298Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Python抓取博客记录，获取标题与url - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python抓取博客记录，获取标题与url"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-13 23:15" pubdate>
+          2021年10月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python抓取博客记录，获取标题与url</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月15日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在博客网站发布了一些博客。总共有四十多篇。现在查看这些博客需要翻页，不是很方便。<br>想要弄出一个列表，把标题和链接展示出来。如果手动去复制粘贴，耗时耗力，也不够自动化。<br>有没有什么自动化的方法呢？想到以前用python做过抓取的功能。</p>
+<p>开发环境：</p>
+<ul>
+<li>Python3.7</li>
+<li>PyCharm 2018.3.7 (Community Edition)</li>
+<li>macOS 11.4</li>
+</ul>
+<h2 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h2><p>我们主要使用的框架是scrapy，官网 <a target="_blank" rel="noopener" href="https://scrapy.org/">https://scrapy.org/</a> </p>
+<p>如果需要换用清华的pip源，执行下面的命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U<br>pip config <span class="hljs-built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple<br></code></pre></td></tr></table></figure></p>
+<p>根据<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/install.html">官网文档</a>进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip3 install Scrapy<br></code></pre></td></tr></table></figure></p>
+<h2 id="分析目标网页"><a href="#分析目标网页" class="headerlink" title="分析目标网页"></a>分析目标网页</h2><p>目标网页的部分html如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;blog-menu blog-menu-noImg&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;blog-menu-header blog_no_attachment&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;portal_usercenter_2_usernew_blog_title_cus_i_0&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/blogs/301790&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;common-blog-title&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Kotlin协程取消与超时&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin-left: 0px; color: rgb(51, 51, 51);&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;blog-title-wrap&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;overflow-wrap: break-word;&quot;</span>&gt;</span><br>            Kotlin协程取消与超时<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure><br>需要提取的是标题（title）和网址（url）。</p>
+<h3 id="shell工具"><a href="#shell工具" class="headerlink" title="shell工具"></a>shell工具</h3><p>使用<code>scrapy shell</code>工具来分析一下目标网页<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">scrapy shell <span class="hljs-string">&#x27;https://bbs.huaweicloud.com/community/usersnew/id_1606985929124732/page_1&#x27;</span><br></code></pre></td></tr></table></figure><br>windows下的url需要用双引号</p>
+<p>可以看到如下的运行结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">2021-10-13 09:46:47 [asyncio] DEBUG: Using selector: KqueueSelector<br>[s] Available Scrapy objects:<br>[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)<br>[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x7fd889766990&gt;<br>[s]   item       &#123;&#125;<br>[s]   request    &lt;GET https://bbs.huaweicloud.com/community/usersnew/id_1606985929124732/page_1&gt;<br>[s]   response   &lt;200 https://bbs.huaweicloud.com/community/usersnew/id_1606985929124732/page_1&gt;<br>[s]   settings   &lt;scrapy.settings.Settings object at 0x7fd88987bb50&gt;<br>[s]   spider     &lt;DefaultSpider <span class="hljs-string">&#x27;default&#x27;</span> at 0x7fd889c7b710&gt;<br>[s] Useful shortcuts:<br>[s]   fetch(url[, redirect=True]) Fetch URL and update <span class="hljs-built_in">local</span> objects (by default, redirects are followed)<br>[s]   fetch(req)                  Fetch a scrapy.Request and update <span class="hljs-built_in">local</span> objects <br>[s]   shelp()           Shell <span class="hljs-built_in">help</span> (<span class="hljs-built_in">print</span> this <span class="hljs-built_in">help</span>)<br>[s]   view(response)    View response <span class="hljs-keyword">in</span> a browser<br>2021-10-13 09:46:48 [asyncio] DEBUG: Using selector: KqueueSelector<br></code></pre></td></tr></table></figure></p>
+<p>尝试用scrapy的<code>css()</code>方法来提取元素，操作它的<code>response</code>变量</p>
+<p>例如提取<code>div.blog-menu</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">In [2]: response.css(<span class="hljs-string">&#x27;div.blog-menu&#x27;</span>)<br>Out[2]: <br>[&lt;Selector xpath=<span class="hljs-string">&quot;descendant-or-self::div[@class and contains(concat(&#x27; &#x27;, normalize-space(@class), &#x27; &#x27;), &#x27; blog-menu &#x27;)]&quot;</span> data=<span class="hljs-string">&#x27;&lt;div class=&quot;blog-menu blog-menu-noImg&quot;&gt;&lt;&#x27;</span>&gt;,<br>...<br></code></pre></td></tr></table></figure><br>可以得到页面上所有满足要求的元素。拿到的元素是<strong>Selector</strong>，可以再进行下一步的操作。</p>
+<p>用for循环读取提取到的元素，在此基础上，去抓取中文标题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">In [6]: <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> response.css(<span class="hljs-string">&#x27;div.blog-menu&#x27;</span>):<br>   ...:     <span class="hljs-built_in">print</span>(item.css(<span class="hljs-string">&#x27;a.common-blog-title::attr(title)&#x27;</span>).extract()[0])<br>   ...: <br>Kotlin协程取消与超时<br>Android Kotlin协程入门<br>Kotlin协程基础<br>Kotlin协程入门<br>Android View post 方法<br>Android Activity 传递Parcelable对象<br>Android Handler，Looper与MessageQueue使用与分析<br>Android线程池使用介绍<br>Java线程介绍<br>使用ECharts绘制网址径向树状图<br></code></pre></td></tr></table></figure></p>
+<p><code>a.common-blog-title::attr(title)</code>表示的是我们要查找<code>&lt;a&gt;</code>里面的内容，指定class为<code>common-blog-title</code>，并且查找<code>title</code>属性。<br><code>css().extract()</code>将结果列表提取出来。最后得到我们关心的信息。</p>
+<p>获取<code>url</code>同理，把提取部分修改为<code>::attr(href)</code></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>前面用shell工具进行分析，我们了解提取目标信息的方法。接下来写Python代码。</p>
+<p>在合适的地方新建一个scrapy工程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">scrapy startproject blog<br></code></pre></td></tr></table></figure><br>可以得到一系列文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">blog<br>    spiders<br>        .gitignore<br>        __init__.py<br>    __init__.py<br>    items.py<br>    middlewares.py<br>    pipelines.py<br>    settings.py<br></code></pre></td></tr></table></figure></p>
+<p>在<code>spiders</code>目录里新建一个文件<code>Hw.py</code>，它就是我们的“蜘蛛”。完整代码如下。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br><br><span class="hljs-keyword">import</span> scrapy<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cmp</span>(<span class="hljs-params">item</span>):<br>    <span class="hljs-keyword">return</span> item[<span class="hljs-string">&#x27;page&#x27;</span>]<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">HwBlog</span>(scrapy.Spider):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    在最外层的blog目录进行操作</span><br><span class="hljs-string">    scrapy crawl hw</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    name = <span class="hljs-string">&quot;hw&quot;</span>  <span class="hljs-comment"># scrapy crawl hw</span><br>    res_list = []<br>    req_count = <span class="hljs-number">0</span><br>    total_url = <span class="hljs-number">5</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">start_requests</span>(<span class="hljs-params">self</span>):<br>        self.res_list = []<br>        urls = []<br>        base_url = <span class="hljs-string">&#x27;https://bbs.huaweicloud.com/community/usersnew/id_1606985929124732/page_&#x27;</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, self.total_url + <span class="hljs-number">1</span>):<br>            urls.append(base_url + <span class="hljs-built_in">str</span>(i))<br><br>        <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> urls:<br>            <span class="hljs-keyword">yield</span> scrapy.Request(url=url, callback=self.parse)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):<br>        self.req_count = self.req_count + <span class="hljs-number">1</span><br>        page = response.url.split(<span class="hljs-string">&quot;_&quot;</span>)[-<span class="hljs-number">1</span>]<br><br>        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> response.css(<span class="hljs-string">&#x27;div.blog-menu&#x27;</span>):<br>            title_se = item.css(<span class="hljs-string">&quot;a.common-blog-title&quot;</span>)<br>            blog_url = <span class="hljs-string">&#x27;https://bbs.huaweicloud.com&#x27;</span> + (title_se.css(<span class="hljs-string">&quot;::attr(href)&quot;</span>).extract()[<span class="hljs-number">0</span>])<br>            blog_title = title_se.css(<span class="hljs-string">&quot;::attr(title)&quot;</span>).extract()[<span class="hljs-number">0</span>]<br>            self.res_list.append(&#123;<span class="hljs-string">&quot;title&quot;</span>: blog_title, <span class="hljs-string">&quot;url&quot;</span>: blog_url, <span class="hljs-string">&quot;page&quot;</span>: page&#125;)<br><br>        json_res = json.dumps(self.res_list, ensure_ascii=<span class="hljs-literal">False</span>)<br>        <span class="hljs-built_in">print</span>(json_res)<br><br>        res_file_path = <span class="hljs-string">&#x27;raw/hw.json&#x27;</span><br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(res_file_path, <span class="hljs-string">&#x27;w+&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.write(json_res)<br><br>        <span class="hljs-keyword">if</span> self.req_count &lt; self.total_url:<br>            <span class="hljs-keyword">return</span><br>        res_md = <span class="hljs-string">&#x27;raw/hw.md&#x27;</span><br>        self.res_list.sort(key=cmp)  <span class="hljs-comment"># 用页码来排序</span><br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(res_md, <span class="hljs-string">&#x27;w+&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.writelines(<span class="hljs-string">&#x27;## 华为云社区&#x27;</span>)<br>            f.write(<span class="hljs-string">&#x27;\n博客数量:&#x27;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-built_in">len</span>(self.res_list)) + <span class="hljs-string">&#x27;\n&#x27;</span>)<br>            <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> self.res_list:<br>                f.write(<span class="hljs-string">&#x27;\n&#x27;</span>)<br>                f.write(<span class="hljs-string">&#x27;- [&#x27;</span> + d[<span class="hljs-string">&#x27;title&#x27;</span>] + <span class="hljs-string">&#x27;](&#x27;</span> + d[<span class="hljs-string">&#x27;url&#x27;</span>] + <span class="hljs-string">&#x27;)&#x27;</span>)<br></code></pre></td></tr></table></figure></p>
+<p>要启动的话，输入以下命令<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">scrapy crawl hw</span><br></code></pre></td></tr></table></figure></p>
+<p>接下来简单看一下代码</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p><code>name</code>是蜘蛛的名字。我们启动的时候会用到它。这个名字由我们自己定义。</p>
+<p><code>res_list</code>是暂存结果的列表。把获取到的结果暂时存放在里面。</p>
+<p><code>total_url</code>表示一共要爬几个页面</p>
+<p><code>req_count</code>表示请求次数</p>
+<h3 id="start-requests-self"><a href="#start-requests-self" class="headerlink" title="start_requests(self)"></a><code>start_requests(self)</code></h3><p>在这个方法里进行一些配置工作。比如配置目标url。<br>我们是预先知道有5个页面，所以配置了5个url。</p>
+<p>用<code>scrapy.Request(url=url, callback=self.parse)</code>构建请求</p>
+<p><code>parse</code>是回调函数，请求成功后走这个方法。</p>
+<h3 id="parse-self-response"><a href="#parse-self-response" class="headerlink" title="parse(self, response)"></a><code>parse(self, response)</code></h3><p>请求成功后，结果保存在<code>response</code>中。前面用shell进行的操作，可以直接写成python代码。</p>
+<p>当请求次数达到目标后，开始写文件。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这是Python scrapy的一次简单应用。</p>
+<p>安装scrapy，分析目标网页。把获取到的数据整理后写成markdown文件。</p>
+<p>视频在<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qL411G7WB/">这里</a></p>
+<iframe src="//player.bilibili.com/player.html?bvid=BV1qL411G7WB&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="400px"> </iframe>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python抓取博客记录，获取标题与url</div>
+      <div>https://blog.rustfisher.com/Python/scrapy-hw-blog-record/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/WebRTC/webRTC-concept-intro/" title="WebRTC概念介绍">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">WebRTC概念介绍</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Summary/2021-9/" title="2021年9月总结">
+                        <span class="hidden-mobile">2021年9月总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
