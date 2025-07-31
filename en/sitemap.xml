@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/about/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_3.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_2.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_1.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+  </url>
+  
+
+  <url>
+    <loc>https://blog.rustfisher.com/en</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/AI%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/ChatGPT/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/Gemini/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/DeepSeek/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/%E8%B1%86%E5%8C%85/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/categories/ai/</loc>
+    <lastmod>2025-07-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>
