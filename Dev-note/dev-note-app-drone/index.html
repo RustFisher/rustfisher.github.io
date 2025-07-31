@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="开发的过程记录。遇到的和解决的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「drone」开发记录">
+<meta property="og:url" content="https://blog.rustfisher.com/Dev-note/dev-note-app-drone/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="开发的过程记录。遇到的和解决的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-29T01:11:15.000Z">
+<meta property="article:modified_time" content="2021-06-24T09:04:56.782Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="开发记录">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>「drone」开发记录 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="「drone」开发记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-07-29 09:11" pubdate>
+          2018年7月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          152 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「drone」开发记录</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2021年6月24日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="斜体文字被切掉了一块"><a href="#斜体文字被切掉了一块" class="headerlink" title="斜体文字被切掉了一块"></a>斜体文字被切掉了一块</h2><p>TextView.setText的时候在右边加上一个空格。</p>
+<p>或者<code>string.xml</code>中添加<code>&amp;#x200A;</code>来占位。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dp_page_ready&quot;</span>&gt;</span>READY<span class="hljs-symbol">&amp;#x200A;</span><span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>或者在TextView.setText的时候加上一个空格。</p>
+<h2 id="动态给LinearLayout添加子View"><a href="#动态给LinearLayout添加子View" class="headerlink" title="动态给LinearLayout添加子View"></a>动态给LinearLayout添加子View</h2><p>一列27个自定义view，如果要写到xml里就太麻烦了。<br>在Java代码中新建子View，设置LayoutParams，然后添加到LinearLayout里。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initGrids</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">bigGridHeightPx</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) dpToPx(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">bigGrid2MarginVerticalPx</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) dpToPx(<span class="hljs-number">3</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">smallGridHeightPx</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) dpToPx(<span class="hljs-number">6</span>); <span class="hljs-comment">// 这里有27个格点</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">smallGridMarginBotPx</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>) dpToPx(<span class="hljs-number">1</span>);<br><br>    <span class="hljs-type">LinearLayout</span> <span class="hljs-variable">linearLayoutLeft1</span> <span class="hljs-operator">=</span> findViewById(R.id.dp_page_g_field_left1);<br>    <span class="hljs-type">LinearLayout</span> <span class="hljs-variable">linearLayoutLeft2</span> <span class="hljs-operator">=</span> findViewById(R.id.dp_page_g_field_left2);<br>    mLeftGridList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">GridsHorView</span> <span class="hljs-variable">g1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GridsHorView</span>(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-type">GridsHorView</span> <span class="hljs-variable">g2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GridsHorView</span>(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-type">GridsHorView</span> <span class="hljs-variable">g3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GridsHorView</span>(<span class="hljs-built_in">this</span>);<br><br>    LinearLayout.<span class="hljs-type">LayoutParams</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinearLayout</span>.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, bigGridHeightPx);<br>    LinearLayout.<span class="hljs-type">LayoutParams</span> <span class="hljs-variable">p2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinearLayout</span>.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, bigGridHeightPx);<br>    p2.setMargins(<span class="hljs-number">0</span>, bigGrid2MarginVerticalPx, <span class="hljs-number">0</span>, bigGrid2MarginVerticalPx);<br>    linearLayoutLeft1.addView(g1, p1);<br>    linearLayoutLeft1.addView(g2, p2);<br>    linearLayoutLeft1.addView(g3, p1);<br>    mLeftGridList.addAll(Arrays.asList(g1, g2, g3));<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">27</span>; i++) &#123;<br>        <span class="hljs-type">GridsHorView</span> <span class="hljs-variable">smallGrid</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GridsHorView</span>(<span class="hljs-built_in">this</span>);<br>        smallGrid.setAlphaValue((<span class="hljs-type">int</span>) (<span class="hljs-number">255</span> * (<span class="hljs-number">1</span> - <span class="hljs-number">0.02</span> * i)));<br>        LinearLayout.<span class="hljs-type">LayoutParams</span> <span class="hljs-variable">sp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinearLayout</span>.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, smallGridHeightPx);<br>        sp.setMargins(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, smallGridMarginBotPx);<br>        mLeftGridList.add(smallGrid);<br>        linearLayoutLeft2.addView(smallGrid, sp);<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (GridsHorView g : mLeftGridList) &#123;<br>        g.setOri(GridsHorView.Ori.RIGHT_TO_LEFT);<br>        g.disableMode();<br>        g.setCubeCount(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 初始化右边（P2）的格子...</span><br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-title function_">dpToPx</span><span class="hljs-params">(<span class="hljs-type">float</span> dp)</span> &#123;<br>    <span class="hljs-keyword">return</span> dp * getResources().getDisplayMetrics().density;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="获取当前WiFi的名字"><a href="#获取当前WiFi的名字" class="headerlink" title="获取当前WiFi的名字"></a>获取当前WiFi的名字</h2><p>需要定位权限。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getWiFiName</span><span class="hljs-params">(Context context)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">wifiId</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;WIFI_NAME_NOT_FOUND&quot;</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">WifiManager</span> <span class="hljs-variable">wifiMgr</span> <span class="hljs-operator">=</span> (WifiManager) context.getSystemService(Context.WIFI_SERVICE);<br>        <span class="hljs-type">WifiInfo</span> <span class="hljs-variable">info</span> <span class="hljs-operator">=</span> wifiMgr.getConnectionInfo();<br>        wifiId = info != <span class="hljs-literal">null</span> ? info.getSSID() : <span class="hljs-literal">null</span>;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!TextUtils.isEmpty(wifiId) &amp;&amp; wifiId.startsWith(<span class="hljs-string">&quot;\&quot;&quot;</span>)) &#123;<br>        wifiId = wifiId.substring(<span class="hljs-number">1</span>); <span class="hljs-comment">// 删去前面那个引号</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> wifiId;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这个方法适用于判断WiFi名称的前缀。</p>
+<h2 id="检查权限的方法"><a href="#检查权限的方法" class="headerlink" title="检查权限的方法"></a>检查权限的方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">checkPermission</span><span class="hljs-params">(String[] permissions, <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> reqCode)</span> &#123;<br>    List&lt;String&gt; perList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (String p : permissions) &#123;<br>        <span class="hljs-keyword">if</span> (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(<span class="hljs-built_in">this</span>, p)) &#123;<br>            LL.e(<span class="hljs-string">&quot;没有权限: &quot;</span> + p);<br>            perList.add(p);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!perList.isEmpty()) &#123;<br>        String[] per = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[perList.size()];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; per.length; i++) &#123;<br>            per[i] = perList.get(i);<br>        &#125;<br>        ActivityCompat.requestPermissions(<span class="hljs-built_in">this</span>, per, reqCode);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="设置Click监听器"><a href="#设置Click监听器" class="headerlink" title="设置Click监听器"></a>设置Click监听器</h2><p>应用在Activity中，给一堆view设置同一个监听器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 设置点击监听器</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setOnClickListeners</span><span class="hljs-params">(View.OnClickListener l, View... views)</span> &#123;<br>    <span class="hljs-keyword">for</span> (View v : views) &#123;<br>        v.setOnClickListener(l);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setOnClickListeners</span><span class="hljs-params">(View.OnClickListener l, <span class="hljs-type">int</span>... resIds)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> r : resIds) &#123;<br>        findViewById(r).setOnClickListener(l);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="设置字体"><a href="#设置字体" class="headerlink" title="设置字体"></a>设置字体</h2><p>先把字体加载好。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTvPangMenAndItalic</span><span class="hljs-params">(<span class="hljs-type">int</span>... tvResIds)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : tvResIds) &#123;<br>        ((TextView) findViewById(i)).setTypeface(AppControl.getPangMenTf(), Typeface.ITALIC);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTvPangMenAndItalic</span><span class="hljs-params">(TextView... tvs)</span> &#123;<br>    <span class="hljs-keyword">for</span> (TextView t : tvs) &#123;<br>        t.setTypeface(AppControl.getPangMenTf(), Typeface.ITALIC);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="收起软键盘"><a href="#收起软键盘" class="headerlink" title="收起软键盘"></a>收起软键盘</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">hideSoftKeyboard</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">InputMethodManager</span> <span class="hljs-variable">inputMgr</span> <span class="hljs-operator">=</span> (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);<br>        inputMgr.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        LL.e(<span class="hljs-string">&quot;rustApp&quot;</span>, e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="判断网络是否有连接"><a href="#判断网络是否有连接" class="headerlink" title="判断网络是否有连接"></a>判断网络是否有连接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isNetworkAvailable</span><span class="hljs-params">(Context context)</span> &#123;<br>    <span class="hljs-type">ConnectivityManager</span> <span class="hljs-variable">connectivity</span> <span class="hljs-operator">=</span> (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);<br><br>    <span class="hljs-keyword">if</span> (connectivity == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        NetworkInfo[] info = connectivity.getAllNetworkInfo();<br>        <span class="hljs-keyword">if</span> (info != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">for</span> (NetworkInfo anInfo : info) &#123;<br>                <span class="hljs-keyword">if</span> (anInfo.getState() == NetworkInfo.State.CONNECTED) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="判断某个App是否安装"><a href="#判断某个App是否安装" class="headerlink" title="判断某个App是否安装"></a>判断某个App是否安装</h2><p>获取PackageManager通过包名来判断某个App是否安装。<br>但是有的手机在获取PackageManager的时候就能抛出异常。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">appInstalledOrNot</span><span class="hljs-params">(String uri)</span> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">PackageManager</span> <span class="hljs-variable">pm</span> <span class="hljs-operator">=</span> getPackageManager();<br>        pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        LL.e(<span class="hljs-string">&quot;appInstalledOrNot: &quot;</span> + uri, e);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>总而言之这并不是个很好的办法。</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>一些性能优化的处理措施和思考。</p>
+<h3 id="给UI线程更多的CPU资源"><a href="#给UI线程更多的CPU资源" class="headerlink" title="给UI线程更多的CPU资源"></a>给UI线程更多的CPU资源</h3><p>数据库的操作放在子线程中进行。数据库线程也可能会和UI线程争抢CPU的时间片。<br>假设数据库要删除大量数据（比如1万条）。<br>那么我们可以尝试在数据库处理了某个数量（例如1千）的操作后，sleep一下，给UI线程让出CPU时间。<br>但现在一般都是多核手机，具体效果有待考量。</p>
+<h2 id="log记录工具"><a href="#log记录工具" class="headerlink" title="log记录工具"></a>log记录工具</h2><p>把log写到文件里。用RandomAccessFile与MappedByteBuffer写日志到文件中。任务处理放在子线程中，由HandlerThread来管理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LL</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Level</span> &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">D</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D&quot;</span>; <span class="hljs-comment">// 普通debug</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">W</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;W&quot;</span>; <span class="hljs-comment">// 警告</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">E</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;E&quot;</span>; <span class="hljs-comment">// 错误</span><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">defTag</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;App&quot;</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">showLogcat</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">writeFile</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-comment">// 注意申请SD卡读写权限</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">logFileDir</span> <span class="hljs-operator">=</span> Environment.getExternalStorageDirectory().getAbsolutePath() +<br>            File.separator + <span class="hljs-string">&quot;rust&quot;</span> + File.separator + <span class="hljs-string">&quot;logs&quot;</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String fileName;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;LogListener&gt; listenerList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HandlerThread handlerThread;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Handler writerHandler;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">LOG_FILE_GROW_SIZE</span> <span class="hljs-operator">=</span> <span class="hljs-number">1024</span> * <span class="hljs-number">10</span>; <span class="hljs-comment">// log文件每次增长的大小</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-variable">gCurrentLogPos</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;                  <span class="hljs-comment">// log文件当前写到的位置 - 注意要单线程处理</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 使用前必须调用此方法进行准备</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> context 建议传入applicationContext</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileDir 存放log文件的目录</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">prepare</span><span class="hljs-params">(Context context, <span class="hljs-meta">@NonNull</span> String fileDir, String logFilePrefix)</span> &#123;<br>        gCurrentLogPos = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span> (TextUtils.isEmpty(fileDir)) &#123;<br>            <span class="hljs-keyword">if</span> (Environment.getExternalStorageState().equals(<br>                    Environment.MEDIA_MOUNTED)) &#123;<br>                logFileDir = Environment.getExternalStorageDirectory().getAbsolutePath() +<br>                        File.separator + <span class="hljs-string">&quot;rust&quot;</span> + File.separator + <span class="hljs-string">&quot;logs&quot;</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                logFileDir = context.getFilesDir().getAbsolutePath() +<br>                        File.separator + <span class="hljs-string">&quot;rust&quot;</span> + File.separator + <span class="hljs-string">&quot;logs&quot;</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            logFileDir = fileDir;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == handlerThread) &#123;<br>            handlerThread = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HandlerThread</span>(<span class="hljs-string">&quot;LL&quot;</span>);<br>            handlerThread.start();<br>        &#125;<br>        writerHandler = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Handler</span>(handlerThread.getLooper());<br>        fileName = logFilePrefix + <span class="hljs-string">&quot;_&quot;</span> + System.currentTimeMillis() + <span class="hljs-string">&quot;.txt&quot;</span>;<br>        Log.d(defTag, <span class="hljs-string">&quot;[prepare] file: &quot;</span> + fileName);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getLogFileDir</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> logFileDir;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getFileName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> fileName;<br>    &#125;<br><br>    <span class="hljs-comment">// 退出</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">quit</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (writerHandler != <span class="hljs-literal">null</span>) &#123;<br>            writerHandler.removeCallbacksAndMessages(<span class="hljs-literal">null</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (handlerThread != <span class="hljs-literal">null</span>) &#123;<br>            handlerThread.quit();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setDefTag</span><span class="hljs-params">(String t)</span> &#123;<br>        LL.defTag = t;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setWriteFile</span><span class="hljs-params">(<span class="hljs-type">boolean</span> w)</span> &#123;<br>        LL.writeFile = w;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">d</span><span class="hljs-params">(String content)</span> &#123;<br>        d(defTag, content, writeFile);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">d</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        d(tag, content, writeFile);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dn</span><span class="hljs-params">(String content)</span> &#123;<br>        d(defTag, content, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 不写到文件中</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dn</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        d(tag, content, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">d</span><span class="hljs-params">(String tag, String content, <span class="hljs-type">boolean</span> write)</span> &#123;<br>        <span class="hljs-keyword">if</span> (showLogcat) &#123;<br>            Log.d(tag, content);<br>        &#125;<br>        tellLog(Level.D, tag, content);<br>        <span class="hljs-keyword">if</span> (write) &#123;<br>            <span class="hljs-keyword">if</span> (writerHandler != <span class="hljs-literal">null</span>) &#123;<br>                writerHandler.post(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WriteRunnable</span>(tag, content));<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// log级别 WARN - w</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">w</span><span class="hljs-params">(String content)</span> &#123;<br>        w(defTag, content, writeFile);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">w</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        w(tag, content, writeFile);<br>    &#125;<br><br>    <span class="hljs-comment">// 不写到文件中</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wn</span><span class="hljs-params">(String content)</span> &#123;<br>        w(defTag, content, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 不写到文件中</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wn</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        w(tag, content, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">w</span><span class="hljs-params">(String tag, String content, <span class="hljs-type">boolean</span> write)</span> &#123;<br>        <span class="hljs-keyword">if</span> (showLogcat) &#123;<br>            Log.w(tag, content);<br>        &#125;<br>        tellLog(Level.W, tag, content);<br>        <span class="hljs-keyword">if</span> (write) &#123;<br>            <span class="hljs-keyword">if</span> (writerHandler != <span class="hljs-literal">null</span>) &#123;<br>                writerHandler.post(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WriteRunnable</span>(tag, content));<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">e</span><span class="hljs-params">(String content)</span> &#123;<br>        e(defTag, content);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">e</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        e(tag, content, writeFile);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">e</span><span class="hljs-params">(String tag, Exception e)</span> &#123;<br>        e(tag, e.getMessage(), writeFile);<br>    &#125;<br><br>    <span class="hljs-comment">// 只打log  不写文件</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">en</span><span class="hljs-params">(String tag, String content)</span> &#123;<br>        e(tag, content, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">e</span><span class="hljs-params">(String tag, String content, <span class="hljs-type">boolean</span> write)</span> &#123;<br>        <span class="hljs-keyword">if</span> (showLogcat) &#123;<br>            Log.e(tag, content);<br>        &#125;<br>        tellLog(Level.E, tag, content);<br>        <span class="hljs-keyword">if</span> (write) &#123;<br>            <span class="hljs-keyword">if</span> (writerHandler != <span class="hljs-literal">null</span>) &#123;<br>                writerHandler.post(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WriteRunnable</span>(tag, content));<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">tellLog</span><span class="hljs-params">(String level, String tag, String content)</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> != listenerList) &#123;<br>            <span class="hljs-keyword">for</span> (LogListener l : listenerList) &#123;<br>                l.onLog(level, tag, content);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addListener</span><span class="hljs-params">(LogListener l)</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == listenerList) &#123;<br>            listenerList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        &#125;<br>        listenerList.add(l);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeListener</span><span class="hljs-params">(LogListener l)</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> != listenerList) &#123;<br>            listenerList.remove(l);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WriteRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>        String mmTag;<br>        String mmContent;<br><br>        WriteRunnable(String tag, String content) &#123;<br>            <span class="hljs-built_in">this</span>.mmTag = tag;<br>            <span class="hljs-built_in">this</span>.mmContent = content;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">logTimeFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;HH:mm:ss.SSS&quot;</span>, Locale.CHINA);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">logContent</span> <span class="hljs-operator">=</span> logTimeFormat.format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()) + <span class="hljs-string">&quot; [&quot;</span> + mmTag + <span class="hljs-string">&quot;] &quot;</span> + mmContent + <span class="hljs-string">&quot;\r\n&quot;</span>;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">File</span> <span class="hljs-variable">dir</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(logFileDir);<br>                <span class="hljs-keyword">if</span> (!dir.exists()) &#123;<br>                    <span class="hljs-type">boolean</span> <span class="hljs-variable">mk</span> <span class="hljs-operator">=</span> dir.mkdirs();<br>                    Log.d(defTag, <span class="hljs-string">&quot;make dir &quot;</span> + mk);<br>                &#125;<br>                <span class="hljs-type">File</span> <span class="hljs-variable">eFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(logFileDir + File.separator + fileName);<br>                <span class="hljs-type">byte</span>[] strBytes = logContent.getBytes();<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-type">RandomAccessFile</span> <span class="hljs-variable">randomAccessFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomAccessFile</span>(eFile, <span class="hljs-string">&quot;rw&quot;</span>);<br>                    MappedByteBuffer mappedByteBuffer;<br>                    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">inputLen</span> <span class="hljs-operator">=</span> strBytes.length;<br>                    <span class="hljs-keyword">if</span> (!eFile.exists()) &#123;<br>                        <span class="hljs-type">boolean</span> <span class="hljs-variable">nf</span> <span class="hljs-operator">=</span> eFile.createNewFile();<br>                        Log.d(defTag, <span class="hljs-string">&quot;new log file &quot;</span> + nf);<br>                        mappedByteBuffer = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_WRITE, gCurrentLogPos, LOG_FILE_GROW_SIZE);<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        mappedByteBuffer = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_WRITE, gCurrentLogPos, inputLen);<br>                    &#125;<br>                    <span class="hljs-keyword">if</span> (mappedByteBuffer.remaining() &lt; inputLen) &#123;<br>                        mappedByteBuffer = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_WRITE, gCurrentLogPos, LOG_FILE_GROW_SIZE + inputLen);<br><span class="hljs-comment">//                        Log.d(defTag, &quot;run: grow size &quot;);</span><br>                    &#125;<br><span class="hljs-comment">//                    Log.d(defTag, &quot;run: gCurrentLogPos: &quot; + gCurrentLogPos + &quot;, pos: &quot; + mappedByteBuffer.position() + &quot;, remaining: &quot; + mappedByteBuffer.remaining());</span><br>                    mappedByteBuffer.put(strBytes);<br>                    gCurrentLogPos += inputLen;<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    Log.e(defTag, <span class="hljs-string">&quot;WriteRunnable run: &quot;</span>, e);<br>                    <span class="hljs-keyword">if</span> (!eFile.exists()) &#123;<br>                        <span class="hljs-type">boolean</span> <span class="hljs-variable">nf</span> <span class="hljs-operator">=</span> eFile.createNewFile();<br>                        Log.d(defTag, <span class="hljs-string">&quot;new log file &quot;</span> + nf);<br>                    &#125;<br>                    <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">os</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(eFile, <span class="hljs-literal">true</span>);<br>                    os.write(logContent.getBytes());<br>                    os.flush();<br>                    os.close();<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>                Log.e(defTag, <span class="hljs-string">&quot;写log文件出错: &quot;</span>, e);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>监听器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LogListener</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onLog</span><span class="hljs-params">(String level, String tag, String content)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h2><p>一些自定义的view，比如一些折线图，条形图。</p>
+<h3 id="折线图-ColorAutoLineChart"><a href="#折线图-ColorAutoLineChart" class="headerlink" title="折线图 ColorAutoLineChart"></a>折线图 ColorAutoLineChart</h3><p>单独一条折线，可自动缩放Y轴高度。使用FloatBuffer来存储数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ColorAutoLineChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">View</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;AppColorAutoLineChart&quot;</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">yMax</span> <span class="hljs-operator">=</span> <span class="hljs-number">1856f</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">yMin</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1024f</span>;<br><br>    <span class="hljs-comment">// 图表线条在view顶部留出的间距</span><br>    <span class="hljs-type">float</span> <span class="hljs-variable">viewYStart</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br>    <span class="hljs-type">float</span> <span class="hljs-variable">axisTextSize</span> <span class="hljs-operator">=</span> <span class="hljs-number">7</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">onShowPointsCount</span> <span class="hljs-operator">=</span> <span class="hljs-number">256</span>;  <span class="hljs-comment">// 当前显示的数据个数</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">cacheMaxPoint</span> <span class="hljs-operator">=</span> <span class="hljs-number">9000</span>;     <span class="hljs-comment">// 数据存储最大个数</span><br><br>    <span class="hljs-type">float</span> <span class="hljs-variable">axisLineWid</span> <span class="hljs-operator">=</span> <span class="hljs-number">1f</span>; <span class="hljs-comment">// 坐标轴线条宽度</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">dataLineWid</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><br>    <span class="hljs-comment">// 数据线颜色</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">dataColor</span> <span class="hljs-operator">=</span> Color.WHITE;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">xStep</span> <span class="hljs-operator">=</span> <span class="hljs-number">1.0f</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> viewWidth;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> viewHeight;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">botLeftXOnView</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 图表左下点在view中的x坐标</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">botLeftYOnView</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-variable">originYToBottom</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>; <span class="hljs-comment">// 图表原点距离view底部的距离</span><br><br>    <span class="hljs-keyword">private</span> FloatBuffer dataBuffer;<br><br>    <span class="hljs-keyword">private</span> Paint bgPaint;<br>    <span class="hljs-keyword">private</span> Paint linePaint;<br>    <span class="hljs-keyword">private</span> Paint wavePaint;<br>    <span class="hljs-type">Path</span> <span class="hljs-variable">wavePath</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Path</span>(); <span class="hljs-comment">// 用来画渐变色</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">waveTopColor</span> <span class="hljs-operator">=</span> Color.parseColor(<span class="hljs-string">&quot;#f65212&quot;</span>);<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ColorAutoLineChart</span><span class="hljs-params">(Context context)</span> &#123;<br>        <span class="hljs-built_in">this</span>(context, <span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ColorAutoLineChart</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> &#123;<br>        <span class="hljs-built_in">this</span>(context, attrs, <span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ColorAutoLineChart</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-type">int</span> defStyleAttr)</span> &#123;<br>        <span class="hljs-built_in">super</span>(context, attrs, defStyleAttr);<br>        init(context);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addData</span><span class="hljs-params">(<span class="hljs-type">int</span>[] data)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : data) &#123;<br>            addData(i);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addData</span><span class="hljs-params">(<span class="hljs-type">float</span> data)</span> &#123;<br>        dataBuffer.put(data);<br>        <span class="hljs-keyword">if</span> (dataBuffer.position() &gt; (dataBuffer.capacity() * <span class="hljs-number">2</span> / <span class="hljs-number">3</span>)) &#123;<br>            <span class="hljs-type">float</span>[] bufferArr = dataBuffer.array();<br>            System.arraycopy(bufferArr, dataBuffer.position() - cacheMaxPoint, bufferArr, <span class="hljs-number">0</span>, cacheMaxPoint);<br>            dataBuffer.position(cacheMaxPoint);<br><span class="hljs-comment">//            Log.d(TAG, &quot;把当前数据移动到buffer起始位置 &quot; + dataBuffer);</span><br>        &#125;<br>        invalidate();<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(Context context)</span> &#123;<br>        dataBuffer = FloatBuffer.allocate(<span class="hljs-number">3</span> * cacheMaxPoint); <span class="hljs-comment">// 分配3倍的空间</span><br>        bgPaint = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Paint</span>(Paint.ANTI_ALIAS_FLAG);<br>        linePaint = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Paint</span>(Paint.ANTI_ALIAS_FLAG);<br>        wavePaint = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Paint</span>(Paint.ANTI_ALIAS_FLAG);<br>        bgPaint.setStrokeWidth(axisLineWid);<br>        bgPaint.setStyle(Paint.Style.STROKE);<br>        linePaint.setStrokeWidth(dataLineWid);<br>        linePaint.setStyle(Paint.Style.STROKE);<br>        linePaint.setColor(dataColor);<br><br>        botLeftXOnView = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, <span class="hljs-number">0</span>, context.getResources().getDisplayMetrics());<br>        originYToBottom = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, <span class="hljs-number">20</span>, context.getResources().getDisplayMetrics());<br>        viewYStart = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, <span class="hljs-number">20</span>, context.getResources().getDisplayMetrics());<br>        axisLineWid = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, <span class="hljs-number">1</span>, context.getResources().getDisplayMetrics());<br>        axisTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, <span class="hljs-number">8</span>, context.getResources().getDisplayMetrics());<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onSizeChanged</span><span class="hljs-params">(<span class="hljs-type">int</span> w, <span class="hljs-type">int</span> h, <span class="hljs-type">int</span> oldw, <span class="hljs-type">int</span> oldh)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onSizeChanged(w, h, oldw, oldh);<br>        viewWidth = getWidth();<br>        viewHeight = getHeight();<br>        botLeftYOnView = viewHeight - originYToBottom;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onDraw</span><span class="hljs-params">(Canvas canvas)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onDraw(canvas);<br>        canvas.drawColor(Color.TRANSPARENT);<br>        xStep = (viewWidth - botLeftXOnView) / (onShowPointsCount - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">dataStartIndexInBuffer</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 数据在buffer中的起始下标</span><br>        <span class="hljs-keyword">if</span> (dataBuffer.position() &gt; onShowPointsCount) &#123;<br>            dataStartIndexInBuffer = dataBuffer.position() - onShowPointsCount;<br>        &#125;<br>        <span class="hljs-type">float</span>[] bufferArr = dataBuffer.array();<br>        <span class="hljs-type">float</span> <span class="hljs-variable">maxData</span> <span class="hljs-operator">=</span> bufferArr[<span class="hljs-number">0</span>];<br>        <span class="hljs-type">float</span> <span class="hljs-variable">minData</span> <span class="hljs-operator">=</span> bufferArr[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> dataStartIndexInBuffer; i &lt; dataBuffer.position(); i++) &#123;<br>            <span class="hljs-type">float</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> bufferArr[i];<br>            <span class="hljs-keyword">if</span> (cur &lt; minData) &#123;<br>                minData = cur;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cur &gt; maxData) &#123;<br>                maxData = cur;<br>            &#125;<br>        &#125;<br><br>        drawWave(canvas, dataStartIndexInBuffer);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">drawWave</span><span class="hljs-params">(Canvas canvas, <span class="hljs-type">int</span> dataStartIndexInBuffer)</span> &#123;<br>        wavePath.reset();<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">float</span> <span class="hljs-variable">yDataRange</span> <span class="hljs-operator">=</span> yMax - yMin;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">float</span> <span class="hljs-variable">yAxisRangeOnView</span> <span class="hljs-operator">=</span> botLeftYOnView - viewYStart;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">float</span> <span class="hljs-variable">yDataStep</span> <span class="hljs-operator">=</span> yAxisRangeOnView / yDataRange;<br><br>        <span class="hljs-type">float</span>[] dataArr = dataBuffer.array();<br>        <span class="hljs-type">float</span> <span class="hljs-variable">maxData</span> <span class="hljs-operator">=</span> dataArr[dataStartIndexInBuffer];<br><br>        <span class="hljs-type">float</span> <span class="hljs-variable">waveStartX</span> <span class="hljs-operator">=</span> botLeftXOnView;<br>        <span class="hljs-type">float</span> <span class="hljs-variable">waveStartY</span> <span class="hljs-operator">=</span> getYL(dataArr[dataStartIndexInBuffer], yDataStep);<br>        wavePath.moveTo(waveStartX, waveStartY);<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> dataStartIndexInBuffer; i &lt; dataBuffer.position() - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-type">float</span> <span class="hljs-variable">curData</span> <span class="hljs-operator">=</span> dataArr[i];<br>            <span class="hljs-type">float</span> <span class="hljs-variable">nextData</span> <span class="hljs-operator">=</span> dataArr[i + <span class="hljs-number">1</span>];<br>            wavePath.lineTo(botLeftXOnView + (i - dataStartIndexInBuffer + <span class="hljs-number">1</span>) * xStep, getYL(nextData, yDataStep));<br>            canvas.drawLine(botLeftXOnView + (i - dataStartIndexInBuffer) * xStep, getYL(curData, yDataStep),<br>                    botLeftXOnView + (i - dataStartIndexInBuffer + <span class="hljs-number">1</span>) * xStep, getYL(nextData, yDataStep),<br>                    linePaint);<br>            maxData = Math.max(maxData, nextData);<br>        &#125;<br>        wavePath.lineTo(viewWidth, viewHeight);<br>        wavePath.lineTo(botLeftXOnView, viewHeight);<br>        wavePath.lineTo(waveStartX, waveStartY);<br>        wavePath.close();<br>        wavePaint.setShader(<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinearGradient</span>(<span class="hljs-number">0</span>, getYL(maxData, yDataStep), <span class="hljs-number">0</span>, viewHeight, waveTopColor, Color.TRANSPARENT, Shader.TileMode.CLAMP));<br>        canvas.drawPath(wavePath, wavePaint);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">float</span> <span class="hljs-title function_">getYL</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-type">float</span> yData, <span class="hljs-type">float</span> yDataStep)</span> &#123;<br>        <span class="hljs-keyword">return</span> botLeftYOnView - (yData - yMin) * yDataStep;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="后台用户行为记录"><a href="#后台用户行为记录" class="headerlink" title="后台用户行为记录"></a>后台用户行为记录</h2><p>最开始设计后台服务的时候，并没有考虑到太多的记录功能。仅仅记录了用户登录行为。<br>今后应该记录更详细的。例如获取用户信息，时间，客户端类型，userID等等。获取用户信息是否成功，可作为缓存登录的依据。</p>
+<p>后台可以记录的用户行为，例如获取用户信息，用户查看飞行记录列表，用户查看飞行记录详情，用户点赞。</p>
+<h2 id="WebView设置"><a href="#WebView设置" class="headerlink" title="WebView设置"></a>WebView设置</h2><p>webview不显示图片的问题。LL后加载https的网页，默认会不加载http的资源。需要设置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">webSettings.setBlockNetworkImage(<span class="hljs-literal">false</span>);<br>webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);<br></code></pre></td></tr></table></figure>
+<h2 id="方法调用记录调用原因"><a href="#方法调用记录调用原因" class="headerlink" title="方法调用记录调用原因"></a>方法调用记录调用原因</h2><p>调用某个方法的时候，比如中止某项功能。可以在log上记录一些原因，方便debug。</p>
+<h2 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h2><h3 id="设定播放gif的次数"><a href="#设定播放gif的次数" class="headerlink" title="设定播放gif的次数"></a>设定播放gif的次数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">Glide.get(getApplicationContext()).setMemoryCategory(MemoryCategory.NORMAL);<br>Glide.with(<span class="hljs-built_in">this</span>).asGif().listener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestListener</span>&lt;GifDrawable&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">onLoadFailed</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> GlideException e, Object model, Target&lt;GifDrawable&gt; target, <span class="hljs-type">boolean</span> isFirstResource)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">onResourceReady</span><span class="hljs-params">(GifDrawable resource, Object model, Target&lt;GifDrawable&gt; target, DataSource dataSource, <span class="hljs-type">boolean</span> isFirstResource)</span> &#123;<br>        resource.setLoopCount(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;).load(R.drawable.app_start_up).into(imageView);<br>imageView.setOnApplyWindowInsetsListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>.OnApplyWindowInsetsListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> WindowInsets <span class="hljs-title function_">onApplyWindowInsets</span><span class="hljs-params">(View v, WindowInsets insets)</span> &#123;<br>        MyAppControl.setPhoneStatusBarHeight(insets.getSystemWindowInsetTop());<br>        <span class="hljs-keyword">return</span> insets;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android-note/" class="category-chain-item">Android_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">#开发记录</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>「drone」开发记录</div>
+      <div>https://blog.rustfisher.com/Dev-note/dev-note-app-drone/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年7月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Android/Android-OkHttp_Retrofit_use_intro/" title="Android OkHttp + Retrofit 使用示例">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android OkHttp + Retrofit 使用示例</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Flutter/Flutter-International_localization_with_string_map/" title="Flutter International 国际化，Localization 本地化， 使用字符串Map">
+                        <span class="hidden-mobile">Flutter International 国际化，Localization 本地化， 使用字符串Map</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

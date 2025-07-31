@@ -1,17 +1,14 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/fluid.png">
-  <link rel="icon" href="/en/img/038-ice-coffee.png">
-  
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,28 +16,29 @@
   <meta name="author" content="Rust Fisher">
   <meta name="keywords" content="">
   
-    <meta name="description" content="This article compares the core features, user experience, pricing plans, and applicable scenarios of mainstream AI chat tools in 2025 - ChatGPT, Gemini, DeepSeek, and Doubao.">
+    <meta name="description" content="2025年最新AI聊天工具对比 - ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;豆包功能、使用场景及优缺点分析，助你选择最适合的智能助手">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2025 AI Chat Tools Recommendations and Comparison - ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;Doubao">
-<meta property="og:url" content="https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/index.html">
-<meta property="og:site_name" content="RustFisher">
-<meta property="og:description" content="This article compares the core features, user experience, pricing plans, and applicable scenarios of mainstream AI chat tools in 2025 - ChatGPT, Gemini, DeepSeek, and Doubao.">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.rustfisher.com/en/img/cover-ai-tools.png">
+<meta property="og:title" content="2025年AI聊天工具推荐与对比 - ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;豆包">
+<meta property="og:url" content="https://blog.rustfisher.com/ai/2025-ai-chat-tools/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="2025年最新AI聊天工具对比 - ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;豆包功能、使用场景及优缺点分析，助你选择最适合的智能助手">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/cover-ai-tools.png">
 <meta property="article:published_time" content="2025-07-30T06:12:59.000Z">
-<meta property="article:modified_time" content="2025-07-31T02:53:50.547Z">
+<meta property="article:modified_time" content="2025-07-30T10:34:53.172Z">
 <meta property="article:author" content="Rust Fisher">
-<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI工具">
 <meta property="article:tag" content="ChatGPT">
 <meta property="article:tag" content="Gemini">
 <meta property="article:tag" content="DeepSeek">
-<meta property="article:tag" content="doubao">
+<meta property="article:tag" content="豆包">
+<meta property="article:tag" content="人工智能助手">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.rustfisher.com/en/img/cover-ai-tools.png">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/cover-ai-tools.png">
   
   
   
-  <title>2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao - RustFisher</title>
+  <title>2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包 - RustFisher的自留地</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -57,19 +55,19 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/en/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/en/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/en/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -78,15 +76,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/en/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/en/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/en/js/utils.js" ></script>
-  <script  src="/en/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
   
@@ -111,13 +109,18 @@
   
 
   
+
+  
+
+  
     
   
 
 
 
   <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -129,7 +132,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/en/">
+    <a class="navbar-brand" href="/">
       <strong>RustFisher</strong>
     </a>
 
@@ -148,9 +151,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/" target="_self">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -160,9 +163,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/archives/" target="_self">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -172,9 +175,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/categories/" target="_self">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -184,9 +187,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/tags/" target="_self">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -196,9 +199,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/about/" target="_self">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -208,9 +211,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/links/" target="_self">
+              <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -220,9 +223,21 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/../" target="_self">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
                 <i class="iconfont icon-plan"></i>
-                <span>简体中文</span>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
               </a>
             </li>
           
@@ -250,13 +265,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/en/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao"></span>
+            <span id="subtitle" data-typed-text="2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包"></span>
           
         </div>
 
@@ -268,7 +283,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2025-07-30 14:12" pubdate>
-          July 30, 2025 pm
+          2025年7月30日 下午
         </time>
       </span>
     
@@ -279,7 +294,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          276 words
+          2k 字
         
       </span>
     
@@ -290,7 +305,7 @@
         
         
         
-          3 mins
+          17 分钟
         
       </span>
     
@@ -303,7 +318,6 @@
           <span id="leancloud-page-views"></span> 次
         </span>
         
-      
       
     
   </div>
@@ -336,12 +350,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao</h1>
+            <!-- SEO header -->
+            <h1 style="display: none">2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包</h1>
             
-              <p id="updated-time" class="note note-info" style="">
+              <p class="note note-info">
                 
                   
-                    Last updated on July 31, 2025 am
+                    本文最后更新于：2025年7月30日 晚上
                   
                 
               </p>
@@ -349,85 +364,77 @@
             
               <div class="markdown-body">
                 
-                <h1 id="2025-AI-Chat-Tools-Recommendations-and-Comparison-ChatGPT-Gemini-DeepSeek-Doubao"><a href="#2025-AI-Chat-Tools-Recommendations-and-Comparison-ChatGPT-Gemini-DeepSeek-Doubao" class="headerlink" title="2025 AI Chat Tools Recommendations and Comparison: ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;Doubao"></a>2025 AI Chat Tools Recommendations and Comparison: ChatGPT&#x2F;Gemini&#x2F;DeepSeek&#x2F;Doubao</h1><p>This article compares the core features, user experience, pricing plans, and applicable scenarios of mainstream AI chat tools in 2025: ChatGPT, Gemini, DeepSeek, and Doubao. </p>
-<p>It aims to help readers choose the most suitable artificial intelligence assistant. These tools are capable of natural conversational interactions, understanding users’ questions, responding to needs, and providing help, whether it’s chatting, answering questions, or assisting with tasks.</p>
+                <p>本文对比2025年主流AI聊天工具（ChatGPT、Gemini、DeepSeek和豆包）的核心功能、使用体验、价格方案及适用场景，帮助读者选择最适合的人工智能助手。<br>以下各工具要能和用户进行自然的交流互动，能理解用户的问题、回应用户的需求，不管是聊天、解答疑问还是提供帮助，都可以通过对话来实现。</p>
 <blockquote>
-<p>This article is continuously updated.</p>
+<p>本文持续更新中</p>
 </blockquote>
-<h2 id="1-ChatGPT"><a href="#1-ChatGPT" class="headerlink" title="1. ChatGPT"></a>1. ChatGPT</h2><p>Engage in various conversations, answer questions, offer advice, and assist with creative work. It handles text, analyzes information, and can generate or help modify images.</p>
-<p>You can log in using Google, Microsoft, or Apple accounts. Experience the free version with GPT-4o mini.<br>The Plus version is $20 per month, providing deep research, multiple reasoning models (o4-mini, o4-mini-high, and o3), and the GPT-4.5 research preview.</p>
-<p>The Pro version costs $200 per month, providing access to GPT-4.5 and the Operator research preview.</p>
-<p>Website: <a target="_blank" rel="noopener" href="https://chatgpt.com/">https://chatgpt.com/</a><br>Company: <a target="_blank" rel="noopener" href="https://openai.com/">OpenAI</a></p>
-<p><strong>Core Features</strong>: GPT-4 Turbo model supports 128K context, multimodal interaction, advanced data analysis<br><strong>Advantages</strong>: Well-established ecosystem, rich third-party plugins, enterprise-level API support<br><strong>Disadvantages</strong>: Free version has slower response speed, some advanced features require a Plus subscription<br><strong>Applicable Scenarios</strong>: Professional content creation, programming assistance, academic research</p>
+<h2 id="1-ChatGPT"><a href="#1-ChatGPT" class="headerlink" title="1. ChatGPT"></a>1. ChatGPT</h2><p>各种对话，解答问题，提供建议，以及协助创意工作。我能处理文本、分析信息，还能生成图像或帮助你修改图像<br>可使用Google、Microsoft、Apple账号登录。可用免费账号进行体验，使用GPT-4o mini。<br>Plus版本$20每月，深度研究、多个推理模型（o4-mini、o4-mini-high 和 o3）以及 GPT-4.5 研究预览版。<br>Pro版本$200每月，访问 GPT-4.5 和 Operator 的研究预览版。</p>
+<p>地址： <a target="_blank" rel="noopener" href="https://chatgpt.com/">https://chatgpt.com/</a><br>公司： <a target="_blank" rel="noopener" href="https://openai.com/">OpenAI</a></p>
+<p><strong>核心功能</strong>：GPT-4 Turbo模型支持128K上下文、多模态交互、高级数据分析<br><strong>优势</strong>：生态完善，第三方插件丰富，企业级API支持<br><strong>不足</strong>：免费版响应速度较慢，部分高级功能需订阅Plus会员<br><strong>适用场景</strong>：专业内容创作、编程辅助、学术研究</p>
 <blockquote>
-<p>A flagship product in large language models that has sparked a new wave in AI.</p>
+<p>大模型的重磅产品，掀起了AI又一轮浪潮</p>
 </blockquote>
-<h2 id="2-Gemini"><a href="#2-Gemini" class="headerlink" title="2. Gemini"></a>2. Gemini</h2><p>Google’s large language model. Currently offering the 2.5Flash and 2.5Pro models.</p>
-<p>It can perform content creation, summarization, translation, rewriting, editing, expansion, formatting, sentiment analysis, keyword extraction, code generation, explanation, debugging, and technical concept explanation.</p>
-<p>The editor believes that when it comes to technical questions about Google, Gemini’s answers are more professional since it is a Google product. For example, questions about Android, WebRTC, etc.<br>Gemini can also generate videos. PRO users can generate up to three videos per day.</p>
-<p>Google AI Pro is priced at $19.99 per month.<br>Pricing details: <a target="_blank" rel="noopener" href="https://one.google.com/about/plans">https://one.google.com/about/plans</a></p>
-<p>Website: <a target="_blank" rel="noopener" href="https://gemini.google.com/">https://gemini.google.com/</a><br>Company: Google</p>
-<p><strong>Core Features</strong>: Multimodal understanding (text&#x2F;image&#x2F;audio&#x2F;video), real-time web search, code execution environment<br><strong>Advantages</strong>: Deep integration with Google services, powerful free version<br><strong>Disadvantages</strong>: Some advanced features are only available to PRO users<br><strong>Applicable Scenarios</strong>: Multimedia content processing, real-time information retrieval, educational purposes</p>
-<h2 id="3-DeepSeek-Chat"><a href="#3-DeepSeek-Chat" class="headerlink" title="3. DeepSeek Chat"></a>3. DeepSeek Chat</h2><p>DeepSeek Chat, developed by DeepSeek, is an intelligent AI assistant. The core model is DeepSeek-V3, with knowledge up to July 2024. </p>
-<p>It has a powerful 128K context processing capability and can help answer various questions, process documents, analyze data, and chat with users.</p>
-<p>Website: <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">https://chat.deepseek.com/</a><br>Company: DeepSeek<br>DeepSeek Open Platform: <a target="_blank" rel="noopener" href="https://platform.deepseek.com/usage">https://platform.deepseek.com/usage</a><br>API Documentation: <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/zh-cn/">https://api-docs.deepseek.com/zh-cn/</a></p>
-<p><strong>Core Features</strong>: 128K super-long context, specialized domain knowledge (mathematics&#x2F;physics&#x2F;programming), document analysis<br><strong>Advantages</strong>: Strong Chinese language processing, no restrictions on free version features<br><strong>Disadvantages</strong>: Relatively small ecosystem, limited plugins<br><strong>Applicable Scenarios</strong>: Chinese content creation, technical document processing, academic research</p>
-<p>Currently, personal use is free. API integration requires a paid plan.</p>
-<h2 id="4-Doubao"><a href="#4-Doubao" class="headerlink" title="4. Doubao"></a>4. Doubao</h2><p>Doubao is an AI assistant developed by ByteDance. Its features include AI search, writing, AI programming, image generation, and AI reading.</p>
-<p>Website: <a target="_blank" rel="noopener" href="https://www.doubao.com/">https://www.doubao.com/</a><br>Company: ByteDance</p>
-<p><strong>Core Features</strong>: AI search integration, multimodal creation, voice interaction, local deployment<br><strong>Advantages</strong>: Fast access speed in China, well-developed localization services, advanced voice features<br><strong>Disadvantages</strong>: Weak international support<br><strong>Applicable Scenarios</strong>: Daily assistant, content creation, local services</p>
-<p>Currently free for personal use. Available as both a web and desktop version, with additional features on the desktop version, such as voice conversations with AI.</p>
-<h2 id="AI-Chat-Tool-Comparison-Summary-Table"><a href="#AI-Chat-Tool-Comparison-Summary-Table" class="headerlink" title="AI Chat Tool Comparison Summary Table"></a>AI Chat Tool Comparison Summary Table</h2><table>
+<h2 id="2-Gemini"><a href="#2-Gemini" class="headerlink" title="2. Gemini"></a>2. Gemini</h2><p>Google旗下的大语言模型。目前提供2.5Flash和2.5Pro模型。<br>能够进行内容创作、摘要、翻译、重写润色、扩写、格式化、情感分析、关键词提取。代码生成、解释、调试，解释技术概念等等。<br>编者认为询问Google家的技术问题，Gemini的回答会比较专业，因为它是Google的产品。比如Android、Webrtc等等。<br>Gemini也能生成视频。目前PRO用户每天能生成3个视频。</p>
+<p>Google AI Pro原价是$19.99每月。收费方案地址： <a target="_blank" rel="noopener" href="https://one.google.com/about/plans">https://one.google.com/about/plans</a></p>
+<p>地址： <a target="_blank" rel="noopener" href="https://gemini.google.com/">https://gemini.google.com/</a><br>公司： Google<br><strong>核心功能</strong>：多模态理解（文本/图像/音频/视频）、实时网络搜索、代码执行环境<br><strong>优势</strong>：与Google服务深度整合，免费版功能强大<br><strong>不足</strong>：部分高级功能仅限PRO会员<br><strong>适用场景</strong>：多媒体内容处理、实时信息获取、教育学习</p>
+<h2 id="3-DeepSeek-Chat"><a href="#3-DeepSeek-Chat" class="headerlink" title="3. DeepSeek Chat"></a>3. DeepSeek Chat</h2><p>DeepSeek Chat，由 深度求索（DeepSeek） 研发的一款智能 AI 助手。我的核心模型是 DeepSeek-V3，知识截止到 2024年7月，具备强大的 128K 上下文处理能力，可以帮你解答各种问题、处理文档、分析数据，陪用户聊天</p>
+<p>地址： <a target="_blank" rel="noopener" href="https://chat.deepseek.com/">https://chat.deepseek.com/</a><br>公司： 深度求索（DeepSeek）<br>deepseek开放平台 <a target="_blank" rel="noopener" href="https://platform.deepseek.com/usage">https://platform.deepseek.com/usage</a><br>接口文档 <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/zh-cn/">https://api-docs.deepseek.com/zh-cn/</a></p>
+<p><strong>核心功能</strong>：128K超长上下文、专业领域知识（数学/物理/编程）、文档分析<br><strong>优势</strong>：中文处理能力强，免费版功能无阉割<br><strong>不足</strong>：生态相对较小，插件数量有限<br><strong>适用场景</strong>：中文内容创作、技术文档处理、学术研究</p>
+<p>目前个人使用是免费的。如果要对接API则需要付费。</p>
+<h2 id="4-豆包"><a href="#4-豆包" class="headerlink" title="4. 豆包"></a>4. 豆包</h2><p>豆包是字节跳动开发的人工智能助手。功能有AI搜索，写作，AI编程，图像生成，AI阅读等。</p>
+<p>地址： <a target="_blank" rel="noopener" href="https://www.doubao.com/">https://www.doubao.com/</a><br>公司： 字节跳动<br><strong>核心功能</strong>：AI搜索集成、多模态创作、语音交互、本地化部署<br><strong>优势</strong>：国内访问速度快，本地化服务完善，语音功能领先<br><strong>不足</strong>：国际服务支持较弱<br><strong>适用场景</strong>：日常聊天助手、内容创作、本地生活服务</p>
+<p>目前个人使用免费。有网页版，有电脑版。电脑版功能更多一些，比如和AI进行语音通话。</p>
+<h2 id="AI聊天工具对比总结表"><a href="#AI聊天工具对比总结表" class="headerlink" title="AI聊天工具对比总结表"></a>AI聊天工具对比总结表</h2><table>
 <thead>
 <tr>
-<th>Tool Name</th>
-<th>Core Advantages</th>
-<th>Pricing Plans</th>
-<th>Best Use Case</th>
-<th>Free Tier</th>
+<th>工具名称</th>
+<th>核心优势</th>
+<th>价格方案</th>
+<th>最佳适用场景</th>
+<th>免费额度</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>ChatGPT</td>
-<td>Well-established ecosystem, rich plugins</td>
-<td>Free&#x2F;Plus $20&#x2F;month</td>
-<td>Professional creation, programming</td>
-<td>Limited</td>
+<td>生态完善，插件丰富</td>
+<td>免费版/Plus $20/月</td>
+<td>专业创作、编程</td>
+<td>有限制</td>
 </tr>
 <tr>
 <td>Gemini</td>
-<td>Multimodal processing, integration with Google services</td>
-<td>Free&#x2F;Advanced $19.99&#x2F;month</td>
-<td>Multimedia processing, education</td>
-<td>Unlimited</td>
+<td>多模态处理，谷歌服务整合</td>
+<td>免费版/Advanced $19.99/月</td>
+<td>多媒体处理、教育</td>
+<td>无限制</td>
 </tr>
 <tr>
 <td>DeepSeek</td>
-<td>Strong Chinese capabilities, super-long context</td>
-<td>Free&#x2F;API paid</td>
-<td>Chinese creation, academic research</td>
-<td>Unlimited</td>
+<td>中文能力强，超长上下文</td>
+<td>免费版/API付费</td>
+<td>中文创作、学术研究</td>
+<td>无限制</td>
 </tr>
 <tr>
-<td>Doubao</td>
-<td>Voice interaction, localization</td>
-<td>Free&#x2F;Subscription</td>
-<td>Daily assistant, content creation</td>
-<td>Unlimited</td>
+<td>豆包</td>
+<td>语音交互，本地化服务</td>
+<td>免费版/会员制</td>
+<td>日常助手、内容创作</td>
+<td>无限制</td>
 </tr>
-</tbody></table>
-<h2 id="How-to-Choose-the-Right-AI-Chat-Tool"><a href="#How-to-Choose-the-Right-AI-Chat-Tool" class="headerlink" title="How to Choose the Right AI Chat Tool?"></a>How to Choose the Right AI Chat Tool?</h2><ol>
-<li><strong>Professional Needs</strong> (programming&#x2F;creation): Prioritize ChatGPT or DeepSeek</li>
-<li><strong>Multimedia Processing</strong>: Gemini’s multimodal capabilities stand out</li>
-<li><strong>Chinese Scenarios</strong>: DeepSeek and Doubao perform better</li>
-<li><strong>Limited Budget</strong>: DeepSeek’s free version has the most comprehensive features</li>
-<li><strong>Usage in China</strong>: Doubao has the best access speed and localized services</li>
+</tbody>
+</table>
+<h2 id="如何选择适合自己的AI聊天工具？"><a href="#如何选择适合自己的AI聊天工具？" class="headerlink" title="如何选择适合自己的AI聊天工具？"></a>如何选择适合自己的AI聊天工具？</h2><ol>
+<li><strong>专业需求</strong>（编程/创作）：优先选择ChatGPT或DeepSeek</li>
+<li><strong>多媒体处理</strong>：Gemini的多模态能力更具优势</li>
+<li><strong>中文场景</strong>：DeepSeek和豆包表现更佳</li>
+<li><strong>预算有限</strong>：DeepSeek免费版功能最全面</li>
+<li><strong>国内使用</strong>：豆包访问速度和本地化服务最优</li>
 </ol>
-<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Q: Are the data in AI chat tools secure?</strong><br>A: All mainstream tools use end-to-end encryption, but it is recommended to avoid inputting sensitive personal information. Do not upload information like Tokens.</p>
-<p><strong>Q: What are the core differences between the free and paid versions?</strong><br>A: The main differences lie in response speed, context length, advanced features, and priority support.</p>
-<p><strong>Q: Can these tools be used for commercial purposes?</strong><br>A: Check each tool’s terms of service. Free versions generally prohibit commercial use, while paid versions usually allow it.</p>
-<hr>
-<p>Let me know if you need any further details!</p>
+<h2 id="常见问题解答"><a href="#常见问题解答" class="headerlink" title="常见问题解答"></a>常见问题解答</h2><p><strong>Q: AI聊天工具的数据安全吗？</strong><br>A: 所有主流工具均采用端到端加密，但建议避免输入敏感个人信息。不要把Token之类信息上传。</p>
+<p><strong>Q: 免费版和付费版的核心区别是什么？</strong><br>A: 主要在响应速度、上下文长度、高级功能和优先级支持上有差异。</p>
+<p><strong>Q: 能否用于商业用途？</strong><br>A: 需查看各工具的服务条款，一般免费版禁止商业使用，付费版通常允许。</p>
 
                 
               </div>
@@ -446,7 +453,7 @@
     
       <span class="category-chain">
         
-  <a href="/en/categories/ai/" class="category-chain-item">ai</a>
+  <a href="/categories/ai/" class="category-chain-item">ai</a>
   
   
 
@@ -461,15 +468,17 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/en/tags/AI/" class="print-no-link">#AI</a>
+        <a href="/tags/AI%E5%B7%A5%E5%85%B7/">#AI工具</a>
       
-        <a href="/en/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
+        <a href="/tags/ChatGPT/">#ChatGPT</a>
       
-        <a href="/en/tags/Gemini/" class="print-no-link">#Gemini</a>
+        <a href="/tags/Gemini/">#Gemini</a>
       
-        <a href="/en/tags/DeepSeek/" class="print-no-link">#DeepSeek</a>
+        <a href="/tags/DeepSeek/">#DeepSeek</a>
       
-        <a href="/en/tags/doubao/" class="print-no-link">#doubao</a>
+        <a href="/tags/%E8%B1%86%E5%8C%85/">#豆包</a>
+      
+        <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/">#人工智能助手</a>
       
     </div>
   
@@ -481,33 +490,33 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao</div>
-      <div>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</div>
+      <div>2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包</div>
+      <div>https://blog.rustfisher.com/ai/2025-ai-chat-tools/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>Rust Fisher</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>July 30, 2025</div>
+          <div>发布于</div>
+          <div>2025年7月30日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>许可协议</div>
           <div>
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-cc-by"></i>
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
                   </span>
                 </a>
               
@@ -529,6 +538,12 @@
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/unclassified/font-gb2312/" title="下载和使用仿宋GB2312字体">
+                        <span class="hidden-mobile">下载和使用仿宋GB2312字体</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -591,7 +606,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -647,7 +662,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -655,7 +670,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -698,9 +713,9 @@
     
 
   
-
 </div>
 
+  
   
   
 </div>
@@ -721,10 +736,10 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/en/js/events.js" ></script>
-<script  src="/en/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -746,7 +761,7 @@
 
 
   
-    <script  src="/en/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -754,7 +769,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
@@ -799,7 +814,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
@@ -845,9 +860,9 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script defer src="/en/js/leancloud.js" ></script>
+  <script defer src="/js/leancloud.js" ></script>
 
-  <script  src="/en/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -855,13 +870,13 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/en/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>

@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Ubuntu 14.04  pip 使用国内镜像源使用pip install 的时候总是出现read timeout 之类的错误 使用国内镜像  https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple例如我要安装 scrapy1pip install -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple scrapy 添加源的配置 Li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pip 相关">
+<meta property="og:url" content="https://blog.rustfisher.com/Python/Python-pip-solution/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="Ubuntu 14.04  pip 使用国内镜像源使用pip install 的时候总是出现read timeout 之类的错误 使用国内镜像  https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple例如我要安装 scrapy1pip install -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple scrapy 添加源的配置 Li">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/python-logo.png">
+<meta property="article:published_time" content="2017-04-29T12:59:20.000Z">
+<meta property="article:modified_time" content="2023-04-15T07:26:52.298Z">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/python-logo.png">
+  
+  
+  
+  <title>pip 相关 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pip 相关"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-04-29 20:59" pubdate>
+          2017年4月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">pip 相关</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月15日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li>Ubuntu 14.04</li>
+</ul>
+<h2 id="pip-使用国内镜像源"><a href="#pip-使用国内镜像源" class="headerlink" title="pip 使用国内镜像源"></a>pip 使用国内镜像源</h2><p>使用pip install 的时候总是出现read timeout 之类的错误</p>
+<p>使用国内镜像  <code>https://pypi.tuna.tsinghua.edu.cn/simple</code><br>例如我要安装 scrapy<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">pip install -i https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn/simple scrapy<br></code></pre></td></tr></table></figure></p>
+<p>添加源的配置</p>
+<p>Linux下，修改 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[global]</span><br><span class="hljs-attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple<br></code></pre></td></tr></table></figure></p>
+<p>windows下，直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini，内容如下<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[global]</span><br><span class="hljs-attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple<br></code></pre></td></tr></table></figure></p>
+<h2 id="pip-install-出错"><a href="#pip-install-出错" class="headerlink" title="pip install 出错"></a><code>pip install</code> 出错</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ pip install pycairo<br>Collecting pycairo<br>  Downloading https://files.pythonhosted.org/packages/e8/9d/c8be300fc6b1298559d37a071c3833b0b251e0fff334d2e4c408d5789162/pycairo-1.19.1.tar.gz (205kB)<br>    100% |████████████████████████████████| 215kB 644kB/s <br>Installing collected packages: pycairo<br>  Running setup.py install <span class="hljs-keyword">for</span> pycairo ... error<br>    Complete output from <span class="hljs-built_in">command</span> /Users/rustfisher/Desktop/intGo/studySR/venv/bin/python -u -c <span class="hljs-string">&quot;import setuptools, tokenize;__file__=&#x27;/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-jhvl5plj/pycairo/setup.py&#x27;;f=getattr(tokenize, &#x27;open&#x27;, open)(__file__);code=f.read().replace(&#x27;\r\n&#x27;, &#x27;\n&#x27;);f.close();exec(compile(code, __file__, &#x27;exec&#x27;))&quot;</span> install --record /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-record-dqg8zbp0/install-record.txt --single-version-externally-managed --compile --install-headers /Users/rustfisher/Desktop/intGo/studySR/venv/include/site/python3.7/pycairo:<br>    running install<br>    running build<br>    running build_py<br>    creating build<br>    creating build/lib.macosx-10.9-x86_64-3.7<br>    creating build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/__init__.py -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/__init__.pyi -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/py.typed -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    running build_ext<br>    [Errno 20] Not a directory: <span class="hljs-string">&#x27;pkg-config&#x27;</span><br>    <br>    ----------------------------------------<br>Command <span class="hljs-string">&quot;/Users/rustfisher/Desktop/intGo/studySR/venv/bin/python -u -c &quot;</span>import setuptools, tokenize;__file__=<span class="hljs-string">&#x27;/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-jhvl5plj/pycairo/setup.py&#x27;</span>;f=getattr(tokenize, <span class="hljs-string">&#x27;open&#x27;</span>, open)(__file__);code=f.read().replace(<span class="hljs-string">&#x27;\r\n&#x27;</span>, <span class="hljs-string">&#x27;\n&#x27;</span>);f.close();<span class="hljs-built_in">exec</span>(compile(code, __file__, <span class="hljs-string">&#x27;exec&#x27;</span>))<span class="hljs-string">&quot; install --record /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-record-dqg8zbp0/install-record.txt --single-version-externally-managed --compile --install-headers /Users/rustfisher/Desktop/intGo/studySR/venv/include/site/python3.7/pycairo&quot;</span> failed with error code 1 <span class="hljs-keyword">in</span> /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-jhvl5plj/pycairo/<br>You are using pip version 10.0.1, however version 20.2.2 is available.<br>You should consider upgrading via the <span class="hljs-string">&#x27;pip install --upgrade pip&#x27;</span> <span class="hljs-built_in">command</span>.<br></code></pre></td></tr></table></figure>
+<p>用brew安装<code>pkg-config</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"> $ brew install pkg-config<br>==&gt; Downloading https://mirrors.ustc.edu.cn/homebrew-bottles/bottles/pkg-config-0.29.2_3.mojave.bottle.tar.g<br><span class="hljs-comment">######################################################################## 100.0%</span><br>==&gt; Pouring pkg-config-0.29.2_3.mojave.bottle.tar.gz<br>🍺  /usr/local/Cellar/pkg-config/0.29.2_3: 11 files, 623.6KB<br></code></pre></td></tr></table></figure></p>
+<p>然后再运行<code>pip install pycairo</code>。<br>出现错误</p>
+<blockquote>
+<p>Collecting pycairo<br>  Using cached pycairo-1.19.1.tar.gz (205 kB)<br>Using legacy setup.py install for pycairo, since package ‘wheel’ is not installed.<br>Installing collected packages: pycairo<br>    Running setup.py install for pycairo … error<br>    ERROR: Command errored out with exit status 1:<br>     command: /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 -u -c ‘import sys, setuptools, tokenize; sys.argv[0] = ‘“‘“‘/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-_fvz20yx/pycairo/setup.py’”‘“‘; <strong>file</strong>=’”‘“‘/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-_fvz20yx/pycairo/setup.py’”‘“‘;f=getattr(tokenize, ‘“‘“‘open’”‘“‘, open)(<strong>file</strong>);code=f.read().replace(‘“‘“‘\r\n’”‘“‘, ‘“‘“‘\n’”‘“‘);f.close();exec(compile(code, <strong>file</strong>, ‘“‘“‘exec’”‘“‘))’ install –record /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-record-0xkj4in4/install-record.txt –single-version-externally-managed –compile –install-headers /Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pycairo<br>         cwd: /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-_fvz20yx/pycairo/<br>    Complete output (15 lines):<br>    running install<br>    running build<br>    running build_py<br>    creating build<br>    creating build/lib.macosx-10.9-x86_64-3.7<br>    creating build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/<strong>init</strong>.py -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/<strong>init</strong>.pyi -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    copying cairo/py.typed -&gt; build/lib.macosx-10.9-x86_64-3.7/cairo<br>    running build_ext<br>    Package cairo was not found in the pkg-config search path.<br>    Perhaps you should add the directory containing `cairo.pc’<br>    to the PKG_CONFIG_PATH environment variable<br>    No package ‘cairo’ found</p>
+</blockquote>
+<pre><code class="hljs">Command &apos;[&apos;pkg-config&apos;, &apos;--print-errors&apos;, &apos;--exists&apos;, &apos;cairo &gt;= 1.13.1&apos;]&apos; returned non-zero exit status 1.
+----------------------------------------
+</code></pre><p>ERROR: Command errored out with exit status 1: /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 -u -c ‘import sys, setuptools, tokenize; sys.argv[0] = ‘“‘“‘/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-_fvz20yx/pycairo/setup.py’”‘“‘; <strong>file</strong>=’”‘“‘/private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-install-_fvz20yx/pycairo/setup.py’”‘“‘;f=getattr(tokenize, ‘“‘“‘open’”‘“‘, open)(<strong>file</strong>);code=f.read().replace(‘“‘“‘\r\n’”‘“‘, ‘“‘“‘\n’”‘“‘);f.close();exec(compile(code, <strong>file</strong>, ‘“‘“‘exec’”‘“‘))’ install –record /private/var/folders/ds/b1cvbdm97dz7bynp0xzr3f7c0000gn/T/pip-record-0xkj4in4/install-record.txt –single-version-externally-managed –compile –install-headers /Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pycairo Check the logs for full command output.</p>
+<p>执行<code>brew install cairo pkg-config freetype harfbuzz</code>，把这几个包安装一下。<br>然后再<code>pip install pycairo</code>，安装成功。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pip 相关</div>
+      <div>https://blog.rustfisher.com/Python/Python-pip-solution/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年4月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Python/Python-dictionary-JSON-file/" title="Python3 Dictionary与JSON">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python3 Dictionary与JSON</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/DesignPattern/Adapter-Pattern/" title="适配器模式 Adapter Pattern - Java实现">
+                        <span class="hidden-mobile">适配器模式 Adapter Pattern - Java实现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

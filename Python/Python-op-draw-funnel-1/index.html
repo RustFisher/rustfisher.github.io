@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="写给运营人员的Python指南。使用Python绘制瀑布图。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【运营的Python指南】绘制漏斗图">
+<meta property="og:url" content="https://blog.rustfisher.com/Python/Python-op-draw-funnel-1/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="写给运营人员的Python指南。使用Python绘制瀑布图。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
+<meta property="article:published_time" content="2021-06-28T12:14:47.000Z">
+<meta property="article:modified_time" content="2023-04-15T07:26:52.298Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="运营的Python指南">
+<meta property="article:tag" content="openpyxl">
+<meta property="article:tag" content="pyecharts">
+<meta property="article:tag" content="Excel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/meeting-1.jpg">
+  
+  
+  
+  <title>【运营的Python指南】绘制漏斗图 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【运营的Python指南】绘制漏斗图"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-28 20:14" pubdate>
+          2021年6月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【运营的Python指南】绘制漏斗图</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月15日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>写给运营朋友的Python指南。</p>
+<p>漏斗图可对业务的各个关键环节进行描述，衡量各个环节的业务表现。可以非常直观地看到各个业务地转化程度。</p>
+<p>本文介绍使用Python从Excel中读取数据，使用pyecharts绘制漏斗图。</p>
+<h2 id="操作步骤说明"><a href="#操作步骤说明" class="headerlink" title="操作步骤说明"></a>操作步骤说明</h2><p>下面是操作的具体步骤。</p>
+<h3 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1.开发环境"></a>1.开发环境</h3><p>示例使用的IDE是PyCharm社区版，开发语言是Python3.x。</p>
+<p>在工程中，新建Python文件<code>demo_data_funnel.py</code>。然后在同级的位置新建一个<code>res</code>文件夹，后面用来存放文件。</p>
+<h3 id="2-准备数据"><a href="#2-准备数据" class="headerlink" title="2.准备数据"></a>2.准备数据</h3><p>创建一个Excel文件<code>事件demo.xlsx</code>。将表名改为<code>data3</code>。这个名字在代码中会用到。</p>
+<p>写入两列数据<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">事件</span>	<span class="hljs-string">次数</span><br><span class="hljs-string">e1</span>	<span class="hljs-number">10000</span><br><span class="hljs-string">e2</span>	<span class="hljs-number">4695</span><br><span class="hljs-string">e3</span>	<span class="hljs-number">2584</span><br><span class="hljs-string">e4</span>	<span class="hljs-number">1295</span><br><span class="hljs-string">e5</span>	<span class="hljs-number">954</span><br></code></pre></td></tr></table></figure><br>得到如下的表格：<br><img src="excel.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>与<code>demo_data_funnel.py</code>同级的地方新建了<code>res</code>文件夹，把Excel文件放进去。</p>
+<p><img src="proj.png" srcset="/img/loading.gif" lazyload alt="Excel文件放的位置示意图"></p>
+<blockquote>
+<p>这里我们暂时用测试数据看效果。后面再填入你的真实数据。</p>
+</blockquote>
+<h3 id="3-编写脚本"><a href="#3-编写脚本" class="headerlink" title="3.编写脚本"></a>3.编写脚本</h3><p>现在开始写Python代码。<br><code>demo_data_funnel.py</code>完整的代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> openpyxl <span class="hljs-keyword">import</span> load_workbook<br><span class="hljs-keyword">from</span> pyecharts.charts <span class="hljs-keyword">import</span> Funnel<br><span class="hljs-keyword">import</span> pyecharts.options <span class="hljs-keyword">as</span> opts<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_in_data</span>(<span class="hljs-params">file_path</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)<br>    wb = load_workbook(file_path)<br>    st = wb[<span class="hljs-string">&#x27;data3&#x27;</span>]<br>    data_list = []<br>    <span class="hljs-keyword">for</span> row_index <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, st.max_row + <span class="hljs-number">1</span>):<br>        event_name = st.cell(row=row_index, column=<span class="hljs-number">1</span>).value<br>        event_value = st.cell(row=row_index, column=<span class="hljs-number">2</span>).value<br>        data_list.append([event_name, event_value])<br>    <span class="hljs-built_in">print</span>(data_list)<br>    <span class="hljs-keyword">return</span> data_list<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_default</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;800px&quot;</span>, height=<span class="hljs-string">&quot;400px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;默认样式&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_1.html&quot;</span>)<br>    )<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_2</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;1000px&quot;</span>, height=<span class="hljs-string">&quot;600px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,<br>                 label_opts=opts.LabelOpts(position=<span class="hljs-string">&quot;inside&quot;</span>, formatter=<span class="hljs-string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),<br>                 gap=<span class="hljs-number">2</span>,<br>                 tooltip_opts=opts.TooltipOpts(trigger=<span class="hljs-string">&quot;item&quot;</span>, formatter=<span class="hljs-string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),<br>                 )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;改变了label&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_2.html&quot;</span>)<br>    )<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_3</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    data = input_data.copy()  <span class="hljs-comment"># 复制一份出来处理标题</span><br>    base_value = data[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data)):<br>        event_name = data[x][<span class="hljs-number">0</span>]<br>        value = data[x][<span class="hljs-number">1</span>]  <span class="hljs-comment"># 拿到数值</span><br>        ratio = value / base_value<br>        event_name += <span class="hljs-string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="hljs-built_in">format</span>(ratio * <span class="hljs-number">100</span>)<br>        <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">0</span>:<br>            event_name += <span class="hljs-string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-number">100</span> * value / data[x - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>])<br>        data[x][<span class="hljs-number">0</span>] = event_name<br>        <span class="hljs-built_in">print</span>(event_name)<br><br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;1000px&quot;</span>, height=<span class="hljs-string">&quot;800px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=data,<br>                 label_opts=opts.LabelOpts(position=<span class="hljs-string">&quot;inside&quot;</span>, formatter=<span class="hljs-string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),<br>                 gap=<span class="hljs-number">2</span>,<br>                 tooltip_opts=opts.TooltipOpts(trigger=<span class="hljs-string">&quot;item&quot;</span>, formatter=<span class="hljs-string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),<br>                 )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;修改了各项的标题&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_3.html&quot;</span>)<br>    )<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    src_data = read_in_data(<span class="hljs-string">&#x27;res/事件demo.xlsx&#x27;</span>)<br>    draw_funnel_default(src_data)<br>    draw_funnel_2(src_data)<br>    draw_funnel_3(src_data)<br></code></pre></td></tr></table></figure><br>把上面的代码复制进你的脚本里。<br>可能会需要装上<code>pyecharts</code>和<code>openpyxl</code>。用PyCharm的时候，可以点到报红线的地方，根据它的提示，把这2个库装上。</p>
+<p>运行代码，会得到3个html文件</p>
+<p><img src="proj-html.png" srcset="/img/loading.gif" lazyload alt="输出的html文件"></p>
+<p>用浏览器打开这3个html就可以看到效果了。</p>
+<p>把你的数据填到那个Excel里，保存。然后运行代码即可。</p>
+<p>比如说把Excel里的事件改一下</p>
+<p><img src="excel-data2.png" srcset="/img/loading.gif" lazyload alt="修改后的数据"></p>
+<p>运行代码，可以得到新的结果</p>
+<p><img src="demo2-f1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>以上是简化流程，运营朋友照着做，一般都可以看到运行结果。下面我们来看一些细节。</p>
+<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><p>我们先准备一些测试数据。新建一个xlsx文件，填入测试数据。如下图：</p>
+<p><img src="excel.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>我们把数据放在了<code>data3</code>里。A列是事件名称，B列是次数。名称这里可以随意替换，可根据业务需求进行修改。<br>事件流程按照先后顺序，从上到下排列好。</p>
+<p>首先需要把数据从excel中读取出来。我们用openpyxl来操作。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> openpyxl <span class="hljs-keyword">import</span> load_workbook<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_in_data</span>(<span class="hljs-params">file_path</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;获取原始数据 &gt;&gt;&gt;&#x27;</span>)<br>    wb = load_workbook(file_path)<br>    st = wb[<span class="hljs-string">&#x27;data3&#x27;</span>]<br>    data_list = []<br>    <span class="hljs-keyword">for</span> row_index <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, st.max_row + <span class="hljs-number">1</span>):<br>        event_name = st.cell(row=row_index, column=<span class="hljs-number">1</span>).value<br>        event_value = st.cell(row=row_index, column=<span class="hljs-number">2</span>).value<br>        data_list.append([event_name, event_value])<br>    <span class="hljs-built_in">print</span>(data_list)<br>    <span class="hljs-keyword">return</span> data_list<br></code></pre></td></tr></table></figure><br>将事件名和数据装到一个小的列表里<code>[event_name, event_value]</code>。<br>所有的事件放进一个大的列表，并返回。</p>
+<p>当然，从别的途径拿到数据也是可以的。</p>
+<h2 id="绘制漏斗图"><a href="#绘制漏斗图" class="headerlink" title="绘制漏斗图"></a>绘制漏斗图</h2><p>我们用<a target="_blank" rel="noopener" href="https://pyecharts.org/">pyecharts</a>来绘制漏斗图。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/ecomfe/echarts">Echarts</a> 是一个由百度开源的数据可视化，凭借着良好的交互性，精巧的图表设计，得到了众多开发者的认可。而 Python 是一门富有表达力的语言，很适合用于数据处理。当数据分析遇上数据可视化时，pyecharts 诞生了。</p>
+</blockquote>
+<p>pyecharts会输出html文件。</p>
+<h3 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h3><p>拿到数据后，我们把数据传给<strong>Funnel</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pyecharts.charts <span class="hljs-keyword">import</span> Funnel<br><span class="hljs-keyword">import</span> pyecharts.options <span class="hljs-keyword">as</span> opts<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_default</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;800px&quot;</span>, height=<span class="hljs-string">&quot;400px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=input_data, )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;默认样式&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_1.html&quot;</span>)<br>    )<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    src_data = read_in_data(<span class="hljs-string">&#x27;res/事件demo.xlsx&#x27;</span>)<br>    draw_funnel_default(src_data)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>初始配置里设定宽高 <code>InitOpts(width=&quot;800px&quot;, height=&quot;400px&quot;)</code></li>
+<li><code>input_data</code>就是我们前面获取的数据列表；将它传给<code>data_pair</code>，即<code>data_pair=input_data</code></li>
+<li>输出的网页文件名为<code>funnel_chart_1.html</code></li>
+<li><code>set_global_opts()</code>方法设置全局配置<ul>
+<li>标题设置 <code>title=&quot;漏斗图1&quot;</code></li>
+<li>副标题设置 <code>subtitle=&quot;默认样式&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>输出的html文件，用浏览器打开，如图：</p>
+<p><img src="demo-default.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>鼠标放上去会有小弹框提示（tooltip）</p>
+<p><a href="/art/py/op-funnel/funnel_chart_1.html">🔗 默认样式网页的链接</a></p>
+<h3 id="修改label"><a href="#修改label" class="headerlink" title="修改label"></a>修改label</h3><p>pyecharts开放了很多配置。我们可以修改一下每一项的标题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_2</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图1 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;1000px&quot;</span>, height=<span class="hljs-string">&quot;600px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=input_data,<br>                 label_opts=opts.LabelOpts(position=<span class="hljs-string">&quot;inside&quot;</span>, formatter=<span class="hljs-string">&#x27;&#123;b&#125; 数量: &#123;c&#125;&#x27;</span>),<br>                 gap=<span class="hljs-number">2</span>,<br>                 tooltip_opts=opts.TooltipOpts(trigger=<span class="hljs-string">&quot;item&quot;</span>, formatter=<span class="hljs-string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),<br>                 )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;改变了label&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_2.html&quot;</span>)<br>    )<br></code></pre></td></tr></table></figure></p>
+<h4 id="formatter"><a href="#formatter" class="headerlink" title="formatter"></a>formatter</h4><ul>
+<li><code>&#123;a&#125;</code>是<code>series_name</code>，在这里是图表的名字</li>
+<li><code>&#123;b&#125;</code>是这一项的标题</li>
+<li><code>&#123;c&#125;</code>是这一项的数量</li>
+</ul>
+<p><code>tooltip_opts</code>和<code>label_opts</code>都会用到<code>formatter</code>。</p>
+<p><img src="f2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><a href="/art/py/op-funnel/funnel_chart_2.html">🔗  浏览网页</a></p>
+<h3 id="自己计算转化率"><a href="#自己计算转化率" class="headerlink" title="自己计算转化率"></a>自己计算转化率</h3><p>为了显示出相对转化率和总体转化率。我们可以自己计算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_funnel_3</span>(<span class="hljs-params">input_data</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;绘制漏斗图2 &gt;&gt;&gt; https://gallery.pyecharts.org/#/Funnel/funnel_base&#x27;</span>)<br>    data = input_data.copy()  <span class="hljs-comment"># 复制一份出来处理标题</span><br>    base_value = data[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data)):<br>        event_name = data[x][<span class="hljs-number">0</span>]<br>        value = data[x][<span class="hljs-number">1</span>]  <span class="hljs-comment"># 拿到数值</span><br>        ratio = value / base_value<br>        event_name += <span class="hljs-string">&#x27;\n总体转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="hljs-built_in">format</span>(ratio * <span class="hljs-number">100</span>)<br>        <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">0</span>:<br>            event_name += <span class="hljs-string">&#x27;\n相对转化率: &#123;:.2f&#125;%&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-number">100</span> * value / data[x - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>])<br>        data[x][<span class="hljs-number">0</span>] = event_name<br>        <span class="hljs-built_in">print</span>(event_name)<br><br>    (<br>        Funnel(init_opts=opts.InitOpts(width=<span class="hljs-string">&quot;1000px&quot;</span>, height=<span class="hljs-string">&quot;800px&quot;</span>))<br>            .add(series_name=<span class="hljs-string">&#x27;漏斗1&#x27;</span>, data_pair=data,<br>                 label_opts=opts.LabelOpts(position=<span class="hljs-string">&quot;inside&quot;</span>, formatter=<span class="hljs-string">&#x27;&#123;b&#125;\n数量: &#123;c&#125;&#x27;</span>),<br>                 gap=<span class="hljs-number">2</span>,<br>                 tooltip_opts=opts.TooltipOpts(trigger=<span class="hljs-string">&quot;item&quot;</span>, formatter=<span class="hljs-string">&quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; 数量: &#123;c&#125;&quot;</span>),<br>                 )<br>            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="hljs-string">&quot;漏斗图1&quot;</span>, subtitle=<span class="hljs-string">&quot;修改了各项的标题&quot;</span>))<br>            .render(<span class="hljs-string">&quot;funnel_chart_3.html&quot;</span>)<br>    )<br></code></pre></td></tr></table></figure>
+<p>在for循环里计算转化率，并把结果写到事件的名称里。</p>
+<p><img src="f3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><a href="/art/py/op-funnel/funnel_chart_3.html">🔗  浏览网页</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BF%90%E8%90%A5%E7%9A%84Python%E6%8C%87%E5%8D%97/">#运营的Python指南</a>
+      
+        <a href="/tags/openpyxl/">#openpyxl</a>
+      
+        <a href="/tags/pyecharts/">#pyecharts</a>
+      
+        <a href="/tags/Excel/">#Excel</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【运营的Python指南】绘制漏斗图</div>
+      <div>https://blog.rustfisher.com/Python/Python-op-draw-funnel-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年6月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/MongoDB/mongodb-install-deploy/" title="MongoDB安装和部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MongoDB安装和部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Network/http-code/" title="HTTP状态码">
+                        <span class="hidden-mobile">HTTP状态码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="环境： win7_x64， Navicat for MySQL 本文链接 操作数据库前面已经将MySQL服务跑起来了。  Mac安装MySQL Windows安装MySQL  现在我们以root身份进行MySQL操作进入MySQL1C:\Users\Administrator&gt;mysql -uroot -p 新建数据库12mysql&gt; create database samp_db1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 增删查改">
+<meta property="og:url" content="https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="环境： win7_x64， Navicat for MySQL 本文链接 操作数据库前面已经将MySQL服务跑起来了。  Mac安装MySQL Windows安装MySQL  现在我们以root身份进行MySQL操作进入MySQL1C:\Users\Administrator&gt;mysql -uroot -p 新建数据库12mysql&gt; create database samp_db1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-02-25T10:20:01.000Z">
+<meta property="article:modified_time" content="2020-01-14T01:52:16.000Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MySQL 增删查改 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL 增删查改"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-02-25 18:20" pubdate>
+          2017年2月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL 增删查改</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2020年1月14日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>环境： win7_x64， Navicat for MySQL</p>
+<p><a target="_blank" rel="noopener" href="https://rustfisher.com/2017/02/25/Database/MySQL-use_add_del_check_update/">本文链接</a></p>
+<h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><p>前面已经将MySQL服务跑起来了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rustfisher.com/2019/02/26/Database/MySQL-install_and_config_Mac/">Mac安装MySQL</a></li>
+<li><a target="_blank" rel="noopener" href="https://rustfisher.com/2017/02/25/Database/MySQL-install_and_config_Windows/">Windows安装MySQL</a></li>
+</ul>
+<p>现在我们以root身份进行MySQL操作<br>进入MySQL<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">C:</span>\Users\Administrator&gt;mysql -uroot -p<br></code></pre></td></tr></table></figure></p>
+<h3 id="新建数据库"><a href="#新建数据库" class="headerlink" title="新建数据库"></a>新建数据库</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> samp_db1 <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> gbk;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<p>数据库字符编码指定为 gbk</p>
+<h3 id="选择要操作的数据库"><a href="#选择要操作的数据库" class="headerlink" title="选择要操作的数据库"></a>选择要操作的数据库</h3><p>已经登录后可以直接选择数据库</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">mysql&gt; use samp_db1<span class="hljs-comment">;</span><br>Database changed<br></code></pre></td></tr></table></figure>
+<h4 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h4><p>以建立person_t数据表为例<br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> person_t (<br>    -&gt; id <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> auto_increment <span class="hljs-keyword">primary key</span>,<br>    -&gt; <span class="hljs-type">name</span> <span class="hljs-type">char</span>(<span class="hljs-number">14</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    -&gt; sex <span class="hljs-type">char</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    -&gt; age tinyint unsigned <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>    -&gt; tell <span class="hljs-type">char</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> &quot;-&quot;<br>    -&gt; );<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.22</span> sec)<br></code></pre></td></tr></table></figure><br>打开Navicat for MySQL，可以看到我们新建的表</p>
+<p>输入这么长的文本很容易出错，我们可以直接先写好SQL语句，再导进来</p>
+<p>新建文件<code>create_student_table.sql</code>，输入SQL语句</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> student (<br>id <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> auto_increment <span class="hljs-keyword">primary key</span>,<br><span class="hljs-type">name</span> <span class="hljs-type">char</span>(<span class="hljs-number">14</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>sex <span class="hljs-type">char</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>age tinyint unsigned <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br>tell <span class="hljs-type">char</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> &quot;-&quot;<br>);<br></code></pre></td></tr></table></figure>
+<p>直接执行SQL文件，操作samp_db1数据库<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">C</span><span class="hljs-operator">:</span>\<span class="hljs-variable">Users</span>\<span class="hljs-variable">Administrator</span><span class="hljs-operator">&gt;</span><span class="hljs-variable">mysql</span> <span class="hljs-operator">-</span><span class="hljs-built_in">D</span> <span class="hljs-type">samp_db1</span> <span class="hljs-operator">-</span><span class="hljs-variable">u</span> <span class="hljs-variable">root</span> <span class="hljs-operator">-</span><span class="hljs-variable">p</span> <span class="hljs-operator">&lt;</span> <span class="hljs-variable">H</span><span class="hljs-operator">:</span>\<span class="hljs-type">create_student</span><span class="hljs-type">_table</span><span class="hljs-operator">.</span><span class="hljs-variable">sq</span><br><span class="hljs-variable">l</span><br><span class="hljs-built_in">Enter</span> <span class="hljs-variable">password</span><span class="hljs-operator">:</span> <span class="hljs-operator">****</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="操作数据库-1"><a href="#操作数据库-1" class="headerlink" title="操作数据库"></a>操作数据库</h4><p>选定要操作的数据库<code>use samp_db1;</code></p>
+<h5 id="增-插入数据"><a href="#增-插入数据" class="headerlink" title="增 - 插入数据"></a>增 - 插入数据</h5><p>insert [into] 表名 [(列名1, 列名2, 列名3, …)] values (值1, 值2, 值3, …);</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student <span class="hljs-keyword">values</span>(<span class="hljs-keyword">null</span>,&quot;张三&quot;,&quot;男&quot;,<span class="hljs-number">23</span>,&quot;13666665555&quot;);<br>mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student (<span class="hljs-type">name</span>,sex,age) <span class="hljs-keyword">values</span>(&quot;李四&quot;,&quot;女&quot;,<span class="hljs-number">20</span>);<br></code></pre></td></tr></table></figure>
+<h5 id="查-查询表中的数据"><a href="#查-查询表中的数据" class="headerlink" title="查 - 查询表中的数据"></a>查 - 查询表中的数据</h5><p>select 列名称 from 表名称 [查询条件];</p>
+<p>多插入了一些数据后</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">mysql&gt; select name, age from student;</span><br><span class="hljs-section">+-------+-----+</span><br><span class="hljs-section">| name  | age |</span><br><span class="hljs-section">+-------+-----+</span><br>| 张三  |  23 |<br>| 李四  |  20 |<br>| Tom   |  13 |<br>| Jerry |  12 |<br><span class="hljs-section">| 王五  |  32 |</span><br><span class="hljs-section">+-------+-----+</span><br>5 rows in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<h6 id="使用通配符-来查询"><a href="#使用通配符-来查询" class="headerlink" title="使用通配符*来查询"></a>使用通配符*来查询</h6><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">mysql&gt; select <span class="hljs-symbol">*</span> from student;<br>+----+-------+-----+-----+-------------+<br>|<span class="hljs-string"> id </span>|<span class="hljs-string"> name  </span>|<span class="hljs-string"> sex </span>|<span class="hljs-string"> age </span>|<span class="hljs-string"> tell        </span>|<br>+----+-------+-----+-----+-------------+<br>|<span class="hljs-string">  1 </span>|<span class="hljs-string"> 张三  </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  23 </span>|<span class="hljs-string"> 13666665555 </span>|<br>|<span class="hljs-string">  2 </span>|<span class="hljs-string"> 李四  </span>|<span class="hljs-string"> 女  </span>|<span class="hljs-string">  20 </span>|<span class="hljs-string"> -           </span>|<br>|<span class="hljs-string">  3 </span>|<span class="hljs-string"> Tom   </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  13 </span>|<span class="hljs-string"> 13111115555 </span>|<br>|<span class="hljs-string">  4 </span>|<span class="hljs-string"> Jerry </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  12 </span>|<span class="hljs-string"> 2333333     </span>|<br>|<span class="hljs-string">  5 </span>|<span class="hljs-string"> 王五  </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  32 </span>|<span class="hljs-string"> 666666666   </span>|<br>+----+-------+-----+-----+-------------+<br>5 rows in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<h6 id="特定条件查询"><a href="#特定条件查询" class="headerlink" title="特定条件查询"></a>特定条件查询</h6><p>where 关键词用于指定查询条件, 用法形式为: select 列名称 from 表名称 where 条件;</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-comment">// 查询所有性别为女的记录</span><br><span class="hljs-section">mysql&gt; select * from student where sex=&quot;女&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+------+</span><br><span class="hljs-section">| id | name | sex | age | tell |</span><br><span class="hljs-section">+----+------+-----+-----+------+</span><br><span class="hljs-section">|  2 | 李四 | 女  |  20 | -    |</span><br><span class="hljs-section">+----+------+-----+-----+------+</span><br>1 row in set (0.04 sec)<br><br><span class="hljs-comment">// age大于20的记录</span><br><span class="hljs-section">mysql&gt; select * from student where age&gt;20;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>|  1 | 张三 | 男  |  23 | 13666665555 |<br><span class="hljs-section">|  5 | 王五 | 男  |  32 | 666666666   |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>2 rows in set (0.00 sec)<br><br><span class="hljs-comment">// age小于等于20的记录</span><br><span class="hljs-section">mysql&gt; select * from student where age&lt;=20;</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name  | sex | age | tell        |</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br>|  2 | 李四  | 女  |  20 | -           |<br>|  3 | Tom   | 男  |  13 | 13111115555 |<br><span class="hljs-section">|  4 | Jerry | 男  |  12 | 2333333     |</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br>3 rows in set (0.00 sec)<br><br><span class="hljs-comment">// age小于等于20并且id大于等于3的记录</span><br><span class="hljs-section">mysql&gt; select * from student where age&lt;=20 and id &gt;=3;</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name  | sex | age | tell        |</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br>|  3 | Tom   | 男  |  13 | 13111115555 |<br><span class="hljs-section">|  4 | Jerry | 男  |  12 | 2333333     |</span><br><span class="hljs-section">+----+-------+-----+-----+-------------+</span><br>2 rows in set (0.03 sec)<br><br><span class="hljs-comment">// 按名字特征查询</span><br><span class="hljs-section">mysql&gt; select * from student where name like &quot;%三%&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">|  1 | 张三 | 男  |  23 | 13666665555 |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>1 row in set (0.00 sec)<br><br><span class="hljs-section">mysql&gt; select * from student where name like &quot;%o%&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">|  3 | Tom  | 男  |  13 | 13111115555 |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>1 row in set (0.00 sec)<br><br><span class="hljs-comment">// tell 以5结尾的记录</span><br><span class="hljs-section">mysql&gt; select * from student where tell like &quot;%5&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>|  1 | 张三 | 男  |  23 | 13666665555 |<br><span class="hljs-section">|  3 | Tom  | 男  |  13 | 13111115555 |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>2 rows in set (0.00 sec)<br><br><span class="hljs-section">mysql&gt; select * from student where tell like &quot;131%&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">|  3 | Tom  | 男  |  13 | 13111115555 |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>1 row in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<p>按条件查询非常的灵活，运用得当会节省运行时间</p>
+<h5 id="改-修改表中的数据"><a href="#改-修改表中的数据" class="headerlink" title="改 - 修改表中的数据"></a>改 - 修改表中的数据</h5><p>基本的使用形式为:</p>
+<p>update 表名称 set 列名称=新值 where 更新条件;</p>
+<p>我们终于拿到了李四的联系方式，将数据库中的tell更新</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">mysql&gt; update student set tell=&quot;13900001111&quot; where name=&quot;李四&quot;;<br>Query OK, 1 row affected (0.05 sec)<br>Rows matched: 1  Changed: 1  Warnings: 0<br><br><span class="hljs-section">mysql&gt; select * from student where name=&quot;李四&quot;;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">|  2 | 李四 | 女  |  20 | 13900001111 |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>1 row in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<p>过了一年，大家都长了一岁，修改表中的age值</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">mysql&gt; update student set age=age+1;<br>Query OK, 5 rows affected (0.05 sec)<br>Rows matched: 5  Changed: 5  Warnings: 0<br><br>mysql&gt; select <span class="hljs-symbol">*</span> from student;<br>+----+-------+-----+-----+-------------+<br>|<span class="hljs-string"> id </span>|<span class="hljs-string"> name  </span>|<span class="hljs-string"> sex </span>|<span class="hljs-string"> age </span>|<span class="hljs-string"> tell        </span>|<br>+----+-------+-----+-----+-------------+<br>|<span class="hljs-string">  1 </span>|<span class="hljs-string"> 张三  </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  24 </span>|<span class="hljs-string"> 13666665555 </span>|<br>|<span class="hljs-string">  2 </span>|<span class="hljs-string"> 李四  </span>|<span class="hljs-string"> 女  </span>|<span class="hljs-string">  21 </span>|<span class="hljs-string"> 13900001111 </span>|<br>|<span class="hljs-string">  3 </span>|<span class="hljs-string"> Tom   </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  14 </span>|<span class="hljs-string"> 13111115555 </span>|<br>|<span class="hljs-string">  4 </span>|<span class="hljs-string"> Jerry </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  13 </span>|<span class="hljs-string"> 2333333     </span>|<br>|<span class="hljs-string">  5 </span>|<span class="hljs-string"> 王五  </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  33 </span>|<span class="hljs-string"> 666666666   </span>|<br>+----+-------+-----+-----+-------------+<br>5 rows in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<p>修改多个信息，Jerry有了中文名“赵六”，换了tell</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">mysql&gt; update student set name=<span class="hljs-string">&quot;赵六&quot;</span>,tell=<span class="hljs-string">&quot;10001-1001&quot;</span> where name=<span class="hljs-string">&quot;Jerry&quot;</span>;<br>Query OK, 1 row affected (0.05 sec)<br>Rows matched: 1  Changed: 1  Warnings: 0<br><br>mysql&gt; select <span class="hljs-symbol">*</span> from student;<br>+----+------+-----+-----+-------------+<br>|<span class="hljs-string"> id </span>|<span class="hljs-string"> name </span>|<span class="hljs-string"> sex </span>|<span class="hljs-string"> age </span>|<span class="hljs-string"> tell        </span>|<br>+----+------+-----+-----+-------------+<br>|<span class="hljs-string">  1 </span>|<span class="hljs-string"> 张三 </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  24 </span>|<span class="hljs-string"> 13666665555 </span>|<br>|<span class="hljs-string">  2 </span>|<span class="hljs-string"> 李四 </span>|<span class="hljs-string"> 女  </span>|<span class="hljs-string">  21 </span>|<span class="hljs-string"> 13900001111 </span>|<br>|<span class="hljs-string">  3 </span>|<span class="hljs-string"> Tom  </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  14 </span>|<span class="hljs-string"> 13111115555 </span>|<br>|<span class="hljs-string">  4 </span>|<span class="hljs-string"> 赵六 </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  13 </span>|<span class="hljs-string"> 10001-1001  </span>|<br>|<span class="hljs-string">  5 </span>|<span class="hljs-string"> 王五 </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  33 </span>|<span class="hljs-string"> 666666666   </span>|<br>+----+------+-----+-----+-------------+<br>5 rows in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<h5 id="删-删除表中的数据"><a href="#删-删除表中的数据" class="headerlink" title="删 - 删除表中的数据"></a>删 - 删除表中的数据</h5><p>基本用法为:</p>
+<p>delete from 表名称 where 删除条件;</p>
+<p>年龄太小不能入学</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">mysql&gt; delete from student where age &lt; 18;<br>Query OK, 2 rows affected (0.04 sec)<br><br><span class="hljs-section">mysql&gt; select * from student;</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br><span class="hljs-section">| id | name | sex | age | tell        |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>|  1 | 张三 | 男  |  24 | 13666665555 |<br>|  2 | 李四 | 女  |  21 | 13900001111 |<br><span class="hljs-section">|  5 | 王五 | 男  |  33 | 666666666   |</span><br><span class="hljs-section">+----+------+-----+-----+-------------+</span><br>3 rows in set (0.00 sec)<br></code></pre></td></tr></table></figure>
+<h4 id="修改现有的表"><a href="#修改现有的表" class="headerlink" title="修改现有的表"></a>修改现有的表</h4><p>alter table 语句用于修改现有表</p>
+<h5 id="添加列"><a href="#添加列" class="headerlink" title="添加列"></a>添加列</h5><p>alter table 表名 add 列名 列数据类型 [after 插入位置];</p>
+<p>在表的最后添加address列<br><code>mysql&gt; alter table student add address char(70);</code>   </p>
+<p>在名为 age 的列后插入列 birthday<br><code>mysql&gt; alter table student add birthday date after age;</code></p>
+<p>此时的表<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">mysql&gt; select <span class="hljs-symbol">*</span> from student;<br>+----+------+-----+-----+----------+-------------+---------+<br>|<span class="hljs-string"> id </span>|<span class="hljs-string"> name </span>|<span class="hljs-string"> sex </span>|<span class="hljs-string"> age </span>|<span class="hljs-string"> birthday </span>|<span class="hljs-string"> tell        </span>|<span class="hljs-string"> address </span>|<br>+----+------+-----+-----+----------+-------------+---------+<br>|<span class="hljs-string">  1 </span>|<span class="hljs-string"> 张三 </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  24 </span>|<span class="hljs-string"> NULL     </span>|<span class="hljs-string"> 13666665555 </span>|<span class="hljs-string"> NULL    </span>|<br>|<span class="hljs-string">  2 </span>|<span class="hljs-string"> 李四 </span>|<span class="hljs-string"> 女  </span>|<span class="hljs-string">  21 </span>|<span class="hljs-string"> NULL     </span>|<span class="hljs-string"> 13900001111 </span>|<span class="hljs-string"> NULL    </span>|<br>|<span class="hljs-string">  5 </span>|<span class="hljs-string"> 王五 </span>|<span class="hljs-string"> 男  </span>|<span class="hljs-string">  33 </span>|<span class="hljs-string"> NULL     </span>|<span class="hljs-string"> 666666666   </span>|<span class="hljs-string"> NULL    </span>|<br>+----+------+-----+-----+----------+-------------+---------+<br></code></pre></td></tr></table></figure></p>
+<p>列的名字不能是mysql的关键字，比如不能是<code>index</code></p>
+<h5 id="修改列"><a href="#修改列" class="headerlink" title="修改列"></a>修改列</h5><p>基本形式: alter table 表名 change 列名称 列新名称 新数据类型;</p>
+<p>将tell列名修改为mobile<br><code>alter table student change tell mobile char(13) default &quot;-&quot;;</code></p>
+<p>修改name列的类型为<code>char(11) not null</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span>&gt; alter table student change name name char(<span class="hljs-number">11</span>) not null;<br><span class="hljs-attribute">Query</span> OK, <span class="hljs-number">3</span> rows affected (<span class="hljs-number">0</span>.<span class="hljs-number">54</span> sec)<br><span class="hljs-attribute">Records</span>: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<h5 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h5><p>alter table 表名 drop 列名称;</p>
+<p>删除address列 <code>alter table student drop address;</code></p>
+<h5 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h5><p>alter table 表名 rename 新表名;</p>
+<p>重命名表student -&gt; bigstu  <code>alter table student rename bigstu;</code></p>
+<h5 id="删除整张表"><a href="#删除整张表" class="headerlink" title="删除整张表"></a>删除整张表</h5><p>drop table 表名;<br>删掉前面我们创建的<code>person_t</code><br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span>&gt; drop table person_t;<br><span class="hljs-attribute">Query</span> OK, <span class="hljs-number">0</span> rows affected (<span class="hljs-number">0</span>.<span class="hljs-number">12</span> sec)<br></code></pre></td></tr></table></figure></p>
+<h5 id="删除整个数据库"><a href="#删除整个数据库" class="headerlink" title="删除整个数据库"></a>删除整个数据库</h5><p>drop database 数据库名;</p>
+<p>新建一个数据库samp_4_delete，再删除它<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span>&gt; create database samp_4_delete;<br><span class="hljs-attribute">Query</span> OK, <span class="hljs-number">1</span> row affected (<span class="hljs-number">0</span>.<span class="hljs-number">00</span> sec)<br><br><span class="hljs-attribute">mysql</span>&gt; drop database samp_4_delete;<br><span class="hljs-attribute">Query</span> OK, <span class="hljs-number">0</span> rows affected (<span class="hljs-number">0</span>.<span class="hljs-number">01</span> sec)<br></code></pre></td></tr></table></figure></p>
+<h2 id="复制schema"><a href="#复制schema" class="headerlink" title="复制schema"></a>复制schema</h2><p>没有特定的复制命令。思路是新建一个目标schema，然后把原数据库中的表全部复制到新建的库中去。</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/67093/how-do-i-quickly-rename-a-mysql-database-change-schema-name">https://stackoverflow.com/questions/67093/how-do-i-quickly-rename-a-mysql-database-change-schema-name</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Database/" class="category-chain-item">Database</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL 增删查改</div>
+      <div>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年2月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Android/NDK-read_write_file/" title="Android NDK 读写文件">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android NDK 读写文件</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Database/MySQL-install_and_config_Windows/" title="MySQL Windows 安装与简单配置">
+                        <span class="hidden-mobile">MySQL Windows 安装与简单配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

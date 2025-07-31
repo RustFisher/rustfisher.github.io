@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="新建项目，得到一个示例工程。本例中使用intl包来管理文字资源。 项目地址： https:&#x2F;&#x2F;github.com&#x2F;RustFisher&#x2F;localization_demo 步骤：  添加依赖项 - intl 创建文字资源文件 生成arb文件 新增和修改arb文件   根据arb生成dart文件 创建localization代理，新建一个类继承LocalizationsDelegate，和文字资源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter International 国际化，Localization 本地化， 使用Intl">
+<meta property="og:url" content="https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_Intl/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="新建项目，得到一个示例工程。本例中使用intl包来管理文字资源。 项目地址： https:&#x2F;&#x2F;github.com&#x2F;RustFisher&#x2F;localization_demo 步骤：  添加依赖项 - intl 创建文字资源文件 生成arb文件 新增和修改arb文件   根据arb生成dart文件 创建localization代理，新建一个类继承LocalizationsDelegate，和文字资源">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://rustblogres.rustfisher.com/flutter-arb-dart.png">
+<meta property="og:image" content="http://rustblogres.rustfisher.com/flutter-international-demo-project.png">
+<meta property="article:published_time" content="2018-07-16T00:08:13.000Z">
+<meta property="article:modified_time" content="2019-11-01T12:36:42.875Z">
+<meta property="article:author" content="Rust Fisher">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://rustblogres.rustfisher.com/flutter-arb-dart.png">
+  
+  
+  
+  <title>Flutter International 国际化，Localization 本地化， 使用Intl - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Flutter International 国际化，Localization 本地化， 使用Intl"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-07-16 08:08" pubdate>
+          2018年7月16日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Flutter International 国际化，Localization 本地化， 使用Intl</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2019年11月1日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>新建项目，得到一个示例工程。本例中使用intl包来管理文字资源。</p>
+<p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/RustFisher/localization_demo">https://github.com/RustFisher/localization_demo</a></p>
+<p>步骤：</p>
+<ul>
+<li>添加依赖项 - intl</li>
+<li>创建文字资源文件</li>
+<li>生成<code>arb</code>文件<ul>
+<li>新增和修改<code>arb</code>文件</li>
+</ul>
+</li>
+<li>根据<code>arb</code>生成<code>dart</code>文件</li>
+<li>创建localization代理，新建一个类继承<code>LocalizationsDelegate</code>，和文字资源文件联系起来</li>
+<li><code>MaterialApp</code>中添加本地化代理和语言类型</li>
+<li>使用文字资源</li>
+</ul>
+<h3 id="添加依赖项"><a href="#添加依赖项" class="headerlink" title="添加依赖项"></a>添加依赖项</h3><p><code>pubspec.yaml</code>添加依赖项<code>flutter_localizations</code>，然后运行一下<code>flutter packages get</code>。<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">dependencies:</span><br><span class="hljs-symbol">  flutter:</span><br><span class="hljs-symbol">    sdk:</span> flutter<br><span class="hljs-meta"># 添加下面的依赖项</span><br><span class="hljs-symbol">  flutter_localizations:</span><br><span class="hljs-symbol">    sdk:</span> flutter<br><span class="hljs-symbol">  intl:</span> <span class="hljs-number">0.15</span><span class="hljs-number">.6</span><br><span class="hljs-symbol">  intl_translation:</span> <span class="hljs-number">0.16</span><span class="hljs-number">.7</span><br></code></pre></td></tr></table></figure></p>
+<h3 id="编辑dart文件"><a href="#编辑dart文件" class="headerlink" title="编辑dart文件"></a>编辑dart文件</h3><p>新建<code>app_strings.dart</code>文件。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;dart:async&#x27;</span>;<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:intl/intl.dart&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:flutter/widgets.dart&#x27;</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppStrings</span> </span>&#123;<br>  AppStrings(Locale locale) : _localeName = locale.toString();<br><br>  <span class="hljs-keyword">final</span> <span class="hljs-built_in">String</span> _localeName;<br><br>  <span class="hljs-keyword">static</span> Future&lt;AppStrings&gt; load(Locale locale) &#123;<br>    <span class="hljs-keyword">return</span> initializeMessages(locale.toString())<br>        .then((<span class="hljs-built_in">Object</span> _) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AppStrings(locale);<br>    &#125;);<br>  &#125;<br><br>  <span class="hljs-keyword">static</span> AppStrings of(BuildContext context) &#123;<br>    <span class="hljs-keyword">return</span> Localizations.of&lt;AppStrings&gt;(context, AppStrings);<br>  &#125;<br><br>  <span class="hljs-built_in">String</span> title() &#123;<br>    <span class="hljs-keyword">return</span> Intl.message(<br>      <span class="hljs-string">&#x27;Localization Demo&#x27;</span>,<br>      name: <span class="hljs-string">&#x27;title&#x27;</span>,<br>      desc: <span class="hljs-string">&#x27;应用标题&#x27;</span>,<br>      locale: _localeName,<br>    );<br>  &#125;<br><br>  <span class="hljs-built_in">String</span> click() =&gt; Intl.message(<br>    <span class="hljs-string">&#x27;Click&#x27;</span>,<br>    name: <span class="hljs-string">&#x27;click&#x27;</span>,<br>    desc: <span class="hljs-string">&#x27;点击&#x27;</span>,<br>    locale: _localeName,<br>  );<br><br>  <span class="hljs-built_in">String</span> helloFromDemo() =&gt; Intl.message(<br>    <span class="hljs-string">&#x27;Hello~&#x27;</span>,<br>    name: <span class="hljs-string">&#x27;helloFromDemo&#x27;</span>,<br>    desc: <span class="hljs-string">&#x27;一句问候&#x27;</span>,<br>    locale: _localeName,<br>  );<br>&#125;<br></code></pre></td></tr></table></figure><br>此时<code>initializeMessages</code>方法会显示警告，暂时不用管，生成arb文件后再添加引用。</p>
+<h3 id="生成arb文件"><a href="#生成arb文件" class="headerlink" title="生成arb文件"></a>生成<code>arb</code>文件</h3><p>进入项目目录，运行<code>intl</code>的命令。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/e/</span>ws/localization_demo<br>$ flutter pub pub run intl_translation:extract_to_arb --output-dir=lib<span class="hljs-regexp">/l10n lib/</span>app_strings.dart<br></code></pre></td></tr></table></figure></p>
+<p>生成<code>l10n/intl_messages.arb</code>，内容如下。可以看出是JSON格式的文本。<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;<br>  <span class="hljs-string">&quot;@@last_modified&quot;</span>: <span class="hljs-string">&quot;2018-07-15T22:13:19.218221&quot;</span>,<br>  <span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;Localization Demo&quot;</span>,<br>  <span class="hljs-string">&quot;@title&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;应用标题&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;click&quot;</span>: <span class="hljs-string">&quot;Click&quot;</span>,<br>  <span class="hljs-string">&quot;@click&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;点击&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;helloFromDemo&quot;</span>: <span class="hljs-string">&quot;Hello~&quot;</span>,<br>  <span class="hljs-string">&quot;@helloFromDemo&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;一句问候&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h4 id="新增和修改arb文件"><a href="#新增和修改arb文件" class="headerlink" title="新增和修改arb文件"></a>新增和修改<code>arb</code>文件</h4><p>前面生成了<code>l10n/intl_messages.arb</code>，我们可以把它当成模板。复制粘贴一下，同目录下得到<code>intl_en.arb</code>和<code>intl_zh.arb</code>。文件名规则可以自己定。<br>以<code>intl_zh.arb</code>为例：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dart">&#123;<br>  <span class="hljs-string">&quot;@@last_modified&quot;</span>: <span class="hljs-string">&quot;2018-07-15T22:13:19.218221&quot;</span>,<br>  <span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;国际化示例App&quot;</span>,<br>  <span class="hljs-string">&quot;@title&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;应用标题&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;click&quot;</span>: <span class="hljs-string">&quot;点击&quot;</span>,<br>  <span class="hljs-string">&quot;@click&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;点击&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;helloFromDemo&quot;</span>: <span class="hljs-string">&quot;你好呀~&quot;</span>,<br>  <span class="hljs-string">&quot;@helloFromDemo&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;一句问候&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,<br>    <span class="hljs-string">&quot;placeholders&quot;</span>: &#123;&#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><br><em>这里也可以把<code>intl_messages.arb</code>删掉。本例保留这个文件。</em></p>
+<h3 id="根据arb生成dart文件"><a href="#根据arb生成dart文件" class="headerlink" title="根据arb生成dart文件"></a>根据<code>arb</code>生成<code>dart</code>文件</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">$ flutter pub pub run intl_translation:generate_from_arb <span class="hljs-comment">--output-dir=lib/l10n \</span><br>   <span class="hljs-comment">--no-use-deferred-loading lib/app_strings.dart lib/l10n/intl_*.arb</span><br><br><span class="hljs-keyword">No</span> @@locale <span class="hljs-keyword">or</span> _locale field <span class="hljs-built_in">found</span> <span class="hljs-keyword">in</span> intl_en, assuming <span class="hljs-string">&#x27;en&#x27;</span> based <span class="hljs-keyword">on</span> the file <span class="hljs-type">name</span>.<br><span class="hljs-keyword">No</span> @@locale <span class="hljs-keyword">or</span> _locale field <span class="hljs-built_in">found</span> <span class="hljs-keyword">in</span> intl_messages, assuming <span class="hljs-string">&#x27;messages&#x27;</span> based <span class="hljs-keyword">on</span> the file <span class="hljs-type">name</span>.<br><span class="hljs-keyword">No</span> @@locale <span class="hljs-keyword">or</span> _locale field <span class="hljs-built_in">found</span> <span class="hljs-keyword">in</span> intl_zh, assuming <span class="hljs-string">&#x27;zh&#x27;</span> based <span class="hljs-keyword">on</span> the file <span class="hljs-type">name</span>.<br></code></pre></td></tr></table></figure>
+<p>暂时无视警告。<br>此时在<code>app_strings.dart</code>中添加对<code>l10n/intl_messages.arb</code>的引用。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:localization_demo/l10n/messages_all.dart&#x27;</span>;<br></code></pre></td></tr></table></figure><br>警告消失~</p>
+<p><img src="http://rustblogres.rustfisher.com/flutter-arb-dart.png" srcset="/img/loading.gif" lazyload alt="生成的文件"></p>
+<p>更新了arb文件后，需要重新生成dart文件。</p>
+<h3 id="创建localization代理"><a href="#创建localization代理" class="headerlink" title="创建localization代理"></a>创建localization代理</h3><p>创建<code>localizations_delegate.dart</code>。新建<code>AppLocalizationsDelegate</code>类继承<code>LocalizationsDelegate</code>，复写方法。<br>泛型指定为前面的<code>AppStrings</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;dart:async&#x27;</span>;<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:flutter/widgets.dart&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:localization_demo/app_strings.dart&#x27;</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppLocalizationsDelegate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LocalizationsDelegate</span>&lt;<span class="hljs-title">AppStrings</span>&gt; </span>&#123;<br>  <span class="hljs-meta">@override</span><br>  Future&lt;AppStrings&gt; load(Locale locale) &#123;<br>    <span class="hljs-keyword">return</span> AppStrings.load(locale);<br>  &#125;<br><br>  <span class="hljs-meta">@override</span><br>  <span class="hljs-built_in">bool</span> isSupported(Locale locale) =&gt;<br>      [<span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-string">&#x27;en&#x27;</span>].contains(locale.languageCode); <span class="hljs-comment">// 支持的类型要包含App中注册的类型</span><br><br>  <span class="hljs-meta">@override</span><br>  <span class="hljs-built_in">bool</span> shouldReload(AppLocalizationsDelegate old) =&gt; <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="MaterialApp中添加本地化代理和语言类型"><a href="#MaterialApp中添加本地化代理和语言类型" class="headerlink" title="MaterialApp中添加本地化代理和语言类型"></a><code>MaterialApp</code>中添加本地化代理和语言类型</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>&#123;<br>  <span class="hljs-meta">@override</span><br>  Widget build(BuildContext context) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MaterialApp(<br>      title: <span class="hljs-string">&#x27;Flutter Demo&#x27;</span>,<br>      theme: <span class="hljs-keyword">new</span> ThemeData(<br>        primarySwatch: Colors.blue,<br>      ),<br>      localizationsDelegates: [<br>        AppLocalizationsDelegate(), <span class="hljs-comment">// 我们定义的代理</span><br>        GlobalMaterialLocalizations.delegate,<br>        GlobalWidgetsLocalizations.delegate,<br>      ],<br>      supportedLocales: [ <span class="hljs-comment">// 支持的语言类型</span><br>        <span class="hljs-keyword">const</span> Locale(<span class="hljs-string">&#x27;en&#x27;</span>, <span class="hljs-string">&#x27;US&#x27;</span>), <span class="hljs-comment">// English</span><br>        <span class="hljs-keyword">const</span> Locale(<span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>),<br>      ],<br>      home: <span class="hljs-keyword">new</span> MyHomePage(title: <span class="hljs-string">&#x27;Flutter Demo Home Page&#x27;</span>),<br>    );<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="使用文字资源"><a href="#使用文字资源" class="headerlink" title="使用文字资源"></a>使用文字资源</h3><p>获取到AppStrings的实例。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart">AppStrings appStrings = AppStrings.of(context);<br><span class="hljs-built_in">print</span>(appStrings); <span class="hljs-comment">// logcat:  I/flutter ( 7478): Instance of &#x27;AppStrings&#x27;</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="http://rustblogres.rustfisher.com/flutter-international-demo-project.png" srcset="/img/loading.gif" lazyload alt="示例工程结构"></p>
+<p>注意，在MaterialApp中使用文字资源时，因为context的关系，要使用<code>onGenerateTitle</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart">onGenerateTitle: (context) &#123;<br>  <span class="hljs-keyword">return</span> AppStrings.of(context).title();<br>&#125;,<br></code></pre></td></tr></table></figure></p>
+<h3 id="支持语言的类型"><a href="#支持语言的类型" class="headerlink" title="支持语言的类型"></a>支持语言的类型</h3><p>代理<code>isSupported</code>方法中的语言类型最好是和App中<code>supportedLocales</code>的一致<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs dart">  <span class="hljs-meta">@override</span><br>  <span class="hljs-built_in">bool</span> isSupported(Locale locale) =&gt;<br>      [<span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-string">&#x27;en&#x27;</span>].contains(locale.languageCode);<br><br><span class="hljs-comment">// App中`supportedLocales`</span><br>      supportedLocales: [<br>        <span class="hljs-keyword">const</span> Locale(<span class="hljs-string">&#x27;en&#x27;</span>, <span class="hljs-string">&#x27;US&#x27;</span>), <span class="hljs-comment">// English</span><br>        <span class="hljs-keyword">const</span> Locale(<span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>),<br>      ],<br></code></pre></td></tr></table></figure><br>否则可能出现获取不到AppStrings的异常。</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://flutter.io/tutorials/internationalization/">https://flutter.io/tutorials/internationalization/</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Flutter-note/" class="category-chain-item">Flutter_note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Flutter International 国际化，Localization 本地化， 使用Intl</div>
+      <div>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_Intl/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年7月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Flutter/Flutter-International_localization_with_string_map/" title="Flutter International 国际化，Localization 本地化， 使用字符串Map">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Flutter International 国际化，Localization 本地化， 使用字符串Map</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Flutter/Flutter-Drawer_and_custom_header/" title="Flutter Drawer 抽屉视图与自定义header">
+                        <span class="hidden-mobile">Flutter Drawer 抽屉视图与自定义header</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
