@@ -1,14 +1,17 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="en" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/038-ice-coffee.png">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/fluid.png">
+  <link rel="icon" href="/en/img/038-ice-coffee.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,19 +19,19 @@
   <meta name="author" content="Rust Fisher">
   <meta name="keywords" content="">
   
-    <meta name="description" content="技术学习与实践，一些开发记录，读书笔记">
+    <meta name="description" content="blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://blog.rustfisher.com/categories/index.html">
-<meta property="og:site_name" content="RustFisher的自留地">
-<meta property="og:description" content="技术学习与实践，一些开发记录，读书笔记">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://blog.rustfisher.com/en/categories/index.html">
+<meta property="og:site_name" content="RustFisher">
+<meta property="og:description" content="blog">
+<meta property="og:locale" content="en_US">
 <meta property="article:author" content="Rust Fisher">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>分类 - RustFisher的自留地</title>
+  <title>Categories - RustFisher</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -39,19 +42,19 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/en/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/en/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/en/css/highlight-dark.css" />
   
 
 
@@ -60,15 +63,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/en/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/en/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/en/js/utils.js" ></script>
+  <script  src="/en/js/color-schema.js" ></script>
   
 
   
@@ -93,18 +96,13 @@
   
 
   
-
-  
-
-  
     
   
 
 
 
   <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -116,7 +114,7 @@
 <div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/en/">
       <strong>RustFisher</strong>
     </a>
 
@@ -135,9 +133,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/en/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
+                <span>Home</span>
               </a>
             </li>
           
@@ -147,9 +145,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/en/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
+                <span>Archives</span>
               </a>
             </li>
           
@@ -159,9 +157,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/en/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
+                <span>Categories</span>
               </a>
             </li>
           
@@ -171,9 +169,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/en/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
+                <span>Tags</span>
               </a>
             </li>
           
@@ -183,9 +181,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/en/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
+                <span>About</span>
               </a>
             </li>
           
@@ -195,9 +193,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/en/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
+                <span>Links</span>
               </a>
             </li>
           
@@ -207,21 +205,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.an.rustfisher.com">
+              <a class="nav-link" href="/en/../" target="_self">
                 <i class="iconfont icon-plan"></i>
-                <span>Android教程</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/en/">
-                <i class="iconfont icon-plan"></i>
-                <span>English</span>
+                <span>简体中文</span>
               </a>
             </li>
           
@@ -249,13 +235,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/en/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类"></span>
+            <span id="subtitle" data-typed-text="Categories"></span>
           
         </div>
 
@@ -294,1590 +280,6 @@
     
     <div class="category row nomargin-x">
       <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Android_note"
-        id="heading-8d32fe50db05ed556b5593c31de953b7" role="tab" data-toggle="collapse" href="#collapse-8d32fe50db05ed556b5593c31de953b7"
-        aria-expanded="false"
-      >
-        Android_note
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Android-note/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>37</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-8d32fe50db05ed556b5593c31de953b7"
-           role="tabpanel" aria-labelledby="heading-8d32fe50db05ed556b5593c31de953b7">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Android/Android-Camera_SurfaceView_TextureView_get_nv21/" title="Android SurfaceView TextureView 预览Camera，获取NV21数据"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android SurfaceView TextureView 预览Camera，获取NV21数据</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-Camera_record_video_and_output/" title="Android Camera API 音视频采集、编码、封包成mp4"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android Camera API 音视频采集、编码、封包成mp4</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-AudioRecord_AudioTrack_pcm_wav/" title="Android 音频PCM数据的采集和播放，读写音频wav文件"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android 音频PCM数据的采集和播放，读写音频wav文件</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-OkHttp_Retrofit_download_file_partial/" title="Android OkHttp + Retrofit 断点续传"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android OkHttp + Retrofit 断点续传</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-OkHttp_Retrofit_download_file/" title="Android OkHttp + Retrofit 下载文件与进度监听"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android OkHttp + Retrofit 下载文件与进度监听</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-MediaPlayer_use_play_speed/" title="Android MediaPlayer 音频倍速播放，调整播放速度"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android MediaPlayer 音频倍速播放，调整播放速度</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-Media_download_stream_file/" title="Android 使用URLConnection下载音频文件"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android 使用URLConnection下载音频文件</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-MediaPlayer_use_play_audio/" title="Android MediaPlayer 播放音频"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android MediaPlayer 播放音频</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-MediaPlayer_intro/" title="Android MediaPlayer 基础简介"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android MediaPlayer 基础简介</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Android/Android-mmap_intro_and_use/" title="Android mmap 文件映射到内存介绍"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android mmap 文件映射到内存介绍</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/Android-note/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
-        </a>
-        
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Python"
-        id="heading-a7f5f35426b927411fc9231b56382173" role="tab" data-toggle="collapse" href="#collapse-a7f5f35426b927411fc9231b56382173"
-        aria-expanded="false"
-      >
-        Python
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Python/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>18</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-a7f5f35426b927411fc9231b56382173"
-           role="tabpanel" aria-labelledby="heading-a7f5f35426b927411fc9231b56382173">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Python/scrapy-hw-blog-record/" title="Python抓取博客记录，获取标题与url"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python抓取博客记录，获取标题与url</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/operation/matplotlib-intro-parts/" title="Python图表库Matplotlib 组成部分介绍"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python图表库Matplotlib 组成部分介绍</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/operation/matplotlib-intro1/" title="【运营的Python指南】绘制图表Matplotlib快速入门"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">【运营的Python指南】绘制图表Matplotlib快速入门</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-op-draw-funnel-1/" title="【运营的Python指南】绘制漏斗图"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">【运营的Python指南】绘制漏斗图</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-op-excel_openpyxl_bar_column_chart/" title="【运营的Python指南】Python Excel 绘制柱形图"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">【运营的Python指南】Python Excel 绘制柱形图</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-openpyxl_charts_Bar_and_Column/" title="Python openpyxl Excel绘制柱形图"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python openpyxl Excel绘制柱形图</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-op-excel_openpyxl_use/" title="【运营的Python指南】Python 操作Excel"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">【运营的Python指南】Python 操作Excel</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-openpyxl_tutorial/" title="Python openpyxl 处理Excel使用指南"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python openpyxl 处理Excel使用指南</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/Python-FFmpeg-extraction-mp4_tool/" title="Python 使用FFmpeg操作mp4"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Python 使用FFmpeg操作mp4</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Python/python3-send-email/" title="python3 发送邮件功能"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">python3 发送邮件功能</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/Python/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
-        </a>
-        
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="PyQt"
-        id="heading-9763861ee679e57c0949f9d3871cafb6" role="tab" data-toggle="collapse" href="#collapse-9763861ee679e57c0949f9d3871cafb6"
-        aria-expanded="false"
-      >
-        PyQt
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/PyQt/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>11</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-9763861ee679e57c0949f9d3871cafb6"
-           role="tabpanel" aria-labelledby="heading-9763861ee679e57c0949f9d3871cafb6">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/PyQt_note/PyQt-QFileDialog_use/" title="PyQt QFileDialog 文件选择弹窗"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt QFileDialog 文件选择弹窗</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-Install_licensed_PyQt/" title="PyQt5 安装商业版"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt5 安装商业版</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-Adjust_screen_resolution/" title="PyQt 适配不同屏幕分辨率"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 适配不同屏幕分辨率</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-Locale/" title="PyQt 语言国际化"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 语言国际化</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-Drag_and_drop/" title="PyQt 拖入"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 拖入</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-Pack_app/" title="PyQt 打包"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 打包</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-QThread/" title="PyQt 线程类 QThread"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 线程类 QThread</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt-QMainWindow_simple_practice/" title="PyQt QMainWindow 简单使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt QMainWindow 简单使用</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyQt5-Custom_QWidget/" title="PyQt 创建自定义QWidget"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyQt 创建自定义QWidget</span>
-        </a>
-      
-    
-      
-      
-        <a href="/PyQt_note/PyCharm-Install_and_config/" title="PyCharm 安装和配置"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">PyCharm 安装和配置</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/PyQt/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
-        </a>
-        
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="fun"
-        id="heading-77004ea213d5fc71acf74a8c9c6795fb" role="tab" data-toggle="collapse" href="#collapse-77004ea213d5fc71acf74a8c9c6795fb"
-        aria-expanded="false"
-      >
-        fun
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/fun/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-77004ea213d5fc71acf74a8c9c6795fb"
-           role="tabpanel" aria-labelledby="heading-77004ea213d5fc71acf74a8c9c6795fb">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/fun/zt-fupeng-2024/" title="zt-付鹏11.24总结：全球经济格局变化、经济现状与问题、投资策略等多方面"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">zt-付鹏11.24总结：全球经济格局变化、经济现状与问题、投资策略等多方面</span>
-        </a>
-      
-    
-      
-      
-        <a href="/fun/zt-zhihu-summary/" title="知乎上有意思的回答 - 汇总"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">知乎上有意思的回答 - 汇总</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Flutter_note"
-        id="heading-210b5e7a9a35840aeb71eda41436429a" role="tab" data-toggle="collapse" href="#collapse-210b5e7a9a35840aeb71eda41436429a"
-        aria-expanded="false"
-      >
-        Flutter_note
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Flutter-note/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>9</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-210b5e7a9a35840aeb71eda41436429a"
-           role="tabpanel" aria-labelledby="heading-210b5e7a9a35840aeb71eda41436429a">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Flutter/Flutter-Gesture_handle/" title="Flutter - 处理手势"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter - 处理手势</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-Navigator_demo1/" title="Flutter - 页面间跳转操作"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter - 页面间跳转操作</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-International_localization_with_string_map/" title="Flutter International 国际化，Localization 本地化， 使用字符串Map"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter International 国际化，Localization 本地化， 使用字符串Map</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-International_localization_with_Intl/" title="Flutter International 国际化，Localization 本地化， 使用Intl"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter International 国际化，Localization 本地化， 使用Intl</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-Drawer_and_custom_header/" title="Flutter Drawer 抽屉视图与自定义header"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter Drawer 抽屉视图与自定义header</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-CurvedAnimation/" title="Flutter widget动画效果之CurvedAnimation"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter widget动画效果之CurvedAnimation</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-Load_image_from_network/" title="Flutter 加载网络图片的几种方式"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter 加载网络图片的几种方式</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-Layout_common_widgets/" title="Flutter 布局常用的 widgets（Common layout widgets）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter 布局常用的 widgets（Common layout widgets）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Flutter/Flutter-project_common_questions/" title="Flutter工程常见问题集合"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Flutter工程常见问题集合</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="职业发展"
-        id="heading-6ac0e16dc22e28787394d0b25b42416f" role="tab" data-toggle="collapse" href="#collapse-6ac0e16dc22e28787394d0b25b42416f"
-        aria-expanded="false"
-      >
-        职业发展
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>6</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-6ac0e16dc22e28787394d0b25b42416f"
-           role="tabpanel" aria-labelledby="heading-6ac0e16dc22e28787394d0b25b42416f">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Career/zt-zhihu-68467783-answer-2560111521/" title="哪些事是你当了领导才明白的？态王的回答（知乎）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">哪些事是你当了领导才明白的？态王的回答（知乎）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Career/zt-juejin-on-the-way-out-615370768790158/" title="IT外传：下班路上（TF男孩｜稀土掘金）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">IT外传：下班路上（TF男孩｜稀土掘金）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Career/zt-cnblog-soft-engineer-work-thinking/" title="【深度思考】一线开发大头兵对于工作的感悟分享（CodeBlogMan|cnblog）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">【深度思考】一线开发大头兵对于工作的感悟分享（CodeBlogMan|cnblog）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/fun/zt-zhihu-riji/riji-2024-1-11/" title="日寄（2024-01-11，Anlin，知乎）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">日寄（2024-01-11，Anlin，知乎）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Career/zt-juejin-company-dynamism/" title="思考 | 公司活力（芦半山｜稀土掘金）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">思考 | 公司活力（芦半山｜稀土掘金）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Career/zt-juejin-tech-is-not-so-high-level/" title="技术并不一定比其他高级（通往自由之路｜稀土掘金）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">技术并不一定比其他高级（通往自由之路｜稀土掘金）</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CocosCreator"
-        id="heading-c423e1b75be7d9638913485b5e63558e" role="tab" data-toggle="collapse" href="#collapse-c423e1b75be7d9638913485b5e63558e"
-        aria-expanded="false"
-      >
-        CocosCreator
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/CocosCreator/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>4</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-c423e1b75be7d9638913485b5e63558e"
-           role="tabpanel" aria-labelledby="heading-c423e1b75be7d9638913485b5e63558e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/CocosCreator/ccc-drag-to-target/" title="Cocos Creator 拖动去指定区域"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cocos Creator 拖动去指定区域</span>
-        </a>
-      
-    
-      
-      
-        <a href="/CocosCreator/ccc-postion-and-cvt/" title="Cocos Creator 坐标与转换"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cocos Creator 坐标与转换</span>
-        </a>
-      
-    
-      
-      
-        <a href="/CocosCreator/ccc-drag-anywhere/" title="Cocos Creator 拖动效果"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cocos Creator 拖动效果</span>
-        </a>
-      
-    
-      
-      
-        <a href="/CocosCreator/ccc-touch-event/" title="Cocos Creator 触摸事件穿透"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cocos Creator 触摸事件穿透</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="NestJS"
-        id="heading-5328a9211442ed59c8275f20f7a84661" role="tab" data-toggle="collapse" href="#collapse-5328a9211442ed59c8275f20f7a84661"
-        aria-expanded="false"
-      >
-        NestJS
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/NestJS/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>4</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-5328a9211442ed59c8275f20f7a84661"
-           role="tabpanel" aria-labelledby="heading-5328a9211442ed59c8275f20f7a84661">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/NestJS/mp-wx-http-status-code/" title="状态码造成微信公众号“该公众号提供的服务出现故障”"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">状态码造成微信公众号“该公众号提供的服务出现故障”</span>
-        </a>
-      
-    
-      
-      
-        <a href="/NestJS/nestjs-websocket-start/" title="NestJS WebSocket 开始使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">NestJS WebSocket 开始使用</span>
-        </a>
-      
-    
-      
-      
-        <a href="/NestJS/nestjs-static-file/" title="NestJS 静态文件"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">NestJS 静态文件</span>
-        </a>
-      
-    
-      
-      
-        <a href="/NestJS/nest-devops/" title="NestJS 部署与维护"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">NestJS 部署与维护</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux_note"
-        id="heading-7ab982927fb4c652e0347062af78cf05" role="tab" data-toggle="collapse" href="#collapse-7ab982927fb4c652e0347062af78cf05"
-        aria-expanded="false"
-      >
-        Linux_note
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Linux-note/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>4</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-7ab982927fb4c652e0347062af78cf05"
-           role="tabpanel" aria-labelledby="heading-7ab982927fb4c652e0347062af78cf05">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Linux/for-use/" title="Shell for循环语句"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Shell for循环语句</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Linux/find-use/" title="find的使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">find的使用</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Linux/awk-use/" title="awk命令的使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">awk命令的使用</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Linux/grep_note/" title="grep 搜索字符串"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">grep 搜索字符串</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Database"
-        id="heading-e307db07b3975fef922a80d07455ee5e" role="tab" data-toggle="collapse" href="#collapse-e307db07b3975fef922a80d07455ee5e"
-        aria-expanded="false"
-      >
-        Database
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Database/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-e307db07b3975fef922a80d07455ee5e"
-           role="tabpanel" aria-labelledby="heading-e307db07b3975fef922a80d07455ee5e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Database/MySQL-install_and_config_Mac/" title="MySQL Mac 安装与简单配置"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MySQL Mac 安装与简单配置</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Database/MySQL-use_add_del_check_update/" title="MySQL 增删查改"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MySQL 增删查改</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Database/MySQL-install_and_config_Windows/" title="MySQL Windows 安装与简单配置"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MySQL Windows 安装与简单配置</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Web_note"
-        id="heading-a300e767e412afb3fd2a6691da9bdf86" role="tab" data-toggle="collapse" href="#collapse-a300e767e412afb3fd2a6691da9bdf86"
-        aria-expanded="false"
-      >
-        Web_note
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Web-note/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-a300e767e412afb3fd2a6691da9bdf86"
-           role="tabpanel" aria-labelledby="heading-a300e767e412afb3fd2a6691da9bdf86">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Web/note-echarts-py-url/" title="使用ECharts绘制网址径向树状图"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">使用ECharts绘制网址径向树状图</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Web/hexo-themes_use/" title="hexo主题使用与修改"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">hexo主题使用与修改</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Dev-note/dev-note-web-tools/" title="Web tools 开发记录"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Web tools 开发记录</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="总结"
-        id="heading-25f9c7fa3b50aebe5125112ac1187777" role="tab" data-toggle="collapse" href="#collapse-25f9c7fa3b50aebe5125112ac1187777"
-        aria-expanded="false"
-      >
-        总结
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-25f9c7fa3b50aebe5125112ac1187777"
-           role="tabpanel" aria-labelledby="heading-25f9c7fa3b50aebe5125112ac1187777">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Summary/2021-11/" title="2021年11月总结"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">2021年11月总结</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Summary/2021-9/" title="2021年9月总结"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">2021年9月总结</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Summary/2021-8/" title="2021年8月总结"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">2021年8月总结</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="reading"
-        id="heading-eceadc1d40cea061fd5986f2a109ee93" role="tab" data-toggle="collapse" href="#collapse-eceadc1d40cea061fd5986f2a109ee93"
-        aria-expanded="false"
-      >
-        reading
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/reading/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-eceadc1d40cea061fd5986f2a109ee93"
-           role="tabpanel" aria-labelledby="heading-eceadc1d40cea061fd5986f2a109ee93">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/reading/SocialScience/The-Almanack-of-Naval-Ravikant-note/" title="《纳瓦尔宝典》读书笔记"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">《纳瓦尔宝典》读书笔记</span>
-        </a>
-      
-    
-      
-      
-        <a href="/reading/SocialScience/TRIBE-OF-MENTORS-note/" title="《巨人的方法》读书笔记"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">《巨人的方法》读书笔记</span>
-        </a>
-      
-    
-      
-      
-        <a href="/reading/business/HOOKED-note/" title="《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">《上瘾：让用户养成使用习惯的四大产品逻辑》读书笔记</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Design_pattern"
-        id="heading-881faa1cb3920ee247187d00498776d9" role="tab" data-toggle="collapse" href="#collapse-881faa1cb3920ee247187d00498776d9"
-        aria-expanded="false"
-      >
-        Design_pattern
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Design-pattern/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-881faa1cb3920ee247187d00498776d9"
-           role="tabpanel" aria-labelledby="heading-881faa1cb3920ee247187d00498776d9">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/DesignPattern/Adapter-Pattern/" title="适配器模式 Adapter Pattern - Java实现"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">适配器模式 Adapter Pattern - Java实现</span>
-        </a>
-      
-    
-      
-      
-        <a href="/DesignPattern/Listener_pattern_practice_in_Java_Android/" title="监听者模式 - 在Java与Android中的使用"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">监听者模式 - 在Java与Android中的使用</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="miniprogram"
-        id="heading-210ee034891df356a62c83076adfda88" role="tab" data-toggle="collapse" href="#collapse-210ee034891df356a62c83076adfda88"
-        aria-expanded="false"
-      >
-        miniprogram
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/miniprogram/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-210ee034891df356a62c83076adfda88"
-           role="tabpanel" aria-labelledby="heading-210ee034891df356a62c83076adfda88">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Miniprogram/wx-mini-css_center_tutorial/" title="微信小程序 居中布局css"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">微信小程序 居中布局css</span>
-        </a>
-      
-    
-      
-      
-        <a href="/Dev-note/dev-note-miniapp-all/" title="「小程序」开发记录"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">「小程序」开发记录</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="unclassified"
-        id="heading-f8c13bb601e2113b166ef926763585b4" role="tab" data-toggle="collapse" href="#collapse-f8c13bb601e2113b166ef926763585b4"
-        aria-expanded="false"
-      >
-        unclassified
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/unclassified/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-f8c13bb601e2113b166ef926763585b4"
-           role="tabpanel" aria-labelledby="heading-f8c13bb601e2113b166ef926763585b4">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/unclassified/font-gb2312/" title="下载和使用仿宋GB2312字体"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">下载和使用仿宋GB2312字体</span>
-        </a>
-      
-    
-      
-      
-        <a href="/unclassified/web-res-move-2023/" title="网站资源迁移说明"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">网站资源迁移说明</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="散文"
-        id="heading-0ceca6769883de9d88392952d85cdafe" role="tab" data-toggle="collapse" href="#collapse-0ceca6769883de9d88392952d85cdafe"
-        aria-expanded="false"
-      >
-        散文
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%95%A3%E6%96%87/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-0ceca6769883de9d88392952d85cdafe"
-           role="tabpanel" aria-labelledby="heading-0ceca6769883de9d88392952d85cdafe">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/fun/zt-cat-huati/" title="猫站在滑滑梯上（文摘）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">猫站在滑滑梯上（文摘）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/fun/zt-douyin-waipodehuasheng/" title="外婆在拔花生，外婆种的花生不多（抖音）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">外婆在拔花生，外婆种的花生不多（抖音）</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Android_tutorial_2020"
-        id="heading-879f8e228a208fc0a25f3c686084fde8" role="tab" data-toggle="collapse" href="#collapse-879f8e228a208fc0a25f3c686084fde8"
-        aria-expanded="false"
-      >
-        Android_tutorial_2020
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Android-tutorial-2020/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-879f8e228a208fc0a25f3c686084fde8"
-           role="tabpanel" aria-labelledby="heading-879f8e228a208fc0a25f3c686084fde8">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Android_tutorial_2020/Android-tutorial_2020_a_menu/" title="Android教程2020 - 系列简介"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Android教程2020 - 系列简介</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ENVI"
-        id="heading-1665ea5db59004955c73e47e99837030" role="tab" data-toggle="collapse" href="#collapse-1665ea5db59004955c73e47e99837030"
-        aria-expanded="false"
-      >
-        ENVI
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/ENVI/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-1665ea5db59004955c73e47e99837030"
-           role="tabpanel" aria-labelledby="heading-1665ea5db59004955c73e47e99837030">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/ENVI/note-ENVI-hdr-img-mat-tif/" title="关于ENVI（.hdr+.img）、.mat、.tif的一些理解"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于ENVI（.hdr+.img）、.mat、.tif的一些理解</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MongoDB"
-        id="heading-206e3718af092fd1d12f80cae771ccac" role="tab" data-toggle="collapse" href="#collapse-206e3718af092fd1d12f80cae771ccac"
-        aria-expanded="false"
-      >
-        MongoDB
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/MongoDB/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-206e3718af092fd1d12f80cae771ccac"
-           role="tabpanel" aria-labelledby="heading-206e3718af092fd1d12f80cae771ccac">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/MongoDB/mongodb-install-deploy/" title="MongoDB安装和部署"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MongoDB安装和部署</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="HTTP"
-        id="heading-293c9ea246ff9985dc6f62a650f78986" role="tab" data-toggle="collapse" href="#collapse-293c9ea246ff9985dc6f62a650f78986"
-        aria-expanded="false"
-      >
-        HTTP
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/HTTP/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-293c9ea246ff9985dc6f62a650f78986"
-           role="tabpanel" aria-labelledby="heading-293c9ea246ff9985dc6f62a650f78986">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Network/http-code/" title="HTTP状态码"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">HTTP状态码</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Kotlin"
-        id="heading-539a3a5859d24fb7b129e74d61f09ffa" role="tab" data-toggle="collapse" href="#collapse-539a3a5859d24fb7b129e74d61f09ffa"
-        aria-expanded="false"
-      >
-        Kotlin
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/Kotlin/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-539a3a5859d24fb7b129e74d61f09ffa"
-           role="tabpanel" aria-labelledby="heading-539a3a5859d24fb7b129e74d61f09ffa">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Kotlin/kotlin-breif-intro/" title="Kotlin快速上手"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Kotlin快速上手</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="TypeScript"
-        id="heading-558b544cf685f39d34e4903e39c38b67" role="tab" data-toggle="collapse" href="#collapse-558b544cf685f39d34e4903e39c38b67"
-        aria-expanded="false"
-      >
-        TypeScript
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/TypeScript/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-558b544cf685f39d34e4903e39c38b67"
-           role="tabpanel" aria-labelledby="heading-558b544cf685f39d34e4903e39c38b67">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/Ts/ts-singleton-pattern/" title="TypeScript 单例模式"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">TypeScript 单例模式</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="WebRTC"
-        id="heading-d8621144cbc61520339c3b10c61731f0" role="tab" data-toggle="collapse" href="#collapse-d8621144cbc61520339c3b10c61731f0"
-        aria-expanded="false"
-      >
-        WebRTC
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/WebRTC/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-d8621144cbc61520339c3b10c61731f0"
-           role="tabpanel" aria-labelledby="heading-d8621144cbc61520339c3b10c61731f0">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/WebRTC/webRTC-concept-intro/" title="WebRTC概念介绍"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">WebRTC概念介绍</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ai"
         id="heading-4921c0e2d1f6005abe1f9ec2e2041909" role="tab" data-toggle="collapse" href="#collapse-4921c0e2d1f6005abe1f9ec2e2041909"
         aria-expanded="false"
@@ -1887,7 +289,7 @@
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-        <a href="/categories/ai/" class="category-count col-2 col-md-1 col-xm-1">
+        <a href="/en/categories/ai/" class="category-count col-2 col-md-1 col-xm-1">
           <i class="iconfont icon-articles"></i>
           <span>1</span>
         </a>
@@ -1902,10 +304,10 @@
     
       
       
-        <a href="/ai/2025-ai-chat-tools/" title="2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包"
+        <a href="/en/ai/2025-ai-chat-tools/" title="2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包</span>
+          <span class="category-post">2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao</span>
         </a>
       
     
@@ -1937,7 +339,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1945,7 +347,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -1988,9 +390,9 @@
     
 
   
+
 </div>
 
-  
   
   
 </div>
@@ -2011,10 +413,10 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/en/js/events.js" ></script>
+<script  src="/en/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -2036,15 +438,15 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/en/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script defer src="/js/leancloud.js" ></script>
+  <script defer src="/en/js/leancloud.js" ></script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/en/js/local-search.js" ></script>
 
 
 
@@ -2052,13 +454,13 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/en/js/boot.js" ></script>
 
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 </body>
 </html>
