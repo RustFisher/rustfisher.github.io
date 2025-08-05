@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2025年ChatGPT推出了学习模式（study mode）。不管是iOS、安卓、web或者桌面端都可以使用。免费版本、Plus、Pro版本都可以使用。这个模式也支持中文。用户可以把它当做家教老师，题库练习机，学习规划师，英语对话伙伴，地理百科全书等等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT学习模式（study mode）介绍和体验">
+<meta property="og:url" content="https://blog.rustfisher.com/ai/chatgpt-study-mode-first-try/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="2025年ChatGPT推出了学习模式（study mode）。不管是iOS、安卓、web或者桌面端都可以使用。免费版本、Plus、Pro版本都可以使用。这个模式也支持中文。用户可以把它当做家教老师，题库练习机，学习规划师，英语对话伙伴，地理百科全书等等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/cover-chatgpt-1.png">
+<meta property="article:published_time" content="2025-08-06T14:11:59.000Z">
+<meta property="article:modified_time" content="2025-08-05T15:14:26.617Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="ChatGPT学习模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/cover-chatgpt-1.png">
+  
+  
+  
+  <title>ChatGPT学习模式（study mode）介绍和体验 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.an.rustfisher.com" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ChatGPT学习模式（study mode）介绍和体验"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-06 22:11" pubdate>
+          2025年8月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ChatGPT学习模式（study mode）介绍和体验</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年8月5日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ChatGPT学习模式（study-mode）介绍和体验"><a href="#ChatGPT学习模式（study-mode）介绍和体验" class="headerlink" title="ChatGPT学习模式（study mode）介绍和体验"></a>ChatGPT学习模式（study mode）介绍和体验</h1><p>近期，ChatGPT推出了学习模式（study mode）。不管是iOS、安卓、web或者桌面端都可以使用。免费版本、Plus、Pro版本都可以使用。这个模式也支持中文。</p>
+<p>你可以把学习模式当做是一个在线的全科老师，此模式具备交互功能，可以一问一答。或者把ChatGPT当做是“私人学习助手”，家教老师，题库练习机，学习规划师，英语对话伙伴，地理百科全书等等。</p>
+<p>这个模式重点在于交互、问答和引导。如果要ChatGPT一次性出一份练习题，可以用普通模式。</p>
+<p>下面我们来试一下学习模式（网络不好的情况下请全局开🪜）</p>
+<p>先打开ChatGPT的学习模式，本文以网页版为例，工具 - 研究与学习</p>
+<p><img src="chatgpt-tools-study-mode.png" srcset="/img/loading.gif" lazyload alt="研究与学习"></p>
+<h2 id="做题练习模式"><a href="#做题练习模式" class="headerlink" title="做题练习模式"></a>做题练习模式</h2><p>先告诉ChatGPT自己的情况，然后要求出对应科目的题目。</p>
+<p>例如作为一个小学2年级学生，想要练习数学题目。<br>告诉ChatGPT：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">我是一个小学二年级学生，想练习数学题目。请出2道数学练习题<br></code></pre></td></tr></table></figure></p>
+<p>ChatGPT的回答：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs text">👍 很棒！你已经动脑筋认真做题了！我们来一起看看对不对\~<br><br>---<br><br>### ✅ 第1题：<br><br>**题目：** 小红有12个苹果，送给小明5个，还剩下（   ）个苹果。<br>**你的答案：** 7<br>✔ **正确！** 因为：<br>12 - 5 = 7<br>你减得很准，说明你掌握了“从一个数中减去一部分”的方法。<br><br>---<br><br>### ✅ 第2题：<br><br>**题目：** 下面哪一个算式的结果是20？<br>A. 10 + 10<br>B. 15 + 3<br>C. 25 - 4<br>**你的选择：** A<br>✔ **正确！** 因为：<br>A. 10 + 10 = 20 ✅<br>B. 15 + 3 = 18<br>C. 25 - 4 = 21<br><br>---<br><br>👏 两题都对了！你真的很棒，而且计算很快！<br><br>你想继续练习两道吗？还是想试试别的题型，比如“应用题”或者“连加连减”？<br></code></pre></td></tr></table></figure></p>
+<p>除了判断答案，还给出了一些简单解析。我们再输入：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">出一个应用题<br></code></pre></td></tr></table></figure></p>
+<p>ChatGPT出了新的题目：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs text">太好了！二年级的应用题正适合你来挑战一下，我来出一题：<br><br>---<br><br>### 🍬 应用题：<br><br>小亮有8颗糖果，妈妈又给了他6颗。他自己吃了5颗。<br>现在小亮还剩下多少颗糖果？<br><br>---<br><br>你可以一步一步想：<br><br>1. 一开始有多少？<br>2. 后来又得到了多少？<br>3. 吃掉了多少？<br>4. 现在还剩下多少？<br><br>你来算一算，写出你的答案吧\~<br></code></pre></td></tr></table></figure></p>
+<p>再输入我们的答案<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">9颗<br></code></pre></td></tr></table></figure><br>ChatGPT的回答：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs text">👍 好，咱们一起来检查一下你的思路和答案，看看哪里做得对，哪里还能更清楚！<br><br>---<br><br>### 🍬 题目回顾：<br><br>小亮有8颗糖果，妈妈又给了6颗，他吃了5颗。还剩多少颗？<br><br>我们可以一步步来算：<br><br>#### 第一步：原来有8颗，妈妈又给了6颗<br><br>👉 8 + 6 = **14**（现在有14颗糖果）<br><br>#### 第二步：他吃了5颗<br><br>👉 14 - 5 = **9**<br><br>---<br><br>🎉 所以，你的答案是 **9颗**——\*\*完全正确！\*\*👏<br>你已经学会了“先加再减”的应用题思路，很棒！<br><br>---<br><br>你想继续做一个类似的题？还是想挑战一下稍微长一点的问题？或者换个题型练练？<br></code></pre></td></tr></table></figure><br>可以看到给出了思路和解析步骤。</p>
+<p>对于二年级学生来说，用电脑键盘输入自己的答案可能难度太高，这个打字步骤可以由家长或者老师代为完成。</p>
+
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-c78f1f31" role="button" aria-expanded="false" aria-controls="collapse-c78f1f31">
+        <div class="fold-arrow">▶</div>小学二年级数学学习案例截图
+      </div>
+      <div class="fold-collapse collapse" id="collapse-c78f1f31">
+        <div class="fold-content">
+          <p><img src="chatgpt-study-mode-case1.png" srcset="/img/loading.gif" lazyload alt="二年级数学"></p>
+        </div>
+      </div>
+    </div>
+<h2 id="知识讲解模式"><a href="#知识讲解模式" class="headerlink" title="知识讲解模式"></a>知识讲解模式</h2><p>把用户年级告诉他，并且指定要求讲解某一块知识点</p>
+<p>比如输入：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">我是初二的学生，讲一讲初二英语的要点<br></code></pre></td></tr></table></figure><br>ChatGPT会更新前面的记录，并对应初二英语给出回答<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs text">太好了，初二是英语学习很关键的一年！我们一起来看看 **初二英语的重点内容**，我会讲得清楚明了，还会穿插小问题帮你检查有没有听懂。<br><br>---<br><br>## 🧩 一、语法重点<br><br>### 1. **时态**<br><br>初二最重要的语法是时态，尤其是：<br><br>* **一般过去时**：I visited my grandma yesterday.<br>* **现在进行时**：She is doing her homework now.<br>* **一般将来时**：I will go to the park tomorrow.<br><br>❓小测一下：<br>句子 “He \_\_\_\_\_\_ (go) to school yesterday.” 应该填什么？<br>A. goes B. is going C. went<br><br>---<br><br>### 2. **比较级和最高级**<br><br>形容词/副词的比较：<br><br>* big → **bigger** → **the biggest**<br>* carefully → **more carefully** → **the most carefully**<br><br>我们通常这样比较：<br><br>* A比B高：A is **taller** than B.<br>* A是最高的：A is **the tallest**.<br><br>---<br><br>### 3. **动词不定式和动名词**<br><br>* like **to play** / like **playing** 都可以表示“喜欢玩”<br>* want **to do** sth（想做某事）<br><br>---<br><br>## 🧱 二、词汇和短语<br><br>### 常见话题词汇：<br><br>* 健康（health）：exercise, illness, medicine<br>* 环境（environment）：pollution, protect, clean up<br>* 日常生活：routine, hobby, chores<br>* 学校：subject, exam, timetable<br><br>我们也常学一些 **短语**：<br><br>* get up 起床<br>* take care of 照顾<br>* be good at 擅长于<br>* look forward to 期待<br><br>---<br><br>## 📖 三、阅读理解和写作<br><br>### 阅读理解：<br><br>要学会：<br><br>* 找主旨句（通常在第一段或最后一段）<br>* 理解细节（用扫读法找具体信息）<br>* 推理判断（比如作者的观点）<br><br>### 写作：<br><br>常写话题有：<br><br>* 我的朋友 / 我的周末<br>* 一次难忘的经历<br>* 如何保持健康 / 爱护环境<br><br>句子要简洁，最好有**三段结构**：<br><br>1. 开头：引出话题<br>2. 中间：说明细节<br>3. 结尾：表达感受或总结<br><br>---<br><br>你有没有特别想练习的部分？比如“过去时用法”、“短语记忆”、“阅读题技巧”还是“英语写作”？我们可以针对你最想提高的来练！<br></code></pre></td></tr></table></figure><br>给出了多个要点。并且继续询问接下来想学习的部分。直接输入“过去时用法”或者“短语记忆”，它就给出对应知识点，并且穿插着一些小练习</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">短语记忆<br></code></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs text">好眼光！短语是英语中的“积木”，句子少不了它，考试也爱考它。那我们就来进入【短语记忆模式】🧠，一边学、一边记！<br><br>---<br><br>## 🌟 初二常见短语分类记忆法<br><br>我会用“场景+短语+例句”的方式，帮助你快速理解并记住。<br><br>---<br><br>### 📅 日常生活类<br><br>| 中文意思 | 短语             | 例句                            |<br>| ---- | -------------- | ----------------------------- |<br>| 起床   | get up         | I get up at 7 a.m. every day. |<br>| 上学   | go to school   | She goes to school by bike.   |<br>| 做作业  | do homework    | He is doing his homework now. |<br>| 吃早饭  | have breakfast | They have breakfast together. |<br><br>🔍 小问一问：<br>你每天几点 **get up**？可以用英文回答我试试看吗？<br><br>---<br><br>### 🧑‍🤝‍🧑 人际关系类<br><br>| 中文意思    | 短语                 | 例句                                   |<br>| ------- | ------------------ | ------------------------------------ |<br>| 和……相处融洽 | get along with     | I get along well with my classmates. |<br>| 对……友好   | be friendly to     | He is friendly to new students.      |<br>| 和……保持联系 | keep in touch with | I keep in touch with my old friends. |<br><br>🎯 小练一下：<br>你还记得“和……相处融洽”怎么说吗？能不能用它说一句话？<br><br>---<br><br>### 🎒 学习相关类<br><br>| 中文意思 | 短语            | 例句                                           |<br>| ---- | ------------- | -------------------------------------------- |<br>| 擅长   | be good at    | She is good at math.                         |<br>| 准备…… | get ready for | I’m getting ready for the English test.      |<br>| 查找   | look up       | You can look up new words in the dictionary. |<br><br>---<br><br>## 🎲 小活动：翻译挑战！<br><br>我们来玩个小游戏，我说中文，你来翻成英文短语👇<br><br>1. 起床 = ?<br>2. 擅长英语 = ?<br>3. 做作业 = ?<br>4. 和妈妈相处得好 = ?<br><br>你来试一试，写完我来帮你检查！如果你想，我也可以帮你做一张“短语卡片集”\~<br></code></pre></td></tr></table></figure><br>既给出了短语的知识点，又顺手给出了几个小问题。</p>
+<h2 id="学习计划模式"><a href="#学习计划模式" class="headerlink" title="学习计划模式"></a>学习计划模式</h2><p>除了练习题目和总结知识点，还可以让ChatGPT给出学习计划。</p>
+<p>比如我们需要初三的英语学习计划<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">我是一个初三的学生，请给一个初三英语的学习计划<br></code></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs text">好的！初三英语很关键，不只是为了中考提分，更是为高中打基础。我们来制定一个**实用又不累的英语学习计划**，每天大概花 **40～60分钟**，重点提升词汇、语法、阅读、写作四大块。<br><br>---<br><br>## 🗓️ 初三英语一周学习计划（可循环）<br><br>### 周一｜词汇 + 语法基础<br><br>* 背15个核心单词 + 造句<br>* 学1个语法点（如：过去完成时、宾语从句）<br>* 做5道语法题<br><br>✅ 建议：用错题本记录不熟的词汇和题型<br><br>---<br><br>### 周二｜阅读训练<br><br>* 做1篇短文阅读（近3年中考题或课外阅读）<br>* 划出不会的词句，查词典并记录<br>* 总结主旨、结构、作者观点<br><br>✅ 小技巧：先看题目，再带着问题去读文<br><br>---<br><br>### 周三｜写作专项<br><br>* 模仿一篇范文（比如“我的学习计划”）<br>* 改写或续写一段文字<br>* 自己写一篇80词左右的短文<br><br>✅ 写完后检查：有没有时态错误？有没有短语？<br><br>---<br><br>### 周四｜听力 + 口语练习<br><br>* 听1段材料（可用教材或中考听力真题）<br>* 复述主要内容<br>* 和ChatGPT练1段日常英语对话，比如购物、问路等<br><br>✅ 听不懂没关系，反复听，跟读也有效！<br><br>---<br><br>### 周五｜综合练习 + 错题复盘<br><br>* 做1套小练（含词汇+语法+阅读+写作）<br>* 整理这一周做错的题和记错的词<br>* 复习“错题+重点语法+重点短语”<br><br>✅ 最关键的是总结，而不是做很多<br><br>---<br><br>### 周末（自由复习日）<br><br>任选内容加强练习，也可以：<br><br>* 背中考常考作文模板<br>* 玩“英汉互译”小游戏<br>* 看一小段英文动画或新闻（字幕+听力）<br><br>---<br><br>如果你告诉我你每天有多少时间、想重点练哪一块（比如阅读、作文），我可以再帮你**定制一个更详细的计划表**！<br><br>要不要试试？💡<br></code></pre></td></tr></table></figure><br>ChatGPT会生成一份详细的计划和对应的建议。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>据笔者初步体验来看，这个学习模式也适合老师和家长去给孩子辅导学习。</p>
+<p>如果让孩子直接给ChatGPT输入指令，孩子可能会采取“投机取巧”的办法，比如直接要答案。家长老师在一旁辅助，学习效果可能会更好。也就是ChatGPT成为家长老师的辅导帮手。</p>
+<p>本文体验了小学和初中的数学、英语内容。其他科目内容，以及高中甚至大学内容，这个模式的适用性还有待探索。</p>
+<p>可以肯定的是，小学阶段的日常教学内容对ChatGPT来说是可以应付的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ai/" class="category-chain-item">ai</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/ChatGPT%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%BC%8F/" class="print-no-link">#ChatGPT学习模式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ChatGPT学习模式（study mode）介绍和体验</div>
+      <div>https://blog.rustfisher.com/ai/chatgpt-study-mode-first-try/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/ai/2025-ai-chat-tools/" title="2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包">
+                        <span class="hidden-mobile">2025年AI聊天工具推荐与对比 - ChatGPT/Gemini/DeepSeek/豆包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
