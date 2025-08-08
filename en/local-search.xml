@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Using ChatGPT to Modify Images</title>
+    <link href="/en/ai/chatgpt-change-image-style/"/>
+    <url>/en/ai/chatgpt-change-image-style/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Using-ChatGPT-to-Modify-Images"><a href="#Using-ChatGPT-to-Modify-Images" class="headerlink" title="Using ChatGPT to Modify Images"></a>Using ChatGPT to Modify Images</h1><p>Use a ChatGPT Free account. Try ChatGPT’s image modification function.</p><p>The original image is a toy image.</p><p><img src="/en/img/chatgpt-change-image-style/labubu-1.png" alt="origin image labubu"></p><p>On the <a href="https://chatgpt.com/">ChatGPT</a>, upload the image and indicate that you want to modify it as follows:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">let this toy dress in blue<br></code></pre></td></tr></table></figure><p>After waiting for a while, the output image is as follows:</p><p><img src="/en/img/chatgpt-change-image-style/chatgpt-blue-1.png" alt="ChatGPT output blue"></p><p>It can be seen that the toy’s ears have also turned blue.</p><p>Enter again to give it a moon and stars style:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Incorporate elements of stars and the moon into this toy.<br></code></pre></td></tr></table></figure><p>Wait a little longer, and the output image is:</p><p><img src="/en/img/chatgpt-change-image-style/chatgpt-stars-1.png" alt="ChatGPT output moon and stars"></p><p>ChatGPT does not just modify colors and styles solely based on instructions. You can also input an additional image and let it modify according to the style of another image.</p><p>For example, upload both the toy and <em>The Starry Night</em> at the same time.</p><p><img src="/en/img/chatgpt-change-image-style/labubu-1.png" alt="origin image labubu"></p><p><img src="/en/img/chatgpt-change-image-style/fangao.jpg" alt="The Starry Night"></p><p>Enter the instruction:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Let the toy&#x27;s clothes have the style of this oil painting.<br></code></pre></td></tr></table></figure><p>The resulting image is:</p><p><img src="/en/img/chatgpt-change-image-style/chatgpt-fangao.png" alt="toy and The Starry Night"></p><p>It can be seen that the toy has oil painting-like colors, and the toy’s face has also been modified.</p><p>Tell ChatGPT again:</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Do not modify the toy&#x27;s face.<br></code></pre></td></tr></table></figure><p>After a while, the given image is:</p><p><img src="/en/img/chatgpt-change-image-style/chatgpt-fangao-2.png" alt="toy2 and The Starry Night"></p><blockquote><p>ChatGPT’s image processing function is quite good.<br>Unfortunately, the Free version only allows inputting a few images a day. Next, let’s try Google Gemini.</p></blockquote><h1 id="Gemini-Modifying-Image-Styles"><a href="#Gemini-Modifying-Image-Styles" class="headerlink" title="Gemini Modifying Image Styles"></a>Gemini Modifying Image Styles</h1><p>On the <a href="https://gemini.google.com/">Gemini</a>, also upload the toy image.</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">let this toy dress in blue<br></code></pre></td></tr></table></figure><p>Gemini’s output image:</p><p><img src="/en/img/chatgpt-change-image-style/gemini-toy-blue-1.png" alt="Gemini output toy in blue"></p><p>The output image has a black background on both sides. The toy’s edges have jagged lines. The effect seems worse than ChatGPT.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ai</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao</title>
     <link href="/en/ai/2025-ai-chat-tools/"/>
     <url>/en/ai/2025-ai-chat-tools/</url>

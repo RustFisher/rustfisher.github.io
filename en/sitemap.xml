@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/</loc>
+    
+    <lastmod>2025-08-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</loc>
     
     <lastmod>2025-08-04</lastmod>
@@ -67,7 +76,7 @@
 
   <url>
     <loc>https://blog.rustfisher.com/en</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,42 +84,42 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/AI/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/ChatGPT/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Gemini/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/DeepSeek/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Copilot/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/doubao/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -119,7 +128,7 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/categories/ai/</loc>
-    <lastmod>2025-08-07</lastmod>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
