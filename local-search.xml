@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>ChatGPT Free账号没有GPT-5的选项</title>
+    <link href="/ai/chatgpt-free-plan-no-gpt5-option/"/>
+    <url>/ai/chatgpt-free-plan-no-gpt5-option/</url>
+    
+    <content type="html"><![CDATA[<p>8月初已经收到GPT5推出的消息。打开<a href="https://chatgpt.com/">ChatGPT</a>一看左上角的选项里没有GPT5的选项。</p><p>但是询问GPT，它会回答现在就是GPT5</p><p><img src="ask-gpt5.png" alt="问GPT的模型版本"></p><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit">我这边已经是 GPT<span class="hljs-string">-5</span> Thinking，可以直接继续帮你。<br></code></pre></td></tr></table></figure><p>目前用的是free账号，推测OpenAI给限额的GPT-5使用。看了YouTube的视频，Plus或者Pro账号就能直接切换到GPT-5</p><p>再等等，等GPT-5普及到free账号</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ai</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
+      
+      <tag>GPT-5</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ChatGPT学习模式（study mode）介绍和体验</title>
     <link href="/ai/chatgpt-study-mode-first-try/"/>
     <url>/ai/chatgpt-study-mode-first-try/</url>
