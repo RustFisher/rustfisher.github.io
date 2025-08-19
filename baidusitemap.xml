@@ -153,11 +153,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_speed/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_speed/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -221,11 +221,11 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_tutorial/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_tutorial/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
@@ -281,10 +281,6 @@
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file/</loc>
-    <lastmod>2023-04-15</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android/Android-mmap_intro_and_use/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
@@ -302,6 +298,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Android/NDK-use_sample_1/</loc>
+    <lastmod>2023-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file/</loc>
     <lastmod>2023-04-15</lastmod>
   </url>
   <url>
