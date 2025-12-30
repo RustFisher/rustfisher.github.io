@@ -183,9 +183,9 @@
     <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
     
     
-    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
-    
     <category term="IT外传" scheme="https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/"/>
+    
+    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
     
   </entry>
   
@@ -439,11 +439,11 @@
     <category term="总结" scheme="https://blog.rustfisher.com/categories/%E6%80%BB%E7%BB%93/"/>
     
     
+    <category term="WebRTC" scheme="https://blog.rustfisher.com/tags/WebRTC/"/>
+    
     <category term="总结" scheme="https://blog.rustfisher.com/tags/%E6%80%BB%E7%BB%93/"/>
     
     <category term="Android" scheme="https://blog.rustfisher.com/tags/Android/"/>
-    
-    <category term="WebRTC" scheme="https://blog.rustfisher.com/tags/WebRTC/"/>
     
     <category term="华为云社区" scheme="https://blog.rustfisher.com/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"/>
     
