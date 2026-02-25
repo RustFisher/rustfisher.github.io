@@ -1,15 +1,15 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/en/img/fluid.png">
-  <link rel="icon" href="/en/img/038-ice-coffee.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -19,26 +19,24 @@
   <meta name="author" content="Rust Fisher">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Use a ChatGPT Free account. Try ChatGPT&#39;s image modification function. I input a toy image and say what I want to change.">
+    <meta name="description" content="你有没想过，刷手机三小时转瞬即逝，但学习10分钟却如坐针毡。这并非懒惰导致，而是你的大脑已被重新塑造。每条通知、每个短视频、每次点赞，都在滋养你的即时满足机制（monkey brain）。它掌管着你的本能反应，只关注眼前的生存需求、舒适体验和快感获取（dopamine）。今天我们将重新主导控制权，重塑你的大脑回路。让它从困难事物中获得乐趣。当你真正领悟其中奥秘，自律（discipline）将不再是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Using ChatGPT to Modify Images">
-<meta property="og:url" content="https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/index.html">
-<meta property="og:site_name" content="RustFisher">
-<meta property="og:description" content="Use a ChatGPT Free account. Try ChatGPT&#39;s image modification function. I input a toy image and say what I want to change.">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.rustfisher.com/en/img/chatgpt-change-image-style/chatgpt-stars-1.png">
-<meta property="article:published_time" content="2025-08-08T15:12:59.000Z">
-<meta property="article:modified_time" content="2025-08-13T13:58:09.001Z">
+<meta property="og:title" content="重启大脑多巴胺系统：让自律变成快感的终极技巧">
+<meta property="og:url" content="https://blog.rustfisher.com/reading/promotion/restart-brain-dopamine/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="你有没想过，刷手机三小时转瞬即逝，但学习10分钟却如坐针毡。这并非懒惰导致，而是你的大脑已被重新塑造。每条通知、每个短视频、每次点赞，都在滋养你的即时满足机制（monkey brain）。它掌管着你的本能反应，只关注眼前的生存需求、舒适体验和快感获取（dopamine）。今天我们将重新主导控制权，重塑你的大脑回路。让它从困难事物中获得乐趣。当你真正领悟其中奥秘，自律（discipline）将不再是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/img/mountain-sun.png">
+<meta property="article:published_time" content="2026-02-25T06:12:59.000Z">
+<meta property="article:modified_time" content="2026-02-25T08:38:35.851Z">
 <meta property="article:author" content="Rust Fisher">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="ChatGPT">
-<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="自我提升">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.rustfisher.com/en/img/chatgpt-change-image-style/chatgpt-stars-1.png">
+<meta name="twitter:image" content="https://blog.rustfisher.com/img/mountain-sun.png">
   
   
   
-  <title>Using ChatGPT to Modify Images - RustFisher</title>
+  <title>重启大脑多巴胺系统：让自律变成快感的终极技巧 - RustFisher的自留地</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -62,12 +60,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/en/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/en/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/en/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -76,15 +74,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/en/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/en/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/en/js/utils.js" ></script>
-  <script  src="/en/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
   
@@ -114,8 +112,9 @@
 
 
 
-  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script>
-<meta name="generator" content="Hexo 7.3.0"></head>
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -127,7 +126,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/en/">
+    <a class="navbar-brand" href="/">
       <strong>RustFisher</strong>
     </a>
 
@@ -146,9 +145,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/" target="_self">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -158,9 +157,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/archives/" target="_self">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -170,9 +169,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/categories/" target="_self">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -182,9 +181,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/tags/" target="_self">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -194,9 +193,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/about/" target="_self">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -206,9 +205,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/links/" target="_self">
+              <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -218,9 +217,21 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/en/../" target="_self">
+              <a class="nav-link" href="https://www.an.rustfisher.com" target="_self">
                 <i class="iconfont icon-plan"></i>
-                <span>简体中文</span>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
               </a>
             </li>
           
@@ -248,13 +259,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/en/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Using ChatGPT to Modify Images"></span>
+            <span id="subtitle" data-typed-text="重启大脑多巴胺系统：让自律变成快感的终极技巧"></span>
           
         </div>
 
@@ -265,8 +276,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-08 23:12" pubdate>
-          August 8, 2025 pm
+        <time datetime="2026-02-25 14:12" pubdate>
+          2026年2月25日 下午
         </time>
       </span>
     
@@ -277,7 +288,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          48 words
+          1.2k 字
         
       </span>
     
@@ -288,7 +299,7 @@
         
         
         
-          1 mins
+          10 分钟
         
       </span>
     
@@ -334,12 +345,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Using ChatGPT to Modify Images</h1>
+            <h1 id="seo-header">重启大脑多巴胺系统：让自律变成快感的终极技巧</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on August 13, 2025 pm
+                    本文最后更新于 2026年2月25日 下午
                   
                 
               </p>
@@ -347,44 +358,28 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Using-ChatGPT-to-Modify-Images"><a href="#Using-ChatGPT-to-Modify-Images" class="headerlink" title="Using ChatGPT to Modify Images"></a>Using ChatGPT to Modify Images</h1><p>Use a ChatGPT Free account. Try ChatGPT’s image modification function.</p>
-<p>The original image is a toy image.</p>
-<p><img src="/en/img/chatgpt-change-image-style/labubu-1.png" srcset="/en/img/loading.gif" lazyload alt="origin image labubu"></p>
-<p>On the <a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a>, upload the image and indicate that you want to modify it as follows:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">let this toy dress in blue<br></code></pre></td></tr></table></figure>
-
-<p>After waiting for a while, the output image is as follows:</p>
-<p><img src="/en/img/chatgpt-change-image-style/chatgpt-blue-1.png" srcset="/en/img/loading.gif" lazyload alt="ChatGPT output blue"></p>
-<p>It can be seen that the toy’s ears have also turned blue.</p>
-<p>Enter again to give it a moon and stars style:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Incorporate elements of stars and the moon into this toy.<br></code></pre></td></tr></table></figure>
-
-<p>Wait a little longer, and the output image is:</p>
-<p><img src="/en/img/chatgpt-change-image-style/chatgpt-stars-1.png" srcset="/en/img/loading.gif" lazyload alt="ChatGPT output moon and stars"></p>
-<p>ChatGPT does not just modify colors and styles solely based on instructions. You can also input an additional image and let it modify according to the style of another image.</p>
-<p>For example, upload both the toy and <em>The Starry Night</em> at the same time.</p>
-<p><img src="/en/img/chatgpt-change-image-style/labubu-1.png" srcset="/en/img/loading.gif" lazyload alt="origin image labubu"></p>
-<p><img src="/en/img/chatgpt-change-image-style/fangao.jpg" srcset="/en/img/loading.gif" lazyload alt="The Starry Night"></p>
-<p>Enter the instruction:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Let the toy&#x27;s clothes have the style of this oil painting.<br></code></pre></td></tr></table></figure>
-
-<p>The resulting image is:</p>
-<p><img src="/en/img/chatgpt-change-image-style/chatgpt-fangao.png" srcset="/en/img/loading.gif" lazyload alt="toy and The Starry Night"></p>
-<p>It can be seen that the toy has oil painting-like colors, and the toy’s face has also been modified.</p>
-<p>Tell ChatGPT again:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Do not modify the toy&#x27;s face.<br></code></pre></td></tr></table></figure>
-
-<p>After a while, the given image is:</p>
-<p><img src="/en/img/chatgpt-change-image-style/chatgpt-fangao-2.png" srcset="/en/img/loading.gif" lazyload alt="toy2 and The Starry Night"></p>
-<blockquote>
-<p>ChatGPT’s image processing function is quite good.<br>Unfortunately, the Free version only allows inputting a few images a day. Next, let’s try Google Gemini.</p>
-</blockquote>
-<h1 id="Gemini-Modifying-Image-Styles"><a href="#Gemini-Modifying-Image-Styles" class="headerlink" title="Gemini Modifying Image Styles"></a>Gemini Modifying Image Styles</h1><p>On the <a target="_blank" rel="noopener" href="https://gemini.google.com/">Gemini</a>, also upload the toy image.</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">let this toy dress in blue<br></code></pre></td></tr></table></figure>
-
-<p>Gemini’s output image:</p>
-<p><img src="/en/img/chatgpt-change-image-style/gemini-toy-blue-1.png" srcset="/en/img/loading.gif" lazyload alt="Gemini output toy in blue"></p>
-<p>The output image has a black background on both sides. The toy’s edges have jagged lines. The effect seems worse than ChatGPT.</p>
+                <p>你有没想过，刷手机三小时转瞬即逝，但学习10分钟却如坐针毡。</p>
+<p>这并非懒惰导致，而是你的大脑已被重新塑造。<br>每条通知、每个短视频、每次点赞，都在滋养你的即时满足机制（monkey brain）。它掌管着你的本能反应，只关注眼前的生存需求、舒适体验和快感获取（dopamine）。</p>
+<p>今天我们将重新主导控制权，重塑你的大脑回路。让它从困难事物中获得乐趣。当你真正领悟其中奥秘，自律（discipline）将不再是负担，而会成为你的力量源泉。</p>
+<h2 id="认识我们的大脑机制"><a href="#认识我们的大脑机制" class="headerlink" title="认识我们的大脑机制"></a>认识我们的大脑机制</h2><p>人脑具有多层次结构，核心是边缘系统，掌管着情绪与冲动反应。其上则是前额叶皮层，负责理性思考与长远规划。这两个系统始终在互相制衡。</p>
+<p>当你看短视频（TikTok，抖音等）时，多巴胺会立即大量释放，本能系统因此兴奋不已。当你投入工作时，却无即时反馈，本能系统感到索然无味。拖延并非意志力不足，真正原因在于，大脑的奖励机制出现紊乱。你已习惯即时满足的快感，但真正的成长需要持续积累。这种成就感来自于月度完十页书、完成一次训练或深度的工作。虽然过程更具挑战性，但效果更持久。<br>重点不是消除多巴胺，而是重建平衡。</p>
+<h2 id="多巴胺系统重置方案"><a href="#多巴胺系统重置方案" class="headerlink" title="多巴胺系统重置方案"></a>多巴胺系统重置方案</h2><p>以下是循序渐进的调整步骤：</p>
+<h3 id="第一步：净化阶段（24到48小时）"><a href="#第一步：净化阶段（24到48小时）" class="headerlink" title="第一步：净化阶段（24到48小时）"></a>第一步：净化阶段（24到48小时）</h3><p>全面断连，不要使用社交媒体，工作时不听音乐，切断所有即时快感（junk dopamine）来源。这不是在惩罚自己，而是在重置系统。最初6小时会相当难熬，你的本能系统会渴望刺激，但请保持冷静。这种不适意味着多巴胺受体正在修复。</p>
+<h3 id="第二步：重建阶段（第2-4天）"><a href="#第二步：重建阶段（第2-4天）" class="headerlink" title="第二步：重建阶段（第2-4天）"></a>第二步：重建阶段（第2-4天）</h3><p>用中性习惯代替不良行为。放下手机散步、记录想法、阅读长文、静下心来整理空间。训练大脑在平淡中发现安宁，专注力便会自然回归。</p>
+<h3 id="第三步：奖励阶段（第5天起）"><a href="#第三步：奖励阶段（第5天起）" class="headerlink" title="第三步：奖励阶段（第5天起）"></a>第三步：奖励阶段（第5天起）</h3><p>重新引入高效习惯：系统学习、深度工作、体能训练。</p>
+<p>重要技巧：每完成一项挑战后，给予适当的奖励：舒展身体、短暂漫步、听一些音乐、品尝电信。让进步与愉悦建立联结，大脑就会开始向往挑战而非安逸。</p>
+<p>这时便初见成效。</p>
+<h2 id="进阶训练方法"><a href="#进阶训练方法" class="headerlink" title="进阶训练方法"></a>进阶训练方法</h2><p>如何将短期净化转化为长期机制。</p>
+<h3 id="方法一，两分钟启动法"><a href="#方法一，两分钟启动法" class="headerlink" title="方法一，两分钟启动法"></a>方法一，两分钟启动法</h3><p>当缺乏动力时，承诺只做两分钟。一旦开始行动，惯性自会推动你继续前行。<br>突破最初两分钟最为关键，赢得开端便赢得整天。</p>
+<h3 id="方法二，设置阻力"><a href="#方法二，设置阻力" class="headerlink" title="方法二，设置阻力"></a>方法二，设置阻力</h3><p>增加不良习惯的执行难度：删除应用、使用黑白模式、屏蔽干扰网站。<br>降低良好习惯的启动门槛：保持日记本展开、水杯随手可取、工作区整洁有序。</p>
+<p>这不是考验意志力，而是优化环境设计。</p>
+<h3 id="方法三，习惯连锁法"><a href="#方法三，习惯连锁法" class="headerlink" title="方法三，习惯连锁法"></a>方法三，习惯连锁法</h3><p>将困难任务与日常习惯结合。<br>喝完咖啡后静坐片刻，刷牙后立即规划当日事项。<br>大脑更易遵循固定模式而非一时冲动，让好习惯形成连锁反应。</p>
+<h3 id="方法四，奖励转化法"><a href="#方法四，奖励转化法" class="headerlink" title="方法四，奖励转化法"></a>方法四，奖励转化法</h3><p>不再从消遣获取满足感，转而从创造中获得：<br>动手实践、构建项目、深入学习、持续改进。</p>
+<p>让大脑从被动接收转为主动创造。</p>
+<h2 id="根本心态转变"><a href="#根本心态转变" class="headerlink" title="根本心态转变"></a>根本心态转变</h2><p>有个重要事实：本能反应永远不会消失，但你能够学会引导它。</p>
+<p>起初面对挑战如同煎熬，逐渐变成日常惯例。最终，成为乐趣所在。<br>当大脑从进步中获得满足，而非寻求安逸，你将无往不利。<br>那些成就卓越的人、运动员、创作者，并非天生超凡，只是重塑了自身的奖励机制。他们享受奋斗过程，因为大脑给予正向反馈。<br>一旦体验过这种境界——自律带来的内在平静，你将永不回头。</p>
+<p>当下次产生内心抗拒：“这实在太难了”<br>你只需微笑回应：“正因不易，才更值得”</p>
+<p>成长不再是与自我对抗，而是学会热爱那些值得追求的事物。<br>引导本能反应，重整多巴胺系统，见证专注力与人生的全面提升。</p>
 
                 
               </div>
@@ -403,7 +398,7 @@
     
       <span class="category-chain">
         
-  <a href="/en/categories/ai/" class="category-chain-item">ai</a>
+  <a href="/categories/promotion/" class="category-chain-item">promotion</a>
   
   
 
@@ -418,11 +413,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/en/tags/AI/" class="print-no-link">#AI</a>
-      
-        <a href="/en/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
-      
-        <a href="/en/tags/Gemini/" class="print-no-link">#Gemini</a>
+        <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/" class="print-no-link">#自我提升</a>
       
     </div>
   
@@ -434,32 +425,32 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Using ChatGPT to Modify Images</div>
-      <div>https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/</div>
+      <div>重启大脑多巴胺系统：让自律变成快感的终极技巧</div>
+      <div>https://blog.rustfisher.com/reading/promotion/restart-brain-dopamine/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>Rust Fisher</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>August 8, 2025</div>
+          <div>发布于</div>
+          <div>2026年2月25日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>许可协议</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -483,9 +474,9 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/en/ai/2025-ai-chat-tools/" title="2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao">
-                        <span class="hidden-mobile">2025 AI Chat Tools Recommendations and Comparison - ChatGPT/Gemini/DeepSeek/Doubao</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/ai/chatgpt-free-plan-no-gpt5-option/" title="ChatGPT Free账号没有GPT-5的选项">
+                        <span class="hidden-mobile">ChatGPT Free账号没有GPT-5的选项</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -550,7 +541,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -606,7 +597,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -614,7 +605,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -682,8 +673,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/en/js/events.js" ></script>
-<script  src="/en/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -705,7 +696,7 @@
 
 
   
-    <script  src="/en/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -804,9 +795,9 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script defer src="/en/js/leancloud.js" ></script>
+  <script defer src="/js/leancloud.js" ></script>
 
-  <script  src="/en/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -814,13 +805,13 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/en/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>
