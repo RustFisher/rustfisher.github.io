@@ -2,8 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</loc>
+    <loc>https://blog.rustfisher.com/en/self-improvement/restart-brain-dopamine/</loc>
     
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
     
     <changefreq>monthly</changefreq>
@@ -23,21 +24,34 @@
     <loc>https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/</loc>
     
     <lastmod>2025-12-08</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/en/tags/index.html</loc>
+    <loc>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</loc>
     
-    <lastmod>2025-08-01</lastmod>
+    <lastmod>2025-12-31</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/</loc>
+    
+    <lastmod>2025-08-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+<<<<<<< HEAD
     <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -59,6 +73,29 @@
     <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_2.html</loc>
     
     <lastmod>2025-08-01</lastmod>
+=======
+    <loc>https://blog.rustfisher.com/en/about/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -76,7 +113,25 @@
   <url>
     <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_3.html</loc>
     
-    <lastmod>2025-08-01</lastmod>
+    <lastmod>2025-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_2.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_1.html</loc>
+    
+    <lastmod>2025-07-31</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,49 +140,88 @@
 
   <url>
     <loc>https://blog.rustfisher.com/en</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://blog.rustfisher.com/en/tags/self-improvement/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/dopamine/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/en/tags/AI/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/ChatGPT/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Gemini/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/DeepSeek/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Copilot/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/doubao/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -143,6 +237,9 @@
   <url>
     <loc>https://blog.rustfisher.com/en/tags/dopamine/</loc>
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -150,7 +247,15 @@
 
   
   <url>
+    <loc>https://blog.rustfisher.com/en/categories/self-improvement/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/en/categories/ai/</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -159,6 +264,9 @@
   <url>
     <loc>https://blog.rustfisher.com/en/categories/self-improvement/</loc>
     <lastmod>2026-03-24</lastmod>
+=======
+    <lastmod>2026-03-13</lastmod>
+>>>>>>> a7f19beedeb3dc813df399620c5f2de4339fbb90
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
