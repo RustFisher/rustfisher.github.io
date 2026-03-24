@@ -4,7 +4,25 @@
   <url>
     <loc>https://blog.rustfisher.com/en/ai/2025-ai-chat-tools/</loc>
     
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/self-improvement/restart-brain-dopamine/</loc>
+    
+    <lastmod>2026-03-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/ai/chatgpt-change-image-style/</loc>
+    
+    <lastmod>2025-12-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -20,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/en/about/index.html</loc>
+    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -29,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
+    <loc>https://blog.rustfisher.com/en/about/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -67,7 +85,7 @@
 
   <url>
     <loc>https://blog.rustfisher.com/en</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,35 +93,56 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/AI/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/ChatGPT/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Gemini/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/DeepSeek/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/Copilot/</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/doubao/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/self-improvement/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/dopamine/</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -112,7 +151,14 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/categories/ai/</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/categories/self-improvement/</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
