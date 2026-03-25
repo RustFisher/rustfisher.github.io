@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-03-11T06:59:57.867Z</updated>
+  <updated>2026-03-25T02:15:59.399Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sora宣布即将关闭sora App</title>
+    <link href="https://blog.rustfisher.com/news/news-sora-20260325/"/>
+    <id>https://blog.rustfisher.com/news/news-sora-20260325/</id>
+    <published>2026-03-25T02:15:59.000Z</published>
+    <updated>2026-03-25T02:15:59.399Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和索拉的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p>]]></content>
+    
+    
+    <summary type="html">我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和Sora的关系很重要，我们知道这个消息令人失望。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
+    
+  </entry>
   
   <entry>
     <title>重启大脑多巴胺系统：让自律变成快感的终极技巧</title>
@@ -440,33 +463,6 @@
     
     <category term="unclassified" scheme="https://blog.rustfisher.com/categories/unclassified/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>2021年11月总结</title>
-    <link href="https://blog.rustfisher.com/Summary/2021-11/"/>
-    <id>https://blog.rustfisher.com/Summary/2021-11/</id>
-    <published>2021-11-30T15:59:59.000Z</published>
-    <updated>2025-08-01T14:58:31.631Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><h3 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h3><ul><li><a href="https://an.rustfisher.com/android/jetpack/compose/compose-sample-proj1/">Jetpack Compose引入示例工程 | AnRFDev</a></li><li><a href="https://an.rustfisher.com/android/jetpack/compose/use-compose-in-proj/">现有工程使用Compose | AnRFDev</a></li><li><a href="https://an.rustfisher.com/android/ui/widget/seekbar/seekbar-custom-thumb-animation/">Android SeekBar 自定义thumb，thumb旋转动画效果 | AnRFDev</a></li></ul><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><ul><li><a href="https://www.bilibili.com/video/BV1oY411W7oa">【Android开发基础】03-改造初始工程 - bilibili</a><ul><li><a href="https://www.zhihu.com/zvideo/1447344528176455680">知乎视频</a></li></ul></li></ul><h2 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h2><ul><li><a href="https://an.rustfisher.com/webrtc/intro/concept-intro/">WebRTC概念简介 | AnRFDev</a></li><li><a href="https://an.rustfisher.com/webrtc/web-samples/getUserMedia-open-camera/">WebRTC打开本地摄像头 | AnRFDev</a></li><li><a href="https://an.rustfisher.com/webrtc/web-samples/canvas1/">WebRTC从摄像头获取图片传入canvas | AnRFDev</a></li><li><a href="https://an.rustfisher.com/webrtc/web-samples/css-filters/">WebRTC与CSS滤镜（filter） | AnRFDev</a></li></ul><h2 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h2><h3 id="华为云社区"><a href="#华为云社区" class="headerlink" title="华为云社区"></a>华为云社区</h3><ul><li><a href="https://bbs.huaweicloud.com/blogs/308726">如何快速得到一个在线问卷应用？｜【玩转应用魔方】</a></li><li><a href="https://bbs.huaweicloud.com/blogs/308935">华为云语音交互实战｜【我们都是华为云专家】</a></li><li><a href="https://bbs.huaweicloud.com/blogs/312616">【云驻共创】区块链技术是如何影响各个产业的？</a></li></ul>]]></content>
-    
-    
-    <summary type="html">Android文章、视频。WebRTC概念简介。以及华为云社区的一些更新。</summary>
-    
-    
-    
-    <category term="总结" scheme="https://blog.rustfisher.com/categories/%E6%80%BB%E7%BB%93/"/>
-    
-    
-    <category term="总结" scheme="https://blog.rustfisher.com/tags/%E6%80%BB%E7%BB%93/"/>
-    
-    <category term="Android" scheme="https://blog.rustfisher.com/tags/Android/"/>
-    
-    <category term="WebRTC" scheme="https://blog.rustfisher.com/tags/WebRTC/"/>
-    
-    <category term="华为云社区" scheme="https://blog.rustfisher.com/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91%E7%A4%BE%E5%8C%BA/"/>
     
   </entry>
   
