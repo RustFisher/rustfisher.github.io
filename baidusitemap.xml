@@ -53,14 +53,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/WebRTC/webRTC-concept-intro/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/fun/zt-cat-huati/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Web/hexo-themes_use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -69,11 +61,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/python3-send-email/</loc>
+    <loc>https://blog.rustfisher.com/WebRTC/webRTC-concept-intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/scrapy-hw-blog-record/</loc>
+    <loc>https://blog.rustfisher.com/fun/zt-cat-huati/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -86,6 +78,14 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Summary/2021-9/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Python/python3-send-email/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Python/scrapy-hw-blog-record/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -185,15 +185,15 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Pack_app/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Locale/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QFileDialog_use/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Pack_app/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -253,15 +253,15 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-Gesture_handle/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_Intl/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-Gesture_handle/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -309,11 +309,7 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -321,7 +317,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -353,6 +353,10 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Android/NDK-compile_import_a_file/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -366,10 +370,6 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Android/NDK-use_sample_2/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -433,11 +433,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Start/</loc>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Start/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -449,19 +449,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Broadcast_intro_use/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android/Android-Binder_mechanism_intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Camera_SurfaceView_TextureView_get_nv21/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Broadcast_intro_use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Android/Android-Camera_record_video_and_output/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Android-Camera_SurfaceView_TextureView_get_nv21/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -481,19 +481,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaMuxer_MediaExtractor_mp4/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-AsyncTask_use_and_RTFSC/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaMuxer_MediaExtractor_mp4/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Android/Android-AIDL_intro_and_use/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Android-AsyncTask_use_and_RTFSC/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
