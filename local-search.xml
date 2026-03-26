@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Google发布最新音频/语音大模型Gemini 3.1 Flash Live</title>
+    <link href="/news/news-gemini-3.1-flash-live-20260327/"/>
+    <url>/news/news-gemini-3.1-flash-live-20260327/</url>
+    
+    <content type="html"><![CDATA[<p>Google发布最新音频/语音大模型 <strong>Gemini 3.1 Flash Live</strong>。</p><p>专门为 Gemini Live 通话功能和实时语音交互设计。相比之前的版本，核心提升在于“像真人一样对话”的自然感和极低的延迟。</p><ul><li>它在嘈杂环境中完成任务和理解细节时表现更好。</li><li>它能跟着长时间的对话，这样用户不用重复自己。</li></ul><p>Gemini 3.1 Flash Live 现已在 Gemini Live 和 Search Live 中陆续推出。</p><p>对于普通用户</p><p>Gemini Live: 该模型已经开始推送到 Android 和 iOS 的 Gemini App 中。如果你点击右下角的“波形”图标进入 Live 模式，背后的驱动力正是这个新模型。</p><p>Search Live: 这一功能也随着 3.1 Flash Live 的发布在全球 200 多个国家上线，支持多语种的实时语音搜索交互。</p><p><img src="google-deepmind-x-gemini.png" alt="Google Deepmind"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/gemini</tag>
+      
+      <tag>news/google</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Meta 周三裁员约 700 人</title>
     <link href="/news/news-meta-20260326/"/>
     <url>/news/news-meta-20260326/</url>
@@ -101,9 +130,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>GPT-5</tag>
       
@@ -130,9 +159,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -159,9 +188,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI工具</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>Gemini</tag>
       
@@ -275,9 +304,9 @@
     
     <tags>
       
-      <tag>IT外传</tag>
-      
       <tag>掘金</tag>
+      
+      <tag>IT外传</tag>
       
     </tags>
     
@@ -913,9 +942,9 @@
       
       <tag>openpyxl</tag>
       
-      <tag>pyecharts</tag>
-      
       <tag>Excel</tag>
+      
+      <tag>pyecharts</tag>
       
     </tags>
     
