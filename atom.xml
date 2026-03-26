@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-03-25T02:22:48.341Z</updated>
+  <updated>2026-03-26T01:45:47.036Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Meta 周三裁员约 700 人</title>
+    <link href="https://blog.rustfisher.com/news/news-meta-20260326/"/>
+    <id>https://blog.rustfisher.com/news/news-meta-20260326/</id>
+    <published>2026-03-26T01:44:59.000Z</published>
+    <updated>2026-03-26T01:45:47.036Z</updated>
+    
+    <content type="html"><![CDATA[<p>据《纽约时报》报道，Meta 周三裁员约 700 人。这些裁员仅占这家科技巨头 78,000 名员工的一小部分。这是硅谷巨头将重点转向人工智能的最新裁员。</p><p>此次裁员影响Meta的招聘、社交媒体和销售团队，以及开发公司智能眼镜盒虚拟现实头显的Reality Labs部门。</p><p>Meta 预测今年将花费至少1150亿美元，主要用于人工智能，包括建设新数据中心以驱动这项技术。Zuckerberg还表示，人工智能将改变员工的工作方式，人工智能工具让更少员工完成更多工作。</p><p>参考来源： <a href="https://www.nytimes.com/2026/03/25/technology/meta-layoffs-ai-executives.html">https://www.nytimes.com/2026/03/25/technology/meta-layoffs-ai-executives.html</a></p>]]></content>
+    
+    
+    <summary type="html">Meta周三裁员约700人，涉及Reality Labs部门，这是硅谷巨头将重点转向人工智能的最新裁员。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/Meta" scheme="https://blog.rustfisher.com/tags/news-Meta/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sora宣布即将关闭sora App</title>
     <link href="https://blog.rustfisher.com/news/news-sora-20260325/"/>
     <id>https://blog.rustfisher.com/news/news-sora-20260325/</id>
     <published>2026-03-25T02:15:59.000Z</published>
-    <updated>2026-03-25T02:22:48.341Z</updated>
+    <updated>2026-03-26T01:46:55.271Z</updated>
     
-    <content type="html"><![CDATA[<p>Sora在X上发布推文</p><blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和索拉的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p><p><a href="https://sora.chatgpt.com/">sora.chatgpt.com</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Sora在X上发布推文</p><blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和Sora的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p><p><a href="https://sora.chatgpt.com/">sora.chatgpt.com</a></p>]]></content>
     
     
     <summary type="html">我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和Sora的关系很重要，我们知道这个消息令人失望。</summary>
@@ -34,6 +57,8 @@
     
     
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/Meta" scheme="https://blog.rustfisher.com/tags/news-Meta/"/>
     
     <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
     
@@ -77,9 +102,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
-    
     <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
+    
+    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
     
     <category term="GPT-5" scheme="https://blog.rustfisher.com/tags/GPT-5/"/>
     
@@ -102,9 +127,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
-    
     <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
+    
+    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
     
     <category term="ChatGPT学习模式" scheme="https://blog.rustfisher.com/tags/ChatGPT%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%BC%8F/"/>
     
@@ -127,9 +152,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="AI工具" scheme="https://blog.rustfisher.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
+    
+    <category term="AI工具" scheme="https://blog.rustfisher.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
     
     <category term="Gemini" scheme="https://blog.rustfisher.com/tags/Gemini/"/>
     
@@ -334,9 +359,9 @@
     <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
     
     
-    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
-    
     <category term="职业发展" scheme="https://blog.rustfisher.com/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
+    
+    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
     
   </entry>
   
@@ -357,9 +382,9 @@
     <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
     
     
-    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
-    
     <category term="职业发展" scheme="https://blog.rustfisher.com/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
+    
+    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
     
   </entry>
   
@@ -444,25 +469,6 @@
     
     
     <category term="读书笔记" scheme="https://blog.rustfisher.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网站资源迁移说明</title>
-    <link href="https://blog.rustfisher.com/unclassified/web-res-move-2023/"/>
-    <id>https://blog.rustfisher.com/unclassified/web-res-move-2023/</id>
-    <published>2023-01-18T08:32:32.000Z</published>
-    <updated>2023-05-05T08:32:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="网站迁移说明"><a href="#网站迁移说明" class="headerlink" title="网站迁移说明"></a>网站迁移说明</h1><p>博客站 blog.rustfisher.com 和教程站 an.rustfisher.com 的网站资源已经上传到github。</p><ul><li><a href="https://github.com/RustFisher/rustfisher.github.io">rustfisher.github.io - github</a></li><li><a href="https://github.com/AnRFDev/AnRFDev.github.io">AnRFDev.github.io - github</a></li></ul><p>并托管在cloudflare</p><ul><li><a href="an.rustfisher.com">an.rustfisher.com</a> -&gt; anrfdev-github-io.pages.dev</li><li><a href="blog.rustfisher.com">blog.rustfisher.com</a> -&gt; rustfisher-github-io.pages.dev</li></ul><p>若访问速度过慢，可考虑使用🪜</p><blockquote><p>mac终端配置使用<br>export http_proxy=<a href="http://127.0.0.1:7890">http://127.0.0.1:7890</a><br>export https_proxy=<a href="http://127.0.0.1:7890">http://127.0.0.1:7890</a></p></blockquote>]]></content>
-    
-    
-    <summary type="html">博客站 blog.rustfisher.com 和教程站 an.rustfisher.com 的网站资源已经上传到github。若访问速度过慢，可考虑使用🪜</summary>
-    
-    
-    
-    <category term="unclassified" scheme="https://blog.rustfisher.com/categories/unclassified/"/>
-    
     
   </entry>
   

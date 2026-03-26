@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>Sora宣布即将关闭sora App</title>
-    <link href="/news/news-sora-20260325/"/>
-    <url>/news/news-sora-20260325/</url>
+    <title>Meta 周三裁员约 700 人</title>
+    <link href="/news/news-meta-20260326/"/>
+    <url>/news/news-meta-20260326/</url>
     
-    <content type="html"><![CDATA[<p>Sora在X上发布推文</p><blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和索拉的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p><p><a href="https://sora.chatgpt.com/">sora.chatgpt.com</a></p>]]></content>
+    <content type="html"><![CDATA[<p>据《纽约时报》报道，Meta 周三裁员约 700 人。这些裁员仅占这家科技巨头 78,000 名员工的一小部分。这是硅谷巨头将重点转向人工智能的最新裁员。</p><p>此次裁员影响Meta的招聘、社交媒体和销售团队，以及开发公司智能眼镜盒虚拟现实头显的Reality Labs部门。</p><p>Meta 预测今年将花费至少1150亿美元，主要用于人工智能，包括建设新数据中心以驱动这项技术。Zuckerberg还表示，人工智能将改变员工的工作方式，人工智能工具让更少员工完成更多工作。</p><p>参考来源： <a href="https://www.nytimes.com/2026/03/25/technology/meta-layoffs-ai-executives.html">https://www.nytimes.com/2026/03/25/technology/meta-layoffs-ai-executives.html</a></p>]]></content>
     
     
     <categories>
@@ -21,6 +21,35 @@
     <tags>
       
       <tag>news</tag>
+      
+      <tag>news/Meta</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Sora宣布即将关闭sora App</title>
+    <link href="/news/news-sora-20260325/"/>
+    <url>/news/news-sora-20260325/</url>
+    
+    <content type="html"><![CDATA[<p>Sora在X上发布推文</p><blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和Sora的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p><p><a href="https://sora.chatgpt.com/">sora.chatgpt.com</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/Meta</tag>
       
       <tag>news/AI</tag>
       
@@ -72,9 +101,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>GPT-5</tag>
       
@@ -101,9 +130,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -130,9 +159,9 @@
     
     <tags>
       
-      <tag>AI工具</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI工具</tag>
       
       <tag>Gemini</tag>
       
@@ -373,9 +402,9 @@
     
     <tags>
       
-      <tag>掘金</tag>
-      
       <tag>职业发展</tag>
+      
+      <tag>掘金</tag>
       
     </tags>
     
@@ -400,9 +429,9 @@
     
     <tags>
       
-      <tag>掘金</tag>
-      
       <tag>职业发展</tag>
+      
+      <tag>掘金</tag>
       
     </tags>
     
