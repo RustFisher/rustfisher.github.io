@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-03-28T08:01:13.891Z</updated>
+  <updated>2026-03-31T09:36:10.963Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微软计划在泰国投资超过10亿美元（微软今日宣布大幅拓展与泰国的合作关系）</title>
+    <link href="https://blog.rustfisher.com/news/news-microsoft-20260331/"/>
+    <id>https://blog.rustfisher.com/news/news-microsoft-20260331/</id>
+    <published>2026-03-31T09:44:59.000Z</published>
+    <updated>2026-03-31T09:36:10.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>微软今日宣布大幅拓展与泰国的合作关系。此前，微软副董事长兼总裁布拉德·史密斯（Brad Smith）与泰国总理阿努廷·查恩维拉库尔在曼谷举行了会晤。2026年至2028年，微软计划在泰国投资超过 10 亿美元，用于云和人工智能基础设施建设及相关运营。这项投资是微软“ 以人工智能促进国家增长、繁荣和全球竞争力” 计划的核心内容，旨在支持可信赖且包容的云和人工智能技术普及，同时帮助数百万泰国公民提升各行各业的技能。</p><p>泰国总理阿努廷·查恩维拉库尔表示：“我们的目标是让泰国发展成为亚洲数字和人工智能经济的区域驱动力。为了实现这一目标，我们正致力于为未来几年奠定更坚实的基础——制定国家数字和人工智能战略，使我们的经济能够抓住新兴 S 型产业带来的机遇，同时使泰国人民具备充分利用先进技术的能力。微软今天的声明正是对这一努力的直接贡献，也是对泰国未来充满信心的明确体现。”</p><p>微软副董事长兼总裁布拉德·史密斯表示：“随着云计算和人工智能在经济增长和国家竞争力方面发挥核心作用，各国既需要获得世界一流的技术，也需要掌握将其应用于实际工作的知识和技能。微软很荣幸能够支持泰国构建安全云计算和人工智能的愿景，将值得信赖的基础设施、安全的平台和专业技能相结合，从而使人工智能的应用转化为真正的竞争力并创造就业机会。”</p><p>参考来源： <a href="https://news.microsoft.com/source/asia/2026/03/31/microsoft-deepens-thailand-partnership-with-more-than-us1-billion-investment-spanning-technology-trust-and-talent/">https://news.microsoft.com/source/asia/2026/03/31/microsoft-deepens-thailand-partnership-with-more-than-us1-billion-investment-spanning-technology-trust-and-talent/</a></p>]]></content>
+    
+    
+    <summary type="html">2026年至2028年，微软计划在泰国投资超过10亿美元，用于云和人工智能基础设施建设及相关运营。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/Microsoft" scheme="https://blog.rustfisher.com/tags/news-Microsoft/"/>
+    
+  </entry>
   
   <entry>
     <title>软银获得 400 亿美元贷款，以加大对 OpenAI 的投资</title>
@@ -106,9 +129,9 @@
     
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
     
-    <category term="news/Meta" scheme="https://blog.rustfisher.com/tags/news-Meta/"/>
-    
     <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
+    
+    <category term="news/Meta" scheme="https://blog.rustfisher.com/tags/news-Meta/"/>
     
   </entry>
   
@@ -300,9 +323,9 @@
     <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
     
     
-    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
-    
     <category term="IT外传" scheme="https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/"/>
+    
+    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
     
   </entry>
   
@@ -454,27 +477,6 @@
     
     
     <category term="读书笔记" scheme="https://blog.rustfisher.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>知乎上有意思的回答 - 汇总</title>
-    <link href="https://blog.rustfisher.com/fun/zt-zhihu-summary/"/>
-    <id>https://blog.rustfisher.com/fun/zt-zhihu-summary/</id>
-    <published>2023-05-30T09:45:59.000Z</published>
-    <updated>2025-08-01T14:58:31.749Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><a href="/fun/zt-zhihu-1/" title="知乎有趣的回答1">知乎有趣的回答1 - 不劳而获 | 中国空间站为什么要叫外国人来 | 邻居的猫 | 导师的话1 | 百度 gpt</a></li><li><a href="/fun/zt-zhihu-2/" title="知乎有趣的回答2">知乎有趣的回答2 - 烂尾楼没人管吗？ | 活下去的理由</a></li><li><a href="/fun/zt-zhihu-3/" title="知乎的回答截图3 - 自律">知乎的回答截图3 - 为什么想自律却自律不起来</a></li><li><a href="/fun/zt-zhihu-4/" title="知乎有趣的回答4 - 创业段子">知乎有趣的回答4 - 创业段子</a></li><li><a href="/fun/zt-zhihu-career-civil-1/" title="知乎职场回答 - 体制内1">知乎职场回答 - 体制内1</a></li><li><a href="/fun/zt-zhihu-career-job-1/" title="知乎职场回答1">知乎职场回答1</a></li><li><a href="/fun/zt-zhihu-life-health-1/" title="知乎回答 - 生活与健康1">知乎回答 - 生活与健康1</a></li><li><a href="/fun/zt-zhihu-why-people-said-we-need-to-study-hard/" title="知乎-为什么所有人都在告诉我好好学习？">知乎回答 - 为什么所有人都在告诉我好好学习？</a></li></ul>]]></content>
-    
-    
-    <summary type="html">收集一些知乎上有意思的回答，截图。职场篇。</summary>
-    
-    
-    
-    <category term="fun" scheme="https://blog.rustfisher.com/categories/fun/"/>
-    
-    
-    <category term="知乎" scheme="https://blog.rustfisher.com/tags/%E7%9F%A5%E4%B9%8E/"/>
     
   </entry>
   
