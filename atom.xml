@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-04-01T00:43:37.070Z</updated>
+  <updated>2026-04-01T00:55:56.701Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://blog.rustfisher.com/news/news-oracle-20260401/"/>
     <id>https://blog.rustfisher.com/news/news-oracle-20260401/</id>
     <published>2026-04-01T00:30:22.000Z</published>
-    <updated>2026-04-01T00:43:37.070Z</updated>
+    <updated>2026-04-01T00:55:56.701Z</updated>
     
-    <content type="html"><![CDATA[<p>Oracle此次裁员将影响2万至3万人，约占其全球员工总数的 18%。</p><p>受影响的地区：美国、印度、加拿大、墨西哥（以及其他一些国家）。</p><p>涵盖销售、咨询和支持等多个职能部门；部分岗位因人工智能技术重复而受到影响。核心云工程、人工智能基础设施和开发团队基本未受影响，或选择性地冻结了招聘。</p><p>影响：释放的现金（预计 80-100 亿美元）将用于 500 亿美元的 AI 数据中心资本支出。Oracle 加倍投入 AI/云基础设施领域，与微软/亚马逊展开竞争。短期内可能打击士气，面临人才风险；长期来看：如果执行到位，运营将更加精简，云利润率也将更高。</p><p><img src="Oracle-email.jpeg" alt="Oracle Email（裁员邮件）"></p><p>Oracle与OpenAI合作投资的项目<br><img src="oracle-x-0328.png" alt="Oracle与OpenAI合作投资的项目推文"></p><p>参考来源： <a href="https://www.wsj.com/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82">https://www.wsj.com/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Oracle此次裁员将影响2万至3万人，约占其全球员工总数的 18%。</p><p>受影响的地区：美国、印度、加拿大、墨西哥（以及其他一些国家）。</p><p>涵盖销售、咨询和支持等多个职能部门；部分岗位因人工智能技术重复而受到影响。核心云工程、人工智能基础设施和开发团队基本未受影响，或选择性地冻结了招聘。</p><p>影响：释放的现金（预计 80-100 亿美元）将用于 500 亿美元的 AI 数据中心资本支出。Oracle 加倍投入 AI/云基础设施领域，与微软/亚马逊展开竞争。短期内可能打击士气，面临人才风险；长期来看：如果执行到位，运营将更加精简，云利润率也将更高。</p><p><img src="Oracle-email.jpeg" alt="Oracle Email（裁员邮件）"></p><p>Oracle与OpenAI合作投资的项目<br><img src="oracle-x-0328.png" alt="Oracle与OpenAI合作投资的项目推文"></p><p>参考来源： <a href="https://www.wsj.com/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82">https://www.wsj.com/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82</a></p><p><img src="wsj-Oracle-Lays-Off-Workers.png" alt="Oracle Lays Off Workers Amid Heavy AI Investment - WSJ"></p>]]></content>
     
     
     <summary type="html">Oracle此次裁员将影响2万至3万人，约占其全球员工总数的 18%。涵盖销售、咨询和支持等多个职能部门。</summary>
@@ -196,9 +196,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
-    
     <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
+    
+    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
     
     <category term="GPT-5" scheme="https://blog.rustfisher.com/tags/GPT-5/"/>
     
@@ -221,9 +221,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
-    
     <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
+    
+    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
     
     <category term="ChatGPT学习模式" scheme="https://blog.rustfisher.com/tags/ChatGPT%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%BC%8F/"/>
     
@@ -246,9 +246,9 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
-    
     <category term="AI工具" scheme="https://blog.rustfisher.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
     
     <category term="Gemini" scheme="https://blog.rustfisher.com/tags/Gemini/"/>
     
@@ -346,9 +346,9 @@
     <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
     
     
-    <category term="IT外传" scheme="https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/"/>
-    
     <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
+    
+    <category term="IT外传" scheme="https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/"/>
     
   </entry>
   

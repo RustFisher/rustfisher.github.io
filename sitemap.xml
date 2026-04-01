@@ -119,6 +119,24 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/categories/index.html</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/art/py/op-funnel/funnel_chart_3.html</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/about/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -137,25 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/art/py/op-funnel/funnel_chart_3.html</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/art/py/op-funnel/funnel_chart_2.html</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/categories/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -290,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Ts/ts-singleton-pattern/</loc>
+    <loc>https://blog.rustfisher.com/Summary/2021-9/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -299,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Summary/2021-9/</loc>
+    <loc>https://blog.rustfisher.com/Ts/ts-singleton-pattern/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -362,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-op-excel_openpyxl_use/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -371,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-op-excel_openpyxl_use/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -398,15 +398,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt5-Custom_QWidget/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/PyQt_note/Python-PyQt5_Python351_install/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -416,16 +407,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Python/Python-adb-use/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt5-Custom_QWidget/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -443,7 +425,16 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-logging-use/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-adb-use/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -453,6 +444,15 @@
   
   <url>
     <loc>https://blog.rustfisher.com/Python/Python-dictionary-JSON-file/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Python/Python-logging-use/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -488,15 +488,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyCharm-Install_and_config/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Drag_and_drop/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -506,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Install_licensed_PyQt/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyCharm-Install_and_config/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -533,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QFileDialog_use/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Install_licensed_PyQt/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -543,6 +534,15 @@
   
   <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QMainWindow_simple_practice/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QFileDialog_use/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -614,25 +614,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Miniprogram/wx-mini-css_center_tutorial/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/Linux/awk-use/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Linux/find-use/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -651,6 +633,24 @@
   
   <url>
     <loc>https://blog.rustfisher.com/Linux/grep_note/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Linux/find-use/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Miniprogram/wx-mini-css_center_tutorial/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -704,7 +704,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-Layout_common_widgets/</loc>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-Load_image_from_network/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -722,7 +722,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-project_common_questions/</loc>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-Layout_common_widgets/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -731,7 +731,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-Load_image_from_network/</loc>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-project_common_questions/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -758,15 +758,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-miniapp-all/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-learn/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -785,34 +776,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Listener_pattern_practice_in_Java_Android/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-miniapp-all/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -830,7 +794,34 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/DesignPattern/Listener_pattern_practice_in_Java_Android/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -848,7 +839,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Mac/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -866,6 +857,15 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Mac/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/Career/zt-zhihu-68467783-answer-2560111521/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -875,7 +875,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-to-target/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-anywhere/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -884,7 +884,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-anywhere/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-to-target/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -911,7 +911,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-on-the-way-out-615370768790158/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -920,7 +920,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-on-the-way-out-615370768790158/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -983,24 +983,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_audio/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_speed/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -1019,7 +1001,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -1028,7 +1010,16 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file_partial/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_audio/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -1046,25 +1037,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-mmap_intro_and_use/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Basic_Build_Customization/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file_partial/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -1082,7 +1055,34 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Basic_Build_Customization/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Start/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/Android/Android-mmap_intro_and_use/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -1127,6 +1127,15 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/Android/Android-Camera_record_video_and_output/</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/Android/Android-Camera_SurfaceView_TextureView_get_nv21/</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -1137,15 +1146,6 @@
   
   <url>
     <loc>https://blog.rustfisher.com/Android/Android-Handler_src_note/</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Camera_record_video_and_output/</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -1267,14 +1267,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/</loc>
+    <loc>https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/</loc>
+    <loc>https://blog.rustfisher.com/tags/IT%E5%A4%96%E4%BC%A0/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1295,13 +1295,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/AIDL/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/tags/Android-View/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1309,7 +1302,21 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/tags/AIDL/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/tags/Android-Media/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/Thread/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1324,13 +1331,6 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/Android-Broadcast/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/Thread/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1372,13 +1372,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/Network/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/tags/network/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1393,7 +1386,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/mmap/</loc>
+    <loc>https://blog.rustfisher.com/tags/Network/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1414,7 +1407,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://blog.rustfisher.com/tags/mmap/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1442,7 +1442,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://blog.rustfisher.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1450,20 +1450,6 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/ENVI/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/css/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1484,20 +1470,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/MongoDB/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/tags/Shell/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1512,6 +1484,20 @@
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/tags/MongoDB/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rustfisher.com/tags/http/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1520,6 +1506,20 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/css/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1645,7 +1645,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/AI/</loc>
+    <loc>https://blog.rustfisher.com/tags/AI%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1653,20 +1653,6 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/ChatGPT/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/GPT-5/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/tags/AI%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1709,6 +1695,20 @@
   
   <url>
     <loc>https://blog.rustfisher.com/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/AI/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/tags/GPT-5/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1785,14 +1785,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/%E7%BB%8F%E6%B5%8E/</loc>
+    <loc>https://blog.rustfisher.com/tags/nga/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/tags/nga/</loc>
+    <loc>https://blog.rustfisher.com/tags/%E7%BB%8F%E6%B5%8E/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1885,14 +1885,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/categories/Design-pattern/</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/categories/Database/</loc>
+    <loc>https://blog.rustfisher.com/categories/Web-note/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1906,7 +1899,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/categories/Web-note/</loc>
+    <loc>https://blog.rustfisher.com/categories/Database/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/categories/Design-pattern/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1990,14 +1990,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/categories/ai/</loc>
+    <loc>https://blog.rustfisher.com/categories/WebRTC/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/categories/WebRTC/</loc>
+    <loc>https://blog.rustfisher.com/categories/ai/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
