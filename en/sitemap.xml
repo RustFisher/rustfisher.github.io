@@ -56,15 +56,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
-    
-    <lastmod>2025-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_1.html</loc>
     
     <lastmod>2025-08-01</lastmod>
@@ -74,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_3.html</loc>
+    <loc>https://blog.rustfisher.com/en/categories/index.html</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -84,6 +75,15 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_2.html</loc>
+    
+    <lastmod>2025-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/art/py/op-funnel/funnel_chart_3.html</loc>
     
     <lastmod>2025-08-01</lastmod>
     
@@ -101,27 +101,6 @@
 
   
   <url>
-    <loc>https://blog.rustfisher.com/en/tags/self-improvement/</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/en/tags/dopamine/</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rustfisher.com/en/tags/AI/</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rustfisher.com/en/tags/ChatGPT/</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -130,6 +109,13 @@
   
   <url>
     <loc>https://blog.rustfisher.com/en/tags/Gemini/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/tags/AI/</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -156,17 +142,31 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://blog.rustfisher.com/en/categories/self-improvement/</loc>
+    <loc>https://blog.rustfisher.com/en/tags/self-improvement/</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
+    <loc>https://blog.rustfisher.com/en/tags/dopamine/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
     <loc>https://blog.rustfisher.com/en/categories/ai/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rustfisher.com/en/categories/self-improvement/</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
