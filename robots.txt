@@ -1,3 +1,4 @@
 User-Agent: *
 Allow: /
 Sitemap: https://blog.rustfisher.com/sitemap.xml
+Sitemap: https://blog.rustfisher.com/en/sitemap.xml
