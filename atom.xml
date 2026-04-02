@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-04-01T00:55:56.701Z</updated>
+  <updated>2026-04-02T00:17:57.889Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微软宣布在2025至2029年在新加坡投资55亿美元</title>
+    <link href="https://blog.rustfisher.com/news/news-microsoft-20260402/"/>
+    <id>https://blog.rustfisher.com/news/news-microsoft-20260402/</id>
+    <published>2026-04-02T00:12:59.000Z</published>
+    <updated>2026-04-02T00:17:57.889Z</updated>
+    
+    <content type="html"><![CDATA[<p>微软承诺从2025年到2029年的五年内，在新加坡投入 <strong>55亿美元</strong>（约70亿新元）。<br>这笔资金将用于扩建云服务和人工智能（AI）基础设施，以及支持新加坡的日常运营。这是微软在新加坡迄今为止最大的一笔单项投资，旨在满足当地对 AI 应用日益增长的需求。</p><p>新加坡所有大专院校及职业培训机构的学生（约20万人）将获得为期一年的免费 <strong>Microsoft 365 Premium 订阅</strong>。<br>该订阅包含 <strong>Microsoft 365 Copilot</strong>，学生可以在 Word、Excel、PowerPoint、Outlook 和 OneNote 等工具中直接使用 AI 助手进行草拟、总结和分析工作，旨在提升其未来职场的竞争力。</p><p>微软推出了两个针对特定群体的新项目，以提升新加坡社会的 AI 熟练度：</p><ul><li><strong>Microsoft Elevate for Educators（面向教育者）：</strong> 为中小学及高等教育机构的教师提供免费的 AI 培训，帮助他们学习如何在课堂中负责任、自信地使用 AI 技术。</li><li><strong>Microsoft Elevate for Changemakers（面向公益组织）：</strong> 针对非营利组织和社会影响领域的领导者，提供实际的 AI 技能培训，帮助他们利用技术更好地服务社区。</li></ul><p><img src="microsoft-in-singapore.png" alt="图片来自Microsoft官网"></p><p>参考来源： </p><ul><li><a href="https://news.microsoft.com/source/asia/2026/04/01/microsoft-announces-5-5-billion-spend-and-new-microsoft-elevate-programs-to-support-every-tertiary-student-educator-and-nonprofit-to-power-singapores-ai-future/">https://news.microsoft.com/source/asia/2026/04/01/microsoft-announces-5-5-billion-spend-and-new-microsoft-elevate-programs-to-support-every-tertiary-student-educator-and-nonprofit-to-power-singapores-ai-future/</a></li><li><a href="https://www.wsj.com/tech/ai/microsoft-plans-to-invest-5-5-billion-in-singapore-by-2029-4cea3448">https://www.wsj.com/tech/ai/microsoft-plans-to-invest-5-5-billion-in-singapore-by-2029-4cea3448</a></li></ul><p>相关新闻：<a href="https://blog.rustfisher.com/news/news-microsoft-20260331/">微软计划在泰国投资超过10亿美元（微软今日宣布大幅拓展与泰国的合作关系）</a></p>]]></content>
+    
+    
+    <summary type="html">微软承诺从2025年到2029年的五年内，在新加坡投入55亿美元。这笔资金将用于扩建云服务和人工智能（AI）基础设施，以及支持新加坡的日常运营。这是微软在新加坡迄今为止最大的一笔单项投资，旨在满足当地对 AI 应用日益增长的需求。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/Microsoft" scheme="https://blog.rustfisher.com/tags/news-Microsoft/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle裁员2万至3万人</title>
@@ -447,29 +470,6 @@
     
     
     <summary type="html">经常看到一些互联网公司，尤其是创业公司，宣传自己的年轻员工占比高，公司充满活力。久而久之，大家都开始习惯这套说辞，认为一家公司有没有活力的标志就是年轻人多不多。可是当我们说一家公司充满活力时，到底在说什么？我们是在说这家公司员工的体力充沛么？肯定不是，毕竟我们不用比拼打螺丝的速度，也不用比拼抡大锤的力度。再说，抡大锤，小年轻们不一定比得过中年大叔呢。</summary>
-    
-    
-    
-    <category term="职业发展" scheme="https://blog.rustfisher.com/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
-    
-    
-    <category term="职业发展" scheme="https://blog.rustfisher.com/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
-    
-    <category term="掘金" scheme="https://blog.rustfisher.com/tags/%E6%8E%98%E9%87%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>技术并不一定比其他高级（通往自由之路｜稀土掘金）</title>
-    <link href="https://blog.rustfisher.com/Career/zt-juejin-tech-is-not-so-high-level/"/>
-    <id>https://blog.rustfisher.com/Career/zt-juejin-tech-is-not-so-high-level/</id>
-    <published>2023-11-24T15:12:59.000Z</published>
-    <updated>2025-08-01T14:58:31.494Z</updated>
-    
-    <content type="html"><![CDATA[<div class="note note-quote">            <p>作者：通往自由之路<br>链接：<a href="https://juejin.cn/post/7304598711991795750">https://juejin.cn/post/7304598711991795750</a><br>来源：稀土掘金</p>          </div><p>这里的技术可以是计算机或者别的什么技术。当然首先指的是开发技术。</p><p>很长一段时间里，就我个人有一种天然的技术高于其他的感觉，虽未明示，但骨子里有一种谦虚的傲慢。认为开发高于产品、设计、测试等。</p><p>不知道其他人是否有过这种想法。或者我觉得那种典型的技术人的思维，要么思维不够开放，要么就是一种谦虚的傲慢。</p><p>这种傲慢最可怕的是因为漠视掉其它的价值，导致技术人的格局不够。格局不够会看不到更大世界的运行规律，导致无法做出更加正确的决策。有一副著名的对联</p><p>能攻心则反侧自消,自古知兵非好战</p><p>不审势即宽严皆误,后来治蜀要深思</p><p>我觉得这是对格局不够后果最直接准确的描述：宽严皆误。说下我是怎么想到技术并不一定比其他高级的？</p><p>前几天群里同组的同学@我让我改一篇文章，我才知道公司开始举办一年一度的一年一词活动，开始面向全体征稿。第一年的时候我参与了，但没有选中。第二年没有参与。</p><p>我看了下同组同学那篇文章，觉得不怎么滴啊，也是这激起我的求胜心，决定自己写一篇，今年再参加一次。于是那天下午我就写完了初稿。初稿的题目是造轮子，第一句</p><blockquote><p>一般来说说造轮子的都是程序员，因为开发从某个意义上来讲就是在重复造轮子，亦如太阳底下没有新鲜事，也亦如任何历史都是当代史。</p></blockquote><p>为了能够被选上，我认真又做了几次修改，重读了几次。我有点福至心灵的发现我在开发上犯了一个错误，就是我似乎一直认为技术才是最重要的，不管是有意无意的，这是事实。但是开发从某个意义上来讲就是在重复造轮子，正如太阳底下没有新鲜事，也亦如任何历史都是当代史，技术和其他一样，也是重复的单元。</p><p>要想尽快搞清楚技术，只要找到其中代表性的重复单元就可以了。而实际也早就有人总结了这些单元，比如功能单元的代表各种ui组件库，业务单元的代表往往是对功能单元的再加工。好比功能单元是原型机，而业务单元是定制化。</p><p>前几天也看到一篇文章的题目《不过是享受了互联网的十年红利期而已》。遂想到行业高速发展时期，技术实现是第一位的；但行业进入饱和期，产品、运营应该才是创造利润的关键。正如计算机底层技术开发人员，过了计算机技术爆发的年代，反倒不如业务开发赚的多。</p><p>这一切的一切不过是特定时期的表现。技术并不一定比其他高级，现在就是技术不再处于第一优先级的时刻。</p>]]></content>
-    
-    
-    <summary type="html">很长一段时间里，就我个人有一种天然的技术高于其他的感觉，虽未明示，但骨子里有一种谦虚的傲慢。认为开发高于产品、设计、测试等。不知道其他人是否有过这种想法。或者我觉得那种典型的技术人的思维，要么思维不够开放，要么就是一种谦虚的傲慢。</summary>
     
     
     
