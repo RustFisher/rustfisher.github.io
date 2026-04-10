@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-04-03T08:47:37.747Z</updated>
+  <updated>2026-04-10T01:19:50.148Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenAI推出100美元每月的Codex Pro套餐</title>
+    <link href="https://blog.rustfisher.com/news/news-openai-20260410-codex-price/"/>
+    <id>https://blog.rustfisher.com/news/news-openai-20260410-codex-price/</id>
+    <published>2026-04-10T01:17:22.000Z</published>
+    <updated>2026-04-10T01:19:50.148Z</updated>
+    
+    <content type="html"><![CDATA[<p>OpenAI推出了全新的每月100美元的专业版套餐。<br>该套餐提供的Codex使用量是Plus套餐的5倍，最适合长时间、高强度的Codex使用。</p><p>在ChatGPT中，这个新的Pro版本仍然提供所有Pro功能的访问权限，包括专属的Pro模型以及对即时模型和思考模型的无限访问权限。</p><p><img src="openai-plan-202604.png" alt="OpenAI"></p><p><img src="openai-codex-price-202604.png" alt="Codex price"></p><p>参考来源： <a href="https://developers.openai.com/codex/pricing">https://developers.openai.com/codex/pricing</a></p>]]></content>
+    
+    
+    <summary type="html">OpenAI推出了全新的每月100美元的专业版套餐。该套餐提供的Codex使用量是Plus套餐的5倍，最适合长时间、高强度的Codex使用。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/OpenAI" scheme="https://blog.rustfisher.com/tags/news-OpenAI/"/>
+    
+  </entry>
   
   <entry>
     <title>Microsoft将在2026年至2029在日本投资100亿美元，用于人工智能基础设施和网络安全</title>
@@ -453,27 +476,6 @@
     
     
     <summary type="html">猫站在滑滑梯上，有点为难。滑滑梯是小孩玩的，可猫既不是小孩，也不是小猫了。</summary>
-    
-    
-    
-    <category term="散文" scheme="https://blog.rustfisher.com/categories/%E6%95%A3%E6%96%87/"/>
-    
-    
-    <category term="散文" scheme="https://blog.rustfisher.com/tags/%E6%95%A3%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>外婆在拔花生，外婆种的花生不多（抖音）</title>
-    <link href="https://blog.rustfisher.com/fun/zt-douyin-waipodehuasheng/"/>
-    <id>https://blog.rustfisher.com/fun/zt-douyin-waipodehuasheng/</id>
-    <published>2024-01-14T15:47:59.000Z</published>
-    <updated>2025-08-01T14:58:31.640Z</updated>
-    
-    <content type="html"><![CDATA[<div class="note note-quote">            <p>来源：抖音</p>          </div><p>外婆在拔花生，外婆种的花生不多。</p><p>也不是花生不多，是外婆的地不多。</p><p>说是外婆的地，一直以来，外婆都没有地，别人瞧不上丢掉的荒芜的边边角角，就是外婆的地。</p><p>有时候外婆辛辛苦苦除草、松土，好不容易整理出来一小块，别人又会占回去，也不能说占，因为本来就是人家的，他们本来瞧不上那些边边角角，可外婆整理了、像样了，他们又瞧上了。</p><p>从来都是如此，一些不起眼的东西，一旦别人瞧上，就是好东西。</p><p>从我记事起，外婆就是到处平地，好不容易平出来的一小片地，别人说收就收回去，外婆似乎也习惯了，这里不行，就去别处。</p><p>外婆就是用这些别人瞧不上丢掉的边边角角，养活了我父母瞧不上丢掉的我。</p>]]></content>
-    
-    
-    <summary type="html">外婆在拔花生，外婆种的花生不多。也不是花生不多，是外婆的地不多。说是外婆的地，一直以来，外婆都没有地，别人瞧不上丢掉的荒芜的边边角角，就是外婆的地。</summary>
     
     
     
