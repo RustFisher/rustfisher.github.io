@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/news/news-us-maine-bill-20260415/</loc>
+    <lastmod>2026-04-15</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/news/news-stanford-ai-report-202604/</loc>
     <lastmod>2026-04-14</lastmod>
   </url>
@@ -181,11 +185,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-adb-use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-adb-use/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -249,11 +253,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/NestJS/nestjs-static-file/</loc>
+    <loc>https://blog.rustfisher.com/NestJS/nest-devops/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/NestJS/nest-devops/</loc>
+    <loc>https://blog.rustfisher.com/NestJS/nestjs-static-file/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -262,6 +266,14 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/MongoDB/mongodb-install-deploy/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Kotlin/kotlin-breif-intro/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Miniprogram/wx-mini-css_center_tutorial/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -278,14 +290,6 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Linux/grep_note/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Miniprogram/wx-mini-css_center_tutorial/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Kotlin/kotlin-breif-intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -345,11 +349,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
+    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
+    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -357,11 +361,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-postion-and-cvt/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -373,15 +385,7 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-postion-and-cvt/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Career/zt-zhihu-68467783-answer-2560111521/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-anywhere/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -389,7 +393,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-anywhere/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-zhihu-68467783-answer-2560111521/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -398,6 +406,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Android/NDK-read_write_file/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_1/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -425,14 +437,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_1/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_audio/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -441,11 +445,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_cancel_request/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_cancel_request/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -509,11 +513,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Intent_extra_size_limit/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-IntentService-intro1/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-IntentService-intro1/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Intent_extra_size_limit/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
