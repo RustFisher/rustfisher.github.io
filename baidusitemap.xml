@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/news/google-prepay-for-the-gemini-api-20260416/</loc>
+    <lastmod>2026-04-16</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/news/news-stanford-ai-report-202604/</loc>
+    <lastmod>2026-04-16</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/reading/promotion/fake-being-happy-and-look-for-the-positive-in-each-situation/</loc>
     <lastmod>2026-04-15</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/news/news-us-maine-bill-20260415/</loc>
     <lastmod>2026-04-15</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/news/news-stanford-ai-report-202604/</loc>
-    <lastmod>2026-04-14</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/news/news-openai-20260410-codex-price/</loc>
@@ -125,10 +129,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Ts/ts-singleton-pattern/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Summary/2021-11/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -138,6 +138,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Summary/2021-9/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Ts/ts-singleton-pattern/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -169,19 +173,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Python/Python-openpyxl_tutorial/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-openpyxl_charts_Bar_and_Column/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Python/Python-adb-use/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -273,10 +277,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Kotlin/kotlin-breif-intro/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Linux/awk-use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -290,6 +290,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Linux/grep_note/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Kotlin/kotlin-breif-intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -341,15 +345,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-learn/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-miniapp-all/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-learn/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-web-tools/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -361,10 +369,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -373,11 +377,7 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-postion-and-cvt/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
+    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Windows/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -385,7 +385,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Windows/</loc>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-postion-and-cvt/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/CocosCreator/ccc-touch-event/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -398,6 +402,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/CocosCreator/ccc-drag-to-target/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -421,15 +429,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Career/zt-cnblog-soft-engineer-work-thinking/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>

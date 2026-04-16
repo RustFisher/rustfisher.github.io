@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Google宣布Gemini API预付费结算功能逐步启用</title>
+    <link href="/news/google-prepay-for-the-gemini-api-20260416/"/>
+    <url>/news/google-prepay-for-the-gemini-api-20260416/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>Today, we are announcing Prepay Billing in Google AI Studio, a significant update to how you can pay for the Gemini API. This feature offers increased spend predictability and a simplified workflow for both prototyping and scaling applications. Prepay Billing is available in AI Studio for new Google Cloud Billing Accounts in the US that enable the Gemini API, with a global rollout in the coming weeks.</p></blockquote><p>今天，我们宣布预付费账单 Google AI Studio 对 Gemini API 的付费方式进行了重大更新。此功能可提高支出可预测性，并简化原型设计和应用扩展的工作流程。</p><p>预付费结算功能目前已在美国面向启用 Gemini API 的新 Google Cloud 结算帐户开放，并将于未来几周内在全球范围内推出。</p><p><img src="google-x-2026-4-16.png" alt="google-x"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/google</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>斯坦福大学人类中心人工智能研究所（Stanford HAI）发布2026年人工智能指数报告</title>
     <link href="/news/news-stanford-ai-report-202604/"/>
     <url>/news/news-stanford-ai-report-202604/</url>
@@ -292,9 +319,9 @@
       
       <tag>news</tag>
       
-      <tag>news/gemini</tag>
-      
       <tag>news/google</tag>
+      
+      <tag>news/gemini</tag>
       
     </tags>
     
@@ -400,9 +427,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>GPT-5</tag>
       
@@ -429,9 +456,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -458,9 +485,9 @@
     
     <tags>
       
-      <tag>AI工具</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI工具</tag>
       
       <tag>Gemini</tag>
       
