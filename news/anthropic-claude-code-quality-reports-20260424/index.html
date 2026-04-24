@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="追踪了近期有关 Claude Code 质量问题的报告，发现这些问题源于三项不同的变更。以下是变更详情以及我们正在进行的更改。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anthropic 关于近期 Claude Code 质量报告的最新进展">
+<meta property="og:url" content="https://blog.rustfisher.com/news/anthropic-claude-code-quality-reports-20260424/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="追踪了近期有关 Claude Code 质量问题的报告，发现这些问题源于三项不同的变更。以下是变更详情以及我们正在进行的更改。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/news/anthropic-claude-code-quality-reports-20260424/an-cover.png">
+<meta property="article:published_time" content="2026-04-24T06:32:59.000Z">
+<meta property="article:modified_time" content="2026-04-24T06:57:12.727Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="news">
+<meta property="article:tag" content="news&#x2F;anthropic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/news/anthropic-claude-code-quality-reports-20260424/an-cover.png">
+  
+  
+  
+  <title>Anthropic 关于近期 Claude Code 质量报告的最新进展 - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/news/" target="_self">
+                <i class="iconfont icon-notebook"></i>
+                <span>news</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.an.rustfisher.com" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/en/" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Anthropic 关于近期 Claude Code 质量报告的最新进展"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-24 14:32" pubdate>
+          2026年4月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Anthropic 关于近期 Claude Code 质量报告的最新进展</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年4月24日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>An update on recent Claude Code quality reports</strong></p>
+<p>部分用户反映 Claude 的响应速度变慢的报告。经查，这些报告源于三项不同的变更，分别影响了 Claude Code、Claude Agent SDK 和 Claude Cowork。API 未受影响。<br>截至 4 月 20 日（v2.1.116），所有三个问题均已解决。</p>
+<h2 id="三个不同的问题"><a href="#三个不同的问题" class="headerlink" title="三个不同的问题"></a>三个不同的问题</h2><ul>
+<li><p>3 月 4 日，我们将 Claude Code 的默认推理难度从 high medium 为中，以减少部分用户在 high 模式下遇到的过长延迟（延迟甚至导致界面卡顿）。但这一调整并不理想。4 月 7 日，在用户反馈他们更倾向于默认使用较高智能级别，并在处理简单任务时选择较低难度后，我们撤销了这一更改。此次调整影响了 Sonnet 4.6 和 Opus 4.6 版本。</p>
+</li>
+<li><p>3 月 26 日，我们发布了一项更改，旨在清除闲置超过一小时的会话中克劳德的旧思路，以减少用户恢复这些会话时的延迟。但一个错误导致此操作在会话剩余时间内每回合都会重复执行，而不是只执行一次，这使得克劳德看起来健忘且重复。我们已于 4 月 10 日修复了此问题。此问题影响了 Sonnet 4.6 和 Opus 4.6 版本。</p>
+</li>
+<li><p>4 月 16 日，我们添加了一条系统提示指令以减少冗余信息。但由于与其他提示信息的更改，该指令降低了代码质量，因此我们在 4 月 20 日撤销了该更改。此次更改影响了 Sonnet 4.6、Opus 4.6 和 Opus 4.7 版本。</p>
+</li>
+</ul>
+<p>这并非用户应有的 Claude Code 使用体验。自 4 月 23 日起，我们将重置所有订阅用户的使用限制。</p>
+<h2 id="修改默认推理难度"><a href="#修改默认推理难度" class="headerlink" title="修改默认推理难度"></a>修改默认推理难度</h2><p>今年 2 月，我们在 Claude Code 中发布 Opus 4.6 时，将默认推理难度设置为 high 。</p>
+<p>不久之后，我们收到用户反馈，Claude Opus 4.6 在高负荷模式下偶尔会思考时间过长，导致用户界面看起来冻结，并导致这些用户出现不成比例的延迟和令牌使用。</p>
+<p>一般来说，模型思考的时间越长，输出结果就越好。Claude Code 通过“工作量级别”功能，让用户能够权衡这种权衡——更多的思考时间与更低的延迟和更少的使用限制。在为模型校准工作量级别时，我们会考虑这种权衡，以便在测试时间-计算时间曲线上选择能够为用户提供最佳选择范围的点。在产品层，我们会选择这条曲线上的哪个点作为默认值，并将该值作为工作量参数发送给 Messages API；然后，我们通过 <code>/effort</code> 提供其他选项。</p>
+<p>在我们的内部评估和测试中，中等难度模式在大多数任务中实现了略低的智能水平，但延迟却显著降低。它也避免了偶尔出现的思考时间过长的问题，并有助于最大限度地利用用户的使用次数。因此，我们推出了一项更改，将中等难度模式设为默认模式，并通过产品内对话框解释了更改原因。</p>
+<p>Claude Code 上线不久，用户就开始反映它的智能程度有所下降。我们进行了多次设计迭代，使当前的难度设置更加清晰，以便提醒用户可以更改默认设置（例如在启动时显示提示、添加内联难度选择器以及恢复超智能模式），但大多数用户仍然保留了中等难度的默认设置。</p>
+<p>在听取了更多用户的反馈后，我们于 4 月 7 日撤销了这一决定。现在，所有用户在 Opus 4.7 上默认使用 <code>xhigh</code> 模式，在所有其他型号上默认使用 <code>high</code> 模式。</p>
+<h2 id="缓存优化放弃了先前的推理"><a href="#缓存优化放弃了先前的推理" class="headerlink" title="缓存优化放弃了先前的推理"></a>缓存优化放弃了先前的推理</h2><p>当 Claude 推理完成一项任务时，该推理过程通常会保存在对话历史记录中，以便在后续的每一次操作中，Claude 都能看到它为什么进行了相应的编辑和工具调用。</p>
+<p>3 月 26 日，我们发布了一项旨在提升该功能效率的更新。我们使用提示缓存来降低用户连续 API 调用的成本并加快速度。Claude 在发出 API 请求时会将输入令牌写入缓存，一段时间不活动后，该提示将从缓存中移除，从而为其他提示腾出空间。我们对缓存利用率进行了谨慎管理（更多详情请参见我们的方案 ）。</p>
+<p>设计原本应该很简单：如果会话闲置超过一小时，我们可以通过清除旧的推理记录来降低用户恢复会话的成本。由于无论如何都会出现缓存未命中，我们可以从请求中剔除不必要的消息，从而减少发送到 API 的未缓存令牌的数量。之后，我们会恢复发送完整的推理历史记录。为此，我们使用了 <code>clear_thinking_20251015</code> API 标头以及 <code>keep:1</code> 。</p>
+<p>该实现存在一个漏洞。它没有只清除一次思维历史记录，而是在会话剩余时间内的每个回合都清除了它。当会话超过空闲阈值后，后续的每个请求都会指示 API 只保留最新的推理数据块，并丢弃之前的所有数据。这导致问题更加严重：如果在 Claude 使用工具的过程中发送后续消息，则会在“已损坏”标记下启动一个新的回合，因此即使是当前回合的推理也会被丢弃。Claude 会继续执行，但会越来越忘记它为什么选择执行当前操作。这就是用户报告的健忘、重复和奇怪的工具选择等问题。</p>
+<p>由于这会持续地将逻辑块从后续请求中移除，导致这些请求也出现缓存未命中。我们认为这正是导致使用限额消耗速度超出预期的独立报告的原因。</p>
+<p>两个不相关的实验使我们一开始很难重现这个问题：一个是与消息队列相关的内部服务器端实验；另一个是我们在显示思路方面做出的一个正交变化，这个变化抑制了大多数 CLI 会话中的这个错误，因此即使在测试外部构建时，我们也没有发现它。</p>
+<p>这个 bug 出现在 Claude Code 的上下文管理、Anthropic API 和扩展思维的交汇处。它引入的更改通过了多次人工和自动化代码审查，以及单元测试、端到端测试、自动化验证和内部测试。再加上它只在极端情况下（陈旧会话）出现，而且难以重现，我们花了超过一周的时间才发现并确认了根本原因。</p>
+<p>作为调查的一部分，我们使用 Opus 4.7 对存在问题的拉取请求进行了代码审查回测。在提供收集完整上下文所需的代码仓库后，Opus 4.7 发现了该错误，而 Opus 4.6 则未能发现。为了防止此类情况再次发生，我们现在正在为代码审查添加对更多代码仓库作为上下文的支持。</p>
+<p>我们在 4 月 10 日的 v2.1.101 版本中修复了这个漏洞。</p>
+<h2 id="系统提示更改以减少冗长内容"><a href="#系统提示更改以减少冗长内容" class="headerlink" title="系统提示更改以减少冗长内容"></a>系统提示更改以减少冗长内容</h2><p>我们最新的模型 Claude Opus 4.7 相对于其前代产品有一个显著的行为特点：正如我们在发布时所写 ，它的输出信息往往非常冗长。这使得它在处理难题时更加智能，但也产生了更多的输出标记。</p>
+<p>在 Opus 4.7 发布前几周，我们就开始着手调整 Claude Code 以做准备工作。每个模型的行为都略有不同，因此在每次发布之前，我们都会花时间针对该模型优化框架和产品。</p>
+<p>我们有很多工具可以减少冗余信息：模型训练、提示以及改进产品中的思维用户体验。最终我们使用了所有这些工具，但系统提示中的一项改进对 Claude Code 的智能产生了巨大的影响：</p>
+<p>经过数周的内部测试，在我们运行的一系列评估中没有出现任何退化，我们对这一变化充满信心，并于 4 月 16 日与 Opus 4.7 一起发布了它。</p>
+<p>作为调查的一部分，我们使用更广泛的评估数据集进行了更多消融试验（从系统提示中移除一行以了解每一行的影响）。其中一项评估显示，Opus 4.6 和 4.7 的性能均下降了 3%。我们在 4 月 20 日的版本中立即恢复了提示。</p>
+<h2 id="Going-forward-展望未来"><a href="#Going-forward-展望未来" class="headerlink" title="Going forward  展望未来"></a>Going forward  展望未来</h2><p>为了避免这些问题，我们将采取以下几项不同的措施：我们将确保更多内部员工使用 Claude Code 的公开版本（而不是我们用于测试新功能的版本）；我们将改进内部使用的代码审查工具，并将改进后的版本提供给客户。</p>
+<p>我们还将加强对系统提示符变更的控制。对于 Claude Code 的每一次系统提示符变更，我们都会针对每个模型进行全面的评估，持续进行消融测试以了解每一行代码的影响。此外，我们还开发了新的工具，使提示符变更的审查和审计更加便捷。我们还在 CLAUDE.md 文件中添加了相关指南，以确保针对特定模型的变更仅限于其目标模型。对于任何可能影响智能性的变更，我们将增加测试期、扩展评估范围并逐步推出，以便尽早发现问题。</p>
+<p>我们最近在 X 平台上创建了 @ClaudeDevs 账号，以便更深入地解释产品决策及其背后的原因。我们也会在 GitHub 的集中讨论帖中分享同样的更新。</p>
+<p>最后，我们要感谢所有用户：正是那些使用 /feedback 命令向我们反馈问题（或在网上发布具体、可复现示例）的用户，才最终帮助我们发现并修复了这些问题。今天，我们将重置所有订阅用户的流量限制。</p>
+<blockquote>
+<p>We’re immensely grateful for your feedback and for your patience.</p>
+</blockquote>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/april-23-postmortem">https://www.anthropic.com/engineering/april-23-postmortem</a></li>
+</ul>
+<p><img src="anthropic-news.png" srcset="/img/loading.gif" lazyload alt="Anthropic 原文"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/news/" class="category-chain-item">news</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/news/" class="print-no-link">#news</a>
+      
+        <a href="/tags/news-anthropic/" class="print-no-link">#news/anthropic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Anthropic 关于近期 Claude Code 质量报告的最新进展</div>
+      <div>https://blog.rustfisher.com/news/anthropic-claude-code-quality-reports-20260424/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/news/amazon-will-invest-in-anthropic-20260421/" title="Amazon 与 Anthropic 达成50亿美元投资和计算协议，进一步加强合作">
+                        <span class="hidden-mobile">Amazon 与 Anthropic 达成50亿美元投资和计算协议，进一步加强合作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
