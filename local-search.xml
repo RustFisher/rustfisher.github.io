@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>DeepSeek近期对API服务进行了大幅降价</title>
+    <link href="/news/deepseek-price-20260427/"/>
+    <url>/news/deepseek-price-20260427/</url>
+    
+    <content type="html"><![CDATA[<p>DeepSeek近期对API服务进行了大幅降价。</p><p>新的价格信息，单位是 <strong>每100万tokens（约等于70-80万个英文单词）</strong> 的价格。</p><p>具体价格取决于你选择的模型和使用场景：</p><table><thead><tr><th style="text-align:left">模型版本</th><th style="text-align:left">计费场景</th><th style="text-align:left">最新价格 (每百万tokens)</th><th style="text-align:left">备注</th></tr></thead><tbody><tr><td style="text-align:left"><strong>DeepSeek-V4-Flash</strong></td><td style="text-align:left">输入 (缓存命中)</td><td style="text-align:left"><strong>0.02元</strong></td><td style="text-align:left">价格最低，适合追求高性价比和响应速度的场景。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输入 (缓存未命中)</td><td style="text-align:left">1元</td><td style="text-align:left">原价为4元，已同步下调。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输出</td><td style="text-align:left">2元</td><td style="text-align:left">原价为8元，已同步下调。</td></tr><tr><td style="text-align:left"><strong>DeepSeek-V4-Pro</strong></td><td style="text-align:left">输入 (缓存命中)</td><td style="text-align:left"><strong>0.025元</strong></td><td style="text-align:left"><strong>限时优惠</strong>，<strong>截至2026年5月5日</strong>。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输入 (缓存未命中)</td><td style="text-align:left">3元</td><td style="text-align:left">原价为12元，已同步下调。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输出</td><td style="text-align:left">6元</td><td style="text-align:left">原价为24元，已同步下调。</td></tr></tbody></table><blockquote><p>全系列模型，输入缓存命中的价格已降至首发价格的 1/10。<br>当前 deepseek-v4-pro 模型限时 2.5 折，优惠期至北京时间 2026/05/05 23:59。</p></blockquote><p>参考来源： <a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">https://api-docs.deepseek.com/zh-cn/quick_start/pricing</a></p><p><img src="deepseek-doc-price-2026-4-27.png" alt="DeepSeek价格文档"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/deepseek</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>微软计划首次对美国员工进行自愿买断，涉及至多7%的员工</title>
     <link href="/news/microsoft-retire-plan-20260425/"/>
     <url>/news/microsoft-retire-plan-20260425/</url>
