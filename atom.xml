@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-04-27T06:43:37.545Z</updated>
+  <updated>2026-04-28T03:51:20.559Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenAI 在冲击 IPO 的关键冲刺中未能达成关键营收和用户目标</title>
+    <link href="https://blog.rustfisher.com/news/openai-20260428/"/>
+    <id>https://blog.rustfisher.com/news/openai-20260428/</id>
+    <published>2026-04-28T03:44:59.000Z</published>
+    <updated>2026-04-28T03:51:20.559Z</updated>
+    
+    <content type="html"><![CDATA[<p>OpenAI 最近未能实现其新用户和收入目标，这一挫折引发了一些公司领导人的担忧，他们担心公司是否有能力支撑其在数据中心方面的大规模支出。</p><p>据知情人士透露，首席财务官 Sarah Friar 已向公司其他领导人表示，她担心如果收入增长不够快，公司可能无法支付未来的计算合同费用。</p><p>知情人士透露，董事会成员近几个月来也更加仔细地审查了公司的数据中心交易，并质疑首席执行官萨姆·奥特曼在业务放缓的情况下仍努力获取更多计算能力的做法。</p><p>在年底前可能进行的首次公开募股（IPO）之前，严格的支出审查正在限制奥特曼公司曾经无所畏惧的雄心壮志。知情人士透露，弗莱尔和其他高管目前正试图控制成本，并在公司内部建立更严格的纪律，这有时会让他们与首席执行官产生分歧。</p><p>多年来，奥特曼一直致力于尽可能多地锁定数据中心容量，他认为计算资源短缺是制约 OpenAI 发展的最大障碍。去年，他进行了一系列交易，使 OpenAI 承担了未来约 6000 亿美元的支出承诺，并将科技行业的成功与 OpenAI 的成功紧密联系起来 。</p><p>据知情人士透露，OpenAI 未能实现其内部目标，即在去年底前使其 ChatGPT 的周活跃用户数达到 10 亿。该公司至今仍未正式宣布这一里程碑，这令一些投资者感到不安。知情人士还表示，由于谷歌的 Gemini 在去年底实现了迅猛增长，蚕食了 OpenAI 的市场份额，该公司 ChatGPT 的年度营收目标也未能达成。此外，据知情人士透露，OpenAI 的用户流失率也一直居高不下。</p><p>据知情人士透露，OpenAI 今年早些时候在编码和企业市场被 Anthropic 抢占了先机，未能达到多个月度营收目标。</p><p>OpenAI 近期完成了硅谷历史上规模最大的一轮融资，筹集了 1220 亿美元，使其财务状况更加稳健。但该公司已签约的计算能力规模庞大，预计在未来三年内（假设其能够实现雄心勃勃的营收目标）就会消耗殆尽 。此外，部分融资还附带条件，取决于与合作伙伴的具体协议。</p><p>该公司开发的编码工具 Codex 正迅速普及，同时，它也通过削减其他项目（例如视频生成应用 Sora） 来降低成本。OpenAI 近期发布了 GPT-5.5，这是一款功能强大的模型，在多项行业基准测试中名列前茅。</p><p>包括 Anthropic 在内的多家人工智能公司近几周都面临着计算能力不足的问题 ，导致人工智能处理器价格上涨、服务中断和资源配给。这些问题激怒了人工智能产品的高级用户，尤其是程序员，他们发现人工智能系统无法像以往那样完成任务，感到非常沮丧。</p><p>OpenAI 在最近一份致投资者的备忘录中表示，其已获得比 Anthropic 更多的计算能力，这使其在用户拓展方面占据优势。这份备忘录已被《华尔街日报》查阅，其中还提及了 Anthropic 首席执行官 Dario Amodei 在近期一次商业会议上对 OpenAI 的隐晦批评。Amodei 当时表示，一些公司在数据中心支出方面“过度冒险”。</p><p>OpenAI 的备忘录称：“事后看来，这种谨慎与其说是自律，不如说是低估了需求到来的速度。”</p><p>据知情人士透露，近几个月来，弗莱尔也对 OpenAI 计划在今年年底上市表示了保留意见。</p><p>她向高管和董事会强调了 OpenAI 需要改进内部控制，并警告说该公司尚未准备好达到上市公司所需的严格报告标准。一些知情人士透露，奥特曼倾向于采取更积极的 IPO 时间表。</p><p>OpenAI 在上市前还需解决一系列其他问题。该公司目前正面临领导层真空，其二号人物菲吉·西莫（Fidji Simo）本月初意外请病假。此外，埃隆·马斯克本周提起诉讼， 试图罢免奥特曼（Altman） 并撤销 OpenAI 转型为营利性公司的计划。</p><p>参考来源：</p><ul><li><a href="https://www.wsj.com/tech/ai/openai-misses-key-revenue-user-targets-in-high-stakes-sprint-toward-ipo-94a95273?mod=ai_lead_pos1">https://www.wsj.com/tech/ai/openai-misses-key-revenue-user-targets-in-high-stakes-sprint-toward-ipo-94a95273?mod=ai_lead_pos1</a></li></ul><p>相关信息：</p><ul><li><a href="https://blog.rustfisher.com/news/news-openai-20260327/">软银获得 400 亿美元贷款，以加大对 OpenAI 的投资</a></li><li><a href="https://blog.rustfisher.com/news/news-sora-20260325/">Sora宣布即将关闭sora App</a></li></ul>]]></content>
+    
+    
+    <summary type="html">面对增长放缓，公司首席财务官和董事会对大规模数据中心支出的合理性提出了质疑</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/OpenAI" scheme="https://blog.rustfisher.com/tags/news-OpenAI/"/>
+    
+  </entry>
   
   <entry>
     <title>DeepSeek近期对API服务进行了大幅降价</title>
@@ -414,7 +437,7 @@
     <link href="https://blog.rustfisher.com/news/news-sora-20260325/"/>
     <id>https://blog.rustfisher.com/news/news-sora-20260325/</id>
     <published>2026-03-25T02:15:59.000Z</published>
-    <updated>2026-03-26T01:46:55.271Z</updated>
+    <updated>2026-04-28T03:50:55.383Z</updated>
     
     <content type="html"><![CDATA[<p>Sora在X上发布推文</p><blockquote><p>我们要和 Sora 应用说再见了。感谢所有与 Sora 一起创作、分享并围绕它建立社区的人：谢谢你们。你和Sora的关系很重要，我们知道这个消息令人失望。</p></blockquote><p><img src="sora-x-2026-3-25.png" alt="sora-x"></p><p><a href="https://sora.chatgpt.com/">sora.chatgpt.com</a></p>]]></content>
     
@@ -427,8 +450,6 @@
     
     
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
-    
-    <category term="news/Meta" scheme="https://blog.rustfisher.com/tags/news-Meta/"/>
     
     <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
     
@@ -452,31 +473,6 @@
     
     
     <category term="自我提升" scheme="https://blog.rustfisher.com/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ChatGPT Free账号没有GPT-5的选项</title>
-    <link href="https://blog.rustfisher.com/ai/chatgpt-free-plan-no-gpt5-option/"/>
-    <id>https://blog.rustfisher.com/ai/chatgpt-free-plan-no-gpt5-option/</id>
-    <published>2025-08-14T15:11:59.000Z</published>
-    <updated>2025-12-08T15:36:19.535Z</updated>
-    
-    <content type="html"><![CDATA[<p>8月初已经收到GPT5推出的消息。打开<a href="https://chatgpt.com/">ChatGPT</a>一看左上角的选项里没有GPT5的选项。</p><p>但是询问GPT，它会回答现在就是GPT5</p><p><img src="ask-gpt5.png" alt="问GPT的模型版本"></p><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit">我这边已经是 GPT<span class="hljs-string">-5</span> Thinking，可以直接继续帮你。<br></code></pre></td></tr></table></figure><p>目前用的是free账号，推测OpenAI给限额的GPT-5使用。看了YouTube的视频，Plus或者Pro账号就能直接切换到GPT-5</p><p>再等等，等GPT-5普及到free账号</p>]]></content>
-    
-    
-    <summary type="html">8月初已经收到GPT-5推出的消息。打开ChatGPT一看左上角的选项里没有GPT-5的选项。</summary>
-    
-    
-    
-    <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
-    
-    
-    <category term="ChatGPT" scheme="https://blog.rustfisher.com/tags/ChatGPT/"/>
-    
-    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
-    
-    <category term="GPT-5" scheme="https://blog.rustfisher.com/tags/GPT-5/"/>
     
   </entry>
   
