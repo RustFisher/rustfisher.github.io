@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-04-28T03:51:20.559Z</updated>
+  <updated>2026-04-29T00:28:41.796Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NVIDIA 推出 Nemotron 3 Nano Omni 模型</title>
+    <link href="https://blog.rustfisher.com/news/nvidia-nemotron-3-nano-omni-multimodal-ai-agents-20260429/"/>
+    <id>https://blog.rustfisher.com/news/nvidia-nemotron-3-nano-omni-multimodal-ai-agents-20260429/</id>
+    <published>2026-04-29T00:00:59.000Z</published>
+    <updated>2026-04-29T00:28:41.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>NVIDIA 今日发布的 Nemotron 3 Nano Omni 是一款开放式多模态模型，它将多种功能整合到一个系统中， 使智能体能够利用视频、音频、图像和文本的高级推理能力，提供更快、更智能的响应。 这款一流的模型为企业和开发者提供了一条高效、精准的多模态 AI 智能体生产路径，并具备全面的部署灵活性和控制力。</p><h2 id="Nemotron-3-Nano-Omni-可实现更快、更精简的多模态代理"><a href="#Nemotron-3-Nano-Omni-可实现更快、更精简的多模态代理" class="headerlink" title="Nemotron 3 Nano Omni 可实现更快、更精简的多模态代理"></a>Nemotron 3 Nano Omni 可实现更快、更精简的多模态代理</h2><p>Consider an AI agent for customer support processing a screen recording while analyzing uploaded call audio and checking data logs — or an agent for finance tasked with parsing PDFs, spreadsheets, charts and voice notes. Today, most agentic systems accomplish these tasks with separate models for vision, speech and language. </p><p>设想一下，一个用于客户支持的人工智能代理需要处理屏幕录像，同时分析上传的通话音频并检查数据日志；或者一个用于财务的代理需要解析 PDF、电子表格、图表和语音笔记。如今，大多数代理系统都使用独立的视觉、语音和语言模型来完成这些任务。</p><p>This approach increases latency through repeated inference passes, fragments context across modalities, and adds cost and inaccuracies over time.</p><p>这种方法通过重复推理过程增加延迟，使跨模态的上下文变得碎片化，并且随着时间的推移增加成本和不准确性。</p><p>By combining vision and audio encoders within its 30B-A3B, hybrid mixture-of-experts architecture, Nemotron 3 Nano Omni eliminates the need for separate perception models, driving inference efficiency at scale. It pairs this efficiency with strong multimodal perception accuracy, enabling AI systems to achieve 9x higher throughput than other open omni models with the same interactivity. The result is lower costs and better scalability without sacrificing responsiveness or quality.</p><p>Nemotron 3 Nano Omni 采用 30B-A3B 混合专家架构，将视觉和音频编码器集成于其中，无需单独的感知模型，从而显著提升了大规模推理效率。它不仅效率高，而且拥有强大的多模态感知精度，使 AI 系统的吞吐量比其他具有相同交互性的开放式全向模型高出 9 倍 。最终实现了更低的成本和更好的可扩展性，同时又不牺牲响应速度或质量。</p><p>In agentic systems, Nemotron 3 Nano Omni can work alongside proprietary cloud models or other NVIDIA Nemotron open models — such as Nemotron 3 Super for high-frequency execution or Nemotron 3 Ultra for complex planning — as well as proprietary models from other providers, to power sub-agents for agentic workflows such as computer use, document intelligence and audio-video reasoning.</p><p>在代理系统中，Nemotron 3 Nano Omni 可以与专有云模型或其他 NVIDIA Nemotron 开放模型（例如用于高频执行的 Nemotron 3 Super 或用于复杂规划的 Nemotron 3 Ultra）以及其他提供商的专有模型协同工作，为代理工作流程（例如计算机使用、文档智能和音视频推理）的子代理提供支持。</p><p>Computer use agents — Nemotron 3 Nano Omni powers the perception loop for agents navigating graphical user interfaces, reasoning over onscreen content and understanding user interface state over time. H Company’s latest computer usage agent, powered by Nemotron 3 Nano Omni, uses a native input resolution of 1920×1080 pixels to achieve high-fidelity visual reasoning. In preliminary evaluations on the OSWorld benchmark, this integration showed a significant leap in navigating complex graphical interfaces and used Nemotron 3 Nano Omni’s ability to process very high-resolution images.</p><p>计算机使用代理——Nemotron 3 Nano Omni 为代理的感知回路提供动力，使其能够导航图形用户界面、推理屏幕内容并理解用户界面随时间的变化。H 公司最新推出的计算机使用代理由 Nemotron 3 Nano Omni 驱动，采用 1920×1080 像素的原生输入分辨率，实现了高保真度的视觉推理。在 OSWorld 基准测试的初步评估中，该集成方案在导航复杂图形界面方面展现出显著的提升，并充分利用了 Nemotron 3 Nano Omni 处理超高分辨率图像的能力。 </p><p>Document intelligence — Interprets documents, charts, tables, screenshots and mixed-media inputs, enabling agents to reason across visual structure and text content coherently. Critical for enterprise analysis and compliance workflows.</p><p>文档智能 ——能够解读文档、图表、表格、屏幕截图和混合媒体输入，使代理能够连贯地分析视觉结构和文本内容。这对企业分析和合规工作流程至关重要。</p><p>Audio and video understanding — For customer service, research and monitoring workflows, Nemotron 3 Nano Omni maintains audio-video context, tying what was said, shown and documented into a single reasoning stream instead of disconnected summaries.</p><p>音频和视频理解 ——对于客户服务、研究和监控工作流程，Nemotron 3 Nano Omni 可保持音频视频上下文，将所说、所展示和所记录的内容整合到一个单一的推理流中，而不是分散的摘要。</p><h2 id="Open-and-Customizable-Deployable-Anywhere-开放且可定制，可部署在任何地方"><a href="#Open-and-Customizable-Deployable-Anywhere-开放且可定制，可部署在任何地方" class="headerlink" title="Open and Customizable, Deployable Anywhere 开放且可定制，可部署在任何地方"></a>Open and Customizable, Deployable Anywhere 开放且可定制，可部署在任何地方</h2><p>Nemotron 3 Nano Omni is released with open weights, datasets and training techniques — giving organizations full transparency and control over how the model is customized and deployed. </p><p>Nemotron 3 Nano Omni 发布时采用了开放的权重、数据集和训练技术，使组织能够完全透明地控制模型的定制和部署方式。</p><p>Developers can use tools like NVIDIA NeMo for customization, evaluation and optimization for domain-specific use cases. Because the Nemotron family of models is open, organizations can deploy them in environments that meet regulatory, sovereignty or data localization requirements.</p><p>开发人员可以使用 NVIDIA NeMo 等工具 ，针对特定领域的用例进行定制、评估和优化。由于 Nemotron 系列模型是开源的，因此组织可以将其部署在符合监管、主权或数据本地化要求的环境中。</p><p>The Nemotron 3 family — including Nano, Super and Ultra models — has seen over 50 million downloads in the past year. Omni extends the family’s capabilities into multimodal and agentic domains. </p><p>Nemotron 3 系列产品（包括 Nano、Super 和 Ultra 型号） 在过去一年中下载量超过 5000 万次 。Omni 将该系列产品的功能扩展到了多模态和智能体领域。</p><p>The model is available on Hugging Face, OpenRouter and build.nvidia.com as an NVIDIA NIM microservice and through a broad ecosystem of NVIDIA Cloud Partners, inference platforms and cloud service providers. </p><p>该模型可通过 Hugging Face 、 OpenRouter 和 build.nvidia.com 作为 NVIDIA NIM 微服务使用，并通过 NVIDIA 云合作伙伴 、推理平台和云服务提供商的广泛生态系统使用 。</p><p>Its open, lightweight architecture supports consistent deployment from local systems like NVIDIA Jetson hardware, NVIDIA DGX Spark and DGX Station to data center and cloud environments. </p><p>其开放、轻量级的架构支持从 NVIDIA Jetson 硬件、 NVIDIA DGX Spark 和 DGX Station 等本地系统到数据中心和云环境的一致部署。</p><h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><ul><li><a href="https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/">https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/</a></li></ul><p><img src="nvidia-x-2026-4-29.png" alt="NVIDIA"></p>]]></content>
+    
+    
+    <summary type="html">开放式全模态推理模型可提供最高的效率和准确性，从而支持计算机使用、文档智能和音视频推理等智能体工作流程</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/nvidia" scheme="https://blog.rustfisher.com/tags/news-nvidia/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenAI 在冲击 IPO 的关键冲刺中未能达成关键营收和用户目标</title>
@@ -452,27 +475,6 @@
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
     
     <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重启大脑多巴胺系统：让自律变成快感的终极技巧</title>
-    <link href="https://blog.rustfisher.com/reading/promotion/restart-brain-dopamine/"/>
-    <id>https://blog.rustfisher.com/reading/promotion/restart-brain-dopamine/</id>
-    <published>2026-02-25T06:12:59.000Z</published>
-    <updated>2026-03-11T06:59:57.867Z</updated>
-    
-    <content type="html"><![CDATA[<p>你有没想过，刷手机三小时转瞬即逝，但学习10分钟却如坐针毡。<br>这并非懒惰导致，而是你的大脑已被重新塑造。<br>每条通知、每个短视频、每次点赞，都在滋养你的即时满足机制（monkey brain）。它掌管着你的本能反应，只关注眼前的生存需求、舒适体验和快感获取（dopamine）。</p><p>今天我们将重新主导控制权，重塑你的大脑回路。让它从困难事物中获得乐趣。当你真正领悟其中奥秘，自律（discipline）将不再是负担，而会成为你的力量源泉。</p><h2 id="认识我们的大脑机制"><a href="#认识我们的大脑机制" class="headerlink" title="认识我们的大脑机制"></a>认识我们的大脑机制</h2><p>人脑具有多层次结构，核心是边缘系统，掌管着情绪与冲动反应。其上则是前额叶皮层，负责理性思考与长远规划。这两个系统始终在互相制衡。</p><p>当你看短视频（TikTok，抖音等）时，多巴胺会立即大量释放，本能系统因此兴奋不已。当你投入工作时，却无即时反馈，本能系统感到索然无味。拖延并非意志力不足，真正原因在于，大脑的奖励机制出现紊乱。你已习惯即时满足的快感，但真正的成长需要持续积累。这种成就感来自于月度完十页书、完成一次训练或深度的工作。虽然过程更具挑战性，但效果更持久。</p><p>重点不是消除多巴胺，而是重建平衡。</p><h2 id="多巴胺系统重置方案"><a href="#多巴胺系统重置方案" class="headerlink" title="多巴胺系统重置方案"></a>多巴胺系统重置方案</h2><p>以下是循序渐进的调整步骤：</p><h3 id="第一步：净化阶段（24到48小时）"><a href="#第一步：净化阶段（24到48小时）" class="headerlink" title="第一步：净化阶段（24到48小时）"></a>第一步：净化阶段（24到48小时）</h3><p>全面断连，不要使用社交媒体，工作时不听音乐，切断所有即时快感（junk dopamine）来源。这不是在惩罚自己，而是在重置系统。<br>最初6小时会相当难熬，你的本能系统会渴望刺激，但请保持冷静。这种不适意味着多巴胺受体正在修复。</p><h3 id="第二步：重建阶段（第2-4天）"><a href="#第二步：重建阶段（第2-4天）" class="headerlink" title="第二步：重建阶段（第2-4天）"></a>第二步：重建阶段（第2-4天）</h3><p>用中性习惯代替不良行为。放下手机散步、记录想法、阅读长文、静下心来整理空间。训练大脑在平淡中发现安宁，专注力便会自然回归。</p><h3 id="第三步：奖励阶段（第5天起）"><a href="#第三步：奖励阶段（第5天起）" class="headerlink" title="第三步：奖励阶段（第5天起）"></a>第三步：奖励阶段（第5天起）</h3><p>重新引入高效习惯：系统学习、深度工作、体能训练。</p><p>重要技巧：每完成一项挑战后，给予适当的奖励：舒展身体、短暂漫步、听一些音乐、品尝电信。让进步与愉悦建立联结，大脑就会开始向往挑战而非安逸。</p><p>这时便初见成效。</p><h2 id="进阶训练方法"><a href="#进阶训练方法" class="headerlink" title="进阶训练方法"></a>进阶训练方法</h2><p>如何将短期净化转化为长期机制。</p><h3 id="方法一，两分钟启动法"><a href="#方法一，两分钟启动法" class="headerlink" title="方法一，两分钟启动法"></a>方法一，两分钟启动法</h3><p>当缺乏动力时，承诺只做两分钟。一旦开始行动，惯性自会推动你继续前行。<br>突破最初两分钟最为关键，赢得开端便赢得整天。</p><h3 id="方法二，设置阻力"><a href="#方法二，设置阻力" class="headerlink" title="方法二，设置阻力"></a>方法二，设置阻力</h3><p>增加不良习惯的执行难度：删除应用、使用黑白模式、屏蔽干扰网站。<br>降低良好习惯的启动门槛：保持日记本展开、水杯随手可取、工作区整洁有序。</p><p>这不是考验意志力，而是优化环境设计。</p><h3 id="方法三，习惯连锁法"><a href="#方法三，习惯连锁法" class="headerlink" title="方法三，习惯连锁法"></a>方法三，习惯连锁法</h3><p>将困难任务与日常习惯结合。<br>喝完咖啡后静坐片刻，刷牙后立即规划当日事项。<br>大脑更易遵循固定模式而非一时冲动，让好习惯形成连锁反应。</p><h3 id="方法四，奖励转化法"><a href="#方法四，奖励转化法" class="headerlink" title="方法四，奖励转化法"></a>方法四，奖励转化法</h3><p>不再从消遣获取满足感，转而从创造中获得：<br>动手实践、构建项目、深入学习、持续改进。</p><p>让大脑从被动接收转为主动创造。</p><h2 id="根本心态转变"><a href="#根本心态转变" class="headerlink" title="根本心态转变"></a>根本心态转变</h2><p>有个重要事实：本能反应永远不会消失，但你能够学会引导它。</p><p>起初面对挑战如同煎熬，逐渐变成日常惯例。最终，成为乐趣所在。<br>当大脑从进步中获得满足，而非寻求安逸，你将无往不利。<br>那些成就卓越的人、运动员、创作者，并非天生超凡，只是重塑了自身的奖励机制。他们享受奋斗过程，因为大脑给予正向反馈。<br>一旦体验过这种境界——自律带来的内在平静，你将永不回头。</p><p>当下次产生内心抗拒：“这实在太难了”<br>你只需微笑回应：“正因不易，才更值得”</p><p>成长不再是与自我对抗，而是学会热爱那些值得追求的事物。<br>引导本能反应，重整多巴胺系统，见证专注力与人生的全面提升。</p>]]></content>
-    
-    
-    <summary type="html">你有没想过，刷手机三小时转瞬即逝，但学习10分钟却如坐针毡。这并非懒惰导致，而是你的大脑已被重新塑造。每条通知、每个短视频、每次点赞，都在滋养你的即时满足机制（monkey brain）。它掌管着你的本能反应，只关注眼前的生存需求、舒适体验和快感获取（dopamine）。今天我们将重新主导控制权，重塑你的大脑回路。让它从困难事物中获得乐趣。当你真正领悟其中奥秘，自律（discipline）将不再是负担，而会成为你的力量源泉。</summary>
-    
-    
-    
-    <category term="promotion" scheme="https://blog.rustfisher.com/categories/promotion/"/>
-    
-    
-    <category term="自我提升" scheme="https://blog.rustfisher.com/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/"/>
     
   </entry>
   

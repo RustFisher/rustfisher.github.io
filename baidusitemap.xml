@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/news/nvidia-nemotron-3-nano-omni-multimodal-ai-agents-20260429/</loc>
+    <lastmod>2026-04-29</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/news/openai-20260428/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
@@ -129,11 +133,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/WebRTC/webRTC-concept-intro/</loc>
+    <loc>https://blog.rustfisher.com/Web/note-echarts-py-url/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Web/note-echarts-py-url/</loc>
+    <loc>https://blog.rustfisher.com/WebRTC/webRTC-concept-intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -141,19 +145,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/python3-send-email/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Python/scrapy-hw-blog-record/</loc>
+    <loc>https://blog.rustfisher.com/Summary/2021-8/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Summary/2021-11/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Summary/2021-8/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -165,7 +161,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Python/scrapy-hw-blog-record/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Python/python3-send-email/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Python/operation/matplotlib-intro1/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Python/Python-pip-solution/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -174,10 +182,6 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Python/Python-scan-file/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Python/Python-pip-solution/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -201,11 +205,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QThread/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt5-Custom_QWidget/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt5-Custom_QWidget/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QThread/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -321,11 +325,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-CurvedAnimation/</loc>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-CurvedAnimation/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -334,6 +338,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_Intl/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_string_map/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -346,10 +354,6 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-Load_image_from_network/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_string_map/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -377,14 +381,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -397,6 +393,22 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Mac/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Windows/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/CocosCreator/ccc-postion-and-cvt/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -405,11 +417,7 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Windows/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-install_and_config_Mac/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-zhihu-68467783-answer-2560111521/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -421,11 +429,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Career/zt-zhihu-68467783-answer-2560111521/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-cnblog-soft-engineer-work-thinking/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-on-the-way-out-615370768790158/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Career/zt-juejin-tech-is-not-so-high-level/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -449,19 +465,7 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Career/zt-cnblog-soft-engineer-work-thinking/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-company-dynamism/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-on-the-way-out-615370768790158/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Career/zt-juejin-tech-is-not-so-high-level/</loc>
+    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -533,11 +537,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Handler_src_note/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Camera_record_video_and_output/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Camera_record_video_and_output/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Handler_src_note/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
