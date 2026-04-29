@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>DeepSeek优惠期延长至北京时间 2026/05/31 23:59</title>
+    <link href="/news/deepseek-price-date-20260429/"/>
+    <url>/news/deepseek-price-date-20260429/</url>
+    
+    <content type="html"><![CDATA[<p>DeepSeek近期对API服务进行了大幅降价。</p><blockquote><p>(1) deepseek-chat 与 deepseek-reasoner 两个模型名将于日后弃用。出于兼容考虑，二者分别对应 deepseek-v4-flash 的非思考与思考模式。<br>(2) 全系列模型，输入缓存命中的价格已降至首发价格的 1/10，该价格调整自北京时间 2026/4/26 20:15 起生效<br>(3) 当前 deepseek-v4-pro 模型 2.5 折，优惠期延长至北京时间 2026/05/31 23:59。</p></blockquote><p><img src="DeepSeek-price-doc-2026-4-29.png" alt="DeepSeek价格文档 2026-4-29"></p><p>参考来源：</p><ul><li><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">https://api-docs.deepseek.com/zh-cn/quick_start/pricing</a></li></ul><p>相关信息：</p><ul><li><a href="http://blog.rustfisher.com/news/deepseek-price-20260427/">DeepSeek近期对API服务进行了大幅降价-20260427</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/deepseek</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>NVIDIA 推出 Nemotron 3 Nano Omni 模型</title>
     <link href="/news/nvidia-nemotron-3-nano-omni-multimodal-ai-agents-20260429/"/>
     <url>/news/nvidia-nemotron-3-nano-omni-multimodal-ai-agents-20260429/</url>
@@ -1061,11 +1088,11 @@
     
     <tags>
       
+      <tag>WebRTC</tag>
+      
       <tag>总结</tag>
       
       <tag>Android</tag>
-      
-      <tag>WebRTC</tag>
       
       <tag>华为云社区</tag>
       
