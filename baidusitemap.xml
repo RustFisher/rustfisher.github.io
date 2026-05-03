@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/news/apple-mac-price-20260503/</loc>
+    <lastmod>2026-05-03</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/news/meta-mark-zuckerberg-says-ai-costs-contributed-to-layoffs-of-8000-staffers-report-says-20260501/</loc>
     <lastmod>2026-05-01</lastmod>
   </url>
@@ -225,11 +229,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/Python-PyQt5_Python351_install/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-FFmpeg-extraction-mp4_tool/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/Python-PyQt5_Python351_install/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -257,15 +261,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Adjust_screen_resolution/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyCharm-Install_and_config/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Locale/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Adjust_screen_resolution/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -274,6 +274,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Install_licensed_PyQt/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Locale/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -337,10 +341,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-CurvedAnimation/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -362,6 +362,10 @@
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-Load_image_from_network/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-CurvedAnimation/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -397,19 +401,19 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/DesignPattern/Listener_pattern_practice_in_Java_Android/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-aboutView/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Dev-note/dev-note-app-PhoneInfo/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/DesignPattern/Listener_pattern_practice_in_Java_Android/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -441,26 +445,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-compile_import_a_file/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-read_write_file/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_1/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android/adb_mock_touch_and_monkeyrunner/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_2/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -481,15 +465,35 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-compile_import_a_file/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-read_write_file/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_1/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_2/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/Android/adb_mock_touch_and_monkeyrunner/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_audio/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_speed/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Media_download_stream_file/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_use_play_speed/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -501,11 +505,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_use_intro/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file_partial/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_download_file_partial/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-OkHttp_Retrofit_use_intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -569,11 +573,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaMuxer_MediaExtractor_mp4/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_intro/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaPlayer_intro/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaMuxer_MediaExtractor_mp4/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
