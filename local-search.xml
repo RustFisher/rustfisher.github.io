@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Anthropico 和 FIS 正在开发一款人工智能代理，以帮助银行打击金融犯罪</title>
+    <link href="/news/anthropic-fis-20260505/"/>
+    <url>/news/anthropic-fis-20260505/</url>
+    
+    <content type="html"><![CDATA[<p>人工智能机器人可能很快就会开始监控数百万个银行账户，以发现金融犯罪。</p><p>Anthropico 和 Fidelity National Information Services (FIS) 宣布建立合作伙伴关系，共同为银行开发新的人工智能工具。FIS 是支撑金融系统很大一部分的金融软件提供商。</p><p>两家公司已达成协议，将为金融机构构建人工智能代理——无需用户监督即可完成任务的程序。这些代理将利用 FIS 的金融数据和系统以及 Anthropic 的人工智能系统 Claude。</p><p>在《华尔街日报》此前报道了这一合作关系后，FIS 的股价在盘后交易中上涨了约 7%。</p><p>FIS 首席执行官斯蒂芬妮·费里斯表示，正在开发的首个工具是一款人工智能代理，用于调查利用金融系统的毒贩 、恐怖分子和其他犯罪分子。费里斯称，蒙特利尔银行和联合银行将成为首批使用该金融犯罪代理的机构，预计该代理将于今年下半年广泛向客户开放。</p><p>Anthropic 的行业主管 Jonathan Jager-Hyman 证实，Anthropic 的工程师已经融入到 FIS 的各个团队中。</p><p>费里斯表示，这款金融犯罪机器人能够独立收集潜在案件的证据——包括交易记录、账户信息以及其他可能分散在多个来源的数据——从而显著降低每个案件的成本和时间。她补充说，最终的案件决定仍将由人工调查人员做出。</p><p>银行每年在反洗钱方面投入数十亿美元，通常配备庞大的团队和软件，旨在打击金融犯罪。这些工作是美国联邦法律的要求，并受到监管机构的监督。</p><p>特朗普政府官员承诺对洗钱监管进行改革 ，重点关注风险最高的问题，并避免吹毛求疵的技术合规性问题。</p><p>人工智能模型的进步引发了华尔街的担忧，他们认为许多类型的软件可能会被淘汰。今年早些时候，Anthropic 公司发布的新产品就曾令市场震荡 。投资者担心，未来企业会选择使用人工智能工具自行开发软件，而不是从供应商那里购买。FIS 就是受此影响的公司之一，其股价今年已下跌超过 25%。</p><p>FIS 与 Anthropic 的合作是人工智能实验室及其竞争对手为开发行业专用工具而签署的众多合作协议之一，它表明在许多情况下，人工智能工具可以接入并加速企业已在使用的软件的工作。</p><p>参考：</p><ul><li><a href="https://www.wsj.com/tech/ai/anthropic-and-fis-are-building-an-ai-agent-to-help-banks-police-financial-crimes-5a0be5a8?mod=ai_lead_pos2">https://www.wsj.com/tech/ai/anthropic-and-fis-are-building-an-ai-agent-to-help-banks-police-financial-crimes-5a0be5a8?mod=ai_lead_pos2</a></li></ul><p><img src="wsj-anthropic-fis.png" alt="wsj"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/anthropic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Anthropic 公司宣布与华尔街公司成立 15 亿美元合资企业</title>
     <link href="/news/anthropic-nears-1-5-billion-joint-venture-20260504/"/>
     <url>/news/anthropic-nears-1-5-billion-joint-venture-20260504/</url>
@@ -722,9 +749,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>GPT-5</tag>
       
@@ -751,9 +778,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -780,9 +807,9 @@
     
     <tags>
       
-      <tag>AI工具</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI工具</tag>
       
       <tag>Gemini</tag>
       
