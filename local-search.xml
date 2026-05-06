@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>AMD 利润和营收因数据中心业务增长而大幅提升</title>
+    <link href="/news/amd-wsj-20260506/"/>
+    <url>/news/amd-wsj-20260506/</url>
+    
+    <content type="html"><![CDATA[<p>首席执行官苏姿丰表示，业绩增长主要得益于人工智能基础设施需求的加速增长。</p><p>由于数据中心业务持续推动业绩增长，AMD 最新季度的利润和收入均有所增长。</p><p>这家芯片制造商公布的第一季度利润为 13.8 亿美元，合每股 84 美分，而去年同期利润为 7.09 亿美元，合每股 44 美分。</p><p>经调整后的每股收益为 1.37 美元，而 FactSet 调查的分析师此前预期为每股 1.29 美元。</p><p>营收增长 38% 至 102.5 亿美元，高于分析师预期的 99 亿美元。</p><p>受 EPYC 处理器强劲需求和 Instinct GPU 出货量增长的推动，AMD 数据中心业务销售额同比增长 57%。</p><p>受 Ryzen 处理器和 Radeon GPU 需求的推动，客户端和游戏业务部门收入增长了 23%。</p><p>首席执行官苏姿丰表示，公司业绩增长得益于人工智能基础设施需求的加速增长。</p><p>苏姿丰表示：“我们看到，随着推理和智能体人工智能的发展，对高性能 CPU 和加速器的需求不断增长，市场势头强劲。展望未来，随着我们扩大供应以满足需求，我们预计服务器业务的增长速度将显著加快。”</p><p>AMD 预计本季度营收为 112 亿美元，上下浮动 3 亿美元。分析师预期为 105.4 亿美元。</p><p>参考：</p><ul><li><a href="https://www.wsj.com/business/earnings/amd-profit-revenue-jump-on-growth-of-data-center-business-ef0d0632?mod=ai_lead_story">https://www.wsj.com/business/earnings/amd-profit-revenue-jump-on-growth-of-data-center-business-ef0d0632?mod=ai_lead_story</a></li></ul><p><img src="amd-wsj.png" alt="AMD Profit, Revenue Jump on Growth of Data Center Business"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>news</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>news</tag>
+      
+      <tag>news/amd</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Anthropico 和 FIS 正在开发一款人工智能代理，以帮助银行打击金融犯罪</title>
     <link href="/news/anthropic-fis-20260505/"/>
     <url>/news/anthropic-fis-20260505/</url>
@@ -749,9 +776,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>GPT-5</tag>
       
@@ -778,9 +805,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -807,9 +834,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI工具</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>Gemini</tag>
       
