@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-05-06T00:40:12.553Z</updated>
+  <updated>2026-05-07T00:16:16.614Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>China to Invest in DeepSeek at $50 Billion Valuation</title>
+    <link href="https://blog.rustfisher.com/news/deepseek-wsj-20260507/"/>
+    <id>https://blog.rustfisher.com/news/deepseek-wsj-20260507/</id>
+    <published>2026-05-06T23:44:59.000Z</published>
+    <updated>2026-05-07T00:16:16.614Z</updated>
+    
+    <content type="html"><![CDATA[<p>DeepSeek 正在从政府支持的投资者那里筹集资金，这使得这家人工智能初创公司与北京推动技术自给自足的政策保持一致。</p><p>据知情人士透露，在最近的洽谈中，一些潜在投资者对 DeepSeek 的估值约为 500 亿美元。 此前的讨论中，DeepSeek 的估值预计在 100 亿至 300 亿美元之间，但近几周来，其估值大幅上涨。</p><p>据知情人士透露，中国国家人工智能产业投资基金（一个成立仅一年、资本规模约88亿美元的政府支持基金）正在就以人民币进行本轮投资进行深入洽谈。</p><p>据知情人士透露，总部位于杭州的DeepSeek计划在新一轮融资中筹集数十亿美元。该公司计划利用这笔资金推进研发并扩展计算基础设施。部分知情人士还表示，深思熟虑科技希望通过此轮融资确定市场估值，以彰显其价值，并为员工股票期权激励提供基准，从而帮助留住顶尖人才。</p><p>自去年年初 DeepSeek 凭借其强大的人工智能模型震惊硅谷和华尔街以来，北京一直将其视为国家人工智能领军企业。DeepSeek 声称，其构建成本仅为西方竞争对手的一小部分。此后，DeepSeek 已成为中国打造一系列人工智能领域顶尖本土企业计划的关键组成部分。</p><p>北京方面认为，这项计划可以规避美国的出口管制，并在将人工智能带给世界方面发挥领导作用 。</p><p>上个月，DeepSeek 发布了其升级版旗舰模型 V4。虽然新模型采用的是英伟达的高端芯片，但 DeepSeek 与华为和其他国内芯片供应商密切合作，这标志着该公司正在摆脱对美国的依赖。</p><p>DeepSeek 表示，V4 与去年底发布的美国顶级产品相当，但在某些方面落后于今年发布的美国领先型号，例如 Anthropic 的 Claude Opus 4.6。</p><p>投资者预计，随着各行各业寻求将更复杂的任务（从办公室到工厂车间）自动化，DeepSeek 的新模型将在中国掀起一波人工智能应用浪潮。</p><p>DeepSeek 的主要模型（包括 V4）都是开源的，这意味着用户可以免费下载和修改。该公司通过出售在其计算基础设施上运行的模型的访问权限来获得少量收入。</p><p>尽管 DeepSeek 能否快速提升营收尚不明朗，但一些投资者认为，它与中国产业的紧密联系最终将有助于其打造一家盈利丰厚的企业。其他一些总部位于中国的 AI 公司估值已经很高。在香港上市的智普 AI 目前的市值约为 500 亿美元，而 MiniMax 的市值约为 300 亿美元。</p><p>2024 年，中国在其第三期国家半导体基金 （俗称“大基金”）中募集了约 500 亿美元，旨在提升中国的芯片制造能力。几个月后，“大基金”又协助设立了人工智能基金。</p><p>在最初几个月里，DeepSeek 在全球范围内引起轰动，但它拒绝接受外部资本 ，包括来自政府关联基金的资金，试图保护其决策免受外界干预。相反，它依靠创始人梁文峰的个人财富及其对冲基金的利润。</p><p>现在，该公司正响应北京的号召，增强中国抵御美国压力的能力。</p><p>中国正在加强对人工智能和其他战略技术的监管。近期，中国已告知一些人工智能研发公司，未经政府批准不得接受美国投资。此前，美国已出台限制措施 ，限制美国企业对中国先进人工智能公司的投资，并禁止向中国出口芯片技术。</p><p>上个月，北京禁止 Meta Platforms 收购人工智能初创公司 Manus，Manus 是一家总部位于新加坡、具有中国背景的公司。</p><p>参考：</p><ul><li><a href="https://www.wsj.com/tech/ai/china-to-invest-in-deepseek-at-50-billion-valuation-045041d0?mod=ai_lead_pos3">https://www.wsj.com/tech/ai/china-to-invest-in-deepseek-at-50-billion-valuation-045041d0?mod=ai_lead_pos3</a></li></ul>]]></content>
+    
+    
+    <summary type="html">人工智能初创公司与北京合作，推动技术自主化</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/deepseek" scheme="https://blog.rustfisher.com/tags/news-deepseek/"/>
+    
+  </entry>
   
   <entry>
     <title>AMD 利润和营收因数据中心业务增长而大幅提升</title>
@@ -450,29 +473,6 @@
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
     
     <category term="news/Microsoft" scheme="https://blog.rustfisher.com/tags/news-Microsoft/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Google推出开放模型Gemma 4</title>
-    <link href="https://blog.rustfisher.com/news/news-google-20260403/"/>
-    <id>https://blog.rustfisher.com/news/news-google-20260403/</id>
-    <published>2026-04-02T23:59:59.000Z</published>
-    <updated>2026-04-03T00:10:16.783Z</updated>
-    
-    <content type="html"><![CDATA[<p>Google宣布推出Gemma 4。其专为高级推理和代理工作流打造，提供了前所未有的每参数智能化。这一突破建立在社区的强大动力基础上：自第一代主机发布以来，开发者已下载 Gemma 超过 4 亿次，构建了一个拥有超过10万个变体的充满活力的 Gemmaverse。Gemma 4使用Apache 2.0许可证。</p><p><img src="models-from-google-202604.jpeg" alt="截至4月1日，Arena.ai聊天场域的开放模型性能与体积"></p><p>Gemma 4 有四个多功能尺寸：有效 2B（E2B）、有效 4B（E4B）、26B 专家混合（MoE） 和 31B 密度。不仅仅是简单的聊天，还能处理复杂的逻辑和代理式的工作流程。大型模型在其尺寸中提供了最先进的性能，31B型号目前在业界标准Arena AI文本排行榜上位列全球第3开放型号，26B型号则位列第6。在那里，Gemma 4的竞争对手是其体型的20倍。对于开发者来说，这种按参数智能化的新水平意味着以显著更低的硬件开销实现前沿能力。</p><p><img src="arena.ai-text-arena-20260401.png" alt="Text Arena"></p><p><img src="google-x-2026-4-3.png" alt="Google x post"></p><p>参考：</p><ul><li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/">https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/</a></li><li><a href="https://arena.ai/leaderboard/text?license=open-source">https://arena.ai/leaderboard/text?license=open-source</a></li></ul>]]></content>
-    
-    
-    <summary type="html">Google宣布推出Gemma 4。其专为高级推理和代理工作流打造，提供了前所未有的每参数智能化。</summary>
-    
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
-    
-    <category term="news/google" scheme="https://blog.rustfisher.com/tags/news-google/"/>
     
   </entry>
   
