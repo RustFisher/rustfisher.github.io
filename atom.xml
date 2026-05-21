@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-05-08T00:12:34.431Z</updated>
+  <updated>2026-05-21T00:34:20.091Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>英伟达凭借强劲的芯片销售业绩，再创季度新高</title>
+    <link href="https://blog.rustfisher.com/news/nvidia-nvda-1st-quarter-earnings-report-2026-stock-20260521/"/>
+    <id>https://blog.rustfisher.com/news/nvidia-nvda-1st-quarter-earnings-report-2026-stock-20260521/</id>
+    <published>2026-05-21T00:29:59.000Z</published>
+    <updated>2026-05-21T00:34:20.091Z</updated>
+    
+    <content type="html"><![CDATA[<p>芯片巨头英伟达 (NVDA) 周三公布了创纪录的销售额和收入，这主要得益于数据中心计算需求的激增和人工智能代理的迅猛发展。</p><p>截至 4 月份的季度，销售额达到 816 亿美元，比去年同期增长 85%，比 FactSet 调查的分析师预测的 789 亿美元高出 3.4%。该季度净利润为 583 亿美元，是去年同期的三倍多，比分析师预测的 429 亿美元高出 36.5%。</p><p>“需求呈抛物线式增长，”首席执行官黄仁勋在与分析师的电话会议上表示。“原因很简单：智能体人工智能时代已经到来。”</p><p>英伟达创纪录的销售额主要得益于其数据中心业务的增长，尤其是计算硬件的销售，包括公司的图形处理器（GPU）和其他芯片。网络硬件的销售额较去年同期增长了两倍，达到创纪录的 148 亿美元。</p><p>该公司还宣布了两项有利于股东的举措：一项800亿美元的股票回购计划，以及将季度现金股息从每股1美分提高到0.25美元。首席财务官科莱特·克雷斯在电话会议上表示，公司计划今年将50%的自由现金流返还给股东。</p><p>这些结果再次表明，大型科技公司比以往任何时候都更加依赖硬件销售，尤其是硅芯片的销售来推动利润增长。</p><p>上个月， 亚马逊首席执行官安迪·杰西表示，该公司芯片业务“持续快速增长，规模远超许多人的预期”。杰西称，如果亚马逊网络服务（AWS）的定制芯片业务是一个独立业务，其年收入将达到约 500 亿美元。</p><p>其他公司也纷纷加入芯片领域的竞争。本周，谷歌和私募股权公司黑石集团宣布了一项价值 50 亿美元的合作计划 ，旨在成立一家数据中心公司 ，该公司将使用谷歌定制的 TPU 处理器。这再次表明，这家搜索巨头正寻求通过向外部客户销售芯片来直接与英伟达展开竞争。</p><p>而 Cerebras Systems 是一家生产超大尺寸芯片的初创公司，这些芯片经过定制，可以快速运行 AI 模型。该公司上周股价飙升，此前它在 2026 年迄今为止规模最大的 IPO 中筹集了 56 亿美元。</p><p>市场对人工智能硬件的狂热热情也体现在交易数量的激增上。据 PitchBook 数据显示，2025 年半导体公司并购交易数量达到 121 起，创下该行业有史以来交易速度最快的纪录。这些交易的总价值达 642 亿美元，是自 2020 年以来最高的单年交易额。</p><p>今年以来，英伟达的股价上涨了近 20%，使其成为全球市值最高的上市公司，市值接近 5.5 万亿美元。</p><p>随着公司在人工智能繁荣时期迅速发展，投资者越来越要求英伟达以越来越大的幅度超越预期，才能大幅推高英伟达的股价。</p><p>“现在的问题是，该公司能否超出预期。这几乎是理所当然的，”GraniteShares 创始人兼首席执行官威尔·林德（Will Rhind）说道。GraniteShares 是一家资产规模达 140 亿美元的投资公司，旗下运营着一只杠杆基金，持有价值近 50 亿美元的英伟达股票。</p><p>今年 3 月，英伟达推出了一系列新产品，其中包括两款专为提升人工智能模型和智能体运行速度而设计的服务器。其中一款是专为推理（即运行人工智能模型所需的计算）而设计的系统 ，它采用了初创公司 Groq 设计的芯片 。英伟达于去年 12 月以 200 亿美元的价格收购了 Groq 的技术和顶尖人才。</p><p>另一台服务器完全由英伟达的 Vera CPU（中央处理器）组成，这些更基础的计算机“大脑”由于智能人工智能（一种能够代表用户执行任务的自主工具）的普及而需求激增 。黄仁勋在三月份表示，该公司预计到 2027 年底，其 Blackwell 和 Rubin GPU 的销售额将达到 1 万亿美元 ，这些 GPU 在训练人工智能模型方面尤其有用。</p><p>展望未来，投资者和分析师表示，重点可能会放在英伟达最新一代计算系统 Vera Rubin 的推出上，该系统预计将于今年晚些时候开始发货。</p><p>周三，黄仁勋在与分析师的财报电话会议上表示，尽管竞争日益激烈，但他预计 Vera Rubin 将比英伟达上一代产品 Grace Blackwell 更加成功，黄仁勋称 Grace Blackwell 无处不在。</p><p>黄仁勋周三还反复强调了英伟达为吸引像 Anthropic 这样的新合作伙伴所做的努力——这两家公司去年达成了一项重要协议 ——并致力于拓展客户群体，纳入更多规模较小的企业级人工智能用户。黄仁勋补充说，他预计包含企业客户和小型数据中心公司（即所谓的“新云”）的业务板块的增长速度将超过包含大型“超大规模数据中心”客户的板块。</p><p>投资者也在密切关注英伟达在中国销售其第二先进芯片的计划是否取得进展。特朗普政府去年批准了这款名为H200的处理器的销售。</p><p>黄仁勋曾表示，中国人工智能芯片市场规模可能高达每年500亿美元。周三，英伟达表示，预计本季度将不会从中国数据中心芯片的销售中获得任何收入。</p><p>上周，黄在最后一刻陪同特朗普总统飞往北京举行峰会，但目前尚不清楚会晤期间是否讨论了H200销售的问题，以及与谁进行了讨论。</p><p>“目前我们从中国市场获得的收入为零，”林德说。“即使只占很小一部分市场份额，也可能意义重大。”</p><h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><ul><li><a href="https://www.wsj.com/tech/ai/nvidia-nvda-1st-quarter-earnings-report-2026-stock-c2bb9c1c">https://www.wsj.com/tech/ai/nvidia-nvda-1st-quarter-earnings-report-2026-stock-c2bb9c1c</a></li></ul>]]></content>
+    
+    
+    <summary type="html">人工智能代理数量的爆炸式增长和数据中心计算需求的激增，推动芯片制造商第一季度营收达到 820 亿美元</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/nvidia" scheme="https://blog.rustfisher.com/tags/news-nvidia/"/>
+    
+  </entry>
   
   <entry>
     <title>埃隆·马斯克的 SpaceX 计划投资 550 亿美元制造人工智能芯片</title>
@@ -450,29 +473,6 @@
     
     
     <category term="自我提升" scheme="https://blog.rustfisher.com/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>美国缅因州议员通过禁令，禁止大型数据中心至2027年底</title>
-    <link href="https://blog.rustfisher.com/news/news-us-maine-bill-20260415/"/>
-    <id>https://blog.rustfisher.com/news/news-us-maine-bill-20260415/</id>
-    <published>2026-04-15T01:15:59.000Z</published>
-    <updated>2026-04-15T01:17:43.301Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>The bill, which blocks centers that draw over 20 megawatts of power until late 2027, heads to Democratic Gov. Janet Mills</p></blockquote><p>缅因州议员周二通过了一项禁止建设大型数据中心的法案，使其成为美国第一个采取此类措施的州。与此同时，美国各地社区正在应对人工智能热潮带来的影响。</p><p>由民主党控制的州议会通过了一项法案，将新建数据中心的计划冻结至 2027 年 11 月。此举旨在让缅因州有时间评估数据中心对环境和电网的风险。该法案即将提交给民主党州长珍妮特·米尔斯签署。米尔斯曾表示，如果法案中包含一项针对杰伊镇已规划项目的例外条款，她将支持冻结数据中心建设。</p><p>缅因州的建设冻结令适用于容量至少为 20 兆瓦的数据中心，这些数据中心的用电量足以满足超过 15000 户家庭的用电需求。数据中心——用于容纳人工智能和计算系统设备的设施——正在全国各地如雨后春笋般涌现， 以满足人工智能的需求。许多当地社区抗议数据中心的建设，因为这些数据中心往往选址在拥有空地和电力供应的地区。</p><p>根据缅因州的这项法案，州政府将成立一个委员会，负责审查大型数据中心对州政府和电力用户的影响。缅因州的居民电价位居全美最高之列，民选官员担心数据中心电力需求的激增可能会进一步推高电价。</p><p>至少还有 10 个州正在推进类似法案，他们担心数据中心的电力需求可能会损害环境并推高电价。包括印第安纳州和密歇根州在内的一些地方政府和县已经暂停了数据中心的建设。</p><p><img src="image.png" alt="The Maine State House in Augusta"></p><p><img src="Maine.png" alt="Maine State"></p><p>参考：</p><ul><li><a href="https://www.wsj.com/politics/policy/maine-lawmakers-pass-ban-on-large-data-centers-b91c5f2c">https://www.wsj.com/politics/policy/maine-lawmakers-pass-ban-on-large-data-centers-b91c5f2c</a></li></ul>]]></content>
-    
-    
-    <summary type="html">该法案将禁止在2027年底之前建设耗电量超过20兆瓦的发电中心，目前已提交给州长。</summary>
-    
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
-    
-    <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
     
   </entry>
   
