@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-05-21T00:34:20.091Z</updated>
+  <updated>2026-06-12T07:38:06.328Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenAI 考虑大幅降价，预计将与 Anthropologie 展开用户争夺战</title>
+    <link href="https://blog.rustfisher.com/news/news-openai-20260610/"/>
+    <id>https://blog.rustfisher.com/news/news-openai-20260610/</id>
+    <published>2026-06-10T14:44:59.000Z</published>
+    <updated>2026-06-12T07:38:06.328Z</updated>
+    
+    <content type="html"><![CDATA[<p>OpenAI 正在考虑大幅降低向用户收取的费用，以期从竞争对手 Anthropic 手中赢得客户。</p><p>据知情人士透露，该公司正在考虑大幅降低代币（人工智能公司用来为其产品计费的计量单位）的收费。知情人士称，此举是为了应对该公司预期 Anthropic 也将采取的类似降价措施。</p><p>企业高管们开始对人工智能的高昂成本感到不满。OpenAI 首席执行官萨姆·奥特曼在最近的一次活动中表示，成本已经成为“一个巨大的问题”。</p><p>“我认为我们有很多方法可以帮助人们花更少的钱获得更多的价值，”他说。</p><p>大幅降价可能会侵蚀两家公司的利润率，而由于人工智能系统处理查询和执行任务所需的计算资源成本巨大，这两家公司已经损失数十亿美元。</p><p>OpenAI 正努力追赶其年轻的竞争对手，力图赢得那些愿意为提升工作效率的人工智能工具支付巨额费用的企业客户。Anthropic 的编码工具 Claude Code 在软件工程师中迅速走红，带动了公司营收的飙升 ，这家成立五年的初创公司估值也首次超过了 OpenAI。此后，OpenAI 将自身编码工具 Codex 作为公司的重点发展方向。</p><p>一些公司在 Anthropic 的产品上投入了巨资，以至于其领导层现在正试图控制支出 。今年早些时候，一位 Uber 高管表示，该公司 2026 年用于智能体（或自主）人工智能的预算已达上限；另一位公司领导上个月表示，很难将人工智能编码效率的提升与新的客户功能联系起来。</p><p>许多高管的此类言论在硅谷引发了一场关于“代币最大化”（tokenmaxxing）的辩论，即尽可能多地使用代币来提高生产力，包括以无法产生投资回报的方式使用代币。</p><p>在备受瞩目的上市之前，价格战将是对两家公司商业模式实力的一次早期考验。OpenAI 和 Anthropic 的大部分收入都来自人工智能新产品，这推动了它们的快速崛起。但投资者长期以来一直关注的一个潜在风险是，它们的产品具有高度可互换性，客户很容易从一款产品转向另一款。</p><p>OpenAI 本周早些时候秘密提交了 IPO 申请 ，效仿了 Anthropic 的做法。在最近一条发给员工的 Slack 消息中，Altman 表示公司计划“在未来一年内”上市。此前，《The Information》曾报道过这条消息。</p><p>该公司在一份保密文件中表示，“作为一家私营公司，我们想做的一些事情可能会更容易”，但拒绝进一步详细说明。</p><p>参考来源： <a href="https://www.wsj.com/tech/ai/openai-considers-drastic-price-cuts-anticipating-war-for-users-with-anthropic-9b8c178e?mod=article_inline">https://www.wsj.com/tech/ai/openai-considers-drastic-price-cuts-anticipating-war-for-users-with-anthropic-9b8c178e?mod=article_inline</a></p>]]></content>
+    
+    
+    <summary type="html">该公司可能会降低token价格（token是衡量人工智能成本的核心单位），但相关讨论仍在进行中。</summary>
+    
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
+    
+    
+    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
+    
+    <category term="news/OpenAI" scheme="https://blog.rustfisher.com/tags/news-OpenAI/"/>
+    
+  </entry>
   
   <entry>
     <title>英伟达凭借强劲的芯片销售业绩，再创季度新高</title>
@@ -452,27 +475,6 @@
     <category term="news/AI" scheme="https://blog.rustfisher.com/tags/news-AI/"/>
     
     <category term="news/stanford" scheme="https://blog.rustfisher.com/tags/news-stanford/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>积极心态是一种选择，而不是行动的结果</title>
-    <link href="https://blog.rustfisher.com/reading/promotion/fake-being-happy-and-look-for-the-positive-in-each-situation/"/>
-    <id>https://blog.rustfisher.com/reading/promotion/fake-being-happy-and-look-for-the-positive-in-each-situation/</id>
-    <published>2026-04-15T02:02:59.000Z</published>
-    <updated>2026-04-15T02:03:34.322Z</updated>
-    
-    <content type="html"><![CDATA[<p>认识到积极心态是一种选择，而不是行动的结果。</p><blockquote><p>Life sucks, we all know this. But the term fake it until you make it really does work. Just fake being happy and look for the positive in each situation and your perspective will change. It’s not something that is going to happen overnight, its a day by day thing but after a while you should notice yourself looking for the positive rather than dwelling on the negative.  </p></blockquote><p>生活糟透了，我们都知道。但“假装快乐直到真正快乐”这句话真的管用。只要假装快乐，并在每件事中寻找积极的一面，你的视角就会改变。这不会一蹴而就，需要日积月累，但过一段时间后，你会发现自己开始寻找积极的一面，而不是沉溺于消极情绪。</p>]]></content>
-    
-    
-    <summary type="html">“假装快乐直到真正快乐”这句话真的管用。只要假装快乐，并在每件事中寻找积极的一面，你的视角就会改变。</summary>
-    
-    
-    
-    <category term="promotion" scheme="https://blog.rustfisher.com/categories/promotion/"/>
-    
-    
-    <category term="自我提升" scheme="https://blog.rustfisher.com/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/"/>
     
   </entry>
   
