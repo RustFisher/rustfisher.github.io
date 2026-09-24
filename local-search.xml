@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>鹈鹕骑自行车的html页面生成测试202609（GPT-6 Astra，Gemini 3.8 flash，DeepSeek 4.1 flash）</title>
+    <link href="/ai/pelican-bike-demo202609-gpt6astra-gemini3-8flash-deepseek4-1flash/"/>
+    <url>/ai/pelican-bike-demo202609-gpt6astra-gemini3-8flash-deepseek4-1flash/</url>
+    
+    <content type="html"><![CDATA[<h2 id="测试背景与提示词"><a href="#测试背景与提示词" class="headerlink" title="测试背景与提示词"></a>测试背景与提示词</h2><p>用同样的提示词，让不同的AI生成一只鹈鹕骑自行车的HTML页面。</p><p>提示词：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Create a single HTML file that generates a 2D SVG animation of a pelican riding a bicycle and displays it on the page.<br></code></pre></td></tr></table></figure></p><p>以下是GPT-6 Astra、Gemini 3.8 flash、DeepSeek4.1 flash生成的结果链接：</p><ul><li><a href="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/gpt6-astra-low/">GPT-6 Astra 生成的页面</a></li><li><a href="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/gemini3.8-flash-low/">Gemini 3.8 flash 生成的页面</a></li><li><a href="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/deepseek4.1-flash/">DeepSeek4.1 flash 生成的页面</a></li></ul><h2 id="评测环境与工具"><a href="#评测环境与工具" class="headerlink" title="评测环境与工具"></a>评测环境与工具</h2><ul><li>VSCode Codex - GPT-6 Astra 轻度（Low）</li><li>VSCode Antigravity - Gemini 3.8 Flash Low</li><li>TraeCode CN - DeepSeek 4.1 flash</li></ul><h2 id="模型生成效果对比"><a href="#模型生成效果对比" class="headerlink" title="模型生成效果对比"></a>模型生成效果对比</h2><h3 id="GPT-6-Astra-效果"><a href="#GPT-6-Astra-效果" class="headerlink" title="GPT-6 Astra 效果"></a>GPT-6 Astra 效果</h3><iframe src="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/gpt6-astra-low/" width="100%" height="500px" frameborder="0" allowfullscreen loading="lazy"></iframe><p>画面整体和谐，色调优雅。可以看到鹈鹕的前进方向是从左往右，整体看着前进方向正确。<br>骑车时鹈鹕的脚转动也正常。<br>页面可以暂停和恢复动画。并且可以调整速度。<br>鹈鹕的一些部分和自行车有显示错误的地方，层次没有完全处理好。</p><h3 id="Gemini3-8-flash-效果"><a href="#Gemini3-8-flash-效果" class="headerlink" title="Gemini3.8 flash 效果"></a>Gemini3.8 flash 效果</h3><iframe src="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/gemini3.8-flash-low/" width="100%" height="500px" frameborder="0" allowfullscreen loading="lazy"></iframe><p>画面颜色较为鲜艳，可以看到鹈鹕的前进方向是从左往右，整体看着前进方向正确。<br>鹈鹕的“手”并没有紧握自行车把手，脚也没有在踏板上。<br>页面可以暂停和恢复动画。并且可以调整速度。也有铃声按钮。</p><h3 id="DeepSeek-4-1-flash-效果"><a href="#DeepSeek-4-1-flash-效果" class="headerlink" title="DeepSeek 4.1 flash 效果"></a>DeepSeek 4.1 flash 效果</h3><iframe src="https://en.rustfisher.com/aiwebdemos/pelican-bike-20260924/deepseek4.1-flash/" width="100%" height="500px" frameborder="0" allowfullscreen loading="lazy"></iframe><p>画面整体较为简单，颜色鲜艳。可以看到鹈鹕的前进方向是从左往右，但是道路的方向和车轮方向明显不协调。<br>画面中鹈鹕的喉囊中间空了一部分。“手”没有在车把手上。<br>两只脚在自行车踏板上。<br>页面没有附加的功能。</p><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><table><thead><tr><th>对比维度</th><th>GPT-6 Astra (Low)</th><th>Gemini 3.8 Flash (Low)</th><th>DeepSeek 4.1 Flash</th></tr></thead><tbody><tr><td><strong>画面美感/配色</strong></td><td>优雅和谐，色调高级</td><td>色彩鲜艳明快</td><td>较为简素基础</td></tr><tr><td><strong>生物/机械结构</strong></td><td>骑行脚蹬协调，层级微小穿模</td><td>脚未踩踏板，翅未握车把</td><td>脚踩踏板，喉囊穿模/断裂</td></tr><tr><td><strong>运动/物理逻辑</strong></td><td>协调自然，前进方向正确</td><td>协调</td><td>背景道路与车轮运动方向不协调</td></tr><tr><td><strong>交互功能</strong></td><td>播放/暂停、调速</td><td>播放/暂停、调速、车铃声</td><td>无交互控件</td></tr></tbody></table><h2 id="综合对比总结"><a href="#综合对比总结" class="headerlink" title="综合对比总结"></a>综合对比总结</h2><p>Gemini 增加了趣味小功能（车铃按键），GPT 在动态细节与审美上表现最细腻，DeepSeek 则偏向最朴素地满足基本需求。</p><p>在快速/轻量推理（Low/Flash）场景下，各家模型对复杂空间关系（人体工学、图层层级 Z-index、相对运动）的理解能力存在差异。生成2D骨骼/多图层机械运动（曲柄连杆机构：脚踏板转动带动脚运动）对轻量级模型依然是高难度任务。GPT-6的运动学求解最平滑；DeepSeek在相对运动（车体、轮子、地面的相对速度矢量）上出现倒置。</p><p>综合来看，GPT-6 Astra的效果更好一些。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ai</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Gemini</tag>
+      
+      <tag>DeepSeek</tag>
+      
+      <tag>AI</tag>
+      
+      <tag>GPT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>OpenAI 考虑大幅降价，预计将与 Anthropologie 展开用户争夺战</title>
     <link href="/news/news-openai-20260610/"/>
     <url>/news/news-openai-20260610/</url>
@@ -911,9 +942,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>GPT-5</tag>
       
@@ -940,9 +971,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>ChatGPT</tag>
+      
+      <tag>AI</tag>
       
       <tag>ChatGPT学习模式</tag>
       
@@ -969,9 +1000,9 @@
     
     <tags>
       
-      <tag>ChatGPT</tag>
-      
       <tag>AI工具</tag>
+      
+      <tag>ChatGPT</tag>
       
       <tag>Gemini</tag>
       
