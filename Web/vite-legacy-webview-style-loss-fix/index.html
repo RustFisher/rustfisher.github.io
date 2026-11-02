@@ -19,16 +19,16 @@
   <meta name="author" content="Rust Fisher">
   <meta name="keywords" content="">
   
-    <meta name="description" content="现象在开发webtools时，用电脑浏览器和新版手机浏览器访问正常，但在老旧 Android 测试机（如搭载 Edge 44 &#x2F; 内核约为 Chromium 77，比如小米2S）打开时，页面样式几乎完全丢失，部分交互脚本无法正常执行。 原因排查手机端 Edge 44 对应的 Blink&#x2F;Chromium 内核约为 Chromium 77。项目使用的 Vite 8 默认构建目标面向较新的现代浏览器（">
+    <meta name="description" content="现象在开发webtools时，用电脑浏览器和新版手机浏览器访问正常，但在老旧 Android 测试机（如搭载 Edge 44 &#x2F; 内核约为 Chromium 77，比如小米2S）打开时，页面样式几乎完全丢失，部分交互脚本无法正常执行。   原因排查手机端 Edge 44 对应的 Blink&#x2F;Chromium 内核约为 Chromium 77。项目使用的 Vite 8 默认构建目标面向较新的现代浏览">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vite 打包产物在旧版手机 Edge&#x2F;WebView 样式丢失排查与降级修复">
 <meta property="og:url" content="https://blog.rustfisher.com/Web/vite-legacy-webview-style-loss-fix/index.html">
 <meta property="og:site_name" content="RustFisher的自留地">
-<meta property="og:description" content="现象在开发webtools时，用电脑浏览器和新版手机浏览器访问正常，但在老旧 Android 测试机（如搭载 Edge 44 &#x2F; 内核约为 Chromium 77，比如小米2S）打开时，页面样式几乎完全丢失，部分交互脚本无法正常执行。 原因排查手机端 Edge 44 对应的 Blink&#x2F;Chromium 内核约为 Chromium 77。项目使用的 Vite 8 默认构建目标面向较新的现代浏览器（">
+<meta property="og:description" content="现象在开发webtools时，用电脑浏览器和新版手机浏览器访问正常，但在老旧 Android 测试机（如搭载 Edge 44 &#x2F; 内核约为 Chromium 77，比如小米2S）打开时，页面样式几乎完全丢失，部分交互脚本无法正常执行。   原因排查手机端 Edge 44 对应的 Blink&#x2F;Chromium 内核约为 Chromium 77。项目使用的 Vite 8 默认构建目标面向较新的现代浏览">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.rustfisher.com/img/old-smart-phone.jpeg">
 <meta property="article:published_time" content="2026-11-02T08:57:01.000Z">
-<meta property="article:modified_time" content="2026-11-02T09:05:08.327Z">
+<meta property="article:modified_time" content="2026-11-02T09:22:42.338Z">
 <meta property="article:author" content="Rust Fisher">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="Vite">
@@ -116,13 +116,13 @@
 
 
 
-  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script><script type="text/javascript">
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "yxzpokqm4j");
-</script>
+</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script>
 <meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
 </head>
 
@@ -393,6 +393,8 @@
               <div class="markdown-body">
                 
                 <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>在开发<a target="_blank" rel="noopener" href="https://webtools.rustfisher.com">webtools</a>时，用电脑浏览器和新版手机浏览器访问正常，但在老旧 Android 测试机（如搭载 Edge 44 / 内核约为 Chromium 77，比如小米2S）打开时，页面样式几乎完全丢失，部分交互脚本无法正常执行。</p>
+<img src="/Web/vite-legacy-webview-style-loss-fix/no-good-on-phone1.jpg" srcset="/img/loading.gif" lazyload class="" width="180" title="手机上显示效果差-1">
+<img src="/Web/vite-legacy-webview-style-loss-fix/no-good-on-phone2.jpg" srcset="/img/loading.gif" lazyload class="" width="180" title="手机上显示效果差-2">
 <h3 id="原因排查"><a href="#原因排查" class="headerlink" title="原因排查"></a>原因排查</h3><p>手机端 Edge 44 对应的 Blink/Chromium 内核约为 <strong>Chromium 77</strong>。<br>项目使用的 Vite 8 默认构建目标面向较新的现代浏览器（大约对齐 Chrome 111+），生成的产物包含部分 Chromium 77 无法解析的原生特性：</p>
 <ol>
 <li><strong>CSS 媒体查询新语法</strong>：<br>使用了 <code>@media (width &lt;= 480px)</code> 这种 Range Queries 比较操作符写法。Chromium 77 不支持该语法，整条 CSS 规则被浏览器直接忽略，导致移动端适配样式全军覆没。</li>
