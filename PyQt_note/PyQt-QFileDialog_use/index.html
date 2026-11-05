@@ -115,7 +115,7 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "yxzpokqm4j");
-</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script>   window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());   gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script>
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script>
 <meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
 </head>
 
@@ -816,6 +816,27 @@
 
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. 复制代码统计（增加空指针防御）
+      document.addEventListener('copy', function() {
+        var selection = window.getSelection();
+        var sel = selection ? selection.toString() : '';
+        if (sel && sel.length > 5) {
+          gtag('event', 'copy_code', { post_title: document.title });
+        }
+      });
+
+      // 2. 外部链接跳转统计（仅拦截 http/https 外链）
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (a && a.hostname && a.hostname !== window.location.hostname && (a.protocol === 'http:' || a.protocol === 'https:')) {
+          gtag('event', 'outbound_click', { link_url: a.href, post_title: document.title });
+        }
+      });
+    });
+    </script>
+    
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
