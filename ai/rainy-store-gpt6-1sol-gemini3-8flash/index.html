@@ -28,11 +28,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.rustfisher.com/ai/rainy-store-gpt6-1sol-gemini3-8flash/rainy-store-gpt-6-1.png">
 <meta property="article:published_time" content="2026-11-08T14:01:00.000Z">
-<meta property="article:modified_time" content="2026-11-08T14:03:15.727Z">
+<meta property="article:modified_time" content="2026-11-08T14:07:00.857Z">
 <meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="AI">
 <meta property="article:tag" content="Gemini">
 <meta property="article:tag" content="DeepSeek">
-<meta property="article:tag" content="AI">
 <meta property="article:tag" content="GPT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.rustfisher.com/ai/rainy-store-gpt6-1sol-gemini3-8flash/rainy-store-gpt-6-1.png">
@@ -321,7 +321,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.4k 字
         
       </span>
     
@@ -431,8 +431,8 @@
 <li>3D 方案选型与完整度<br> 已引入本地 Three.js r160 和 OrbitControls，入口包含渲染循环、窗口适配、旋转与缩放限制，代码组织完整。使用 three.module.js 是合理的模块化方案，不应仅因文件名不是 three.min.js 扣分。但项目依赖 src/ 和 lib/，不满足严格意义的单 HTML。</li>
 <li>散件组装入场动效<br> 有独立的 Assembly 系统，真实修改 position.y 和 scale，包含底部生长 rise、高处落下 drop、弹性放大 pop。底座从 0 秒开始，随后路面、建筑、室内、招牌、道具、电线陆续入场，最后引入雨效。扣分在于不少对象按整组缩放，例如墙体与屋顶设备一起生长，距离逐件搭建、逐层叠放还有差距。</li>
 <li>三渲二与雨夜氛围<br> 有 MeshToonMaterial、四阶明暗渐变和 EdgesGeometry 描边；雨效包含 1500 条 GPU 雨丝和 34 个循环涟漪，冷色雾与霓虹呼吸也有实现。主要不足是路面使用卡通材质，积水和倒影主要是透明加色贴片，没有低粗糙度湿地材质及真实场景反射。</li>
-<li>室内外透视与光影反差<br> 橱窗设置 transparent: true、opacity: 0.05、depthWrite: false；室内有四个暖色 PointLight 和一个冷色补光，并建有货架、冰柜、收银台等内容。室外采用冷色月光，冷暖对比的技术条件充分。玻璃透明度较低，可能缺少玻璃存在感。</li>
-<li>细节密度与正方形底座<br> 主台面为 26 × 26，底座也是正方形；贩卖机、自行车、雨棚、电线杆、路灯、护栏、标线、井盖、空调等都有实现。自行车长约 1.8，店面宽约 11.7，比例没有明显失控。是否所有细节都不越界、默认视角是否紧凑，以及后排高楼是否抢主体，仍需视觉检查。</li>
+<li>室内外透视与光影反差<br> 橱窗设置 transparent: true、opacity: 0.05、depthWrite: false；室内有四个暖色 PointLight 和一个冷色补光，并建有货架、冰柜、收银台等内容。室外采用冷色月光，冷暖对比的技术条件充分。</li>
+<li>细节密度与正方形底座<br> 主台面为 26 × 26，底座也是正方形；贩卖机、自行车、雨棚、电线杆、路灯、护栏、标线、井盖、空调等都有实现。自行车长约 1.8，店面宽约 11.7，比例没有明显失控。</li>
 </ol>
 <h3 id="综合对比"><a href="#综合对比" class="headerlink" title="综合对比"></a>综合对比</h3><table>
 <thead>
@@ -510,11 +510,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
         <a href="/tags/Gemini/" class="print-no-link">#Gemini</a>
       
         <a href="/tags/DeepSeek/" class="print-no-link">#DeepSeek</a>
-      
-        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
         <a href="/tags/GPT/" class="print-no-link">#GPT</a>
       
