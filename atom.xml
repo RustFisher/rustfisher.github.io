@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-11-16T02:47:33.525Z</updated>
+  <updated>2026-11-18T13:40:52.393Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）</title>
+    <link href="https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/"/>
+    <id>https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/</id>
+    <published>2026-11-18T13:30:00.000Z</published>
+    <updated>2026-11-18T13:40:52.393Z</updated>
+    
+    <content type="html"><![CDATA[<p>在日常研发中，经常会遇到这样一种网络分流需求：AI 编程插件需要走代理访问外部模型 API，但同时又要直连公司内网的私有模型网关或本地调试服务（如 <code>localhost</code>、<code>*.rustfisher.com</code>）。</p><h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>VSCode 本身并没有提供“按单个扩展独立设置代理”的开关。如果全局开启代理，内网域名或本地接口可能会被误转发导致连接超时；如果彻底关闭代理，外部模型又无法连通。</p><ul><li>VSCode Version: 1.146.0 (user setup)</li><li>Kilo 7.8.27</li></ul><h2 id="底层机制：Kilo-如何透传代理环境变量"><a href="#底层机制：Kilo-如何透传代理环境变量" class="headerlink" title="底层机制：Kilo 如何透传代理环境变量"></a>底层机制：Kilo 如何透传代理环境变量</h2><p>虽然 VSCode 没有细粒度的扩展代理开关，但 Kilo 扩展内部自己实现了一套代理环境变量构建逻辑，恰好提供了可用的调节点。</p><p>查看其核心实现逻辑（<code>buildProxyEnv</code>）：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildProxyEnv</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">let</span> httpConfig = vscode.<span class="hljs-property">workspace</span>.<span class="hljs-title function_">getConfiguration</span>(<span class="hljs-string">&quot;http&quot;</span>);<br>  <span class="hljs-keyword">if</span> (httpConfig.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;proxySupport&quot;</span>) === <span class="hljs-string">&quot;off&quot;</span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">HTTP_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">HTTPS_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">NO_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, ... &#125;; <span class="hljs-comment">// 全部清空</span><br>  &#125;<br>  <span class="hljs-comment">// ...</span><br>  env.<span class="hljs-property">HTTP_PROXY</span> = proxy;<br>  env.<span class="hljs-property">HTTPS_PROXY</span> = proxy;           <span class="hljs-comment">// 继承 http.proxy</span><br>  env.<span class="hljs-property">NO_PROXY</span> = noProxy.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;,&quot;</span>);  <span class="hljs-comment">// 继承 http.noProxy</span><br>&#125;<br></code></pre></td></tr></table></figure><p>从源码可以看出，Kilo 在启动底层工作进程时，会读取 VSCode 的三个核心网络配置项，并将其翻译为标准的系统环境变量透传给它拉起的 <code>kilo.exe</code> 子进程：</p><ol><li><strong><code>http.proxySupport</code></strong>：当设置为 <code>&quot;off&quot;</code> 时，会主动清空 <code>HTTP_PROXY</code>、<code>HTTPS_PROXY</code> 和 <code>NO_PROXY</code>，强制子进程直连。</li><li><strong><code>http.proxy</code></strong>：映射为子进程的 <code>HTTP_PROXY</code> 与 <code>HTTPS_PROXY</code>。</li><li><strong><code>http.noProxy</code></strong>：将配置的数组拼接为逗号分隔的字符串，映射为子进程的 <code>NO_PROXY</code>。</li></ol><h2 id="配置实践：实现内外网分流"><a href="#配置实践：实现内外网分流" class="headerlink" title="配置实践：实现内外网分流"></a>配置实践：实现内外网分流</h2><p>基于上述机制，我们不需要折腾系统级全局规则，只需在 VSCode 的全局配置 <code>settings.json</code> 中指定代理地址，并将内网域名及本地回环地址加入 <code>http.noProxy</code> 即可：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;http.proxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://127.0.0.1:7890&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;http.proxySupport&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;override&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;http.noProxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;*.rustfisher.com&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;localhost&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;127.0.0.1&quot;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure><p>配置保存并重载扩展后，Kilo 拉起的 <code>kilo.exe</code> 就会自动携带对应的 <code>NO_PROXY</code> 环境变量：访问外部模型时正常走代理通道，请求 <code>*.rustfisher.com</code> 或本地服务时直接绕过代理，实现干净的网络分流。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在日常研发中，经常会遇到这样一种网络分流需求：AI 编程插件需要走代理访问外部模型 API，但同时又要直连公司内网的私有模型网关或本地调试服务（如 &lt;code&gt;localhost&lt;/code&gt;、&lt;code&gt;*.rustfisher.com&lt;/code&gt;）。&lt;/p&gt;
+&lt;h2 </summary>
+      
+    
+    
+    
+    <category term="Tools" scheme="https://blog.rustfisher.com/categories/Tools/"/>
+    
+    
+    <category term="VSCode" scheme="https://blog.rustfisher.com/tags/VSCode/"/>
+    
+    <category term="Kilo" scheme="https://blog.rustfisher.com/tags/Kilo/"/>
+    
+    <category term="Proxy" scheme="https://blog.rustfisher.com/tags/Proxy/"/>
+    
+    <category term="开发环境" scheme="https://blog.rustfisher.com/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    
+  </entry>
   
   <entry>
     <title>AI生成雨中便利店的网页 | GPT-6.1 sol，Gemini 3.8 flash，DeepSeek V4.1-Flash-1017</title>
@@ -33,11 +64,11 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
-    
     <category term="Gemini" scheme="https://blog.rustfisher.com/tags/Gemini/"/>
     
     <category term="DeepSeek" scheme="https://blog.rustfisher.com/tags/DeepSeek/"/>
+    
+    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
     
     <category term="GPT" scheme="https://blog.rustfisher.com/tags/GPT/"/>
     
@@ -124,11 +155,11 @@
     <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
     
     
-    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
-    
     <category term="Gemini" scheme="https://blog.rustfisher.com/tags/Gemini/"/>
     
     <category term="DeepSeek" scheme="https://blog.rustfisher.com/tags/DeepSeek/"/>
+    
+    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
     
     <category term="GPT" scheme="https://blog.rustfisher.com/tags/GPT/"/>
     
@@ -476,29 +507,6 @@
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
     
     <category term="news/deepseek" scheme="https://blog.rustfisher.com/tags/news-deepseek/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微软计划首次对美国员工进行自愿买断，涉及至多7%的员工</title>
-    <link href="https://blog.rustfisher.com/news/microsoft-retire-plan-20260425/"/>
-    <id>https://blog.rustfisher.com/news/microsoft-retire-plan-20260425/</id>
-    <published>2026-04-25T07:00:59.000Z</published>
-    <updated>2026-08-05T08:16:01.774Z</updated>
-    
-    <content type="html"><![CDATA[<p>微软正向其约 7% 的美国员工提供提前退休的选择，这是大型科技公司在加大人工智能投资的同时缩减规模的最新举措。</p><p>据一位知情人士透露，约有7%的美国员工符合资格。由于具体数字尚未公开，该人士要求匿名。这项一次性退休计划于周四在一份备忘录中宣布，将面向美国高级总监及以下级别的员工，前提是他们的工龄和年龄总和达到或超过70年。</p><p>符合条件的员工及其经理将于5月7日收到详细信息。参与销售激励计划的员工不能参加。</p><p>参考来源</p><ul><li><a href="https://edition.cnn.com/2026/04/24/tech/microsoft-voluntary-buyouts-us-employees">https://edition.cnn.com/2026/04/24/tech/microsoft-voluntary-buyouts-us-employees</a></li><li><a href="https://www.cnbc.com/2026/04/23/microsoft-plans-first-voluntary-retirement-program-for-us-employees.html">https://www.cnbc.com/2026/04/23/microsoft-plans-first-voluntary-retirement-program-for-us-employees.html</a></li><li><a href="https://www.bloomberg.com/news/articles/2026-04-23/microsoft-offers-voluntary-retirement-to-about-7-of-us-workers?srnd=phx-technology&amp;embedded-checkout=true">https://www.bloomberg.com/news/articles/2026-04-23/microsoft-offers-voluntary-retirement-to-about-7-of-us-workers?srnd=phx-technology&amp;embedded-checkout=true</a></li></ul>]]></content>
-    
-    
-    <summary type="html">据一位知情人士透露，约有7%的美国员工符合资格。由于具体数字尚未公开，该人士要求匿名。这项一次性退休计划于周四在一份备忘录中宣布，将面向美国高级总监及以下级别的员工，前提是他们的工龄和年龄总和达到或超过70年。</summary>
-    
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
-    
-    <category term="news/Microsoft" scheme="https://blog.rustfisher.com/tags/news-Microsoft/"/>
     
   </entry>
   

@@ -1,0 +1,873 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/038-ice-coffee.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rust Fisher">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在日常研发中，经常会遇到这样一种网络分流需求：AI 编程插件需要走代理访问外部模型 API，但同时又要直连公司内网的私有模型网关或本地调试服务（如 localhost、*.rustfisher.com）。 问题背景VSCode 本身并没有提供“按单个扩展独立设置代理”的开关。如果全局开启代理，内网域名或本地接口可能会被误转发导致连接超时；如果彻底关闭代理，外部模型又无法连通。  VSCode Ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）">
+<meta property="og:url" content="https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/index.html">
+<meta property="og:site_name" content="RustFisher的自留地">
+<meta property="og:description" content="在日常研发中，经常会遇到这样一种网络分流需求：AI 编程插件需要走代理访问外部模型 API，但同时又要直连公司内网的私有模型网关或本地调试服务（如 localhost、*.rustfisher.com）。 问题背景VSCode 本身并没有提供“按单个扩展独立设置代理”的开关。如果全局开启代理，内网域名或本地接口可能会被误转发导致连接超时；如果彻底关闭代理，外部模型又无法连通。  VSCode Ve">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/vscode-kilo-cover1.png">
+<meta property="article:published_time" content="2026-11-18T13:30:00.000Z">
+<meta property="article:modified_time" content="2026-11-18T13:40:52.393Z">
+<meta property="article:author" content="Rust Fisher">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="Kilo">
+<meta property="article:tag" content="Proxy">
+<meta property="article:tag" content="开发环境">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/vscode-kilo-cover1.png">
+  
+  
+  
+  <title>VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy） - RustFisher的自留地</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.rustfisher.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"27f6c725fe6b0b874169d9fb51b13af7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"N23CAaqvEPxtglxLbc4o0REb-MdYXbMMI","app_key":"vx6LVMyCsch2GR8CczKPMc5A","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?27f6c725fe6b0b874169d9fb51b13af7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  <style>ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }</style><script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yxzpokqm4j");
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-8GYMT1XNKG"></script><script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-8GYMT1XNKG');</script><script defer src="https://cloud.umami.is/script.js" data-website-id="c0171030-787e-4938-b2d7-06bdb9f304b8" ></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="RustFisher的自留地" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RustFisher</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/news/" target="_self">
+                <i class="iconfont icon-notebook"></i>
+                <span>news</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.an.rustfisher.com" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>Android教程</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://en.rustfisher.com" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>English</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://webtools.rustfisher.com" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>在线工具</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/tools/vscode-kilo-http-noproxy-settings/vscode-kilo-cover2.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-18 21:30" pubdate>
+          2026年11月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          571 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+<aside class="sidebar d-none d-xl-block" style="margin-right:-1rem;z-index:-1"><ins class="adsbygoogle" style="display:flex;justify-content:center;min-width:160px;max-width:300px;width:100%;height:600px;position:sticky;top:2rem" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></aside>
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年11月18日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在日常研发中，经常会遇到这样一种网络分流需求：AI 编程插件需要走代理访问外部模型 API，但同时又要直连公司内网的私有模型网关或本地调试服务（如 <code>localhost</code>、<code>*.rustfisher.com</code>）。</p>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>VSCode 本身并没有提供“按单个扩展独立设置代理”的开关。如果全局开启代理，内网域名或本地接口可能会被误转发导致连接超时；如果彻底关闭代理，外部模型又无法连通。</p>
+<ul>
+<li>VSCode Version: 1.146.0 (user setup)</li>
+<li>Kilo 7.8.27</li>
+</ul>
+<h2 id="底层机制：Kilo-如何透传代理环境变量"><a href="#底层机制：Kilo-如何透传代理环境变量" class="headerlink" title="底层机制：Kilo 如何透传代理环境变量"></a>底层机制：Kilo 如何透传代理环境变量</h2><p>虽然 VSCode 没有细粒度的扩展代理开关，但 Kilo 扩展内部自己实现了一套代理环境变量构建逻辑，恰好提供了可用的调节点。</p>
+<p>查看其核心实现逻辑（<code>buildProxyEnv</code>）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildProxyEnv</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">let</span> httpConfig = vscode.<span class="hljs-property">workspace</span>.<span class="hljs-title function_">getConfiguration</span>(<span class="hljs-string">&quot;http&quot;</span>);<br>  <span class="hljs-keyword">if</span> (httpConfig.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;proxySupport&quot;</span>) === <span class="hljs-string">&quot;off&quot;</span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">HTTP_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">HTTPS_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">NO_PROXY</span>: <span class="hljs-string">&quot;&quot;</span>, ... &#125;; <span class="hljs-comment">// 全部清空</span><br>  &#125;<br>  <span class="hljs-comment">// ...</span><br>  env.<span class="hljs-property">HTTP_PROXY</span> = proxy;<br>  env.<span class="hljs-property">HTTPS_PROXY</span> = proxy;           <span class="hljs-comment">// 继承 http.proxy</span><br>  env.<span class="hljs-property">NO_PROXY</span> = noProxy.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;,&quot;</span>);  <span class="hljs-comment">// 继承 http.noProxy</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>从源码可以看出，Kilo 在启动底层工作进程时，会读取 VSCode 的三个核心网络配置项，并将其翻译为标准的系统环境变量透传给它拉起的 <code>kilo.exe</code> 子进程：</p>
+<ol>
+<li><strong><code>http.proxySupport</code></strong>：当设置为 <code>&quot;off&quot;</code> 时，会主动清空 <code>HTTP_PROXY</code>、<code>HTTPS_PROXY</code> 和 <code>NO_PROXY</code>，强制子进程直连。</li>
+<li><strong><code>http.proxy</code></strong>：映射为子进程的 <code>HTTP_PROXY</code> 与 <code>HTTPS_PROXY</code>。</li>
+<li><strong><code>http.noProxy</code></strong>：将配置的数组拼接为逗号分隔的字符串，映射为子进程的 <code>NO_PROXY</code>。</li>
+</ol>
+<h2 id="配置实践：实现内外网分流"><a href="#配置实践：实现内外网分流" class="headerlink" title="配置实践：实现内外网分流"></a>配置实践：实现内外网分流</h2><p>基于上述机制，我们不需要折腾系统级全局规则，只需在 VSCode 的全局配置 <code>settings.json</code> 中指定代理地址，并将内网域名及本地回环地址加入 <code>http.noProxy</code> 即可：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;http.proxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://127.0.0.1:7890&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;http.proxySupport&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;override&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;http.noProxy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;*.rustfisher.com&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;localhost&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;127.0.0.1&quot;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+<p>配置保存并重载扩展后，Kilo 拉起的 <code>kilo.exe</code> 就会自动携带对应的 <code>NO_PROXY</code> 环境变量：访问外部模型时正常走代理通道，请求 <code>*.rustfisher.com</code> 或本地服务时直接绕过代理，实现干净的网络分流。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/VSCode/" class="print-no-link">#VSCode</a>
+      
+        <a href="/tags/Kilo/" class="print-no-link">#Kilo</a>
+      
+        <a href="/tags/Proxy/" class="print-no-link">#Proxy</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="print-no-link">#开发环境</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）</div>
+      <div>https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rust Fisher</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+<div style="width:100%;display:flex;justify-content:center;margin-bottom:1.5rem"><ins class="adsbygoogle" style="display:flex;justify-content:center;max-width:845px;width:100%;height:90px" data-ad-client="ca-pub-7286632197002340" data-ad-slot="8064535079"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></div>
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/ai/rainy-store-gpt6-1sol-gemini3-8flash/" title="AI生成雨中便利店的网页 | GPT-6.1 sol，Gemini 3.8 flash，DeepSeek V4.1-Flash-1017">
+                        <span class="hidden-mobile">AI生成雨中便利店的网页 | GPT-6.1 sol，Gemini 3.8 flash，DeepSeek V4.1-Flash-1017</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"RustFisher/rustfisher.github.io","repo-id":"MDEwOlJlcG9zaXRvcnk1ODY0MjEyMg==","category":"Announcements","category-id":"DIC_kwDOA37Oys4CVzAk","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7286632197002340" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. 复制代码统计（增加空指针防御）
+      document.addEventListener('copy', function() {
+        var selection = window.getSelection();
+        var sel = selection ? selection.toString() : '';
+        if (sel && sel.length > 5) {
+          gtag('event', 'copy_code', { post_title: document.title });
+        }
+      });
+
+      // 2. 外部链接跳转统计（仅拦截 http/https 外链）
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (a && a.hostname && a.hostname !== window.location.hostname && (a.protocol === 'http:' || a.protocol === 'https:')) {
+          gtag('event', 'outbound_click', { link_url: a.href, post_title: document.title });
+        }
+      });
+    });
+    </script>
+    
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

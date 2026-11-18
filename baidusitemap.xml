@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.rustfisher.com/tools/vscode-kilo-http-noproxy-settings/</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/ai/rainy-store-gpt6-1sol-gemini3-8flash/</loc>
     <lastmod>2026-11-16</lastmod>
   </url>
@@ -33,19 +37,19 @@
     <lastmod>2026-11-02</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/news/openai-20260428/</loc>
-    <lastmod>2026-08-05</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/news/spacex-20260508/</loc>
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/news/nvidia-nvda-1st-quarter-earnings-report-2026-stock-20260521/</loc>
+    <loc>https://blog.rustfisher.com/news/openai-20260428/</loc>
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/news/nytimes-ai-spending-record-20260430/</loc>
+    <lastmod>2026-08-05</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.rustfisher.com/news/nvidia-nvda-1st-quarter-earnings-report-2026-stock-20260521/</loc>
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
@@ -109,11 +113,11 @@
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/news/gpt-5-5-instant-20260507/</loc>
+    <loc>https://blog.rustfisher.com/news/google-prepay-for-the-gemini-api-20260416/</loc>
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/news/google-prepay-for-the-gemini-api-20260416/</loc>
+    <loc>https://blog.rustfisher.com/news/gpt-5-5-instant-20260507/</loc>
     <lastmod>2026-08-05</lastmod>
   </url>
   <url>
@@ -293,11 +297,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-logging-use/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-get-path/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Python/Python-get-path/</loc>
+    <loc>https://blog.rustfisher.com/Python/Python-logging-use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -329,11 +333,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Pack_app/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QFileDialog_use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-QFileDialog_use/</loc>
+    <loc>https://blog.rustfisher.com/PyQt_note/PyQt-Pack_app/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -373,11 +377,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Linux/for-use/</loc>
+    <loc>https://blog.rustfisher.com/Linux/find-use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Linux/find-use/</loc>
+    <loc>https://blog.rustfisher.com/Linux/for-use/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -393,15 +397,15 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-Gesture_handle/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/Flutter/Flutter-International_localization_with_Intl/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Flutter/Flutter-Drawer_and_custom_header/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -445,15 +449,15 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/DesignPattern/Adapter-Pattern/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>https://blog.rustfisher.com/DesignPattern/Listener_pattern_practice_in_Java_Android/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.rustfisher.com/Database/MySQL-use_add_del_check_update/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -493,10 +497,6 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
-    <lastmod>2025-08-01</lastmod>
-  </url>
-  <url>
     <loc>https://blog.rustfisher.com/Android/NDK-compile_import_a_file/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
@@ -509,11 +509,15 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
+    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_2/</loc>
+    <lastmod>2025-08-01</lastmod>
+  </url>
+  <url>
     <loc>https://blog.rustfisher.com/Android/adb_mock_touch_and_monkeyrunner/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/NDK-use_sample_2/</loc>
+    <loc>https://blog.rustfisher.com/Android_tutorial_2020/Android-tutorial_2020_a_menu/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -573,11 +577,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Start/</loc>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Creating_Build_Variants/</loc>
+    <loc>https://blog.rustfisher.com/Android/Gradle_for_android_Start/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
@@ -613,11 +617,11 @@
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-MediaCodec_use_demo/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-Intent_extra_size_limit/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.rustfisher.com/Android/Android-Intent_extra_size_limit/</loc>
+    <loc>https://blog.rustfisher.com/Android/Android-MediaCodec_use_demo/</loc>
     <lastmod>2025-08-01</lastmod>
   </url>
   <url>
