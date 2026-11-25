@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>近期Web Demo汇总 - AI协作开发Three.js网页小游戏与3D场景</title>
+    <link href="/ai/ai-demos-summary/"/>
+    <url>/ai/ai-demos-summary/</url>
+    
+    <content type="html"><![CDATA[<p>最近一直在探索“AI 辅助编码 + Web 3D 交互”的轻量级开发流。借助 AI 工具链快速生成与迭代代码，不需要复杂的重型引擎，直接用浏览器就能打开体验 3D 场景和休闲小游戏。</p><p>目前已经在 en.rustfisher.com 部署上线了两个纯前端可交互的 Web Demo，打开即玩：</p><h2 id="火鸡快跑（Turkey-Run-2026）"><a href="#火鸡快跑（Turkey-Run-2026）" class="headerlink" title="火鸡快跑（Turkey Run 2026）"></a>火鸡快跑（Turkey Run 2026）</h2><p>在线体验：<a href="https://en.rustfisher.com/aiwebdemos/turkeyrun2026/index.html">https://en.rustfisher.com/aiwebdemos/turkeyrun2026/index.html</a></p><p>项目简介：花几天时间快速跑通的一个 Three.js 俯视角休闲跑酷 Demo。采用正交视角（Orthographic）搭建，整体玩法节奏明快，适合碎片时间随手玩一会。</p><h2 id="雨夜便利店（Rainy-Night-Convenience-Store）"><a href="#雨夜便利店（Rainy-Night-Convenience-Store）" class="headerlink" title="雨夜便利店（Rainy Night Convenience Store）"></a>雨夜便利店（Rainy Night Convenience Store）</h2><p>在线体验：<a href="https://en.rustfisher.com/aiwebdemos/store202611/20261123/index.html">https://en.rustfisher.com/aiwebdemos/store-lastest/index.html</a></p><p>项目简介：一个偏氛围感的 3D 交互微缩场景。除了雨夜灯光和便利店建筑外，还陆续加上了自动感应门、打伞路过的行人、小猫叫声交互、打闹、乌鸦，以及支持切换视角的轨道控制（默认锁定，可自由切换左右环绕观察）。</p><p><strong>一点开发体会</strong></p><p>快速验证想法：用 AI 协助搭起 Three.js 的基础骨架、光照和物理/状态机逻辑非常高效，能把精力集中在玩法细节和氛围调整上。</p><p>纯 Web 零门槛分发：相比打包原生安装包，网页链接可以直接附在社交动态或短视频评论区里，点击就能看到效果。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ai</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Gemini</tag>
+      
+      <tag>DeepSeek</tag>
+      
+      <tag>AI</tag>
+      
+      <tag>GPT</tag>
+      
+      <tag>threejs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）</title>
     <link href="/tools/vscode-kilo-http-noproxy-settings/"/>
     <url>/tools/vscode-kilo-http-noproxy-settings/</url>

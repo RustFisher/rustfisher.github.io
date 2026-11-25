@@ -6,7 +6,7 @@
   <link href="https://blog.rustfisher.com/atom.xml" rel="self"/>
   
   <link href="https://blog.rustfisher.com/"/>
-  <updated>2026-11-18T13:40:52.393Z</updated>
+  <updated>2026-11-25T14:46:40.641Z</updated>
   <id>https://blog.rustfisher.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>近期Web Demo汇总 - AI协作开发Three.js网页小游戏与3D场景</title>
+    <link href="https://blog.rustfisher.com/ai/ai-demos-summary/"/>
+    <id>https://blog.rustfisher.com/ai/ai-demos-summary/</id>
+    <published>2026-11-25T12:01:00.000Z</published>
+    <updated>2026-11-25T14:46:40.641Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近一直在探索“AI 辅助编码 + Web 3D 交互”的轻量级开发流。借助 AI 工具链快速生成与迭代代码，不需要复杂的重型引擎，直接用浏览器就能打开体验 3D 场景和休闲小游戏。</p><p>目前已经在 en.rustfisher.com 部署上线了两个纯前端可交互的 Web Demo，打开即玩：</p><h2 id="火鸡快跑（Turkey-Run-2026）"><a href="#火鸡快跑（Turkey-Run-2026）" class="headerlink" title="火鸡快跑（Turkey Run 2026）"></a>火鸡快跑（Turkey Run 2026）</h2><p>在线体验：<a href="https://en.rustfisher.com/aiwebdemos/turkeyrun2026/index.html">https://en.rustfisher.com/aiwebdemos/turkeyrun2026/index.html</a></p><p>项目简介：花几天时间快速跑通的一个 Three.js 俯视角休闲跑酷 Demo。采用正交视角（Orthographic）搭建，整体玩法节奏明快，适合碎片时间随手玩一会。</p><h2 id="雨夜便利店（Rainy-Night-Convenience-Store）"><a href="#雨夜便利店（Rainy-Night-Convenience-Store）" class="headerlink" title="雨夜便利店（Rainy Night Convenience Store）"></a>雨夜便利店（Rainy Night Convenience Store）</h2><p>在线体验：<a href="https://en.rustfisher.com/aiwebdemos/store202611/20261123/index.html">https://en.rustfisher.com/aiwebdemos/store-lastest/index.html</a></p><p>项目简介：一个偏氛围感的 3D 交互微缩场景。除了雨夜灯光和便利店建筑外，还陆续加上了自动感应门、打伞路过的行人、小猫叫声交互、打闹、乌鸦，以及支持切换视角的轨道控制（默认锁定，可自由切换左右环绕观察）。</p><p><strong>一点开发体会</strong></p><p>快速验证想法：用 AI 协助搭起 Three.js 的基础骨架、光照和物理/状态机逻辑非常高效，能把精力集中在玩法细节和氛围调整上。</p><p>纯 Web 零门槛分发：相比打包原生安装包，网页链接可以直接附在社交动态或短视频评论区里，点击就能看到效果。</p>]]></content>
+    
+    
+    <summary type="html">AI协作开发Three.js网页小游戏与3D场景，火鸡快跑，雨夜便利店</summary>
+    
+    
+    
+    <category term="ai" scheme="https://blog.rustfisher.com/categories/ai/"/>
+    
+    
+    <category term="Gemini" scheme="https://blog.rustfisher.com/tags/Gemini/"/>
+    
+    <category term="DeepSeek" scheme="https://blog.rustfisher.com/tags/DeepSeek/"/>
+    
+    <category term="AI" scheme="https://blog.rustfisher.com/tags/AI/"/>
+    
+    <category term="GPT" scheme="https://blog.rustfisher.com/tags/GPT/"/>
+    
+    <category term="threejs" scheme="https://blog.rustfisher.com/tags/threejs/"/>
+    
+  </entry>
   
   <entry>
     <title>VSCode 中 Kilo 扩展的代理机制解析与分流配置（http.proxy 与 noProxy）</title>
@@ -484,29 +513,6 @@
     <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
     
     <category term="news/OpenAI" scheme="https://blog.rustfisher.com/tags/news-OpenAI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DeepSeek近期对API服务进行了大幅降价</title>
-    <link href="https://blog.rustfisher.com/news/deepseek-price-20260427/"/>
-    <id>https://blog.rustfisher.com/news/deepseek-price-20260427/</id>
-    <published>2026-04-27T06:44:59.000Z</published>
-    <updated>2026-08-05T08:16:01.768Z</updated>
-    
-    <content type="html"><![CDATA[<p>DeepSeek近期对API服务进行了大幅降价。</p><p>新的价格信息，单位是 <strong>每100万tokens（约等于70-80万个英文单词）</strong> 的价格。</p><p>具体价格取决于你选择的模型和使用场景：</p><table><thead><tr><th style="text-align:left">模型版本</th><th style="text-align:left">计费场景</th><th style="text-align:left">最新价格 (每百万tokens)</th><th style="text-align:left">备注</th></tr></thead><tbody><tr><td style="text-align:left"><strong>DeepSeek-V4-Flash</strong></td><td style="text-align:left">输入 (缓存命中)</td><td style="text-align:left"><strong>0.02元</strong></td><td style="text-align:left">价格最低，适合追求高性价比和响应速度的场景。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输入 (缓存未命中)</td><td style="text-align:left">1元</td><td style="text-align:left">原价为4元，已同步下调。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输出</td><td style="text-align:left">2元</td><td style="text-align:left">原价为8元，已同步下调。</td></tr><tr><td style="text-align:left"><strong>DeepSeek-V4-Pro</strong></td><td style="text-align:left">输入 (缓存命中)</td><td style="text-align:left"><strong>0.025元</strong></td><td style="text-align:left"><strong>限时优惠</strong>，<strong>截至2026年5月5日</strong>。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输入 (缓存未命中)</td><td style="text-align:left">3元</td><td style="text-align:left">原价为12元，已同步下调。</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">输出</td><td style="text-align:left">6元</td><td style="text-align:left">原价为24元，已同步下调。</td></tr></tbody></table><blockquote><p>全系列模型，输入缓存命中的价格已降至首发价格的 1/10。<br>当前 deepseek-v4-pro 模型限时 2.5 折，优惠期至北京时间 2026/05/05 23:59。</p></blockquote><p>参考来源： <a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">https://api-docs.deepseek.com/zh-cn/quick_start/pricing</a></p><p><img src="deepseek-doc-price-2026-4-27.png" alt="DeepSeek价格文档"></p>]]></content>
-    
-    
-    <summary type="html">全系列模型，输入缓存命中的价格已降至首发价格的 1/10</summary>
-    
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/categories/news/"/>
-    
-    
-    <category term="news" scheme="https://blog.rustfisher.com/tags/news/"/>
-    
-    <category term="news/deepseek" scheme="https://blog.rustfisher.com/tags/news-deepseek/"/>
     
   </entry>
   
