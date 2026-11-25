@@ -500,3 +500,18 @@
   </noscript>
 </body>
 </html>
+document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (a && a.hostname && a.hostname !== window.location.hostname && (a.protocol === 'http:' || a.protocol === 'https:')) {
+          gtag('event', 'outbound_click', { link_url: a.href, post_title: document.title });
+        }
+      });
+    });
+    </script>
+    
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
